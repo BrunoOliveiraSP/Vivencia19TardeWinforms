@@ -200,6 +200,7 @@
             this.btnCoordenacao.Text = "Salvar";
             this.btnCoordenacao.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnCoordenacao.UseVisualStyleBackColor = false;
+            this.btnCoordenacao.Click += new System.EventHandler(this.btnCoordenacao_Click);
             // 
             // label5
             // 

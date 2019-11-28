@@ -10,8 +10,17 @@ namespace Nsf.App.UI
         public frmInscricoesNovo()
         {
             InitializeComponent();
+            CarregarCampos();
         }
-    
-    
+
+        private void btnCoordenacao_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void CarregarCampos()
+        {
+            //Carregar os dois combos da tela
+        }
     }
 }
