@@ -15,7 +15,22 @@ namespace Nsf.App.UI
         public frmAnoLetivoConsultar()
         {
             InitializeComponent();
-		}
+            Carregar();
 
+        }
+
+        private void dgvAnosLetivos_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        public void Carregar()
+        {
+            API.AnoLetivoApi api = new API.AnoLetivoApi();
+            List<Models.AnoLetivoModel> lista = api.ListarTodos();
+
+            dgvAnosLetivos.AutoGenerateColumns = false;
+            dgvAnosLetivos.DataSource = lista;
+        }
     }
 }

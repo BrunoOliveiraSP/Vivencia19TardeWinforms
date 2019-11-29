@@ -23,5 +23,12 @@ namespace Nsf.App.UI
         {
             
         }
+
+        private void btnSalvar_Click(object sender, EventArgs e)
+        {
+            UI.frmAnoLetivoConsultar tela = new frmAnoLetivoConsultar();
+            tela.Show();
+            this.Hide();
+        }
     }
 }
