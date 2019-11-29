@@ -12,6 +12,8 @@ namespace Nsf.App.UI
             CarregarGrid();
 		}
 
+        API.InscricaoAPI InscricaoAPI = new API.InscricaoAPI();
+
         private void txtNome_TextChanged(object sender, EventArgs e)
         {
             if(string.IsNullOrWhiteSpace(txtNome.Text))
@@ -48,7 +50,19 @@ namespace Nsf.App.UI
 
         private void CarregarGrid()
         {
-
+            try
+            {
+               // dgvCandidatos.AutoGenerateColumns = false;
+                dgvCandidatos.DataSource = InscricaoAPI.ConsultarTodos();
+            }
+            catch(ArgumentException ex)
+            {
+                MessageBox.Show(ex.Message, "Matrículas", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Ocorreu um erro");
+            }
         }
     }
 }
