@@ -8,9 +8,11 @@ namespace Nsf.App.UI.Models
 {
     class AnoLetivoModel
     {
-        public int MyProperty { get; set; }
-        public int MyProperty { get; set; }
-        public int MyProperty { get; set; }
-        public int MyProperty { get; set; }
+        public int IdAnoLetivo { get; set; }
+        public int NrAno { get; set; }
+        public DateTime DtInicio { get; set; }
+        public DateTime DtFim { get; set; }
+        public ulong BtAtivo { get; set; }
+        public string TpStatus { get; set; }
     }
 }
