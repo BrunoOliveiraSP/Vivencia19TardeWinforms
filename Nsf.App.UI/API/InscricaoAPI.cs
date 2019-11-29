@@ -23,7 +23,22 @@ namespace Nsf.App.UI.API
                              .ReadAsStringAsync()
                              .Result;
 
-            this.VerificarErro(json);
+            VerificarErro(resp);
+        }
+
+        public List<Models.InscricaoModel> ConsultarTodos()
+        {
+            HttpClient client = new HttpClient();
+
+            string json = client.GetAsync("http://localhost:5000/Inscricao/ConsultarTodos")
+                                .Result
+                                .Content
+                                .ReadAsStringAsync()
+                                .Result;
+
+            VerificarErro(json);
+
+            return JsonConvert.DeserializeObject<List<Models.InscricaoModel>>(json);
         }
 
         private void VerificarErro(string respostaAPI)
