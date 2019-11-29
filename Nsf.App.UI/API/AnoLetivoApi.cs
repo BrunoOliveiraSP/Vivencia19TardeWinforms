@@ -26,7 +26,16 @@ namespace Nsf.App.UI.API
                                 .Result
                                 .Content
                                 .ReadAsStringAsync()
-                                .Result
+                                .Result;
+
+            List<Models.AnoLetivoModel> lista = JsonConvert.DeserializeObject<List<Models.AnoLetivoModel>>(json);
+
+            return lista;
+        }
+
+        public void Remover(int id)
+        {
+
         }
     }
 }
