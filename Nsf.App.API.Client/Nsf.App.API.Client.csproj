@@ -44,6 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AnoLetivoApi.cs" />
     <Compile Include="ExemploAPI.cs" />
     <Compile Include="InscricaoAPI.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

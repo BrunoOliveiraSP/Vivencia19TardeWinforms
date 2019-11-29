@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace Nsf.App.UI
@@ -8,7 +9,26 @@ namespace Nsf.App.UI
         public frmCursoConsultar()
         {
             InitializeComponent();
+            this.Carregar();
         }
 
+        private void txtCurso_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtSigla_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Carregar()
+        {
+            Nsf.App.UI.API.CursoAPI curso = new API.CursoAPI();
+            List<Nsf.App.Model.CursoModel> lista = curso.ConsultarTodos();
+
+            dgvCursos.AutoGenerateColumns = false;
+            dgvCursos.DataSource = lista;
+        }
     }
 }

@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Nsf.App.UI.Models
+namespace Nsf.App.Model
 {
-    class AnoLetivoModel
+    public class AnoLetivoModel
     {
         public int IdAnoLetivo { get; set; }
         public int NrAno { get; set; }
