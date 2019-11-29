@@ -6,13 +6,13 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Nsf.App.UI.API
+namespace Nsf.App.API.Client
 {
-    class AnoLetivoApi
+   public class AnoLetivoApi
     {
         HttpClient client = new HttpClient();
 
-        public void CadastrarAnoLetivo (Models.AnoLetivoModel ano)
+        public void CadastrarAnoLetivo(Model.AnoLetivoModel ano)
         {
             string json = JsonConvert.SerializeObject(ano);
             StringContent body = new StringContent(json, Encoding.UTF8, "application/json");
@@ -20,7 +20,7 @@ namespace Nsf.App.UI.API
             var resp = client.PostAsync("http://localhost/AnoLetivo/", body).Result;
         }
 
-        public List<Models.AnoLetivoModel> ListarTodos()
+        public List<Model.AnoLetivoModel> ListarTodos()
         {
             string json = client.GetAsync("http://localhost/AnoLetivo/")
                                 .Result
@@ -28,7 +28,7 @@ namespace Nsf.App.UI.API
                                 .ReadAsStringAsync()
                                 .Result;
 
-            List<Models.AnoLetivoModel> lista = JsonConvert.DeserializeObject<List<Models.AnoLetivoModel>>(json);
+            List<Model.AnoLetivoModel> lista = JsonConvert.DeserializeObject<List<Model.AnoLetivoModel>>(json);
 
             return lista;
         }

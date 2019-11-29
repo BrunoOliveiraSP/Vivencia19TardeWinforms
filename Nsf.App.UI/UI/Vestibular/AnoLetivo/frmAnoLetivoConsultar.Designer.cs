@@ -92,6 +92,7 @@
             this.dgvAnosLetivos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvAnosLetivos.Size = new System.Drawing.Size(637, 350);
             this.dgvAnosLetivos.TabIndex = 0;
+            this.dgvAnosLetivos.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvAnosLetivos_CellClick);
             this.dgvAnosLetivos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvAnosLetivos_CellContentClick);
             // 
             // Registro
