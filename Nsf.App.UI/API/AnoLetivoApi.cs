@@ -35,7 +35,7 @@ namespace Nsf.App.UI.API
 
         public void Remover(int id)
         {
-
+            var resp = client.DeleteAsync("http://localhost/AnoLetivo/" + id).Result;
         }
     }
 }
