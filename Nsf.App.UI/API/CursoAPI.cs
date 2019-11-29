@@ -10,7 +10,7 @@ namespace Nsf.App.UI.API
 {
     public class CursoAPI
     {
-        public void Inserir(CursoAPI curso)
+        public void Inserir(Nsf.App.Model.CursoModel curso)
         {
             HttpClient client = new HttpClient();
 
