@@ -8,5 +8,9 @@ namespace Nsf.App.UI.API
 {
     class InscricaoAPI
     {
+        public void Inserir()
+        {
+
+        }
     }
 }
