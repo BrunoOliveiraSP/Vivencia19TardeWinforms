@@ -14,5 +14,14 @@ namespace Nsf.App.UI
             InitializeComponent();
         }
 
+        private void btnTurmaAdd_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnCalcularChamadaOficial_Click(object sender, EventArgs e)
+        {
+            
+        }
     }
 }

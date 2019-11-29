@@ -508,9 +508,9 @@
             this.tabModulos.Controls.Add(this.label15);
             this.tabModulos.Controls.Add(this.label14);
             this.tabModulos.Controls.Add(this.cboModuloTipo);
-            this.tabModulos.Location = new System.Drawing.Point(4, 25);
+            this.tabModulos.Location = new System.Drawing.Point(4, 33);
             this.tabModulos.Name = "tabModulos";
-            this.tabModulos.Size = new System.Drawing.Size(726, 384);
+            this.tabModulos.Size = new System.Drawing.Size(726, 376);
             this.tabModulos.TabIndex = 2;
             this.tabModulos.Text = "Módulos";
             this.tabModulos.UseVisualStyleBackColor = true;
@@ -754,10 +754,10 @@
             this.tabTurmas.Controls.Add(this.cboTurmaCurso);
             this.tabTurmas.Controls.Add(this.label1);
             this.tabTurmas.Controls.Add(this.label4);
-            this.tabTurmas.Location = new System.Drawing.Point(4, 25);
+            this.tabTurmas.Location = new System.Drawing.Point(4, 33);
             this.tabTurmas.Name = "tabTurmas";
             this.tabTurmas.Padding = new System.Windows.Forms.Padding(3);
-            this.tabTurmas.Size = new System.Drawing.Size(726, 384);
+            this.tabTurmas.Size = new System.Drawing.Size(726, 376);
             this.tabTurmas.TabIndex = 1;
             this.tabTurmas.Text = "Turmas";
             // 
@@ -891,6 +891,7 @@
             this.btnTurmaAdd.Text = "Adicionar";
             this.btnTurmaAdd.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnTurmaAdd.UseVisualStyleBackColor = false;
+            this.btnTurmaAdd.Click += new System.EventHandler(this.btnTurmaAdd_Click);
             // 
             // label12
             // 
@@ -1099,6 +1100,7 @@
             this.btnCalcularChamadaOficial.Text = "Calcular chamada oficial";
             this.btnCalcularChamadaOficial.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnCalcularChamadaOficial.UseVisualStyleBackColor = false;
+            this.btnCalcularChamadaOficial.Click += new System.EventHandler(this.btnCalcularChamadaOficial_Click);
             // 
             // nudAno
             // 
