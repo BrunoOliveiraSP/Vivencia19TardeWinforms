@@ -12,7 +12,7 @@ namespace Nsf.App.UI
             CarregarGrid();
 		}
 
-        API.InscricaoAPI InscricaoAPI = new API.InscricaoAPI();
+        App.API.Client.InscricaoAPI InscricaoAPI = new App.API.Client.InscricaoAPI();
 
         private void txtNome_TextChanged(object sender, EventArgs e)
         {

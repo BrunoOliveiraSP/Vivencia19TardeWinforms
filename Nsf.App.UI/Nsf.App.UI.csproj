@@ -61,10 +61,7 @@
   <ItemGroup>
     <Compile Include="API\AnoLetivoApi.cs" />
     <Compile Include="API\CursoAPI.cs" />
-    <Compile Include="API\InscricaoAPI.cs" />
     <Compile Include="Models\AnoLetivoModel.cs" />
-    <Compile Include="Models\ErrorModel.cs" />
-    <Compile Include="Models\InscricaoModel.cs" />
     <Compile Include="UI\Exemplo\frmExemploCadastrar.cs">
       <SubType>UserControl</SubType>
     </Compile>
