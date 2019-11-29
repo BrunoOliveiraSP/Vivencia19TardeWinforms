@@ -16,7 +16,7 @@ namespace Nsf.App.UI
 
         private void btnCoordenacao_Click(object sender, EventArgs e)
         {
-            Nsf.App.Model.InscricaoModel inscricao = new Nsf.App.Model.InscricaoModel();
+            Model.InscricaoModel inscricao = new Model.InscricaoModel();
             inscricao.CdInscricao = Convert.ToInt32(nudId.Value);
             inscricao.NmInscrito = txtNome.Text;
             inscricao.DtNascimento = Convert.ToDateTime(txtNascimentoData.Text);
@@ -65,8 +65,8 @@ namespace Nsf.App.UI
             inscricao.BtPendenteComprovresid = chkPendenteComprovResidencia.Checked;
             inscricao.DsObservacao = txtObservacoes.Text;
 
-            /*API.api = new API.InscricaoAPI();
-            api.Inserir(inscricao);*/
+            App.API.Client.InscricaoAPI api = new App.API.Client.InscricaoAPI();
+            api.Inserir(inscricao);
 
             MessageBox.Show("Inscrição efetuada.", "Inscrição", MessageBoxButtons.OK);
         }

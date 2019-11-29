@@ -34,6 +34,7 @@ namespace Nsf.App.Model
         public string DsResponsavelNome { get; set; }
         public string DsResponsavelEmail { get; set; }
         public string DsResponsavelTelefone { get; set; }
+        public string DsResponsavelTelefone2 { get; set; }
         public string DsResponsavelParentesco { get; set; }
         public int IdCurso { get; set; }
         public string DsCursoPeriodo { get; set; }
