@@ -6,9 +6,9 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Nsf.App.UI.API
+namespace Nsf.App.API.Client
 {
-    class InscricaoAPI
+    public class InscricaoAPI
     {
         public void Inserir(Model.InscricaoModel inscricao)
         {
@@ -26,7 +26,7 @@ namespace Nsf.App.UI.API
             VerificarErro(resp);
         }
 
-        public List<Models.InscricaoModel> ConsultarTodos()
+        public List<Model.InscricaoModel> ConsultarTodos()
         {
             HttpClient client = new HttpClient();
 
@@ -38,10 +38,10 @@ namespace Nsf.App.UI.API
 
             VerificarErro(json);
 
-            return JsonConvert.DeserializeObject<List<Models.InscricaoModel>>(json);
+            return JsonConvert.DeserializeObject<List<Model.InscricaoModel>>(json);
         }
 
-        private void Alterar(Models.InscricaoModel inscricao)
+        private void Alterar(Model.InscricaoModel inscricao)
         {
             HttpClient client = new HttpClient();
 
@@ -72,9 +72,9 @@ namespace Nsf.App.UI.API
 
         private void VerificarErro(string respostaAPI)
         {
-            if(respostaAPI.Contains("codigoErro"))
+            if (respostaAPI.Contains("codigoErro"))
             {
-                Models.ErrorModel erro = JsonConvert.DeserializeObject<Models.ErrorModel>(respostaAPI);
+                Model.ErroModel erro = JsonConvert.DeserializeObject<Model.ErroModel>(respostaAPI);
                 throw new ArgumentException(erro.Mensagem);
             }
         }
