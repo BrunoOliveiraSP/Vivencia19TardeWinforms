@@ -10,5 +10,6 @@ namespace Nsf.App.Model
     {
         public int CodigoErro { get; set; }
         public string Mensagem { get; set; }
+
     }
 }

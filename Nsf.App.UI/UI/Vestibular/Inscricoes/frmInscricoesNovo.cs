@@ -35,7 +35,6 @@ namespace Nsf.App.UI
             inscricao.NrResidenciaEndereco = Convert.ToInt32(txtNumero.Text);
             inscricao.DsResidenciaComplelemento = txtComplemento.Text;
             inscricao.DsResidenciaBairro = txtBairro.Text;
-            inscricao.DsResidenciaEstado = txt
         }
 
         private void CarregarCampos()
@@ -45,4 +44,3 @@ namespace Nsf.App.UI
         
         }
     }
-}
