@@ -16,7 +16,7 @@ namespace Nsf.App.UI
 
         private void btnCoordenacao_Click(object sender, EventArgs e)
         {
-            Models.InscricaoModel inscricao = new Models.InscricaoModel();
+            Model.InscricaoModel inscricao = new Model.InscricaoModel();
             inscricao.CdInscricao = Convert.ToInt32(nudId.Value);
             inscricao.NmInscrito = txtNome.Text;
             inscricao.DtNascimento = Convert.ToDateTime(txtNascimentoData.Text);
