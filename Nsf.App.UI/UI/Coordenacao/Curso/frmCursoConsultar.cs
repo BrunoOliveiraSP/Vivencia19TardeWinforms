@@ -27,6 +27,7 @@ namespace Nsf.App.UI
             Nsf.App.UI.API.CursoAPI curso = new API.CursoAPI();
             List<Nsf.App.Model.CursoModel> lista = curso.ConsultarTodos();
 
+            dgvCursos.AutoGenerateColumns = false;
             dgvCursos.DataSource = lista;
         }
     }
