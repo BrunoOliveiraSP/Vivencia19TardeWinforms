@@ -1,12 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Nsf.App.UI.API
 {
-    class CursoAPI
+    public class CursoAPI
     {
+        public void Inserir()
+        {
+            HttpClient client = new HttpClient();
+
+
+        }
     }
 }

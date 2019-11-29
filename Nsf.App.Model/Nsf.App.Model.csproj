@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CursoModel.cs" />
     <Compile Include="ErroModel.cs" />
     <Compile Include="ExemploModel.cs" />
     <Compile Include="InscricaoModel.cs" />
