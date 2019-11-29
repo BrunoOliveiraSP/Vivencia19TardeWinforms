@@ -10,7 +10,7 @@ namespace Nsf.App.UI.API
 {
     public class CursoAPI
     {
-        public void Inserir(CursoAPI curso)
+        public void Inserir(Nsf.App.Model.CursoModel curso)
         {
             HttpClient client = new HttpClient();
 
@@ -18,6 +18,16 @@ namespace Nsf.App.UI.API
             StringContent body = new StringContent(json, Encoding.UTF8, "application/json");
             
             var resp = client.PostAsync("http://localhost:5000/Curso/", body).Result;
+        }
+
+        public List<Nsf.App.Model.CursoModel> ConsultarTodos()
+        {
+            HttpClient client = new HttpClient();
+
+            string json = client.GetAsync("http://localhost:5000/Curso/").Result.Content.ReadAsStringAsync().Result;
+            List<Nsf.App.Model.CursoModel> lista = JsonConvert.DeserializeObject<List<Nsf.App.Model.CursoModel>>(json);
+
+            return lista;
         }
     }
 }
