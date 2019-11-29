@@ -64,6 +64,7 @@ namespace Nsf.App.UI.Models
         public string DsResponsavelRg { get; set; }
         public int CdInscricao { get; set; }
         public string ds_email_inscrito { get; set; }
+        public int DsRg { get; set; }
 
 
         //Falta colocar as tabelas aqui também
