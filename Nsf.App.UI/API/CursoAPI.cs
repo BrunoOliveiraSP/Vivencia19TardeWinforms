@@ -15,7 +15,7 @@ namespace Nsf.App.UI.API
             HttpClient client = new HttpClient();
 
             string json = JsonConvert.SerializeObject(curso);
-            StringContent body = new StringContent()
+            StringContent body = new StringContent();
             
             var resp = client.PostAsync("http://localhost:5000/Curso/");
         }
