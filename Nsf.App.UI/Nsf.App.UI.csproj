@@ -59,9 +59,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="API\AnoLetivoApi.cs" />
     <Compile Include="API\CursoAPI.cs" />
-    <Compile Include="Models\AnoLetivoModel.cs" />
     <Compile Include="UI\Exemplo\frmExemploCadastrar.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -367,7 +365,9 @@
   <ItemGroup>
     <None Include="Resources\mortarboard %283%29.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Models\" />
+  </ItemGroup>
   <ItemGroup>
     <None Include="Resources\graph.png" />
   </ItemGroup>
@@ -466,6 +466,9 @@
     <Content Include="Resources\logo3.ico" />
     <None Include="Resources\red_ball.png" />
     <None Include="Resources\orange_ball.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
