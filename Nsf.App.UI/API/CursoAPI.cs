@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace Nsf.App.UI.API
 {
-    class CursoAPI
+    public class CursoAPI
     {
+        public void Inserir()
+        {
+
+        }
     }
 }
