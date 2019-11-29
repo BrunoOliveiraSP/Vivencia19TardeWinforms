@@ -9,11 +9,14 @@ namespace Nsf.App.UI.API
 {
     public class CursoAPI
     {
-        public void Inserir()
+        public void Inserir(CursoAPI curso)
         {
             HttpClient client = new HttpClient();
 
+            string json = JsonConvert.SerializeObject(curso);
 
+            
+            client.PostAsync("localhost:5000/Curso/");
         }
     }
 }
