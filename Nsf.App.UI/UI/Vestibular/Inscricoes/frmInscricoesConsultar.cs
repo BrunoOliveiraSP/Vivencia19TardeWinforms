@@ -17,7 +17,7 @@ namespace Nsf.App.UI
         private void txtNome_TextChanged(object sender, EventArgs e)
         {
             if(string.IsNullOrWhiteSpace(txtNome.Text))
-            {
+            {  
 
             }
 
