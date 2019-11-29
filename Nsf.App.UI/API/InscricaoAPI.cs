@@ -41,6 +41,35 @@ namespace Nsf.App.UI.API
             return JsonConvert.DeserializeObject<List<Models.InscricaoModel>>(json);
         }
 
+        private void Alterar(Models.InscricaoModel inscricao)
+        {
+            HttpClient client = new HttpClient();
+
+            string json = JsonConvert.SerializeObject(inscricao);
+            StringContent body = new StringContent(json, Encoding.UTF8, "application/json");
+
+            var resp = client.PutAsync("http://localhost:5000/Inscricao", body)
+                             .Result
+                             .Content
+                             .ReadAsStringAsync()
+                             .Result;
+
+            this.VerificarErro(resp);
+        }
+
+        private void Remover(int id)
+        {
+            HttpClient client = new HttpClient();
+
+            var resp = client.DeleteAsync("http://localhost:5000/Inscricao" + id)
+                            .Result
+                            .Content
+                            .ReadAsStringAsync()
+                            .Result;
+
+            this.VerificarErro(resp);
+        }
+
         private void VerificarErro(string respostaAPI)
         {
             if(respostaAPI.Contains("codigoErro"))
