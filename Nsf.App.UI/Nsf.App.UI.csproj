@@ -55,6 +55,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="API\InscricaoAPI.cs" />
+    <Compile Include="Models\ErrorModel.cs" />
+    <Compile Include="Models\InscricaoModel.cs" />
     <Compile Include="UI\Menu\frmModeloEstatistica.cs">
       <SubType>UserControl</SubType>
     </Compile>
