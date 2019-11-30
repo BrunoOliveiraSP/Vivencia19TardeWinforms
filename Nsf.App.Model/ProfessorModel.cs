@@ -12,8 +12,6 @@ namespace Nsf.App.Model
 
         public int IdLogin { get; set; }
 
-        public string DsLogin { get; set; }
-
         public string NmProfessor { get; set; }
 
         public string DsCelular { get; set; }
@@ -53,5 +51,6 @@ namespace Nsf.App.Model
         public DateTime DtFaculdadeInicio { get; set; }
 
         public DateTime DtFaculdadeFim { get; set; }
+        public string DsLogin { get; set; }
     }
 }

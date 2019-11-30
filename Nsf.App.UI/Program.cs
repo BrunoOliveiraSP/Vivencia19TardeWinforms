@@ -14,7 +14,7 @@ namespace Nsf.App.UI
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
 
-            Application.Run(new frmInicial());
+            Application.Run(new UI.frmInicial());
         }
 	}
 }

@@ -16,7 +16,7 @@ namespace Nsf.App.UI
 
         private void btnTurmaAdd_Click(object sender, EventArgs e)
         {
-           
+          
         }
 
         private void btnCalcularChamadaOficial_Click(object sender, EventArgs e)
@@ -26,6 +26,18 @@ namespace Nsf.App.UI
 
         private void btnSalvar_Click(object sender, EventArgs e)
         {
+
+            Model.AnoLetivoModel add = new Model.AnoLetivoModel();
+            add.NrAno = Convert.ToInt32(nudAno.Value);
+            add.DtInicio = dtpInicio.Value;
+            add.DtFim = dtpFim.Value;
+            add.TpStatus = cboStatus.Text;
+            add.BtAtivo = Convert.ToUInt32(rdnAberto.Checked);
+
+            Nsf.App.API.Client.AnoLetivoApi Add = new App.API.Client.AnoLetivoApi();
+            Add.CadastrarAnoLetivo(add);
+
+            MessageBox.Show("Cadastro realizado com sucesso.");
             UI.frmAnoLetivoConsultar tela = new frmAnoLetivoConsultar();
             tela.Show();
             this.Hide();
