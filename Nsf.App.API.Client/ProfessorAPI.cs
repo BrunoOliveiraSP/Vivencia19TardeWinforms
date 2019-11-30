@@ -52,6 +52,17 @@ namespace Nsf.App.API.Client
 
         public void Salvar(ProfessorModel professor)
         {
+            if(professor.IdProfessor > 0)
+            {
+                this.Alterar(professor);
+            }
+            else
+            {
+                this.Salvar(professor);
+            }
+        }
+        public void Inserir(ProfessorModel professor)
+        {
             _client = new HttpClient();
 
             string json = JsonConvert.SerializeObject(professor);

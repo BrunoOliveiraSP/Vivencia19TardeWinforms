@@ -550,7 +550,7 @@
             "CLT",
             "PJ",
             "Voluntário"});
-            this.cboContrato.Location = new System.Drawing.Point(153, 354);
+            this.cboContrato.Location = new System.Drawing.Point(154, 354);
             this.cboContrato.Name = "cboContrato";
             this.cboContrato.Size = new System.Drawing.Size(229, 28);
             this.cboContrato.TabIndex = 14;
@@ -1013,6 +1013,7 @@
             this.btnReset.Text = "Resetar Senha";
             this.btnReset.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnReset.UseVisualStyleBackColor = false;
+            this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
             // 
             // frmProfessorCadastrar
             // 
