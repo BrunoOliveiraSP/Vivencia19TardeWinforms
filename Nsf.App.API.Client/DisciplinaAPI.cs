@@ -26,11 +26,28 @@ namespace Nsf.App.API.Client
 
             VerificarErro(resp);
         }
-        public List<Nsf.App.Model.DisciplinaModel> Listar(string nome, string sigla)
+        public List<Nsf.App.Model.DisciplinaModel> Listar()
         {
             HttpClient client = new HttpClient();
 
-            string json = client.GetAsync("http://localhost:5000/Disciplina" + nome + sigla )
+            string json = client.GetAsync("http://localhost:5000/Disciplina/ListarTodos")
+                                .Result
+                                .Content
+                                .ReadAsStringAsync()
+                                .Result;
+
+            List<Nsf.App.Model.DisciplinaModel> lista =
+                JsonConvert.DeserializeObject<List<Nsf.App.Model.DisciplinaModel>>(json);
+
+            return lista;
+        }
+
+
+        public List<Nsf.App.Model.DisciplinaModel> Consultar(string nome, string sigla)
+        {
+            HttpClient client = new HttpClient();
+
+            string json = client.GetAsync("http://localhost:5000/Disciplina/ListarNomeSigla/" + nome + sigla)
                                 .Result
                                 .Content
                                 .ReadAsStringAsync()
