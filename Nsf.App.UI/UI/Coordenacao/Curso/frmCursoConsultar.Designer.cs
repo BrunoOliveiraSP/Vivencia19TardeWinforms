@@ -36,10 +36,10 @@
             this.label68 = new System.Windows.Forms.Label();
             this.txtSigla = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.Registro = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Nome = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.dgvtxtCurso = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvtxtSigla = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvtxtNrCapacidadeMaxima = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvtxtBtAtivo = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewImageColumn();
             this.Column1 = new System.Windows.Forms.DataGridViewImageColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCursos)).BeginInit();
@@ -73,10 +73,10 @@
             this.dgvCursos.ColumnHeadersHeight = 45;
             this.dgvCursos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dgvCursos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Registro,
-            this.Nome,
-            this.Column3,
-            this.Column4,
+            this.dgvtxtCurso,
+            this.dgvtxtSigla,
+            this.dgvtxtNrCapacidadeMaxima,
+            this.dgvtxtBtAtivo,
             this.Column2,
             this.Column1});
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -96,6 +96,7 @@
             this.dgvCursos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvCursos.Size = new System.Drawing.Size(742, 396);
             this.dgvCursos.TabIndex = 2;
+            this.dgvCursos.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCursos_CellClick);
             this.dgvCursos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCursos_CellContentClick);
             // 
             // txtCurso
@@ -138,37 +139,37 @@
             this.label1.TabIndex = 164;
             this.label1.Text = "Sigla:";
             // 
-            // Registro
+            // dgvtxtCurso
             // 
-            this.Registro.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Registro.DataPropertyName = "NmCurso";
-            this.Registro.HeaderText = "Curso";
-            this.Registro.Name = "Registro";
-            this.Registro.ReadOnly = true;
+            this.dgvtxtCurso.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dgvtxtCurso.DataPropertyName = "NmCurso";
+            this.dgvtxtCurso.HeaderText = "Curso";
+            this.dgvtxtCurso.Name = "dgvtxtCurso";
+            this.dgvtxtCurso.ReadOnly = true;
             // 
-            // Nome
+            // dgvtxtSigla
             // 
-            this.Nome.DataPropertyName = "DsSigla";
-            this.Nome.HeaderText = "Sigla";
-            this.Nome.Name = "Nome";
-            this.Nome.ReadOnly = true;
+            this.dgvtxtSigla.DataPropertyName = "DsSigla";
+            this.dgvtxtSigla.HeaderText = "Sigla";
+            this.dgvtxtSigla.Name = "dgvtxtSigla";
+            this.dgvtxtSigla.ReadOnly = true;
             // 
-            // Column3
+            // dgvtxtNrCapacidadeMaxima
             // 
-            this.Column3.DataPropertyName = "NrCapacidadeMaxima";
-            this.Column3.HeaderText = "Capacidade";
-            this.Column3.Name = "Column3";
-            this.Column3.ReadOnly = true;
-            this.Column3.Width = 150;
+            this.dgvtxtNrCapacidadeMaxima.DataPropertyName = "NrCapacidadeMaxima";
+            this.dgvtxtNrCapacidadeMaxima.HeaderText = "Capacidade";
+            this.dgvtxtNrCapacidadeMaxima.Name = "dgvtxtNrCapacidadeMaxima";
+            this.dgvtxtNrCapacidadeMaxima.ReadOnly = true;
+            this.dgvtxtNrCapacidadeMaxima.Width = 150;
             // 
-            // Column4
+            // dgvtxtBtAtivo
             // 
-            this.Column4.DataPropertyName = "BtAtivo";
-            this.Column4.HeaderText = "Ativo";
-            this.Column4.Name = "Column4";
-            this.Column4.ReadOnly = true;
-            this.Column4.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.Column4.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.dgvtxtBtAtivo.DataPropertyName = "BtAtivo";
+            this.dgvtxtBtAtivo.HeaderText = "Ativo";
+            this.dgvtxtBtAtivo.Name = "dgvtxtBtAtivo";
+            this.dgvtxtBtAtivo.ReadOnly = true;
+            this.dgvtxtBtAtivo.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvtxtBtAtivo.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             // 
             // Column2
             // 
@@ -221,10 +222,10 @@
 		private System.Windows.Forms.Label label68;
         private System.Windows.Forms.TextBox txtSigla;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Registro;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Nome;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn Column4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgvtxtCurso;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgvtxtSigla;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgvtxtNrCapacidadeMaxima;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn dgvtxtBtAtivo;
         private System.Windows.Forms.DataGridViewImageColumn Column2;
         private System.Windows.Forms.DataGridViewImageColumn Column1;
     }

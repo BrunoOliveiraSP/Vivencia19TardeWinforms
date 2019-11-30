@@ -43,5 +43,36 @@ namespace Nsf.App.UI
         {
 
         }
+
+        private void dgvCursos_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex == 5)
+            {
+                Model.CursoModel curso = dgvCursos.CurrentRow.DataBoundItem as Model.CursoModel;
+                
+
+
+
+
+            }
+
+                if (e.ColumnIndex == 5)
+            {
+                Model.CursoModel curso = dgvCursos.CurrentRow.DataBoundItem as Model.CursoModel;
+
+                DialogResult r = MessageBox.Show("Deseja remover?", "Remover", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                if(r == DialogResult.Yes)
+                {
+                    API.CursoAPI api = new API.CursoAPI();
+                    api.Remover(curso.IdCurso);
+
+                    MessageBox.Show("Removido com sucesso");
+                    Carregar();
+                }
+           
+            }
+
+        }
     }
 }
