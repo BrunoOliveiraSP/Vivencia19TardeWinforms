@@ -24,7 +24,12 @@ namespace Nsf.App.UI.API
         {
             HttpClient client = new HttpClient();
 
-            string json = client.GetAsync("http://localhost:5000/Curso/").Result.Content.ReadAsStringAsync().Result;
+            string json = client.GetAsync("http://localhost:5000/Curso/")
+                                .Result
+                                .Content
+                                .ReadAsStringAsync()
+                                .Result;
+
             List<Nsf.App.Model.CursoModel> lista = JsonConvert.DeserializeObject<List<Nsf.App.Model.CursoModel>>(json);
 
             return lista;
@@ -34,7 +39,12 @@ namespace Nsf.App.UI.API
         {
             HttpClient client = new HttpClient();
 
-            string json = client.GetAsync("http://localhost:5000/Curso/" + NmCurso).Result.Content.ReadAsStringAsync().Result;
+            string json = client.GetAsync("http://localhost:5000/Curso/" + NmCurso)
+                                .Result
+                                .Content
+                                .ReadAsStringAsync()
+                                .Result;
+
             List<Nsf.App.Model.CursoModel> lista = JsonConvert.DeserializeObject<List<Nsf.App.Model.CursoModel>>(json);
 
             return lista;
@@ -44,7 +54,12 @@ namespace Nsf.App.UI.API
         {
             HttpClient client = new HttpClient();
 
-            string json = client.GetAsync("http://localhost:5000/Curso/" + Sigla).Result.Content.ReadAsStringAsync().Result;
+            string json = client.GetAsync("http://localhost:5000/Curso/" + Sigla)
+                                .Result
+                                .Content
+                                .ReadAsStringAsync()
+                                .Result;
+
             List<Nsf.App.Model.CursoModel> lista = JsonConvert.DeserializeObject<List<Nsf.App.Model.CursoModel>>(json);
 
             return lista;
