@@ -54,7 +54,7 @@ namespace Nsf.App.UI
                 atividade.DsCelular, atividade.DsTelefone, atividade.DsEmail, atividade.DsCvLattes,
                 atividade.NrAnoPrimeiroEmprego, atividade.DtFaculdadeInicio, atividade.DtFaculdadeFim,
                 atividade.DsFaculdade, atividade.DsCurso, atividade.NmMae, atividade.NmPai, atividade.TpContratacao,
-                atividade.DsLogin, atividade.DsCpf, atividade.DsRg, atividade.DsRgOrgao, atividade.DsRgEmissor
+                atividade.DsCpf, atividade.DsRg, atividade.DsRgOrgao, atividade.DsRgEmissor
                 );
 
             professorCadastrar.Show();
