@@ -17,7 +17,7 @@ namespace Nsf.App.UI
         public frmProfessorCadastrar(int id, string nome, bool ativo, DateTime nascimento,
             string estado, string celular, string telefone, string email, string cvLattes,
             int ano1emprego, DateTime inicio, DateTime fim, string faculdade, string curso,
-            string mae, string pai, string contrato, string login, string cpf, string rg,
+            string mae, string pai, string contrato, string cpf, string rg,
             string orgao, string emissao)
         {
             InitializeComponent();
@@ -39,7 +39,7 @@ namespace Nsf.App.UI
             txtMae.Text = mae;
             txtPai.Text = pai;
             cboContrato.Text = contrato;
-            txtLogin.Text = login;
+ 
             txtCpf.Text = cpf;
             txtRG.Text = rg;
             txtRGEmissao.Text = emissao;
