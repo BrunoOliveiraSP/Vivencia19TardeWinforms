@@ -15,7 +15,7 @@ namespace Nsf.App.UI
         private void txtCurso_TextChanged(object sender, EventArgs e)
         {
             Nsf.App.UI.API.CursoAPI curso = new API.CursoAPI();
-            List<Nsf.App.Model.CursoModel> lista = curso.ConsultarPorCurso();
+            List<Nsf.App.Model.CursoModel> lista = curso.ConsultarPorCurso(txtCurso.Text);
 
             dgvCursos.AutoGenerateColumns = false;
             dgvCursos.DataSource = lista;
@@ -24,7 +24,7 @@ namespace Nsf.App.UI
         private void txtSigla_TextChanged(object sender, EventArgs e)
         {
             Nsf.App.UI.API.CursoAPI curso = new API.CursoAPI();
-            List<Nsf.App.Model.CursoModel> lista = curso.ConsultarPorSigla();
+            List<Nsf.App.Model.CursoModel> lista = curso.ConsultarPorSigla(txtSigla.Text);
 
             dgvCursos.AutoGenerateColumns = false;
             dgvCursos.DataSource = lista;
