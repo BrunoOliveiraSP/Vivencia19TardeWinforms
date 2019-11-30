@@ -204,6 +204,7 @@
             this.dgvCandidatos.RowTemplate.Height = 30;
             this.dgvCandidatos.Size = new System.Drawing.Size(768, 406);
             this.dgvCandidatos.TabIndex = 1;
+            this.dgvCandidatos.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCandidatos_CellClick);
             // 
             // txtNome
             // 
@@ -299,11 +300,11 @@
             // 
             // Nome
             // 
-            this.Nome.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.Nome.DataPropertyName = "NmInscrito";
             this.Nome.HeaderText = "Nome";
             this.Nome.Name = "Nome";
             this.Nome.ReadOnly = true;
+            this.Nome.Width = 90;
             // 
             // Column6
             // 

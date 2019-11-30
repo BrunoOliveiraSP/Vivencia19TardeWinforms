@@ -19,7 +19,8 @@ namespace Nsf.App.UI
             model.NmDisciplina = txtDisciplina.Text;
             model.DsSigla = txtSigla.Text;
             model.DtInclusao = dtpinclusao.Value;
-            model.BtAtivo = chkAtivo.Checked;
+            model.DtUltimaAlteracao = System.DateTime.Now;
+            model.BtAtivo = Convert.ToBoolean(chkAtivo.Checked);
 
 
             Nsf.App.API.Client.DisciplinaAPI api = new App.API.Client.DisciplinaAPI();

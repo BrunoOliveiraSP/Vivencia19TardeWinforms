@@ -503,6 +503,7 @@
             this.lblId.Size = new System.Drawing.Size(19, 21);
             this.lblId.TabIndex = 156;
             this.lblId.Text = "0";
+
             // 
             // txtCpf
             // 
