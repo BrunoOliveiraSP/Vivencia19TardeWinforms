@@ -40,6 +40,19 @@ namespace Nsf.App.API.Client
 
             return JsonConvert.DeserializeObject<List<Model.InscricaoModel>>(json);
         }
+		public List<Model.InscricaoModel> ConsultarNome(string nome,  int ano)
+		{
+			HttpClient NomeAnoConsulta = new HttpClient();
+
+			string json = NomeAnoConsulta.GetAsync("http://localhost:5000/Inscricao/ConsultarPorNomeEAno/"+ nome +ano)
+										.Result
+										.Content
+										.ReadAsStringAsync()
+										.Result;
+			VerificarErro(json);
+			return JsonConvert.DeserializeObject<List<Model.InscricaoModel>>(json);
+				                    
+		}
 
         private void Alterar(Model.InscricaoModel inscricao)
         {

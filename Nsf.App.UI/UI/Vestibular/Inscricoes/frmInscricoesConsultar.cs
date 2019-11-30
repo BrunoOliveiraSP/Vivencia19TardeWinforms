@@ -17,7 +17,7 @@ namespace Nsf.App.UI
         private void txtNome_TextChanged(object sender, EventArgs e)
         {
             if(string.IsNullOrWhiteSpace(txtNome.Text))
-            {
+            {  
 
             }
 
@@ -52,7 +52,7 @@ namespace Nsf.App.UI
         {
             try
             {
-               // dgvCandidatos.AutoGenerateColumns = false;
+                dgvCandidatos.AutoGenerateColumns = false;
                 dgvCandidatos.DataSource = InscricaoAPI.ConsultarTodos();
             }
             catch(ArgumentException ex)

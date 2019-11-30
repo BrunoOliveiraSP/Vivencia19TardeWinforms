@@ -45,11 +45,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AnoLetivoModel.cs" />
     <Compile Include="CursoModel.cs" />
+    <Compile Include="DisciplinaModel.cs" />
     <Compile Include="ErroModel.cs" />
     <Compile Include="ExemploModel.cs" />
     <Compile Include="InscricaoModel.cs" />
-    <Compile Include="Matricula\DocumentosModel.cs" />
+    <Compile Include="ProfessorModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

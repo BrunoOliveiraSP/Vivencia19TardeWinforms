@@ -41,6 +41,8 @@
             this.panelId = new System.Windows.Forms.Panel();
             this.label3 = new System.Windows.Forms.Label();
             this.lblId = new System.Windows.Forms.Label();
+            this.dtpinclusao = new System.Windows.Forms.DateTimePicker();
+            this.label1 = new System.Windows.Forms.Label();
             this.panelId.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -51,13 +53,14 @@
             this.btnSalvar.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
             this.btnSalvar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(51)))), ((int)(((byte)(142)))));
             this.btnSalvar.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnSalvar.Location = new System.Drawing.Point(531, 405);
+            this.btnSalvar.Location = new System.Drawing.Point(531, 435);
             this.btnSalvar.Name = "btnSalvar";
             this.btnSalvar.Size = new System.Drawing.Size(163, 50);
             this.btnSalvar.TabIndex = 3;
             this.btnSalvar.Text = "Salvar";
             this.btnSalvar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnSalvar.UseVisualStyleBackColor = false;
+            this.btnSalvar.Click += new System.EventHandler(this.btnSalvar_Click);
             // 
             // label5
             // 
@@ -185,10 +188,32 @@
             this.lblId.TabIndex = 156;
             this.lblId.Text = "0";
             // 
+            // dtpinclusao
+            // 
+            this.dtpinclusao.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpinclusao.Location = new System.Drawing.Point(285, 355);
+            this.dtpinclusao.Name = "dtpinclusao";
+            this.dtpinclusao.Size = new System.Drawing.Size(200, 31);
+            this.dtpinclusao.TabIndex = 159;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
+            this.label1.ForeColor = System.Drawing.Color.Black;
+            this.label1.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.label1.Location = new System.Drawing.Point(136, 363);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(144, 19);
+            this.label1.TabIndex = 160;
+            this.label1.Text = "Data de Inclusão:";
+            // 
             // frmDisciplinasCadastrar
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.dtpinclusao);
             this.Controls.Add(this.panelId);
             this.Controls.Add(this.chkAtivo);
             this.Controls.Add(this.txtSigla);
@@ -225,5 +250,7 @@
 		private System.Windows.Forms.Panel panelId;
 		private System.Windows.Forms.Label label3;
 		private System.Windows.Forms.Label lblId;
-	}
+        private System.Windows.Forms.DateTimePicker dtpinclusao;
+        private System.Windows.Forms.Label label1;
+    }
 }
