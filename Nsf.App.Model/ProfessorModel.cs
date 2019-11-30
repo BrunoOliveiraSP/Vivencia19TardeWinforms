@@ -51,5 +51,6 @@ namespace Nsf.App.Model
         public DateTime DtFaculdadeInicio { get; set; }
 
         public DateTime DtFaculdadeFim { get; set; }
+        public string DsLogin { get; set; }
     }
 }
