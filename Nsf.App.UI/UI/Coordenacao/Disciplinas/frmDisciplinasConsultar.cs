@@ -14,9 +14,7 @@ namespace Nsf.App.UI
 
             this.Carregar();
         }
-
-
-      
+  
         private void txtSigla_TextChanged(object sender, EventArgs e)
         {
             this.Consultar();
@@ -26,7 +24,6 @@ namespace Nsf.App.UI
         {
             this.Consultar();
         }
-
 
         public void Consultar()
         {
@@ -40,14 +37,10 @@ namespace Nsf.App.UI
 
             dgvDisciplinas.AutoGenerateColumns = false;
             dgvDisciplinas.DataSource = lista;
-
         }
 
-
-
-
         public void Carregar()
-        {
+        { 
 
             Nsf.App.API.Client.DisciplinaAPI api = new Nsf.App.API.Client.DisciplinaAPI();
 
@@ -56,14 +49,56 @@ namespace Nsf.App.UI
             dgvDisciplinas.AutoGenerateColumns = false;
             dgvDisciplinas.DataSource = lista;
 
-
         }
 
-        private void frmDisciplinasConsultar_Load(object sender, EventArgs e)
+        private void dgvDisciplinas_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex == 6 )
+            {
+                Model.DisciplinaModel disciplina = dgvDisciplinas.CurrentRow.DataBoundItem as Model.DisciplinaModel;
+
+                Nsf.App.Model.DisciplinaModel model = new Model.DisciplinaModel();
+
+
+                model.IdDisciplina = disciplina.IdDisciplina;
+                model.NmDisciplina = disciplina.NmDisciplina;
+                model.DsSigla = disciplina.DsSigla;
+                model.DtInclusao = disciplina.DtInclusao;
+                model.DtUltimaAlteracao = disciplina.DtUltimaAlteracao;
+                model.BtAtivo = disciplina.BtAtivo;
+
+
+                Nsf.App.API.Client.DisciplinaAPI api = new Nsf.App.API.Client.DisciplinaAPI();
+
+                api.Alterar(model);
+
+                MessageBox.Show("Alterado com Sucesso");
+
+            }
+
+            if (e.ColumnIndex == 7)
+            {
+                Model.DisciplinaModel disciplina = dgvDisciplinas.CurrentRow.DataBoundItem as Model.DisciplinaModel;
+
+                Nsf.App.Model.DisciplinaModel model = new Model.DisciplinaModel();
+
+
+                DialogResult res = MessageBox.Show("Deseja remover essa disciplina?", "Remover",
+                                             MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (res ==DialogResult.Yes)
+                {
+                    Nsf.App.API.Client.DisciplinaAPI api = new Nsf.App.API.Client.DisciplinaAPI();
+
+                    api.Remover(disciplina.IdDisciplina);
+
+                    MessageBox.Show("Removido com Sucesso");
+                }
+            }
+        }
+
+        private void dgvDisciplinas_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }
-
- 
     }
 }

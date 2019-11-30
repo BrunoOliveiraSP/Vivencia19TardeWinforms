@@ -87,14 +87,16 @@
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dgvDisciplinas.DefaultCellStyle = dataGridViewCellStyle1;
-            this.dgvDisciplinas.Location = new System.Drawing.Point(42, 178);
+            this.dgvDisciplinas.Location = new System.Drawing.Point(10, 178);
             this.dgvDisciplinas.Name = "dgvDisciplinas";
             this.dgvDisciplinas.ReadOnly = true;
             this.dgvDisciplinas.RowHeadersVisible = false;
             this.dgvDisciplinas.RowHeadersWidth = 45;
             this.dgvDisciplinas.RowTemplate.Height = 25;
-            this.dgvDisciplinas.Size = new System.Drawing.Size(755, 391);
+            this.dgvDisciplinas.Size = new System.Drawing.Size(787, 391);
             this.dgvDisciplinas.TabIndex = 2;
+            this.dgvDisciplinas.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDisciplinas_CellClick);
+            this.dgvDisciplinas.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDisciplinas_CellContentClick);
             // 
             // txtDisciplina
             // 
@@ -138,19 +140,19 @@
             // 
             // Registro
             // 
+            this.Registro.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.Registro.DataPropertyName = "NmDisciplina";
             this.Registro.HeaderText = "Disciplina";
             this.Registro.Name = "Registro";
             this.Registro.ReadOnly = true;
-            this.Registro.Width = 450;
             // 
             // Nome
             // 
-            this.Nome.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.Nome.DataPropertyName = "DsSigla";
             this.Nome.HeaderText = "Sigla";
             this.Nome.Name = "Nome";
             this.Nome.ReadOnly = true;
+            this.Nome.Width = 84;
             // 
             // Column4
             // 
@@ -205,7 +207,6 @@
             this.ForeColor = System.Drawing.Color.Black;
             this.Name = "frmDisciplinasConsultar";
             this.Size = new System.Drawing.Size(800, 573);
-            this.Load += new System.EventHandler(this.frmDisciplinasConsultar_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvDisciplinas)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -26,6 +26,8 @@ namespace Nsf.App.API.Client
 
             VerificarErro(resp);
         }
+       
+        
         public List<Nsf.App.Model.DisciplinaModel> Listar()
         {
             HttpClient client = new HttpClient();
@@ -58,6 +60,30 @@ namespace Nsf.App.API.Client
 
             return lista;
         }
+
+
+        public void Alterar(Model.DisciplinaModel disciplina)
+        {
+            HttpClient client = new HttpClient();
+
+            string json = JsonConvert.SerializeObject(disciplina);
+            StringContent body = new StringContent(json, Encoding.UTF8, "application/json");
+
+            var resp = client.PutAsync("http://localhost:5000/AlterarDisciplina", body)
+                             .Result
+                             .Content
+                             .ReadAsStringAsync()
+                             .Result;
+
+            this.VerificarErro(resp);
+        }
+
+        public void Remover(int id)
+        {
+            HttpClient client = new HttpClient();
+            var resp = client.DeleteAsync("http://localhost:5000/Deletar/" + id).Result;
+        }
+
 
         private void VerificarErro(string respostaAPI)
         {

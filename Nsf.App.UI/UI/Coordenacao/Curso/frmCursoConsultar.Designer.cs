@@ -153,6 +153,7 @@
             this.dgvtxtSigla.HeaderText = "Sigla";
             this.dgvtxtSigla.Name = "dgvtxtSigla";
             this.dgvtxtSigla.ReadOnly = true;
+            this.dgvtxtSigla.Width = 71;
             // 
             // dgvtxtNrCapacidadeMaxima
             // 
@@ -160,7 +161,7 @@
             this.dgvtxtNrCapacidadeMaxima.HeaderText = "Capacidade";
             this.dgvtxtNrCapacidadeMaxima.Name = "dgvtxtNrCapacidadeMaxima";
             this.dgvtxtNrCapacidadeMaxima.ReadOnly = true;
-            this.dgvtxtNrCapacidadeMaxima.Width = 150;
+            this.dgvtxtNrCapacidadeMaxima.Width = 133;
             // 
             // dgvtxtBtAtivo
             // 
@@ -170,6 +171,7 @@
             this.dgvtxtBtAtivo.ReadOnly = true;
             this.dgvtxtBtAtivo.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.dgvtxtBtAtivo.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.dgvtxtBtAtivo.Width = 134;
             // 
             // Column2
             // 
@@ -180,7 +182,7 @@
             this.Column2.ReadOnly = true;
             this.Column2.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.Column2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.Column2.Width = 25;
+            this.Column2.Width = 133;
             // 
             // Column1
             // 
@@ -191,7 +193,7 @@
             this.Column1.ReadOnly = true;
             this.Column1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.Column1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.Column1.Width = 25;
+            this.Column1.Width = 134;
             // 
             // frmCursoConsultar
             // 
