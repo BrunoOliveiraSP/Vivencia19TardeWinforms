@@ -17,12 +17,12 @@ namespace Nsf.App.API.Client
             string json = JsonConvert.SerializeObject(ano);
             StringContent body = new StringContent(json, Encoding.UTF8, "application/json");
 
-            var resp = client.PostAsync("http://localhost/AnoLetivo/", body).Result;
+            var resp = client.PostAsync("http://localhost:5000/AnoLetivo/", body).Result;
         }
 
         public List<Model.AnoLetivoModel> ListarTodos()
         {
-            string json = client.GetAsync("http://localhost/AnoLetivo/")
+            string json = client.GetAsync("http://localhost:5000/AnoLetivo/")
                                 .Result
                                 .Content
                                 .ReadAsStringAsync()
@@ -35,7 +35,7 @@ namespace Nsf.App.API.Client
 
         public void Remover(int id)
         {
-            var resp = client.DeleteAsync("http://localhost/AnoLetivo/" + id).Result;
+            var resp = client.DeleteAsync("http://localhost:5000/AnoLetivo/" + id).Result;
         }
 
 
