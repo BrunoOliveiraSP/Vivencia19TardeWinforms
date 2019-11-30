@@ -77,7 +77,7 @@ namespace Nsf.App.UI
                 inscricao.qtTrabalhamCasa = 2;
                 inscricao.tpEscola = "-_-";
                 inscricao.vlNota = 10;
-                inscricao.vlRenda = 0.00m;
+                inscricao.vlRenda = 1.00m;
 
                 Api.Inserir(inscricao);
 
