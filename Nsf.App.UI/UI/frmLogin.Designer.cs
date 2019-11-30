@@ -38,6 +38,7 @@
             this.lblError = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.panelLogin = new System.Windows.Forms.Panel();
+            this.button1 = new System.Windows.Forms.Button();
             this.panel6.SuspendLayout();
             this.panelLogin.SuspendLayout();
             this.SuspendLayout();
@@ -45,6 +46,7 @@
             // panel6
             // 
             this.panel6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(172)))), ((int)(((byte)(236)))));
+            this.panel6.Controls.Add(this.button1);
             this.panel6.Controls.Add(this.label3);
             this.panel6.Location = new System.Drawing.Point(0, 0);
             this.panel6.Name = "panel6";
@@ -58,7 +60,7 @@
             this.label3.ForeColor = System.Drawing.Color.White;
             this.label3.Location = new System.Drawing.Point(25, 73);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(111, 72);
+            this.label3.Size = new System.Drawing.Size(106, 60);
             this.label3.TabIndex = 0;
             this.label3.Text = "NSF";
             // 
@@ -122,6 +124,16 @@
             this.panelLogin.Size = new System.Drawing.Size(227, 161);
             this.panelLogin.TabIndex = 9;
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(56, 21);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 1;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // frmLogin
             // 
             this.AcceptButton = this.btnEntrar;
@@ -156,6 +168,7 @@
 		private System.Windows.Forms.Label lblError;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Panel panelLogin;
+        private System.Windows.Forms.Button button1;
     }
 }
 
