@@ -50,6 +50,7 @@
     <Compile Include="ErroModel.cs" />
     <Compile Include="ExemploModel.cs" />
     <Compile Include="InscricaoModel.cs" />
+    <Compile Include="ProfessorModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
