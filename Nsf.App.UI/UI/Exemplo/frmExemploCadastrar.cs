@@ -17,7 +17,7 @@ namespace Nsf.App.UI
         {
             try
             {
-                Model.ExemploModel exemplo = new Model.ExemploModel();
+                Nsf.App.Model.ExemploModel exemplo = new Model.ExemploModel();
                 exemplo.Id = Convert.ToInt32(nudId.Value);
                 exemplo.Nome = txtNome.Text;
 

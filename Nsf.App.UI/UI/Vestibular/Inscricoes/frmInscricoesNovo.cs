@@ -64,7 +64,6 @@ namespace Nsf.App.UI
             inscricao.BtPendenteEscolaridade = chkPendenteEscolaridade.Checked;
             inscricao.BtPendenteComprovresid = chkPendenteComprovResidencia.Checked;
             inscricao.DsObservacao = txtObservacoes.Text;
-
             /*API.api = new API.InscricaoAPI();
             api.Inserir(inscricao);*/
 

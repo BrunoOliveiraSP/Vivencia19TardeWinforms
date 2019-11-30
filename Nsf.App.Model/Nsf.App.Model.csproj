@@ -49,6 +49,7 @@
     <Compile Include="ErroModel.cs" />
     <Compile Include="ExemploModel.cs" />
     <Compile Include="InscricaoModel.cs" />
+    <Compile Include="Matricula\DocumentosModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
