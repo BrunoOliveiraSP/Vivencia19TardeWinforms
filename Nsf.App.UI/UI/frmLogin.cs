@@ -24,5 +24,11 @@ namespace Nsf.App.UI
         {
 
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            UI.frmCursoCadastrar tela = new frmCursoCadastrar();
+            tela.Show();
+        }
     }
 }
