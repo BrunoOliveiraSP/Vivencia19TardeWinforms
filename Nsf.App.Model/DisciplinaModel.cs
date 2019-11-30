@@ -15,6 +15,7 @@ namespace Nsf.App.Model
             public DateTime DtUltimaAlteracao { get; set; }
             public DateTime DtInclusao { get; set; }
             public bool BtAtivo { get; set; }
-        }
+            public int IdFuncionarioAlteracao { get; set; }
+    }
     
 }
