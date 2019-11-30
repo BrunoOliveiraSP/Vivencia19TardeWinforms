@@ -31,7 +31,7 @@ namespace Nsf.App.UI
             }
             catch(ArgumentException ex)
             {
-                MessageBox.Show(ex.Message, "Matrículas", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, "Inscrições", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             catch (Exception)
             {
@@ -41,6 +41,34 @@ namespace Nsf.App.UI
 
         private void dgvCandidatos_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            try
+            {
+                if (e.ColumnIndex == 5)
+                {
+                    Model.InscricaoModel inscricao = dgvCandidatos.CurrentRow.DataBoundItem as Model.InscricaoModel;
+                }
+
+                if (e.ColumnIndex == 6)
+                {
+                    Model.InscricaoModel inscricao = dgvCandidatos.CurrentRow.DataBoundItem as Model.InscricaoModel;
+
+                    DialogResult result = MessageBox.Show("Dejesa Remover?", "Inscrição", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+                    if (result == DialogResult.Yes)
+                    {
+                        InscricaoAPI.Remover(inscricao.idInscricao);
+                        MessageBox.Show("Registro removido");
+                        CarregarGrid();
+                    }
+                }
+            }
+            catch (ArgumentException ex)
+            {
+                MessageBox.Show(ex.Message, "Inscrições", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Ocorreu um erro");
+            }
         }
     }
 }

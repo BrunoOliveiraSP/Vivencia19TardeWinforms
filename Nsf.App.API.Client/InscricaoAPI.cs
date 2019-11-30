@@ -54,7 +54,7 @@ namespace Nsf.App.API.Client
 				                    
 		}
 
-        private void Alterar(Model.InscricaoModel inscricao)
+        public void Alterar(Model.InscricaoModel inscricao)
         {
             HttpClient client = new HttpClient();
 
@@ -70,11 +70,11 @@ namespace Nsf.App.API.Client
             this.VerificarErro(resp);
         }
 
-        private void Remover(int id)
+        public  void Remover(int id)
         {
             HttpClient client = new HttpClient();
 
-            var resp = client.DeleteAsync("http://localhost:5000/Inscricao" + id)
+            var resp = client.DeleteAsync("http://localhost:5000/Inscricao/" + id)
                             .Result
                             .Content
                             .ReadAsStringAsync()
