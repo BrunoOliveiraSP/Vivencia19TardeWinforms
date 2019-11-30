@@ -49,16 +49,16 @@ namespace Nsf.App.UI
         {
             ProfessorModel atividade = dgvProfessores.CurrentRow.DataBoundItem as ProfessorModel;
 
-          //  frmProfessorCadastrar professorCadastrar = new frmProfessorCadastrar(atividade.IdProfessor,
-           //     atividade.NmProfessor, atividade.BtAtivo, atividade.DtNascimento, atividade.DsEstado,
-          //      atividade.DsCelular, atividade.DsTelefone, atividade.DsEmail, atividade.DsCvLattes,
-          //      atividade.NrAnoPrimeiroEmprego, atividade.DtFaculdadeInicio, atividade.DtFaculdadeFim,
-          //      atividade.DsFaculdade, atividade.DsCurso, atividade.NmMae, atividade.NmPai, atividade.TpContratacao)
-               // atividade.DsLogin, atividade.DsCpf, atividade.DsRg, atividade.DsRgOrgao, atividade.DsRgEmissor
-             //   );
+            frmProfessorCadastrar professorCadastrar = new frmProfessorCadastrar(atividade.IdProfessor,
+                atividade.NmProfessor, atividade.BtAtivo, atividade.DtNascimento, atividade.DsEstado,
+                atividade.DsCelular, atividade.DsTelefone, atividade.DsEmail, atividade.DsCvLattes,
+                atividade.NrAnoPrimeiroEmprego, atividade.DtFaculdadeInicio, atividade.DtFaculdadeFim,
+                atividade.DsFaculdade, atividade.DsCurso, atividade.NmMae, atividade.NmPai, atividade.TpContratacao,
+                atividade.DsCpf, atividade.DsRg, atividade.DsRgOrgao, atividade.DsRgEmissor
+                );
 
-           // professorCadastrar.Show();
-        }//
+            professorCadastrar.Show();
+        }
 
         private void txtNome_TextChanged(object sender, EventArgs e)
         {
