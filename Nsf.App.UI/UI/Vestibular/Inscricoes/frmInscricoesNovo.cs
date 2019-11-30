@@ -67,8 +67,8 @@ namespace Nsf.App.UI
                 inscricao.idCurso = 1;
                 inscricao.idCurso2 = 1;
                 inscricao.idFuncionarioAlteracao = 1;
-                inscricao.idInscricao = 1;
-                inscricao.idSalaVestibular = 1;
+                //inscricao.idInscricao = 1;
+                //inscricao.idSalaVestibular = 1;
                 inscricao.nmContato = "Contato";
                 inscricao.nmEscola = "Escola";
                 inscricao.nmInscrito = "Eu :)";
