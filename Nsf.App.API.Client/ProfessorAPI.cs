@@ -10,19 +10,11 @@ using System.Threading.Tasks;
 
 namespace Nsf.App.API.Client
 {
-    public class ProfessorAPI : ICrud<ProfessorModel>
+    public class ProfessorAPI : ICrud<ProfessorRequest>
     {
         HttpClient _client;
-        public void Alterar(ProfessorModel professor)
-        {
-            _client = new HttpClient();
 
-            string json = JsonConvert.SerializeObject(professor);
-            StringContent body = new StringContent(json, Encoding.UTF8, "application/json");
-
-            var resposta = _client.PutAsync("http://localhost:5000/Professor", body).Result;
-        }
-
+        #region|Listar|
         public List<ProfessorModel> ListarTodos()
         {
             _client = new HttpClient();
@@ -44,15 +36,27 @@ namespace Nsf.App.API.Client
             return professores;
         }
 
+        #endregion
+
+        public void Alterar(ProfessorRequest professor)
+        {
+            _client = new HttpClient();
+
+            string json = JsonConvert.SerializeObject(professor);
+            StringContent body = new StringContent(json, Encoding.UTF8, "application/json");
+
+            var resposta = _client.PutAsync("http://localhost:5000/Professor", body).Result;
+        }
+
         public void Remover(int id)
         {
             _client = new HttpClient();
             var resp = _client.DeleteAsync("http://localhost:5000/Atividade/" + id).Result;
         }
 
-        public void Salvar(ProfessorModel professor)
+        public void Salvar(ProfessorRequest professor)
         {
-            if(professor.IdProfessor > 0)
+            if(professor.Professor.IdProfessor > 0)
             {
                 this.Alterar(professor);
             }
@@ -61,7 +65,8 @@ namespace Nsf.App.API.Client
                 this.Salvar(professor);
             }
         }
-        public void Inserir(ProfessorModel professor)
+
+        public void Inserir(ProfessorRequest professor)
         {
             _client = new HttpClient();
 
@@ -69,6 +74,11 @@ namespace Nsf.App.API.Client
             StringContent body = new StringContent(json, Encoding.UTF8, "application/json");
 
             var resposta = _client.PostAsync("http://localhost:5000/Professor", body).Result;
+        }
+
+        List<ProfessorRequest> ICrud<ProfessorRequest>.ListarTodos()
+        {
+            throw new NotImplementedException();
         }
     }
 }

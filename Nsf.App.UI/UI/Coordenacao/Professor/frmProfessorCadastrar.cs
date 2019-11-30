@@ -52,7 +52,7 @@ namespace Nsf.App.UI
         {
             lblId.Text = "0";
             txtNome.Text = string.Empty;
-            chkAtivo.Checked = false;
+            chkAtivo.Checked = true;
             dtpNascimento.Value = DateTime.Now;
             txtEstadoNasc.Text = string.Empty;
             txtCelular.Text = string.Empty;
@@ -77,29 +77,31 @@ namespace Nsf.App.UI
 
         private void btnSalvar_Click(object sender, EventArgs e)
         {
-            ProfessorModel professor = new ProfessorModel();
-            professor.IdProfessor = Convert.ToInt32(lblId.Text);
-            professor.NmProfessor = txtNome.Text;
-            professor.BtAtivo = chkAtivo.Checked;
-            professor.DtNascimento = dtpNascimento.Value.Date;
-            professor.DsEstado = txtEstadoNasc.Text;
-            professor.DsCelular = txtCelular.Text;
-            professor.DsTelefone = txtTelefone.Text;
-            professor.DsEmail = txtEmail.Text;
-            professor.DsCvLattes = txtCvLattes.Text;
-            professor.NrAnoPrimeiroEmprego = Convert.ToInt32(nudPrimeiroEmprego.Value);
-            professor.DtFaculdadeInicio = dtpFaculdadeInicio.Value.Date;
-            professor.DtFaculdadeFim = dtpFaculdadeFim.Value.Date;
-            professor.DsFaculdade = txtFaculdade.Text;
-            professor.DsCurso = txtCurso.Text;
-            professor.NmMae = txtMae.Text;
-            professor.NmPai = txtPai.Text;
-            professor.TpContratacao = cboContrato.Text;
-            professor.DsLogin = txtLogin.Text;
-            professor.DsCpf = txtCpf.Text;
-            professor.DsRg = txtRG.Text;
-            professor.DsRgOrgao = txtRGOrgao.Text;
-            professor.DsRgEmissor = txtRGEmissao.Text;
+            ProfessorRequest professor = new ProfessorRequest();
+            professor.Professor.IdProfessor = Convert.ToInt32(lblId.Text);
+            professor.Professor.NmProfessor = txtNome.Text;
+            professor.Professor.BtAtivo = chkAtivo.Checked;
+            professor.Professor.DtNascimento = dtpNascimento.Value.Date;
+            professor.Professor.DsEstado = txtEstadoNasc.Text;
+            professor.Professor.DsCelular = txtCelular.Text;
+            professor.Professor.DsTelefone = txtTelefone.Text;
+            professor.Professor.DsEmail = txtEmail.Text;
+            professor.Professor.DsCvLattes = txtCvLattes.Text;
+            professor.Professor.NrAnoPrimeiroEmprego = Convert.ToInt32(nudPrimeiroEmprego.Value);
+            professor.Professor.DtFaculdadeInicio = dtpFaculdadeInicio.Value.Date;
+            professor.Professor.DtFaculdadeFim = dtpFaculdadeFim.Value.Date;
+            professor.Professor.DsFaculdade = txtFaculdade.Text;
+            professor.Professor.DsCurso = txtCurso.Text;
+            professor.Professor.NmMae = txtMae.Text;
+            professor.Professor.NmPai = txtPai.Text;
+            professor.Professor.TpContratacao = cboContrato.Text;      
+            professor.Professor.DsCpf = txtCpf.Text;
+            professor.Professor.DsRg = txtRG.Text;
+            professor.Professor.DsRgOrgao = txtRGOrgao.Text;
+            professor.Professor.DsRgEmissor = txtRGEmissao.Text;
+            
+            professor.Login.DsLogin = txtLogin.Text;
+
 
             ProfessorAPI api = new ProfessorAPI();
             api.Salvar(professor);
