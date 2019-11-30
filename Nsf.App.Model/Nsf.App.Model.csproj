@@ -47,6 +47,7 @@
   <ItemGroup>
     <Compile Include="AnoLetivoModel.cs" />
     <Compile Include="CursoModel.cs" />
+    <Compile Include="DisciplinaModel.cs" />
     <Compile Include="ErroModel.cs" />
     <Compile Include="ExemploModel.cs" />
     <Compile Include="InscricaoModel.cs" />
