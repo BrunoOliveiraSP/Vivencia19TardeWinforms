@@ -391,6 +391,7 @@
             this.btnRemove.Text = "<<";
             this.btnRemove.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnRemove.UseVisualStyleBackColor = false;
+            this.btnRemove.Click += new System.EventHandler(this.btnRemove_Click);
             // 
             // btnAdd
             // 
@@ -406,6 +407,7 @@
             this.btnAdd.Text = ">>";
             this.btnAdd.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnAdd.UseVisualStyleBackColor = false;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // lbxDisciplinasDisponiveis
             // 

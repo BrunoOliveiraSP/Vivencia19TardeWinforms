@@ -16,12 +16,7 @@ namespace Nsf.App.UI
         {
             InitializeComponent();
         }
-
-        private void frmMenuDiscencia_Load(object sender, EventArgs e)
-        {
-
-        }
-
+        
         private void label8_Click(object sender, EventArgs e)
         {
             frmInicial.Current.OpenScreen(new frmSalaCadastrar());

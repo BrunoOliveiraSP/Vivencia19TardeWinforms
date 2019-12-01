@@ -417,7 +417,7 @@
             this.ForeColor = System.Drawing.Color.Black;
             this.Name = "frmMenuCoordenacao";
             this.Size = new System.Drawing.Size(800, 600);
-            this.Load += new System.EventHandler(this.frmMenuDiscencia_Load);
+          
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.panel3.ResumeLayout(false);

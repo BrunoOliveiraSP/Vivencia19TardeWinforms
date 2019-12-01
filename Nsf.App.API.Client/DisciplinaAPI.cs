@@ -13,6 +13,7 @@ namespace Nsf.App.API.Client
 
         public void Inserir(Nsf.App.Model.DisciplinaModel disci)
         {
+           
             HttpClient client = new HttpClient();
 
             string json = JsonConvert.SerializeObject(disci);
@@ -32,7 +33,7 @@ namespace Nsf.App.API.Client
         {
             HttpClient client = new HttpClient();
 
-            string json = client.GetAsync("http://localhost:5000/Disciplina/ListarTodos")
+            string json = client.GetAsync("http://localhost:5000/Disciplina/ListarTodos/")
                                 .Result
                                 .Content
                                 .ReadAsStringAsync()
@@ -49,7 +50,7 @@ namespace Nsf.App.API.Client
         {
             HttpClient client = new HttpClient();
 
-            string json = client.GetAsync("http://localhost:5000/Disciplina/ListarNomeSigla/" + nome + "/" + sigla)
+            string json = client.GetAsync("http://localhost:5000/Disciplina/ListarNomeSigla/" + nome + "/" + sigla + "/")
                                 .Result
                                 .Content
                                 .ReadAsStringAsync()
@@ -69,7 +70,7 @@ namespace Nsf.App.API.Client
             string json = JsonConvert.SerializeObject(disciplina);
             StringContent body = new StringContent(json, Encoding.UTF8, "application/json");
 
-            var resp = client.PutAsync("http://localhost:5000/AlterarDisciplina", body)
+            var resp = client.PutAsync("http://localhost:5000/Disciplina", body)
                              .Result
                              .Content
                              .ReadAsStringAsync()
@@ -81,7 +82,7 @@ namespace Nsf.App.API.Client
         public void Remover(int id)
         {
             HttpClient client = new HttpClient();
-            var resp = client.DeleteAsync("http://localhost:5000/Deletar/" + id).Result;
+            var resp = client.DeleteAsync("http://localhost:5000/Disciplina/" + id + "/").Result;
         }
 
 

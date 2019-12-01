@@ -11,7 +11,10 @@ namespace Nsf.App.UI
         public frmCursoCadastrar()
         {
             InitializeComponent();
+            CarregarDisciplinas();
         }
+
+        List<Model.DisciplinaModel> disciplinasatribuidas;
 
         private void btnSalvar_Click(object sender, EventArgs e)
         {
@@ -27,6 +30,28 @@ namespace Nsf.App.UI
 
             MessageBox.Show("Curso salvo com sucesso.");
 
+        }
+
+        List<Model.DisciplinaModel> disciplinas;
+        public void CarregarDisciplinas()
+        {
+            App.API.Client.DisciplinaAPI API = new App.API.Client.DisciplinaAPI();
+             disciplinas = API.Listar();
+
+            lbxDisciplinasDisponiveis.DisplayMember = nameof(Model.DisciplinaModel.NmDisciplina);
+            lbxDisciplinasDisponiveis.DataSource = disciplinas;
+         
+        }
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            lbxDisciplinasDoCurso.Items.Add(lbxDisciplinasDisponiveis.SelectedItem);
+            lbxDisciplinasDisponiveis.Items.Remove(lbxDisciplinasDisponiveis.SelectedItem);
+        }
+
+        private void btnRemove_Click(object sender, EventArgs e)
+        {
+            lbxDisciplinasDoCurso.Items.Remove(lbxDisciplinasDisponiveis.SelectedItem);
+            lbxDisciplinasDisponiveis.Items.Add(lbxDisciplinasDisponiveis.SelectedItem);
         }
     }
 }
