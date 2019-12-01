@@ -10,6 +10,7 @@ namespace Nsf.App.UI
 		{
 			InitializeComponent();
             CarregarGrid();
+            Model.CarregarInscrições.idInscricao = 0;
 		}
 
         App.API.Client.InscricaoAPI InscricaoAPI = new App.API.Client.InscricaoAPI();
@@ -158,6 +159,11 @@ namespace Nsf.App.UI
             {
                 MessageBox.Show(ex.Message, "Inscrições", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void frmInscricoesConsultar_Click(object sender, EventArgs e)
+        {
+            CarregarGrid();
         }
     }
 }
