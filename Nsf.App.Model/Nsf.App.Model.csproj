@@ -59,6 +59,7 @@
     <Compile Include="ProfessorRequest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SalaModel.cs" />
+    <Compile Include="TurmaModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
