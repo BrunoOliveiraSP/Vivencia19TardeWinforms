@@ -83,14 +83,14 @@
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dgvAnosLetivos.DefaultCellStyle = dataGridViewCellStyle1;
-            this.dgvAnosLetivos.Location = new System.Drawing.Point(85, 147);
+            this.dgvAnosLetivos.Location = new System.Drawing.Point(55, 147);
             this.dgvAnosLetivos.Name = "dgvAnosLetivos";
             this.dgvAnosLetivos.ReadOnly = true;
             this.dgvAnosLetivos.RowHeadersVisible = false;
             this.dgvAnosLetivos.RowHeadersWidth = 45;
             this.dgvAnosLetivos.RowTemplate.Height = 25;
             this.dgvAnosLetivos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvAnosLetivos.Size = new System.Drawing.Size(637, 350);
+            this.dgvAnosLetivos.Size = new System.Drawing.Size(667, 379);
             this.dgvAnosLetivos.TabIndex = 0;
             this.dgvAnosLetivos.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvAnosLetivos_CellClick);
             this.dgvAnosLetivos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvAnosLetivos_CellContentClick);
@@ -98,14 +98,14 @@
             // Registro
             // 
             this.Registro.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Registro.DataPropertyName = "nr_ano";
+            this.Registro.DataPropertyName = "NrAno ";
             this.Registro.HeaderText = "Ano";
             this.Registro.Name = "Registro";
             this.Registro.ReadOnly = true;
             // 
             // Nome
             // 
-            this.Nome.DataPropertyName = "dt_inicio";
+            this.Nome.DataPropertyName = "DtInicio ";
             this.Nome.HeaderText = "Início";
             this.Nome.Name = "Nome";
             this.Nome.ReadOnly = true;
@@ -113,7 +113,7 @@
             // 
             // Column3
             // 
-            this.Column3.DataPropertyName = "dt_fim";
+            this.Column3.DataPropertyName = "DtFim ";
             this.Column3.HeaderText = "Fim";
             this.Column3.Name = "Column3";
             this.Column3.ReadOnly = true;
@@ -121,7 +121,7 @@
             // 
             // Column4
             // 
-            this.Column4.DataPropertyName = "bt_ativo";
+            this.Column4.DataPropertyName = "BtAtivo ";
             this.Column4.HeaderText = "Aberto";
             this.Column4.Name = "Column4";
             this.Column4.ReadOnly = true;
