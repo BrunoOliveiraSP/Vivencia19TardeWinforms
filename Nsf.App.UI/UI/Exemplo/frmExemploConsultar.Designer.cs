@@ -32,12 +32,12 @@
             this.label5 = new System.Windows.Forms.Label();
             this.pnSelected = new System.Windows.Forms.Panel();
             this.dgvExemplo = new System.Windows.Forms.DataGridView();
-            this.txtCurso = new System.Windows.Forms.TextBox();
-            this.label68 = new System.Windows.Forms.Label();
             this.Registro = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Nome = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewImageColumn();
             this.Column1 = new System.Windows.Forms.DataGridViewImageColumn();
+            this.txtCurso = new System.Windows.Forms.TextBox();
+            this.label68 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvExemplo)).BeginInit();
             this.SuspendLayout();
             // 
@@ -91,25 +91,6 @@
             this.dgvExemplo.Size = new System.Drawing.Size(742, 396);
             this.dgvExemplo.TabIndex = 2;
             // 
-            // txtCurso
-            // 
-            this.txtCurso.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtCurso.Location = new System.Drawing.Point(115, 134);
-            this.txtCurso.Name = "txtCurso";
-            this.txtCurso.Size = new System.Drawing.Size(390, 27);
-            this.txtCurso.TabIndex = 0;
-            // 
-            // label68
-            // 
-            this.label68.AutoSize = true;
-            this.label68.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
-            this.label68.ForeColor = System.Drawing.Color.Black;
-            this.label68.Location = new System.Drawing.Point(42, 137);
-            this.label68.Name = "label68";
-            this.label68.Size = new System.Drawing.Size(61, 19);
-            this.label68.TabIndex = 162;
-            this.label68.Text = "Nome:";
-            // 
             // Registro
             // 
             this.Registro.DataPropertyName = "Id";
@@ -146,6 +127,26 @@
             this.Column1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.Column1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.Column1.Width = 25;
+            // 
+            // txtCurso
+            // 
+            this.txtCurso.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtCurso.Location = new System.Drawing.Point(115, 134);
+            this.txtCurso.Name = "txtCurso";
+            this.txtCurso.Size = new System.Drawing.Size(390, 27);
+            this.txtCurso.TabIndex = 0;
+            this.txtCurso.TextChanged += new System.EventHandler(this.txtCurso_TextChanged);
+            // 
+            // label68
+            // 
+            this.label68.AutoSize = true;
+            this.label68.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
+            this.label68.ForeColor = System.Drawing.Color.Black;
+            this.label68.Location = new System.Drawing.Point(42, 137);
+            this.label68.Name = "label68";
+            this.label68.Size = new System.Drawing.Size(61, 19);
+            this.label68.TabIndex = 162;
+            this.label68.Text = "Nome:";
             // 
             // frmExemploConsultar
             // 

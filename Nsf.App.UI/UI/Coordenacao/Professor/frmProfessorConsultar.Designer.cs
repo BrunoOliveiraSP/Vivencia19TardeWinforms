@@ -32,14 +32,14 @@
             this.label5 = new System.Windows.Forms.Label();
             this.pnSelected = new System.Windows.Forms.Panel();
             this.dgvProfessores = new System.Windows.Forms.DataGridView();
+            this.label1 = new System.Windows.Forms.Label();
+            this.txtNome = new System.Windows.Forms.TextBox();
             this.Nome = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Telefone = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Email = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewImageColumn();
             this.Column1 = new System.Windows.Forms.DataGridViewImageColumn();
-            this.label1 = new System.Windows.Forms.Label();
-            this.txtNome = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProfessores)).BeginInit();
             this.SuspendLayout();
             // 
@@ -95,17 +95,37 @@
             this.dgvProfessores.Size = new System.Drawing.Size(744, 390);
             this.dgvProfessores.TabIndex = 1;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
+            this.label1.ForeColor = System.Drawing.Color.Black;
+            this.label1.Location = new System.Drawing.Point(79, 144);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(61, 19);
+            this.label1.TabIndex = 162;
+            this.label1.Text = "Nome:";
+            // 
+            // txtNome
+            // 
+            this.txtNome.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtNome.Location = new System.Drawing.Point(146, 141);
+            this.txtNome.Name = "txtNome";
+            this.txtNome.Size = new System.Drawing.Size(568, 27);
+            this.txtNome.TabIndex = 0;
+            this.txtNome.TextChanged += new System.EventHandler(this.txtNome_TextChanged);
+            // 
             // Nome
             // 
             this.Nome.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Nome.DataPropertyName = "nm_professor";
+            this.Nome.DataPropertyName = "NmProfessor";
             this.Nome.HeaderText = "Nome";
             this.Nome.Name = "Nome";
             this.Nome.ReadOnly = true;
             // 
             // Telefone
             // 
-            this.Telefone.DataPropertyName = "ds_telefone";
+            this.Telefone.DataPropertyName = "DsTelefone";
             this.Telefone.HeaderText = "Telefone";
             this.Telefone.Name = "Telefone";
             this.Telefone.ReadOnly = true;
@@ -113,7 +133,7 @@
             // 
             // Email
             // 
-            this.Email.DataPropertyName = "ds_email";
+            this.Email.DataPropertyName = "DsEmail";
             this.Email.HeaderText = "Email";
             this.Email.Name = "Email";
             this.Email.ReadOnly = true;
@@ -121,7 +141,7 @@
             // 
             // Column3
             // 
-            this.Column3.DataPropertyName = "bt_ativo";
+            this.Column3.DataPropertyName = "BtAtivo";
             this.Column3.HeaderText = "Ativo";
             this.Column3.Name = "Column3";
             this.Column3.ReadOnly = true;
@@ -149,26 +169,6 @@
             this.Column1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.Column1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.Column1.Width = 25;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
-            this.label1.ForeColor = System.Drawing.Color.Black;
-            this.label1.Location = new System.Drawing.Point(79, 144);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(61, 19);
-            this.label1.TabIndex = 162;
-            this.label1.Text = "Nome:";
-            // 
-            // txtNome
-            // 
-            this.txtNome.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtNome.Location = new System.Drawing.Point(146, 141);
-            this.txtNome.Name = "txtNome";
-            this.txtNome.Size = new System.Drawing.Size(568, 27);
-            this.txtNome.TabIndex = 0;
-            this.txtNome.TextChanged += new System.EventHandler(this.txtNome_TextChanged);
             // 
             // frmProfessorConsultar
             // 

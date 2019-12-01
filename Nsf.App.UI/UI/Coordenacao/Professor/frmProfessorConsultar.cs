@@ -13,21 +13,27 @@ namespace Nsf.App.UI
 		{
 			InitializeComponent();
             this.ListarTodos();
-		}
+
+        }
 
         private void ListarPorNome()
         {
             ProfessorAPI api = new ProfessorAPI();
             List<ProfessorModel> list = api.ListarPorNome(txtNome.Text);
+
+            dgvProfessores.AutoGenerateColumns = false;
             dgvProfessores.DataSource = list;
+            
         }
 
         private void ListarTodos()
         {
             ProfessorAPI api = new ProfessorAPI();
             List<ProfessorModel> lista = api.ListarTodos();
-
+            
+            dgvProfessores.AutoGenerateColumns = false;
             dgvProfessores.DataSource = lista;
+            
         }
 
         private void Deletar()
@@ -45,19 +51,17 @@ namespace Nsf.App.UI
             }
         }
 
-        private void CarregarCampos()
+        private void Alterar()
         {
-            ProfessorModel atividade = dgvProfessores.CurrentRow.DataBoundItem as ProfessorModel;
+            ProfessorRequest modelo = dgvProfessores.CurrentRow.DataBoundItem as ProfessorRequest;
 
-            frmProfessorCadastrar professorCadastrar = new frmProfessorCadastrar(atividade.IdProfessor,
-                atividade.NmProfessor, atividade.BtAtivo, atividade.DtNascimento, atividade.DsEstado,
-                atividade.DsCelular, atividade.DsTelefone, atividade.DsEmail, atividade.DsCvLattes,
-                atividade.NrAnoPrimeiroEmprego, atividade.DtFaculdadeInicio, atividade.DtFaculdadeFim,
-                atividade.DsFaculdade, atividade.DsCurso, atividade.NmMae, atividade.NmPai, atividade.TpContratacao,
-                atividade.DsCpf, atividade.DsRg, atividade.DsRgOrgao, atividade.DsRgEmissor
-                );
+            frmProfessorCadastrar telaCadastrar = new frmProfessorCadastrar();
+            telaCadastrar.CarregarCampos(modelo);
 
-            professorCadastrar.Show();
+            frmInicial.Current.OpenScreen(telaCadastrar);
+            this.Hide();
+
+            frmInicial.Current.OpenScreen(new frmProfessorCadastrar());
         }
 
         private void txtNome_TextChanged(object sender, EventArgs e)
@@ -69,7 +73,7 @@ namespace Nsf.App.UI
         {
             if(e.ColumnIndex == 4)
             {
-                this.CarregarCampos();
+                this.Alterar();
             }
             if (e.ColumnIndex == 5)
             {

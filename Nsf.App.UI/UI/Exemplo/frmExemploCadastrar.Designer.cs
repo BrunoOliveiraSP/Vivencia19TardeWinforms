@@ -32,19 +32,19 @@
             this.label5 = new System.Windows.Forms.Label();
             this.pnSelected = new System.Windows.Forms.Panel();
             this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.label18 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label17 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.txtNome = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
             this.nudId = new System.Windows.Forms.NumericUpDown();
+            this.label4 = new System.Windows.Forms.Label();
+            this.txtNome = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
             this.lblId = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabControl1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nudId)).BeginInit();
             this.tabPage1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudId)).BeginInit();
             this.SuspendLayout();
             // 
             // btnSalvar
@@ -93,68 +93,22 @@
             this.tabControl1.Size = new System.Drawing.Size(744, 393);
             this.tabControl1.TabIndex = 4;
             // 
-            // label18
+            // tabPage1
             // 
-            this.label18.AutoSize = true;
-            this.label18.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
-            this.label18.ForeColor = System.Drawing.Color.Black;
-            this.label18.Location = new System.Drawing.Point(189, 130);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(28, 19);
-            this.label18.TabIndex = 77;
-            this.label18.Text = "ID:";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
-            this.label6.ForeColor = System.Drawing.Color.Black;
-            this.label6.Location = new System.Drawing.Point(155, 163);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(61, 19);
-            this.label6.TabIndex = 76;
-            this.label6.Text = "Nome:";
-            // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
-            this.label17.ForeColor = System.Drawing.Color.Salmon;
-            this.label17.Location = new System.Drawing.Point(218, 131);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(16, 19);
-            this.label17.TabIndex = 79;
-            this.label17.Text = "*";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
-            this.label7.ForeColor = System.Drawing.Color.Salmon;
-            this.label7.Location = new System.Drawing.Point(218, 163);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(16, 19);
-            this.label7.TabIndex = 78;
-            this.label7.Text = "*";
-            // 
-            // txtNome
-            // 
-            this.txtNome.Font = new System.Drawing.Font("Century Gothic", 12F);
-            this.txtNome.Location = new System.Drawing.Point(243, 160);
-            this.txtNome.MaxLength = 50;
-            this.txtNome.Name = "txtNome";
-            this.txtNome.Size = new System.Drawing.Size(409, 27);
-            this.txtNome.TabIndex = 0;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
-            this.label4.ForeColor = System.Drawing.Color.Black;
-            this.label4.Location = new System.Drawing.Point(110, 230);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(0, 19);
-            this.label4.TabIndex = 82;
+            this.tabPage1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.tabPage1.Controls.Add(this.nudId);
+            this.tabPage1.Controls.Add(this.label4);
+            this.tabPage1.Controls.Add(this.txtNome);
+            this.tabPage1.Controls.Add(this.label7);
+            this.tabPage1.Controls.Add(this.label17);
+            this.tabPage1.Controls.Add(this.label6);
+            this.tabPage1.Controls.Add(this.label18);
+            this.tabPage1.Location = new System.Drawing.Point(4, 33);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(736, 356);
+            this.tabPage1.TabIndex = 0;
+            this.tabPage1.Text = "Dados";
             // 
             // nudId
             // 
@@ -185,6 +139,70 @@
             0,
             0});
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
+            this.label4.ForeColor = System.Drawing.Color.Black;
+            this.label4.Location = new System.Drawing.Point(110, 230);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(0, 19);
+            this.label4.TabIndex = 82;
+            // 
+            // txtNome
+            // 
+            this.txtNome.Font = new System.Drawing.Font("Century Gothic", 12F);
+            this.txtNome.Location = new System.Drawing.Point(243, 160);
+            this.txtNome.MaxLength = 50;
+            this.txtNome.Name = "txtNome";
+            this.txtNome.Size = new System.Drawing.Size(409, 27);
+            this.txtNome.TabIndex = 0;
+            this.txtNome.TextChanged += new System.EventHandler(this.txtNome_TextChanged);
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
+            this.label7.ForeColor = System.Drawing.Color.Salmon;
+            this.label7.Location = new System.Drawing.Point(218, 163);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(16, 19);
+            this.label7.TabIndex = 78;
+            this.label7.Text = "*";
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
+            this.label17.ForeColor = System.Drawing.Color.Salmon;
+            this.label17.Location = new System.Drawing.Point(218, 131);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(16, 19);
+            this.label17.TabIndex = 79;
+            this.label17.Text = "*";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
+            this.label6.ForeColor = System.Drawing.Color.Black;
+            this.label6.Location = new System.Drawing.Point(155, 163);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(61, 19);
+            this.label6.TabIndex = 76;
+            this.label6.Text = "Nome:";
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
+            this.label18.ForeColor = System.Drawing.Color.Black;
+            this.label18.Location = new System.Drawing.Point(189, 130);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(28, 19);
+            this.label18.TabIndex = 77;
+            this.label18.Text = "ID:";
+            // 
             // lblId
             // 
             this.lblId.AutoSize = true;
@@ -205,23 +223,6 @@
             this.label8.Size = new System.Drawing.Size(28, 19);
             this.label8.TabIndex = 155;
             // 
-            // tabPage1
-            // 
-            this.tabPage1.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.tabPage1.Controls.Add(this.nudId);
-            this.tabPage1.Controls.Add(this.label4);
-            this.tabPage1.Controls.Add(this.txtNome);
-            this.tabPage1.Controls.Add(this.label7);
-            this.tabPage1.Controls.Add(this.label17);
-            this.tabPage1.Controls.Add(this.label6);
-            this.tabPage1.Controls.Add(this.label18);
-            this.tabPage1.Location = new System.Drawing.Point(4, 33);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(736, 356);
-            this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "Dados";
-            // 
             // frmExemploCadastrar
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -235,9 +236,9 @@
             this.Name = "frmExemploCadastrar";
             this.Size = new System.Drawing.Size(800, 600);
             this.tabControl1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.nudId)).EndInit();
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudId)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

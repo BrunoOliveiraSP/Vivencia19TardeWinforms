@@ -31,5 +31,10 @@ namespace Nsf.App.UI
                 MessageBox.Show(ex.Message);
             }
         }
+
+        private void txtNome_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

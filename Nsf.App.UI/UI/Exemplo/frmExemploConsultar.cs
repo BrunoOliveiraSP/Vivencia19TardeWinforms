@@ -22,5 +22,9 @@ namespace Nsf.App.UI
             dgvExemplo.DataSource = lista;
         }
 
+        private void txtCurso_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
