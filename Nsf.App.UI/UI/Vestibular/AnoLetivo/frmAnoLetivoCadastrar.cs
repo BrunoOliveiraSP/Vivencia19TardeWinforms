@@ -14,19 +14,8 @@ namespace Nsf.App.UI
             InitializeComponent();
         }
 
-        private void btnTurmaAdd_Click(object sender, EventArgs e)
-        {
-          
-        }
-
-        private void btnCalcularChamadaOficial_Click(object sender, EventArgs e)
-        {
-            
-        }
-
         private void btnSalvar_Click(object sender, EventArgs e)
         {
-
             Model.AnoLetivoModel add = new Model.AnoLetivoModel();
             add.NrAno = Convert.ToInt32(nudAno.Value);
             add.DtInicio = dtpInicio.Value;
@@ -41,6 +30,16 @@ namespace Nsf.App.UI
             UI.frmAnoLetivoConsultar tela = new frmAnoLetivoConsultar();
             tela.Show();
             this.Hide();
+        }
+
+        public void CarregarGrid(Model.AnoLetivoModel carregar)
+        {
+            Model.AnoLetivoModel add = new Model.AnoLetivoModel();
+            add.NrAno = Convert.ToInt32(nudAno.Value);
+            add.DtInicio = dtpInicio.Value;
+            add.DtFim = dtpFim.Value;
+            add.TpStatus = cboStatus.Text;
+            add.BtAtivo = Convert.ToUInt32(rdnAberto.Checked);
         }
     }
 }

@@ -38,6 +38,14 @@ namespace Nsf.App.API.Client
             var resp = client.DeleteAsync("http://localhost:5000/AnoLetivo/" + id).Result;
         }
 
+        public void Alterar(Model.AnoLetivoModel ano)
+        {
+            string json = JsonConvert.SerializeObject(ano);
+            StringContent body = new StringContent(json, Encoding.UTF8, "application/json");
 
-    }
+            var resp = client.PutAsync("http://localhost:5000/AnoLetivo/", body).Result;
+        }
+
+
+   }
 }
