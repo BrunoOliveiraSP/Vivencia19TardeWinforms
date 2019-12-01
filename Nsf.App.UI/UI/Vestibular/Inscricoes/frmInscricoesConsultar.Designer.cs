@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label5 = new System.Windows.Forms.Label();
             this.pnSelected = new System.Windows.Forms.Panel();
             this.dgvCandidatos = new System.Windows.Forms.DataGridView();
@@ -188,14 +188,14 @@
             this.Column53,
             this.Column54,
             this.Column55});
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Century Gothic", 12F);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvCandidatos.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Century Gothic", 12F);
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvCandidatos.DefaultCellStyle = dataGridViewCellStyle3;
             this.dgvCandidatos.Location = new System.Drawing.Point(10, 173);
             this.dgvCandidatos.Name = "dgvCandidatos";
             this.dgvCandidatos.ReadOnly = true;
@@ -723,6 +723,7 @@
             this.ForeColor = System.Drawing.Color.Black;
             this.Name = "frmInscricoesConsultar";
             this.Size = new System.Drawing.Size(800, 600);
+            this.Click += new System.EventHandler(this.frmInscricoesConsultar_Click);
             ((System.ComponentModel.ISupportInitialize)(this.dgvCandidatos)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
