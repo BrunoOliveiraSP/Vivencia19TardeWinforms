@@ -14,8 +14,10 @@ namespace Nsf.App.UI
 
         private void txtCurso_TextChanged(object sender, EventArgs e)
         {
+            string nmcurso = txtCurso.Text;
+
             Nsf.App.UI.API.CursoAPI curso = new API.CursoAPI();
-            List<Nsf.App.Model.CursoModel> lista = curso.ConsultarPorCurso(txtCurso.Text);
+            List<Nsf.App.Model.CursoModel> lista = curso.ConsultarPorCurso(nmcurso);
 
             dgvCursos.AutoGenerateColumns = false;
             dgvCursos.DataSource = lista;
@@ -23,8 +25,10 @@ namespace Nsf.App.UI
 
         private void txtSigla_TextChanged(object sender, EventArgs e)
         {
+            string sigla = txtSigla.Text;
+
             Nsf.App.UI.API.CursoAPI curso = new API.CursoAPI();
-            List<Nsf.App.Model.CursoModel> lista = curso.ConsultarPorSigla(txtSigla.Text);
+            List<Nsf.App.Model.CursoModel> lista = curso.ConsultarPorSigla(sigla);
 
             dgvCursos.AutoGenerateColumns = false;
             dgvCursos.DataSource = lista;
