@@ -28,20 +28,20 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label5 = new System.Windows.Forms.Label();
             this.pnSelected = new System.Windows.Forms.Panel();
             this.dgvDisciplinas = new System.Windows.Forms.DataGridView();
-            this.txtDisciplina = new System.Windows.Forms.TextBox();
-            this.label68 = new System.Windows.Forms.Label();
-            this.txtSigla = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.Registro = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Nome = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewImageColumn();
             this.Column1 = new System.Windows.Forms.DataGridViewImageColumn();
+            this.txtDisciplina = new System.Windows.Forms.TextBox();
+            this.label68 = new System.Windows.Forms.Label();
+            this.txtSigla = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDisciplinas)).BeginInit();
             this.SuspendLayout();
             // 
@@ -79,14 +79,14 @@
             this.Column3,
             this.Column2,
             this.Column1});
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Century Gothic", 12F);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvDisciplinas.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Century Gothic", 12F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvDisciplinas.DefaultCellStyle = dataGridViewCellStyle2;
             this.dgvDisciplinas.Location = new System.Drawing.Point(10, 178);
             this.dgvDisciplinas.Name = "dgvDisciplinas";
             this.dgvDisciplinas.ReadOnly = true;
@@ -97,46 +97,6 @@
             this.dgvDisciplinas.TabIndex = 2;
             this.dgvDisciplinas.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDisciplinas_CellClick);
             this.dgvDisciplinas.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDisciplinas_CellContentClick);
-            // 
-            // txtDisciplina
-            // 
-            this.txtDisciplina.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtDisciplina.Location = new System.Drawing.Point(174, 145);
-            this.txtDisciplina.Name = "txtDisciplina";
-            this.txtDisciplina.Size = new System.Drawing.Size(333, 27);
-            this.txtDisciplina.TabIndex = 0;
-            this.txtDisciplina.TextChanged += new System.EventHandler(this.txtDisciplina_TextChanged);
-            // 
-            // label68
-            // 
-            this.label68.AutoSize = true;
-            this.label68.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
-            this.label68.ForeColor = System.Drawing.Color.Black;
-            this.label68.Location = new System.Drawing.Point(80, 148);
-            this.label68.Name = "label68";
-            this.label68.Size = new System.Drawing.Size(88, 19);
-            this.label68.TabIndex = 162;
-            this.label68.Text = "Disciplina:";
-            // 
-            // txtSigla
-            // 
-            this.txtSigla.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtSigla.Location = new System.Drawing.Point(573, 145);
-            this.txtSigla.Name = "txtSigla";
-            this.txtSigla.Size = new System.Drawing.Size(157, 27);
-            this.txtSigla.TabIndex = 1;
-            this.txtSigla.TextChanged += new System.EventHandler(this.txtSigla_TextChanged);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
-            this.label1.ForeColor = System.Drawing.Color.Black;
-            this.label1.Location = new System.Drawing.Point(516, 148);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(51, 19);
-            this.label1.TabIndex = 164;
-            this.label1.Text = "Sigla:";
             // 
             // Registro
             // 
@@ -191,6 +151,46 @@
             this.Column1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.Column1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.Column1.Width = 25;
+            // 
+            // txtDisciplina
+            // 
+            this.txtDisciplina.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtDisciplina.Location = new System.Drawing.Point(174, 145);
+            this.txtDisciplina.Name = "txtDisciplina";
+            this.txtDisciplina.Size = new System.Drawing.Size(333, 27);
+            this.txtDisciplina.TabIndex = 0;
+            this.txtDisciplina.TextChanged += new System.EventHandler(this.txtDisciplina_TextChanged);
+            // 
+            // label68
+            // 
+            this.label68.AutoSize = true;
+            this.label68.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
+            this.label68.ForeColor = System.Drawing.Color.Black;
+            this.label68.Location = new System.Drawing.Point(80, 148);
+            this.label68.Name = "label68";
+            this.label68.Size = new System.Drawing.Size(88, 19);
+            this.label68.TabIndex = 162;
+            this.label68.Text = "Disciplina:";
+            // 
+            // txtSigla
+            // 
+            this.txtSigla.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtSigla.Location = new System.Drawing.Point(573, 145);
+            this.txtSigla.Name = "txtSigla";
+            this.txtSigla.Size = new System.Drawing.Size(157, 27);
+            this.txtSigla.TabIndex = 1;
+            this.txtSigla.TextChanged += new System.EventHandler(this.txtSigla_TextChanged);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
+            this.label1.ForeColor = System.Drawing.Color.Black;
+            this.label1.Location = new System.Drawing.Point(516, 148);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(51, 19);
+            this.label1.TabIndex = 164;
+            this.label1.Text = "Sigla:";
             // 
             // frmDisciplinasConsultar
             // 

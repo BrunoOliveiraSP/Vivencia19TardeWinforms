@@ -29,12 +29,23 @@ namespace Nsf.App.UI
         {
             string nome = txtDisciplina.Text;
             string sigla = txtSigla.Text;
-            
+
+            if (nome == string.Empty)
+                nome = " ";
+            if (sigla == string.Empty)
+                sigla = " ";
 
             Nsf.App.API.Client.DisciplinaAPI api = new Nsf.App.API.Client.DisciplinaAPI();
+            List<Nsf.App.Model.DisciplinaModel> lista;
 
-            List<Nsf.App.Model.DisciplinaModel> lista = api.Consultar(nome, sigla);
-
+            if (nome == " " && sigla == " ")
+            {
+               lista = api.Listar();
+            }
+            else
+            {
+                lista = api.Consultar(nome, sigla);
+            }
             dgvDisciplinas.AutoGenerateColumns = false;
             dgvDisciplinas.DataSource = lista;
         }
@@ -53,7 +64,7 @@ namespace Nsf.App.UI
 
         private void dgvDisciplinas_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.ColumnIndex == 6 )
+            if (e.ColumnIndex == 4 )
             {
                 Model.DisciplinaModel disciplina = dgvDisciplinas.CurrentRow.DataBoundItem as Model.DisciplinaModel;
 
@@ -67,16 +78,13 @@ namespace Nsf.App.UI
                 model.DtUltimaAlteracao = disciplina.DtUltimaAlteracao;
                 model.BtAtivo = disciplina.BtAtivo;
 
-
-                Nsf.App.API.Client.DisciplinaAPI api = new Nsf.App.API.Client.DisciplinaAPI();
-
-                api.Alterar(model);
-
-                MessageBox.Show("Alterado com Sucesso");
-
+                frmDisciplinasCadastrar tela = new frmDisciplinasCadastrar();
+                
+                frmInicial.Current.OpenScreen(tela);
+                tela.CarregarCampos(model);
             }
 
-            if (e.ColumnIndex == 7)
+            if (e.ColumnIndex == 5)
             {
                 Model.DisciplinaModel disciplina = dgvDisciplinas.CurrentRow.DataBoundItem as Model.DisciplinaModel;
 
@@ -93,12 +101,17 @@ namespace Nsf.App.UI
 
                     MessageBox.Show("Removido com Sucesso");
                 }
+                Carregar();
             }
         }
 
         private void dgvDisciplinas_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
         }
     }
 }
