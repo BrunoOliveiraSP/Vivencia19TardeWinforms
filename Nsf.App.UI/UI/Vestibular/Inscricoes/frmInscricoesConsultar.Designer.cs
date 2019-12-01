@@ -32,13 +32,6 @@
             this.label5 = new System.Windows.Forms.Label();
             this.pnSelected = new System.Windows.Forms.Panel();
             this.dgvCandidatos = new System.Windows.Forms.DataGridView();
-            this.txtNome = new System.Windows.Forms.TextBox();
-            this.label68 = new System.Windows.Forms.Label();
-            this.cboAnoLetivo = new System.Windows.Forms.ComboBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
-            this.label1 = new System.Windows.Forms.Label();
-            this.lblTotal = new System.Windows.Forms.Label();
             this.Inscricao = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Nome = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -98,6 +91,13 @@
             this.Column53 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column54 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column55 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.txtNome = new System.Windows.Forms.TextBox();
+            this.label68 = new System.Windows.Forms.Label();
+            this.cboAnoLetivo = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
+            this.label1 = new System.Windows.Forms.Label();
+            this.lblTotal = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCandidatos)).BeginInit();
             this.SuspendLayout();
             // 
@@ -205,83 +205,6 @@
             this.dgvCandidatos.Size = new System.Drawing.Size(768, 406);
             this.dgvCandidatos.TabIndex = 1;
             this.dgvCandidatos.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCandidatos_CellClick);
-            // 
-            // txtNome
-            // 
-            this.txtNome.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtNome.Font = new System.Drawing.Font("Century Gothic", 12F);
-            this.txtNome.Location = new System.Drawing.Point(147, 128);
-            this.txtNome.Name = "txtNome";
-            this.txtNome.Size = new System.Drawing.Size(384, 27);
-            this.txtNome.TabIndex = 0;
-            this.txtNome.TextChanged += new System.EventHandler(this.txtNome_TextChanged);
-            // 
-            // label68
-            // 
-            this.label68.AutoSize = true;
-            this.label68.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
-            this.label68.ForeColor = System.Drawing.Color.Black;
-            this.label68.Location = new System.Drawing.Point(80, 131);
-            this.label68.Name = "label68";
-            this.label68.Size = new System.Drawing.Size(61, 19);
-            this.label68.TabIndex = 160;
-            this.label68.Text = "Nome:";
-            // 
-            // cboAnoLetivo
-            // 
-            this.cboAnoLetivo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboAnoLetivo.Font = new System.Drawing.Font("Century Gothic", 12F);
-            this.cboAnoLetivo.FormattingEnabled = true;
-            this.cboAnoLetivo.Location = new System.Drawing.Point(632, 126);
-            this.cboAnoLetivo.Name = "cboAnoLetivo";
-            this.cboAnoLetivo.Size = new System.Drawing.Size(100, 29);
-            this.cboAnoLetivo.TabIndex = 165;
-            this.cboAnoLetivo.SelectedIndexChanged += new System.EventHandler(this.cboAnoLetivo_SelectedIndexChanged);
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
-            this.label3.ForeColor = System.Drawing.Color.Black;
-            this.label3.Location = new System.Drawing.Point(538, 130);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(90, 19);
-            this.label3.TabIndex = 166;
-            this.label3.Text = "Ano letivo:";
-            // 
-            // dataGridViewImageColumn1
-            // 
-            this.dataGridViewImageColumn1.HeaderText = "";
-            this.dataGridViewImageColumn1.Image = global::Nsf.App.UI.Properties.Resources.edit2;
-            this.dataGridViewImageColumn1.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Stretch;
-            this.dataGridViewImageColumn1.Name = "dataGridViewImageColumn1";
-            this.dataGridViewImageColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewImageColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.dataGridViewImageColumn1.Width = 30;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.Black;
-            this.label1.Location = new System.Drawing.Point(6, 638);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(59, 23);
-            this.label1.TabIndex = 162;
-            this.label1.Text = "Total:";
-            // 
-            // lblTotal
-            // 
-            this.lblTotal.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblTotal.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTotal.ForeColor = System.Drawing.Color.Black;
-            this.lblTotal.Location = new System.Drawing.Point(-129, 638);
-            this.lblTotal.Name = "lblTotal";
-            this.lblTotal.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.lblTotal.Size = new System.Drawing.Size(109, 23);
-            this.lblTotal.TabIndex = 162;
-            this.lblTotal.Text = "0";
-            this.lblTotal.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // Inscricao
             // 
@@ -704,6 +627,84 @@
             this.Column55.HeaderText = "Email Inscrito";
             this.Column55.Name = "Column55";
             this.Column55.ReadOnly = true;
+            // 
+            // txtNome
+            // 
+            this.txtNome.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtNome.Font = new System.Drawing.Font("Century Gothic", 12F);
+            this.txtNome.Location = new System.Drawing.Point(147, 128);
+            this.txtNome.Name = "txtNome";
+            this.txtNome.Size = new System.Drawing.Size(384, 27);
+            this.txtNome.TabIndex = 0;
+            this.txtNome.TextChanged += new System.EventHandler(this.txtNome_TextChanged);
+            // 
+            // label68
+            // 
+            this.label68.AutoSize = true;
+            this.label68.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
+            this.label68.ForeColor = System.Drawing.Color.Black;
+            this.label68.Location = new System.Drawing.Point(80, 131);
+            this.label68.Name = "label68";
+            this.label68.Size = new System.Drawing.Size(61, 19);
+            this.label68.TabIndex = 160;
+            this.label68.Text = "Nome:";
+            // 
+            // cboAnoLetivo
+            // 
+            this.cboAnoLetivo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboAnoLetivo.Font = new System.Drawing.Font("Century Gothic", 12F);
+            this.cboAnoLetivo.FormattingEnabled = true;
+            this.cboAnoLetivo.Location = new System.Drawing.Point(632, 126);
+            this.cboAnoLetivo.Name = "cboAnoLetivo";
+            this.cboAnoLetivo.Size = new System.Drawing.Size(100, 29);
+            this.cboAnoLetivo.TabIndex = 165;
+            this.cboAnoLetivo.SelectedIndexChanged += new System.EventHandler(this.cboAnoLetivo_SelectedIndexChanged);
+            this.cboAnoLetivo.Click += new System.EventHandler(this.cboAnoLetivo_Click);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
+            this.label3.ForeColor = System.Drawing.Color.Black;
+            this.label3.Location = new System.Drawing.Point(538, 130);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(90, 19);
+            this.label3.TabIndex = 166;
+            this.label3.Text = "Ano letivo:";
+            // 
+            // dataGridViewImageColumn1
+            // 
+            this.dataGridViewImageColumn1.HeaderText = "";
+            this.dataGridViewImageColumn1.Image = global::Nsf.App.UI.Properties.Resources.edit2;
+            this.dataGridViewImageColumn1.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Stretch;
+            this.dataGridViewImageColumn1.Name = "dataGridViewImageColumn1";
+            this.dataGridViewImageColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewImageColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.dataGridViewImageColumn1.Width = 30;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.Black;
+            this.label1.Location = new System.Drawing.Point(6, 638);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(59, 23);
+            this.label1.TabIndex = 162;
+            this.label1.Text = "Total:";
+            // 
+            // lblTotal
+            // 
+            this.lblTotal.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblTotal.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTotal.ForeColor = System.Drawing.Color.Black;
+            this.lblTotal.Location = new System.Drawing.Point(-129, 638);
+            this.lblTotal.Name = "lblTotal";
+            this.lblTotal.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.lblTotal.Size = new System.Drawing.Size(109, 23);
+            this.lblTotal.TabIndex = 162;
+            this.lblTotal.Text = "0";
+            this.lblTotal.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // frmInscricoesConsultar
             // 
