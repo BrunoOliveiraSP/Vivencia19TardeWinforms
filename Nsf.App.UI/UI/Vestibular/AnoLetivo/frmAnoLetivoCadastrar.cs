@@ -14,19 +14,8 @@ namespace Nsf.App.UI
             InitializeComponent();
         }
 
-        private void btnTurmaAdd_Click(object sender, EventArgs e)
-        {
-          
-        }
-
-        private void btnCalcularChamadaOficial_Click(object sender, EventArgs e)
-        {
-            
-        }
-
         private void btnSalvar_Click(object sender, EventArgs e)
         {
-
             Model.AnoLetivoModel add = new Model.AnoLetivoModel();
             add.NrAno = Convert.ToInt32(nudAno.Value);
             add.DtInicio = dtpInicio.Value;
@@ -38,18 +27,42 @@ namespace Nsf.App.UI
             Add.CadastrarAnoLetivo(add);
 
             MessageBox.Show("Cadastro realizado com sucesso.");
-            UI.frmAnoLetivoConsultar tela = new frmAnoLetivoConsultar();
+            frmAnoLetivoConsultar tela = new frmAnoLetivoConsultar();
             tela.Show();
             this.Hide();
         }
-        int id = 0;
-        public void CarregarTela(Model.AnoLetivoModel ano)
+
+        public void CarregarGrid(Model.AnoLetivoModel carregar)
         {
-            id = ano.IdAnoLetivo;
-            nudAno.Value = ano.NrAno;
-            dtpInicio.Value = ano.DtInicio;
-            cboStatus.Text = ano.TpStatus;
-            dtpFim.Value = ano.DtFim;         
+            Model.AnoLetivoModel add = new Model.AnoLetivoModel();
+            add.NrAno = Convert.ToInt32(nudAno.Value);
+            add.DtInicio = dtpInicio.Value;
+            add.DtFim = dtpFim.Value;
+            add.TpStatus = cboStatus.Text;
+            add.BtAtivo = Convert.ToUInt32(rdnAberto.Checked);
+        }
+
+        private void btnTurmaAdd_Click(object sender, EventArgs e)
+        {
+            Nsf.App.Model.TurmaModel add = new Model.TurmaModel();
+            //add.IdCurso = cboTurmaCurso.Text; 
+            add.NmTurma = txtTurmaNome.Text;
+            add.TpPeriodo = cboTurmaPeriodo.Text;
+            add.NrCapacidadeMax = Convert.ToInt32(nudTurmaCapacidade.Value);
+
+            Nsf.App.API.Client.TurmaApi Add = new App.API.Client.TurmaApi();
+            Add.CadastrarTurma(add);
+
+            MessageBox.Show("Turma cadastrada com sucesso!");
+        }
+
+        private void dgvTurma_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            Nsf.App.Model.TurmaModel add = new Model.TurmaModel();
+            //add.IdCurso = cboTurmaCurso.Text; 
+            add.NmTurma = txtTurmaNome.Text;
+            add.TpPeriodo = cboTurmaPeriodo.Text;
+            add.NrCapacidadeMax = Convert.ToInt32(nudTurmaCapacidade.Value);
         }
     }
 }
