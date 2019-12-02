@@ -817,11 +817,12 @@
             this.dgvTurma.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvTurma.Size = new System.Drawing.Size(684, 189);
             this.dgvTurma.TabIndex = 10;
+            this.dgvTurma.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvTurma_CellClick);
             // 
             // Registro
             // 
             this.Registro.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Registro.DataPropertyName = "nm_curso";
+            this.Registro.DataPropertyName = "NmCurso";
             this.Registro.HeaderText = "Curso";
             this.Registro.Name = "Registro";
             this.Registro.ReadOnly = true;
@@ -1101,7 +1102,6 @@
             this.btnCalcularChamadaOficial.Text = "Calcular chamada oficial";
             this.btnCalcularChamadaOficial.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnCalcularChamadaOficial.UseVisualStyleBackColor = false;
-            this.btnCalcularChamadaOficial.Click += new System.EventHandler(this.btnCalcularChamadaOficial_Click);
             // 
             // nudAno
             // 
@@ -1330,12 +1330,6 @@
         private System.Windows.Forms.DataGridViewCheckBoxColumn Aberto;
         private System.Windows.Forms.DataGridViewImageColumn dataGridViewTextBoxColumn5;
         private System.Windows.Forms.DataGridViewImageColumn dataGridViewTextBoxColumn6;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Registro;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Nome;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
-        private System.Windows.Forms.DataGridViewImageColumn Column2;
-        private System.Windows.Forms.DataGridViewImageColumn Column1;
         private System.Windows.Forms.Button btnCalcularChamadaOficial;
         private System.Windows.Forms.Label label30;
         private System.Windows.Forms.ComboBox cboAcessoTurma;
@@ -1346,5 +1340,11 @@
         private System.Windows.Forms.Label label33;
         private System.Windows.Forms.RadioButton rdnFechado;
         private System.Windows.Forms.RadioButton rdnAberto;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Registro;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Nome;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
+        private System.Windows.Forms.DataGridViewImageColumn Column2;
+        private System.Windows.Forms.DataGridViewImageColumn Column1;
     }
 }

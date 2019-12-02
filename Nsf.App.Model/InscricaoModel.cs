@@ -73,7 +73,66 @@ namespace Nsf.App.Model
         //public List<object> tbTurmaInscricaoTransicao { get; set; }
     }
 
-
-    //Falta colocar as tabelas aqui também
+    public static class CarregarInscrições
+    {
+        public static int idInscricao { get; set; }
+        public static int idAnoLetivo { get; set; }
+        public static string nmInscrito { get; set; }
+        public static DateTime dtNascimento { get; set; }
+        public static string dsRg { get; set; }
+        public static DateTime dtEmissao { get; set; }
+        public static string dsOrgao { get; set; }
+        public static string dsSexo { get; set; }
+        public static string dsCpf { get; set; }
+        public static string dsNascimentoCidade { get; set; }
+        public static string dsNascimentoEstado { get; set; }
+        public static string dsNascimentoPais { get; set; }
+        public static string dsResidenciaEndereco { get; set; }
+        public static int nrResidenciaEndereco { get; set; }
+        public static string dsResidenciaComplelemento { get; set; }
+        public static string dsResidenciaBairro { get; set; }
+        public static string dsResidenciaCidade { get; set; }
+        public static string dsResidenciaEstado { get; set; }
+        public static string dsResidenciaCep { get; set; }
+        public static string dsEmail { get; set; }
+        public static string dsTelefone { get; set; }
+        public static string dsTelefone2 { get; set; }
+        public static string nmContato { get; set; }
+        public static string dsResponsavelNome { get; set; }
+        public static string dsResponsavelEmail { get; set; }
+        public static string dsResponsavelTelefone { get; set; }
+        public static string dsResponsavelTelefone2 { get; set; }
+        public static string dsResponsavelParentesco { get; set; }
+        public static int idCurso { get; set; }
+        public static string dsCursoPeriodo { get; set; }
+        public static int idCurso2 { get; set; }
+        public static string dsCurso2Periodo { get; set; }
+        public static string dsEscolaridade { get; set; }
+        public static string nmEscola { get; set; }
+        public static string tpEscola { get; set; }
+        public static decimal vlRenda { get; set; }
+        public static string dsComoConheceu { get; set; }
+        public static int qtMoramCasa { get; set; }
+        public static int qtTrabalhamCasa { get; set; }
+        public static string dsCorPele { get; set; }
+        public static bool btPendenteRg { get; set; }
+        public static bool btPendenteCpf { get; set; }
+        public static bool btPendenteEscolaridade { get; set; }
+        public static bool btPendentePagamento { get; set; }
+        public static string dsObservacao { get; set; }
+        public static DateTime dtInclusao { get; set; }
+        public static DateTime dtUltimaAlteracao { get; set; }
+        public static int idFuncionarioAlteracao { get; set; }
+        public static decimal vlNota { get; set; }
+        public static int idSalaVestibular { get; set; }
+        public static string dsSituacao { get; set; }
+        public static bool btMatriculado { get; set; }
+        public static bool btPendenteComprovresid { get; set; }
+        public static string dsResponsavelCpf { get; set; }
+        public static string dsResponsavelRg { get; set; }
+        public static int cdInscricao { get; set; }
+        public static string dsEmailInscrito { get; set; }
+    }
+   
 }
 
