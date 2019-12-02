@@ -50,14 +50,24 @@ namespace Nsf.App.UI
 
         private void dgvCursos_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.ColumnIndex == 5)
+            if (e.ColumnIndex == 4)
             {
                 Model.CursoModel curso = dgvCursos.CurrentRow.DataBoundItem as Model.CursoModel;
-                
+
+                Nsf.App.Model.CursoModel model = new Model.CursoModel();
 
 
+                model.IdCurso = curso.IdCurso;
+                model.NmCurso = curso.NmCurso;
+                model.NrCapacidadeMaxima = curso.NrCapacidadeMaxima;
+                model.DsSigla = curso.DsSigla;
+                model.DsCategoria = curso.DsCategoria;
+                model.BtAtivo = curso.BtAtivo;
 
+                frmCursoCadastrar tela = new frmCursoCadastrar();
 
+                frmInicial.Current.OpenScreen(tela);
+                tela.AlterarInformacao(model);
             }
 
                 if (e.ColumnIndex == 5)
