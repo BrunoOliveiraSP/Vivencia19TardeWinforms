@@ -11,7 +11,22 @@ namespace Nsf.App.UI
         public frmSalaVestibularCadastrar()
         {
             InitializeComponent();
+         
         }
 
+        private void frmSalaVestibularCadastrar_Load(object sender, EventArgs e)
+        {
+            this.ListarTudo();
+        }
+
+        public void ListarTudo()
+        {
+            Nsf.App.API.Client.SalaVestibularAPI api = new App.API.Client.SalaVestibularAPI();
+            List<Model.SalaVestibularModel> consultar = api.listarTudo();
+
+            dgvSalasVestibular.AutoGenerateColumns = false;
+            dgvSalasVestibular.DataSource = consultar;
+
+        }
     }
 }
