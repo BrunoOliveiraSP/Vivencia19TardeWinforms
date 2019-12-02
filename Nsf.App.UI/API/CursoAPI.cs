@@ -39,7 +39,7 @@ namespace Nsf.App.UI.API
         {
             HttpClient client = new HttpClient();
 
-            string json = client.GetAsync("http://localhost:5000/Curso/" + NmCurso)
+            string json = client.GetAsync("http://localhost:5000/Curso/" + NmCurso + "/")
                                 .Result
                                 .Content
                                 .ReadAsStringAsync()
@@ -54,7 +54,7 @@ namespace Nsf.App.UI.API
         {
             HttpClient client = new HttpClient();
 
-            string json = client.GetAsync("http://localhost:5000/Curso/" + Sigla)
+            string json = client.GetAsync("http://localhost:5000/Curso/" + Sigla + "/")
                                 .Result
                                 .Content
                                 .ReadAsStringAsync()
@@ -74,14 +74,15 @@ namespace Nsf.App.UI.API
             string json = JsonConvert.SerializeObject(curso);
             StringContent body = new StringContent(json, Encoding.UTF8, "application/json");
 
-            var resp = client.PutAsync("http://localhost:5000/Curso/", body).Result;
+            var resp = client.PutAsync("http://localhost:5000/Curso/", body).Result.Content.ReadAsStringAsync().Result; 
         }
 
 
         public void Remover(int id)
         {
+
             HttpClient client = new HttpClient();
-            var resp = client.DeleteAsync("http://localhost:5000/Curso/" + id).Result;
+            var resp = client.DeleteAsync("http://localhost:5000/Curso/" + id + "/").Result;
 
         }
     }

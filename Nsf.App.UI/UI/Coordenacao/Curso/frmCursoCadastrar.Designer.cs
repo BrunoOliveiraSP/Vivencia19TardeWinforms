@@ -114,6 +114,7 @@
             // 
             this.tabPage1.BackColor = System.Drawing.Color.WhiteSmoke;
             this.tabPage1.Controls.Add(this.cboCategoria);
+            this.tabPage1.Controls.Add(this.lblId);
             this.tabPage1.Controls.Add(this.label9);
             this.tabPage1.Controls.Add(this.label10);
             this.tabPage1.Controls.Add(this.panelId);
@@ -174,7 +175,6 @@
             // panelId
             // 
             this.panelId.Controls.Add(this.label8);
-            this.panelId.Controls.Add(this.lblId);
             this.panelId.Location = new System.Drawing.Point(103, 81);
             this.panelId.Name = "panelId";
             this.panelId.Size = new System.Drawing.Size(573, 38);
@@ -197,7 +197,7 @@
             this.lblId.AutoSize = true;
             this.lblId.Font = new System.Drawing.Font("Century Gothic", 12F);
             this.lblId.ForeColor = System.Drawing.Color.Black;
-            this.lblId.Location = new System.Drawing.Point(160, 7);
+            this.lblId.Location = new System.Drawing.Point(263, 30);
             this.lblId.Name = "lblId";
             this.lblId.Size = new System.Drawing.Size(19, 21);
             this.lblId.TabIndex = 156;

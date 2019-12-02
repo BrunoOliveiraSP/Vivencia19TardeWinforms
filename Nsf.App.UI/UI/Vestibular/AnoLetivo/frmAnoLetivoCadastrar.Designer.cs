@@ -85,10 +85,10 @@
             this.tabTurmas = new System.Windows.Forms.TabPage();
             this.nudTurmaCapacidade = new System.Windows.Forms.NumericUpDown();
             this.dgvTurma = new System.Windows.Forms.DataGridView();
-            this.Registro = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Nome = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewImageColumn();
             this.Column1 = new System.Windows.Forms.DataGridViewImageColumn();
             this.txtTurmaNome = new System.Windows.Forms.TextBox();
@@ -790,14 +790,14 @@
             this.dgvTurma.AllowUserToAddRows = false;
             this.dgvTurma.AllowUserToDeleteRows = false;
             this.dgvTurma.AllowUserToResizeRows = false;
-            this.dgvTurma.BackgroundColor = System.Drawing.Color.WhiteSmoke;
+            this.dgvTurma.BackgroundColor = System.Drawing.Color.LightGray;
             this.dgvTurma.ColumnHeadersHeight = 45;
             this.dgvTurma.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dgvTurma.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Registro,
-            this.Nome,
             this.Column3,
             this.Column5,
+            this.Column6,
+            this.Column7,
             this.Column2,
             this.Column1});
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -808,46 +808,45 @@
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dgvTurma.DefaultCellStyle = dataGridViewCellStyle2;
-            this.dgvTurma.Location = new System.Drawing.Point(20, 170);
+            this.dgvTurma.Location = new System.Drawing.Point(116, 171);
             this.dgvTurma.Name = "dgvTurma";
             this.dgvTurma.ReadOnly = true;
             this.dgvTurma.RowHeadersVisible = false;
             this.dgvTurma.RowHeadersWidth = 45;
             this.dgvTurma.RowTemplate.Height = 25;
             this.dgvTurma.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvTurma.Size = new System.Drawing.Size(684, 189);
+            this.dgvTurma.Size = new System.Drawing.Size(445, 189);
             this.dgvTurma.TabIndex = 10;
-            // 
-            // Registro
-            // 
-            this.Registro.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Registro.DataPropertyName = "nm_curso";
-            this.Registro.HeaderText = "Curso";
-            this.Registro.Name = "Registro";
-            this.Registro.ReadOnly = true;
-            // 
-            // Nome
-            // 
-            this.Nome.DataPropertyName = "nm_turma";
-            this.Nome.HeaderText = "Turma";
-            this.Nome.Name = "Nome";
-            this.Nome.ReadOnly = true;
-            this.Nome.Width = 150;
+            this.dgvTurma.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvTurma_CellClick);
             // 
             // Column3
             // 
-            this.Column3.DataPropertyName = "tp_periodo";
-            this.Column3.HeaderText = "Período";
+            this.Column3.DataPropertyName = "NmCurso";
+            this.Column3.HeaderText = "Curso";
             this.Column3.Name = "Column3";
             this.Column3.ReadOnly = true;
             this.Column3.Width = 150;
             // 
             // Column5
             // 
-            this.Column5.DataPropertyName = "nr_capacidade_max";
-            this.Column5.HeaderText = "Capac";
+            this.Column5.DataPropertyName = "NmTurma";
+            this.Column5.HeaderText = "Turma";
             this.Column5.Name = "Column5";
             this.Column5.ReadOnly = true;
+            // 
+            // Column6
+            // 
+            this.Column6.DataPropertyName = "TpPeriodo";
+            this.Column6.HeaderText = "Período";
+            this.Column6.Name = "Column6";
+            this.Column6.ReadOnly = true;
+            // 
+            // Column7
+            // 
+            this.Column7.DataPropertyName = "NrCapacidadeMax";
+            this.Column7.HeaderText = "Capac";
+            this.Column7.Name = "Column7";
+            this.Column7.ReadOnly = true;
             // 
             // Column2
             // 
@@ -892,7 +891,7 @@
             this.btnTurmaAdd.Text = "Adicionar";
             this.btnTurmaAdd.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnTurmaAdd.UseVisualStyleBackColor = false;
-            this.btnTurmaAdd.Click += new System.EventHandler(this.btnTurmaAdd_Click);
+            this.btnTurmaAdd.Click += new System.EventHandler(this.btnTurmaAdd_Click_1);
             // 
             // label12
             // 
@@ -1101,7 +1100,6 @@
             this.btnCalcularChamadaOficial.Text = "Calcular chamada oficial";
             this.btnCalcularChamadaOficial.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnCalcularChamadaOficial.UseVisualStyleBackColor = false;
-            this.btnCalcularChamadaOficial.Click += new System.EventHandler(this.btnCalcularChamadaOficial_Click);
             // 
             // nudAno
             // 
@@ -1221,6 +1219,7 @@
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(734, 413);
             this.tabControl1.TabIndex = 99;
+            this.tabControl1.EnabledChanged += new System.EventHandler(this.btnSalvar_Click);
             // 
             // frmAnoLetivoCadastrar
             // 
@@ -1330,12 +1329,6 @@
         private System.Windows.Forms.DataGridViewCheckBoxColumn Aberto;
         private System.Windows.Forms.DataGridViewImageColumn dataGridViewTextBoxColumn5;
         private System.Windows.Forms.DataGridViewImageColumn dataGridViewTextBoxColumn6;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Registro;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Nome;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
-        private System.Windows.Forms.DataGridViewImageColumn Column2;
-        private System.Windows.Forms.DataGridViewImageColumn Column1;
         private System.Windows.Forms.Button btnCalcularChamadaOficial;
         private System.Windows.Forms.Label label30;
         private System.Windows.Forms.ComboBox cboAcessoTurma;
@@ -1346,5 +1339,11 @@
         private System.Windows.Forms.Label label33;
         private System.Windows.Forms.RadioButton rdnFechado;
         private System.Windows.Forms.RadioButton rdnAberto;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
+        private System.Windows.Forms.DataGridViewImageColumn Column2;
+        private System.Windows.Forms.DataGridViewImageColumn Column1;
     }
 }

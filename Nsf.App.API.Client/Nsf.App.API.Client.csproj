@@ -51,15 +51,18 @@
     <Compile Include="InscricaoAPI.cs" />
     <Compile Include="ProfessorAPI.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
+    <Compile Include="SalaAPI.cs" />
+    <Compile Include="SalaVestibularAPI.cs" />
+    <Compile Include="TurmaApii.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Nsf.App.Model\Nsf.App.Model.csproj">
       <Project>{994fea6a-4f81-4675-8223-54c96ca6a46c}</Project>
       <Name>Nsf.App.Model</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

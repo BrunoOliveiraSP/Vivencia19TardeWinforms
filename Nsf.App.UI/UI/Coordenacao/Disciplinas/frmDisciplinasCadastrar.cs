@@ -56,22 +56,32 @@ namespace Nsf.App.UI
         }
         public void Alterar()
         {
-            Nsf.App.Model.DisciplinaModel model = new Model.DisciplinaModel();
 
-            model.IdDisciplina = Convert.ToInt32(lblId.Text);
-            model.NmDisciplina = txtDisciplina.Text;
-            model.DsSigla = txtSigla.Text;
-            model.DtInclusao = dtpinclusao.Value;
-            model.DtUltimaAlteracao = System.DateTime.Now;
-            model.BtAtivo = Convert.ToBoolean(chkAtivo.Checked);
+            try
+            {
+                Nsf.App.Model.DisciplinaModel model = new Model.DisciplinaModel();
 
-            Nsf.App.API.Client.DisciplinaAPI api = new App.API.Client.DisciplinaAPI();
-            api.Alterar(model);
+                model.IdDisciplina = Convert.ToInt32(lblId.Text);
+                model.NmDisciplina = txtDisciplina.Text;
+                model.DsSigla = txtSigla.Text;
+                model.DtInclusao = dtpinclusao.Value;
+                model.DtUltimaAlteracao = System.DateTime.Now;
+                model.BtAtivo = Convert.ToBoolean(chkAtivo.Checked);
 
-            MessageBox.Show("Disciplina Alterada com sucesso.");
+                Nsf.App.API.Client.DisciplinaAPI api = new App.API.Client.DisciplinaAPI();
+                api.Alterar(model);
+
+                MessageBox.Show("Disciplina Alterada com sucesso.");
+            }
+            catch (ArgumentException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
         public void CarregarCampos(Model.DisciplinaModel model)
         {
+            try
+            {
                 panelId.Visible = true;
 
                 lblId.Text = model.IdDisciplina.ToString();
@@ -80,7 +90,12 @@ namespace Nsf.App.UI
                 dtpinclusao.Value = model.DtInclusao;
                 model.DtUltimaAlteracao = model.DtInclusao;
                 chkAtivo.Checked = model.BtAtivo;
-            
+            }
+            catch (ArgumentException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
         }
 
         private void button1_Click(object sender, EventArgs e)

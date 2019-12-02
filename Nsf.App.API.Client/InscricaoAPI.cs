@@ -44,7 +44,7 @@ namespace Nsf.App.API.Client
 		{
 			HttpClient NomeAnoConsulta = new HttpClient();
 
-			string json = NomeAnoConsulta.GetAsync("http://localhost:5000/Inscricao/ConsultarPorNomeEAno/"+ nome +ano)
+			string json = NomeAnoConsulta.GetAsync("http://localhost:5000/Inscricao/ConsultarPorNomeEAno/"+ nome + "/" + ano)
 										.Result
 										.Content
 										.ReadAsStringAsync()
