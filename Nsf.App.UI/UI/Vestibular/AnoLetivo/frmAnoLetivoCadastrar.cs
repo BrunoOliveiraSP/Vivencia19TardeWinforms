@@ -45,7 +45,21 @@ namespace Nsf.App.UI
         private void btnTurmaAdd_Click(object sender, EventArgs e)
         {
             Nsf.App.Model.TurmaModel add = new Model.TurmaModel();
-            //add.IdCurso = cboTurmaCurso.Text; ;
+            //add.IdCurso = cboTurmaCurso.Text; 
+            add.NmTurma = txtTurmaNome.Text;
+            add.TpPeriodo = cboTurmaPeriodo.Text;
+            add.NrCapacidadeMax = Convert.ToInt32(nudTurmaCapacidade.Value);
+
+            Nsf.App.API.Client.TurmaApi Add = new App.API.Client.TurmaApi();
+            Add.CadastrarTurma(add);
+
+            MessageBox.Show("Turma cadastrada com sucesso!");
+        }
+
+        private void dgvTurma_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            Nsf.App.Model.TurmaModel add = new Model.TurmaModel();
+            //add.IdCurso = cboTurmaCurso.Text; 
             add.NmTurma = txtTurmaNome.Text;
             add.TpPeriodo = cboTurmaPeriodo.Text;
             add.NrCapacidadeMax = Convert.ToInt32(nudTurmaCapacidade.Value);

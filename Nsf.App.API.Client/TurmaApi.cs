@@ -8,12 +8,12 @@ using System.Threading.Tasks;
 
 namespace Nsf.App.API.Client
 {
-    class TurmaApi
+    public class TurmaApi
     {
         HttpClient client = new HttpClient();
 
         public void CadastrarTurma(Nsf.App.Model.TurmaModel turma)
-        {  
+        {
             string json = JsonConvert.SerializeObject(turma);
             StringContent body = new StringContent(json, Encoding.UTF8, "application/json");
 
@@ -28,7 +28,7 @@ namespace Nsf.App.API.Client
                                 .ReadAsStringAsync()
                                 .Result;
 
-            List<Nsf.App.Model.TurmaModel > lista = JsonConvert.DeserializeObject<List<Nsf.App.Model.TurmaModel >> (json);
+            List<Nsf.App.Model.TurmaModel> lista = JsonConvert.DeserializeObject<List<Nsf.App.Model.TurmaModel>>(json);
 
             return lista;
         }
