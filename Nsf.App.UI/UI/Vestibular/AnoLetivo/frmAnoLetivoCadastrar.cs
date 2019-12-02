@@ -27,7 +27,7 @@ namespace Nsf.App.UI
             Add.CadastrarAnoLetivo(add);
 
             MessageBox.Show("Cadastro realizado com sucesso.");
-            UI.frmAnoLetivoConsultar tela = new frmAnoLetivoConsultar();
+            frmAnoLetivoConsultar tela = new frmAnoLetivoConsultar();
             tela.Show();
             this.Hide();
         }
@@ -49,8 +49,6 @@ namespace Nsf.App.UI
             add.NmTurma = txtTurmaNome.Text;
             add.TpPeriodo = cboTurmaPeriodo.Text;
             add.NrCapacidadeMax = Convert.ToInt32(nudTurmaCapacidade.Value);
-
-            
         }
     }
 }
