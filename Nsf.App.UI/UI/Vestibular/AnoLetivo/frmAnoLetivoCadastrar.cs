@@ -42,5 +42,14 @@ namespace Nsf.App.UI
             tela.Show();
             this.Hide();
         }
+        int id = 0;
+        public void CarregarTela(Model.AnoLetivoModel ano)
+        {
+            id = ano.IdAnoLetivo;
+            nudAno.Value = ano.NrAno;
+            dtpInicio.Value = ano.DtInicio;
+            cboStatus.Text = ano.TpStatus;
+            dtpFim.Value = ano.DtFim;         
+        }
     }
 }

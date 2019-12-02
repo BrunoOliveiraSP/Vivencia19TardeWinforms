@@ -49,13 +49,22 @@ namespace Nsf.App.UI
 
 
             }
-            if (e.ColumnIndex == 5)
+            if (e.ColumnIndex == 4)
             {
                 Model.AnoLetivoModel ano = dgvAnosLetivos.CurrentRow.DataBoundItem as Model.AnoLetivoModel;
+                Model.AnoLetivoModel model = new Model.AnoLetivoModel();
 
+                model.IdAnoLetivo = ano.IdAnoLetivo;
+                model.DtInicio = ano.DtInicio;
+                model.DtFim = ano.DtFim;
+                model.NrAno = ano.NrAno;
+                model.TpStatus = ano.TpStatus;
+                model.BtAtivo = ano.BtAtivo;
 
+                frmAnoLetivoCadastrar tela = new frmAnoLetivoCadastrar();
 
-
+                frmInicial.Current.OpenScreen(tela);
+                tela.CarregarTela(model);
             }
         }
     }
