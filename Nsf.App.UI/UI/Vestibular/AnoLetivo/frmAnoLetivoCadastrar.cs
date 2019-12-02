@@ -88,6 +88,7 @@ namespace Nsf.App.UI
             model.IdAnoLetivo = idAno;
             model.IdCurso = combo.IdCurso;
 
+
           Nsf.App.API.Client.TurmaApi api = new Nsf.App.API.Client.TurmaApi();
 
             if (IdTurma > 0)
