@@ -74,7 +74,7 @@ namespace Nsf.App.UI.API
             string json = JsonConvert.SerializeObject(curso);
             StringContent body = new StringContent(json, Encoding.UTF8, "application/json");
 
-            var resp = client.PutAsync("http://localhost:5000/Curso/", body).Result;
+            var resp = client.PutAsync("http://localhost:5000/Curso/", body).Result.Content.ReadAsStringAsync().Result; 
         }
 
 
