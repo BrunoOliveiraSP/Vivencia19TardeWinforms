@@ -20,11 +20,14 @@ namespace Nsf.App.UI
         int IdTurma = 0;
         public void CarregarTela(Model.AnoLetivoModel model)
         {
+            ulong btAberto = Convert.ToUInt32(rdnAberto.Checked);
+
             idAno = model.IdAnoLetivo;
             nudAno.Value = model.NrAno;
             dtpInicio.Value = model.DtInicio;
             dtpFim.Value = model.DtFim;
             cboStatus.Text = model.TpStatus;
+            btAberto = model.BtAtivo;
         }
 
         private void btnSalvar_Click(object sender, EventArgs e)
@@ -75,37 +78,6 @@ namespace Nsf.App.UI
             dgvTurma.DataSource = turma;
         }
 
-        
-        private void btnTurmaAdd_Click(object sender, EventArgs e)
-        {
-            Nsf.App.Model.TurmaModell model = new Model.TurmaModell();
-
-            Model.CursoModel combo = cboTurmaCurso.SelectedItem as Model.CursoModel;
-
-            model.TpPeriodo = cboTurmaPeriodo.Text;
-            model.NmTurma = txtTurmaNome.Text;
-            model.NrCapacidadeMax = Convert.ToInt32(nudTurmaCapacidade.Value);
-            model.IdAnoLetivo = idAno;
-            model.IdCurso = combo.IdCurso;
-
-          Nsf.App.API.Client.TurmaApii api = new Nsf.App.API.Client.TurmaApii();
-
-            if (IdTurma > 0)
-            {
-                model.IdTurma =  IdTurma;
-                api.Alterar(model);
-
-                MessageBox.Show("Alterado com sucesso");
-                CarregarGrid();
-            }
-            else
-            {
-                api.CadastrarTurma(model);
-
-              
-                MessageBox.Show("Cadastrado com sucesso");
-            }
-        }
 
         private void dgvTurma_CellClick(object sender, DataGridViewCellEventArgs e)
         {
