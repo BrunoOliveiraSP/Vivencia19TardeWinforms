@@ -75,6 +75,7 @@ namespace Nsf.App.UI
         }
 
         
+
         private void btnTurmaAdd_Click(object sender, EventArgs e)
         {
             Nsf.App.Model.TurmaModel model = new Model.TurmaModel();
