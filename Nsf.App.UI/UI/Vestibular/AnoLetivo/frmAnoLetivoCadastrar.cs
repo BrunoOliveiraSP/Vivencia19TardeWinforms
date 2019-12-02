@@ -58,6 +58,7 @@ namespace Nsf.App.UI
         }
         private void CarregarCurso()
         {
+
            API.CursoAPI api = new API.CursoAPI();
 
             List<Model.CursoModel> lista = api.ConsultarTodos();
@@ -75,7 +76,6 @@ namespace Nsf.App.UI
         }
 
         
-
         private void btnTurmaAdd_Click(object sender, EventArgs e)
         {
             Nsf.App.Model.TurmaModel model = new Model.TurmaModel();
@@ -87,7 +87,6 @@ namespace Nsf.App.UI
             model.NrCapacidadeMax = Convert.ToInt32(nudTurmaCapacidade.Value);
             model.IdAnoLetivo = idAno;
             model.IdCurso = combo.IdCurso;
-
 
           Nsf.App.API.Client.TurmaApi api = new Nsf.App.API.Client.TurmaApi();
 
