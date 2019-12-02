@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Nsf.App.Model;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,6 +13,8 @@ namespace Nsf.App.UI
         public frmAnoLetivoCadastrar()
         {
             InitializeComponent();
+            CarregarGrid();
+            CarregarCurso();
         }
 
         private void btnSalvar_Click(object sender, EventArgs e)
@@ -45,6 +48,8 @@ namespace Nsf.App.UI
         private void btnTurmaAdd_Click(object sender, EventArgs e)
         {
             Nsf.App.Model.TurmaModel add = new Model.TurmaModel();
+            Nsf.App.Model.CursoModel curso = new Model.CursoModel();
+            curso.NmCurso = cboTurmaCurso.Text;
             //add.IdCurso = cboTurmaCurso.Text; 
             add.NmTurma = txtTurmaNome.Text;
             add.TpPeriodo = cboTurmaPeriodo.Text;
@@ -59,10 +64,31 @@ namespace Nsf.App.UI
         private void dgvTurma_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             Nsf.App.Model.TurmaModel add = new Model.TurmaModel();
+            Nsf.App.Model.CursoModel curso = new Model.CursoModel();
+            curso.NmCurso = cboTurmaCurso.Text;
             //add.IdCurso = cboTurmaCurso.Text; 
             add.NmTurma = txtTurmaNome.Text;
             add.TpPeriodo = cboTurmaPeriodo.Text;
             add.NrCapacidadeMax = Convert.ToInt32(nudTurmaCapacidade.Value);
+        }
+
+        private void CarregarCurso()
+        {
+            Nsf.App.API.Client.CursoApi curso = new App.API.Client.CursoApi();
+           
+            List<Model.CursoModel> lista = curso.ListarTodos();
+
+            cboTurmaCurso.DisplayMember = nameof(CursoModel.NmCurso);
+            cboTurmaCurso.DataSource = lista;
+        }
+
+        public void CarregarGrid()
+        {
+            Nsf.App.API.Client.TurmaApi turma = new App.API.Client.TurmaApi(); 
+            List<TurmaModel> turmas = turma.ListarTodos();
+
+            dgvTurma.AutoGenerateColumns = false;
+            dgvTurma.DataSource = turma;
         }
     }
 }

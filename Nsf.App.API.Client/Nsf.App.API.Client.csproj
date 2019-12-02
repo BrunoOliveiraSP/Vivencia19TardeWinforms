@@ -46,6 +46,7 @@
   <ItemGroup>
     <Compile Include="Abstract\ICrud.cs" />
     <Compile Include="AnoLetivoApi.cs" />
+    <Compile Include="CursoApi.cs" />
     <Compile Include="DisciplinaAPI.cs" />
     <Compile Include="ExemploAPI.cs" />
     <Compile Include="InscricaoAPI.cs" />
