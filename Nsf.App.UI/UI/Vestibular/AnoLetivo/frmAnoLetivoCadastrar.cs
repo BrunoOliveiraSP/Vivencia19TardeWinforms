@@ -59,7 +59,6 @@ namespace Nsf.App.UI
         }
         private void CarregarCurso()
         {
-
            API.CursoAPI api = new API.CursoAPI();
 
             List<Model.CursoModel> lista = api.ConsultarTodos();
@@ -69,8 +68,8 @@ namespace Nsf.App.UI
         }
         public void CarregarGrid()
         {
-            Nsf.App.API.Client.TurmaApi api = new App.API.Client.TurmaApi();
-            List<Model.TurmaModel> turma = api.ListarTodos();
+            Nsf.App.API.Client.TurmaApii api = new App.API.Client.TurmaApii();
+            List<Model.TurmaModell> turma = api.ListarTodos();
 
             dgvTurma.AutoGenerateColumns = false;
             dgvTurma.DataSource = turma;
@@ -79,7 +78,7 @@ namespace Nsf.App.UI
         
         private void btnTurmaAdd_Click(object sender, EventArgs e)
         {
-            Nsf.App.Model.TurmaModel model = new Model.TurmaModel();
+            Nsf.App.Model.TurmaModell model = new Model.TurmaModell();
 
             Model.CursoModel combo = cboTurmaCurso.SelectedItem as Model.CursoModel;
 
@@ -89,7 +88,7 @@ namespace Nsf.App.UI
             model.IdAnoLetivo = idAno;
             model.IdCurso = combo.IdCurso;
 
-          Nsf.App.API.Client.TurmaApi api = new Nsf.App.API.Client.TurmaApi();
+          Nsf.App.API.Client.TurmaApii api = new Nsf.App.API.Client.TurmaApii();
 
             if (IdTurma > 0)
             {
@@ -112,7 +111,7 @@ namespace Nsf.App.UI
         {
             if (e.ColumnIndex == 4)
             {
-                Model.TurmaModel turma = dgvTurma.CurrentRow.DataBoundItem as Model.TurmaModel;
+                Model.TurmaModell turma = dgvTurma.CurrentRow.DataBoundItem as Model.TurmaModell;
 
                 cboTurmaPeriodo.Text = turma.TpPeriodo;
                 txtTurmaNome.Text = turma.NmTurma;
@@ -123,13 +122,13 @@ namespace Nsf.App.UI
 
             if (e.ColumnIndex == 5)
             {
-                Model.TurmaModel turma = dgvTurma.CurrentRow.DataBoundItem as Model.TurmaModel;
+                Model.TurmaModell turma = dgvTurma.CurrentRow.DataBoundItem as Model.TurmaModell;
 
                 DialogResult r = MessageBox.Show("Deseja Remover?", "Remover", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                 if (r == DialogResult.Yes)
                 {
-                    Nsf.App.API.Client.TurmaApi api = new App.API.Client.TurmaApi();
+                    Nsf.App.API.Client.TurmaApii api = new App.API.Client.TurmaApii();
 
                     api.Remover(turma.IdTurma);
 
@@ -137,5 +136,36 @@ namespace Nsf.App.UI
                 }
             }
         }
+
+        private void btnTurmaAdd_Click_1(object sender, EventArgs e)
+        {
+            Nsf.App.Model.TurmaModell model = new Model.TurmaModell();
+
+            Model.CursoModel combo = cboTurmaCurso.SelectedItem as Model.CursoModel;
+
+            model.TpPeriodo = cboTurmaPeriodo.Text;
+            model.NmTurma = txtTurmaNome.Text;
+            model.NrCapacidadeMax = Convert.ToInt32(nudTurmaCapacidade.Value);
+            model.IdAnoLetivo = idAno;
+            model.IdCurso = combo.IdCurso;
+
+            Nsf.App.API.Client.TurmaApii api = new Nsf.App.API.Client.TurmaApii();
+
+            if (IdTurma > 0)
+            {
+                model.IdTurma = IdTurma;
+                api.Alterar(model);
+
+                MessageBox.Show("Alterado com sucesso");
+                CarregarGrid();
+            }
+            else
+            {
+                api.CadastrarTurma(model);
+                MessageBox.Show("Cadastrado com sucesso");
+            }
+        }
+
     }
-    }
+}
+    

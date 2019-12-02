@@ -2,37 +2,38 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using System.Net.Http;
 
 namespace Nsf.App.API.Client
 {
-    public class TurmaApi
+   public  class TurmaApii
     {
         HttpClient client = new HttpClient();
 
-        public void CadastrarTurma(Nsf.App.Model.TurmaModel turma)
+        public void CadastrarTurma(Nsf.App.Model.TurmaModell turma)
         {
             string json = JsonConvert.SerializeObject(turma);
             StringContent body = new StringContent(json, Encoding.UTF8, "application/json");
 
             var resp = client.PostAsync("http://localhost:5000/Turma/", body)
-                 .Result
+                             .Result
                              .Content
                              .ReadAsStringAsync()
-                             .Result; 
+                             .Result;
+          
         }
 
-        public List<Nsf.App.Model.TurmaModel> ListarTodos()
+        public List<Nsf.App.Model.TurmaModell> ListarTodos()
         {
-            string json = client.GetAsync("http://localhost:5000/Turma/")
+            string json = client.GetAsync("http://localhost:5000/Turma")          
                                 .Result
                                 .Content
                                 .ReadAsStringAsync()
                                 .Result;
 
-            List<Nsf.App.Model.TurmaModel> lista = JsonConvert.DeserializeObject<List<Nsf.App.Model.TurmaModel>>(json);
+            List<Nsf.App.Model.TurmaModell> lista = JsonConvert.DeserializeObject<List<Nsf.App.Model.TurmaModell>>(json);
 
             return lista;
         }
@@ -42,7 +43,7 @@ namespace Nsf.App.API.Client
             var resp = client.DeleteAsync("http://localhost:5000/Turma/" + id).Result;
         }
 
-        public void Alterar(Nsf.App.Model.TurmaModel turma)
+        public void Alterar(Nsf.App.Model.TurmaModell turma)
         {
             string json = JsonConvert.SerializeObject(turma);
             StringContent body = new StringContent(json, Encoding.UTF8, "application/json");
@@ -51,7 +52,8 @@ namespace Nsf.App.API.Client
                              .Result
                              .Content
                              .ReadAsStringAsync()
-                             .Result;
+                             .Result; ;
         }
     }
 }
+
