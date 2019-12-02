@@ -14,6 +14,20 @@ namespace Nsf.App.UI
             InitializeComponent();
         }
 
+        int id = 0;
+
+        public void CarregarTela(Model.AnoLetivoModel model)
+        {
+           ulong botaoAberto = Convert.ToUInt32(rdnAberto.Checked);
+
+            id = model.IdAnoLetivo;
+            nudAno.Value = model.NrAno;
+            dtpInicio.Value = model.DtInicio;
+            dtpFim.Value = model.DtFim;
+            cboStatus.Text = model.TpStatus;
+            botaoAberto = model.BtAtivo;
+        }
+
         private void btnSalvar_Click(object sender, EventArgs e)
         {
             Model.AnoLetivoModel add = new Model.AnoLetivoModel();
@@ -23,34 +37,29 @@ namespace Nsf.App.UI
             add.TpStatus = cboStatus.Text;
             add.BtAtivo = Convert.ToUInt32(rdnAberto.Checked);
 
-            Nsf.App.API.Client.AnoLetivoApi Add = new App.API.Client.AnoLetivoApi();
-            Add.CadastrarAnoLetivo(add);
+            Nsf.App.API.Client.AnoLetivoApi api = new App.API.Client.AnoLetivoApi();
+           
+            if(id > 0)
+            {
+                add.IdAnoLetivo = id;
+                api.Alterar(add);
 
-            MessageBox.Show("Cadastro realizado com sucesso.");
-            UI.frmAnoLetivoConsultar tela = new frmAnoLetivoConsultar();
-            tela.Show();
-            this.Hide();
+                MessageBox.Show("Alterado com sucesso.");
+            }
+            else
+            {
+                api.CadastrarAnoLetivo(add);
+
+                MessageBox.Show("Cadastrado com sucesso.");
+
+                UI.frmAnoLetivoConsultar tela = new frmAnoLetivoConsultar();
+                tela.Show();
+                this.Hide();
+            }
+
         }
 
-        public void CarregarGrid(Model.AnoLetivoModel carregar)
-        {
-            Model.AnoLetivoModel add = new Model.AnoLetivoModel();
-            add.NrAno = Convert.ToInt32(nudAno.Value);
-            add.DtInicio = dtpInicio.Value;
-            add.DtFim = dtpFim.Value;
-            add.TpStatus = cboStatus.Text;
-            add.BtAtivo = Convert.ToUInt32(rdnAberto.Checked);
-        }
+      
 
-        private void btnTurmaAdd_Click(object sender, EventArgs e)
-        {
-            Nsf.App.Model.TurmaModel add = new Model.TurmaModel();
-            //add.IdCurso = cboTurmaCurso.Text; ;
-            add.NmTurma = txtTurmaNome.Text;
-            add.TpPeriodo = cboTurmaPeriodo.Text;
-            add.NrCapacidadeMax = Convert.ToInt32(nudTurmaCapacidade.Value);
-
-            
-        }
     }
 }

@@ -892,7 +892,6 @@
             this.btnTurmaAdd.Text = "Adicionar";
             this.btnTurmaAdd.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnTurmaAdd.UseVisualStyleBackColor = false;
-            this.btnTurmaAdd.Click += new System.EventHandler(this.btnTurmaAdd_Click);
             // 
             // label12
             // 
