@@ -95,8 +95,6 @@
             this.dgvDisciplinas.RowTemplate.Height = 25;
             this.dgvDisciplinas.Size = new System.Drawing.Size(787, 391);
             this.dgvDisciplinas.TabIndex = 2;
-            this.dgvDisciplinas.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDisciplinas_CellClick);
-            this.dgvDisciplinas.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDisciplinas_CellContentClick);
             // 
             // Registro
             // 

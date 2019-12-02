@@ -68,18 +68,11 @@ namespace Nsf.App.UI
 
                 dgvDisciplinas.AutoGenerateColumns = false;
                 dgvDisciplinas.DataSource = lista;
-            }
-            catch (ArgumentException ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
 
         }
 
         private void dgvDisciplinas_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-
-
             try
             {
                 if (e.ColumnIndex == 4)
