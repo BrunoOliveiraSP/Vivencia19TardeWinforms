@@ -17,25 +17,46 @@ namespace Nsf.App.UI
 
         private void txtNome_TextChanged(object sender, EventArgs e)
        {
-            if(string.IsNullOrWhiteSpace(txtNome.Text) && cboAnoLetivo.Text == string.Empty)
+            try
             {
-                dgvCandidatos.AutoGenerateColumns = false;
-                dgvCandidatos.DataSource = InscricaoAPI.ConsultarTodos();
+                if (string.IsNullOrWhiteSpace(txtNome.Text) && cboAnoLetivo.Text == string.Empty)
+                {
+                    dgvCandidatos.AutoGenerateColumns = false;
+                    dgvCandidatos.DataSource = InscricaoAPI.ConsultarTodos();
+                }
+                else
+                {
+                    App.API.Client.InscricaoAPI inscricao = new App.API.Client.InscricaoAPI();
+                    dgvCandidatos.AutoGenerateColumns = false;
+                    dgvCandidatos.DataSource = inscricao.ConsultarNome(txtNome.Text, Convert.ToInt32(cboAnoLetivo.Text));
+                }
             }
-            else
+            catch(ArgumentException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Ocorreu um erro");
+            }
+        }
+
+        private void cboAnoLetivo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
             {
                 App.API.Client.InscricaoAPI inscricao = new App.API.Client.InscricaoAPI();
                 dgvCandidatos.AutoGenerateColumns = false;
                 dgvCandidatos.DataSource = inscricao.ConsultarNome(txtNome.Text, Convert.ToInt32(cboAnoLetivo.Text));
             }
-
-        }
-
-        private void cboAnoLetivo_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            App.API.Client.InscricaoAPI inscricao = new App.API.Client.InscricaoAPI();
-            dgvCandidatos.AutoGenerateColumns = false;
-            dgvCandidatos.DataSource = inscricao.ConsultarNome(txtNome.Text, Convert.ToInt32(cboAnoLetivo.Text));
+            catch(ArgumentException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Ocorreu um erro");
+            }
         }
 
         private void CarregarGrid()
@@ -163,7 +184,18 @@ namespace Nsf.App.UI
 
         private void frmInscricoesConsultar_Click(object sender, EventArgs e)
         {
-            CarregarGrid();
+            try
+            {
+                CarregarGrid();
+            }
+            catch(ArgumentException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Ocorreu um erro");
+            }
         }
     }
 }
