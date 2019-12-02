@@ -85,7 +85,7 @@ namespace Nsf.App.UI
         public void CarregarGrid()
         {
             Nsf.App.API.Client.TurmaApi turma = new App.API.Client.TurmaApi(); 
-            List<TurmaModel> turmas = turma.ListarTodos();
+            List<TurmaModel> turmass = turma.ListarTodos();
 
             dgvTurma.AutoGenerateColumns = false;
             dgvTurma.DataSource = turma;
