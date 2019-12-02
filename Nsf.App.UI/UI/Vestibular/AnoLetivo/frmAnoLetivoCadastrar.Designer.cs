@@ -509,9 +509,9 @@
             this.tabModulos.Controls.Add(this.label15);
             this.tabModulos.Controls.Add(this.label14);
             this.tabModulos.Controls.Add(this.cboModuloTipo);
-            this.tabModulos.Location = new System.Drawing.Point(4, 25);
+            this.tabModulos.Location = new System.Drawing.Point(4, 33);
             this.tabModulos.Name = "tabModulos";
-            this.tabModulos.Size = new System.Drawing.Size(726, 384);
+            this.tabModulos.Size = new System.Drawing.Size(726, 376);
             this.tabModulos.TabIndex = 2;
             this.tabModulos.Text = "Módulos";
             this.tabModulos.UseVisualStyleBackColor = true;
@@ -817,6 +817,7 @@
             this.dgvTurma.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvTurma.Size = new System.Drawing.Size(684, 189);
             this.dgvTurma.TabIndex = 10;
+            this.dgvTurma.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvTurma_CellClick);
             // 
             // Registro
             // 
@@ -828,7 +829,7 @@
             // 
             // Nome
             // 
-            this.Nome.DataPropertyName = "nm_turma";
+            this.Nome.DataPropertyName = "NmTurma";
             this.Nome.HeaderText = "Turma";
             this.Nome.Name = "Nome";
             this.Nome.ReadOnly = true;
@@ -836,7 +837,7 @@
             // 
             // Column3
             // 
-            this.Column3.DataPropertyName = "tp_periodo";
+            this.Column3.DataPropertyName = "TpPeriodo";
             this.Column3.HeaderText = "Período";
             this.Column3.Name = "Column3";
             this.Column3.ReadOnly = true;
@@ -844,7 +845,7 @@
             // 
             // Column5
             // 
-            this.Column5.DataPropertyName = "nr_capacidade_max";
+            this.Column5.DataPropertyName = "NrCapacidadeMax";
             this.Column5.HeaderText = "Capac";
             this.Column5.Name = "Column5";
             this.Column5.ReadOnly = true;
@@ -1220,6 +1221,7 @@
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(734, 413);
             this.tabControl1.TabIndex = 99;
+            this.tabControl1.EnabledChanged += new System.EventHandler(this.btnSalvar_Click);
             // 
             // frmAnoLetivoCadastrar
             // 
