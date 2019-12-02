@@ -6,10 +6,8 @@ using System.Threading.Tasks;
 
 namespace Nsf.App.Model
 {
-    class TurmaModel
+    public class TurmaModel
     {
-        public int IdTurma { get; set; }
-
         public int IdCurso { get; set; }
 
         public int IdAnoLetivo { get; set; }

@@ -41,5 +41,16 @@ namespace Nsf.App.UI
             add.TpStatus = cboStatus.Text;
             add.BtAtivo = Convert.ToUInt32(rdnAberto.Checked);
         }
+
+        private void btnTurmaAdd_Click(object sender, EventArgs e)
+        {
+            Nsf.App.Model.TurmaModel add = new Model.TurmaModel();
+            //add.IdCurso = cboTurmaCurso.Text; ;
+            add.NmTurma = txtTurmaNome.Text;
+            add.TpPeriodo = cboTurmaPeriodo.Text;
+            add.NrCapacidadeMax = Convert.ToInt32(nudTurmaCapacidade.Value);
+
+            
+        }
     }
 }
