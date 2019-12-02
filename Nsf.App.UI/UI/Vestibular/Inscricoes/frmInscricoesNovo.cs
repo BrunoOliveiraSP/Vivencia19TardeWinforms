@@ -191,8 +191,8 @@ namespace Nsf.App.UI
                 txtEmailInscrito.Text = Model.CarregarInscrições.dsEmailInscrito;
                 cboEscolaridade.Text = Model.CarregarInscrições.dsEscolaridade;
                 txtNascimentoCidade.Text = Model.CarregarInscrições.dsNascimentoCidade;
-                txtNascimentoCidade.Text = Model.CarregarInscrições.dsNascimentoEstado;
-                cboNascimentoUf.Text = Model.CarregarInscrições.dsNascimentoPais;
+                cboNascimentoUf.Text = Model.CarregarInscrições.dsNascimentoEstado;
+                txtNascimentoPais.Text = Model.CarregarInscrições.dsNascimentoPais;
                 txtObservacoes.Text = Model.CarregarInscrições.dsObservacao;
                 txtRgOrgao.Text = Model.CarregarInscrições.dsOrgao;
                 txtBairro.Text = Model.CarregarInscrições.dsResidenciaBairro;
@@ -228,7 +228,51 @@ namespace Nsf.App.UI
 
         private void LimparCampos()
         {
-
+            chkPendenteComprovResidencia.Checked = false;
+            chkPendenteCpf.Checked = false;
+            chkPendenteEscolaridade.Checked = false;
+            nudId.Value = 0;
+            cboComoConheceu.Text = string.Empty;
+            txtCorDaPele.Text = string.Empty;
+            txtCpf.Text = string.Empty;
+            cboTurno2.Text = string.Empty;
+            cboTurno2.Text = string.Empty;
+            txtMaeEmail.Text = string.Empty;
+            txtEmailInscrito.Text = string.Empty;
+            cboEscolaridade.Text = string.Empty;
+            txtNascimentoCidade.Text = string.Empty;
+            txtNascimentoCidade.Text = string.Empty;
+            cboNascimentoUf.Text = string.Empty;
+            txtObservacoes.Text = string.Empty;
+            txtRgOrgao.Text = string.Empty;
+            txtBairro.Text = string.Empty;
+            txtCep.Text = string.Empty;
+            txtCidade.Text = string.Empty;
+            txtComplemento.Text = string.Empty;
+            txtEndereco.Text = string.Empty;
+            cboUf.Text = string.Empty;
+            txtCpf.Text = string.Empty;
+            txtResponsavelEmail.Text = string.Empty;
+            txtResponsavel.Text = string.Empty;
+            cboGrauParentesco.Text = string.Empty;
+            txtResponsavelTelefone1.Text = string.Empty;
+            txtResponsavelTelefone2.Text = string.Empty;
+            txtRG.Text = string.Empty;
+            cboSexo.Text = string.Empty;
+            txtTelefone1.Text = string.Empty;
+            txtTelefone2.Text = string.Empty;
+            dtpRgEmissao.Value = DateTime.Now.Date;
+            txtNascimentoData.Value = DateTime.Now.Date;
+            //cboAnoLetivo.Text = Model.CarregarInscrições.idAnoLetivo; Fazer um 
+            //= Model.CarregarInscrições.idCurso;
+            //= Model.CarregarInscrições.idCurso2;
+            txtContato.Text = string.Empty;
+            txtNomeDaEscola.Text = string.Empty;
+            txtNumero.Text = string.Empty;
+            nudPessoasMoramCasa.Value = 0;
+            nudPessoasTrabalhamCasa.Value = 0;
+            cboTipoDeEscola.Text = string.Empty;
+            txtRenda.Value = 0;
         }
     }
 
