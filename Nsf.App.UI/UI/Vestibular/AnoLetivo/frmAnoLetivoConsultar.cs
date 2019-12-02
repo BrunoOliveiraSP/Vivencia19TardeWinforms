@@ -31,6 +31,7 @@ namespace Nsf.App.UI
         {
             if (e.ColumnIndex == 4)
             {
+
                 Model.AnoLetivoModel ano = dgvAnosLetivos.CurrentRow.DataBoundItem as Model.AnoLetivoModel;
 
                 Model.AnoLetivoModel model = new Model.AnoLetivoModel();
@@ -61,6 +62,7 @@ namespace Nsf.App.UI
                     MessageBox.Show("Removido com sucesso");
                 }
             }
+
 
 
 
