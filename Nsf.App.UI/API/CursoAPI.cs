@@ -85,5 +85,7 @@ namespace Nsf.App.UI.API
             var resp = client.DeleteAsync("http://localhost:5000/Curso/" + id + "/").Result;
 
         }
+
+        
     }
 }

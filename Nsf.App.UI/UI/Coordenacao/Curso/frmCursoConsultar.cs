@@ -23,7 +23,7 @@ namespace Nsf.App.UI
             dgvCursos.DataSource = lista;
         }
 
-        private void txtSigla_TextChanged(object sender, EventArgs e)
+          private void txtSigla_TextChanged(object sender, EventArgs e)
         {
             string sigla = txtSigla.Text;
 
