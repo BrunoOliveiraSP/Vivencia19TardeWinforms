@@ -41,16 +41,16 @@
             this.cboVestibularSala = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
             this.dgvSalasVestibular = new System.Windows.Forms.DataGridView();
+            this.btnVestibularAdd = new System.Windows.Forms.Button();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.cboPeriodos = new System.Windows.Forms.ComboBox();
             this.Registro = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Nome = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewImageColumn();
             this.Column1 = new System.Windows.Forms.DataGridViewImageColumn();
-            this.btnVestibularAdd = new System.Windows.Forms.Button();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
-            this.cboPeriodos = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSalasVestibular)).BeginInit();
             this.SuspendLayout();
             // 
@@ -205,59 +205,6 @@
             this.dgvSalasVestibular.Size = new System.Drawing.Size(729, 322);
             this.dgvSalasVestibular.TabIndex = 180;
             // 
-            // Registro
-            // 
-            this.Registro.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Registro.DataPropertyName = "nm_local";
-            this.Registro.HeaderText = "Instituição";
-            this.Registro.Name = "Registro";
-            this.Registro.ReadOnly = true;
-            // 
-            // Nome
-            // 
-            this.Nome.DataPropertyName = "nm_sala";
-            this.Nome.HeaderText = "Sala";
-            this.Nome.Name = "Nome";
-            this.Nome.ReadOnly = true;
-            this.Nome.Width = 150;
-            // 
-            // Column3
-            // 
-            this.Column3.DataPropertyName = "ds_periodo";
-            this.Column3.HeaderText = "Período";
-            this.Column3.Name = "Column3";
-            this.Column3.ReadOnly = true;
-            this.Column3.Width = 150;
-            // 
-            // Column5
-            // 
-            this.Column5.DataPropertyName = "nr_ordem";
-            this.Column5.HeaderText = "Ordem";
-            this.Column5.Name = "Column5";
-            this.Column5.ReadOnly = true;
-            // 
-            // Column2
-            // 
-            this.Column2.HeaderText = "";
-            this.Column2.Image = ((System.Drawing.Image)(resources.GetObject("Column2.Image")));
-            this.Column2.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
-            this.Column2.Name = "Column2";
-            this.Column2.ReadOnly = true;
-            this.Column2.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.Column2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.Column2.Width = 25;
-            // 
-            // Column1
-            // 
-            this.Column1.HeaderText = "";
-            this.Column1.Image = ((System.Drawing.Image)(resources.GetObject("Column1.Image")));
-            this.Column1.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
-            this.Column1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.Column1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.Column1.Width = 25;
-            // 
             // btnVestibularAdd
             // 
             this.btnVestibularAdd.BackColor = System.Drawing.Color.Transparent;
@@ -310,6 +257,59 @@
             this.cboPeriodos.Size = new System.Drawing.Size(138, 29);
             this.cboPeriodos.TabIndex = 189;
             // 
+            // Registro
+            // 
+            this.Registro.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Registro.DataPropertyName = "NmLocal";
+            this.Registro.HeaderText = "Instituição";
+            this.Registro.Name = "Registro";
+            this.Registro.ReadOnly = true;
+            // 
+            // Nome
+            // 
+            this.Nome.DataPropertyName = "NmSala";
+            this.Nome.HeaderText = "Sala";
+            this.Nome.Name = "Nome";
+            this.Nome.ReadOnly = true;
+            this.Nome.Width = 150;
+            // 
+            // Column3
+            // 
+            this.Column3.DataPropertyName = "DsPeriodo";
+            this.Column3.HeaderText = "Período";
+            this.Column3.Name = "Column3";
+            this.Column3.ReadOnly = true;
+            this.Column3.Width = 150;
+            // 
+            // Column5
+            // 
+            this.Column5.DataPropertyName = "NrOrdem";
+            this.Column5.HeaderText = "Ordem";
+            this.Column5.Name = "Column5";
+            this.Column5.ReadOnly = true;
+            // 
+            // Column2
+            // 
+            this.Column2.HeaderText = "";
+            this.Column2.Image = ((System.Drawing.Image)(resources.GetObject("Column2.Image")));
+            this.Column2.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
+            this.Column2.Name = "Column2";
+            this.Column2.ReadOnly = true;
+            this.Column2.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Column2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.Column2.Width = 25;
+            // 
+            // Column1
+            // 
+            this.Column1.HeaderText = "";
+            this.Column1.Image = ((System.Drawing.Image)(resources.GetObject("Column1.Image")));
+            this.Column1.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
+            this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
+            this.Column1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Column1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.Column1.Width = 25;
+            // 
             // frmSalaVestibularCadastrar
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -333,6 +333,7 @@
             this.ForeColor = System.Drawing.Color.Black;
             this.Name = "frmSalaVestibularCadastrar";
             this.Size = new System.Drawing.Size(800, 600);
+            this.Load += new System.EventHandler(this.frmSalaVestibularCadastrar_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvSalasVestibular)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -354,12 +355,12 @@
         private System.Windows.Forms.Button btnVestibularAdd;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.ComboBox cboPeriodos;
         private System.Windows.Forms.DataGridViewTextBoxColumn Registro;
         private System.Windows.Forms.DataGridViewTextBoxColumn Nome;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
         private System.Windows.Forms.DataGridViewImageColumn Column2;
         private System.Windows.Forms.DataGridViewImageColumn Column1;
-        private System.Windows.Forms.ComboBox cboPeriodos;
     }
 }

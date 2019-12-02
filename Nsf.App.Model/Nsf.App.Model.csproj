@@ -59,6 +59,7 @@
     <Compile Include="ProfessorRequest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SalaModel.cs" />
+    <Compile Include="SalaVestibularModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
