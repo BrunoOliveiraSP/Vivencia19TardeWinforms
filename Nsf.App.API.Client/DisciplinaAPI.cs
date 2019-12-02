@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
@@ -10,6 +11,7 @@ namespace Nsf.App.API.Client
 {
     public  class DisciplinaAPI
     {
+        
 
         public void Inserir(Nsf.App.Model.DisciplinaModel disci)
         {
@@ -28,8 +30,8 @@ namespace Nsf.App.API.Client
             VerificarErro(resp);
         }
        
-        
-        public List<Nsf.App.Model.DisciplinaModel> Listar()
+         
+        public BindingList<Nsf.App.Model.DisciplinaModel> Listar()
         {
             HttpClient client = new HttpClient();
 
@@ -39,14 +41,14 @@ namespace Nsf.App.API.Client
                                 .ReadAsStringAsync()
                                 .Result;
 
-            List<Nsf.App.Model.DisciplinaModel> lista =
-                JsonConvert.DeserializeObject<List<Nsf.App.Model.DisciplinaModel>>(json);
+            BindingList<Nsf.App.Model.DisciplinaModel> lista =
+                JsonConvert.DeserializeObject<BindingList<Nsf.App.Model.DisciplinaModel>>(json);
 
             return lista;
         }
 
 
-        public List<Nsf.App.Model.DisciplinaModel> Consultar(string nome, string sigla)
+        public BindingList<Nsf.App.Model.DisciplinaModel> Consultar(string nome, string sigla)
         {
             HttpClient client = new HttpClient();
 
@@ -56,8 +58,8 @@ namespace Nsf.App.API.Client
                                 .ReadAsStringAsync()
                                 .Result;
 
-            List<Nsf.App.Model.DisciplinaModel> lista =
-                JsonConvert.DeserializeObject<List<Nsf.App.Model.DisciplinaModel>>(json);
+            BindingList<Nsf.App.Model.DisciplinaModel> lista =
+                JsonConvert.DeserializeObject<BindingList<Nsf.App.Model.DisciplinaModel>>(json);
 
             return lista;
         }

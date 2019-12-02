@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Windows.Forms;
 
 namespace Nsf.App.UI
@@ -36,7 +37,7 @@ namespace Nsf.App.UI
                 sigla = " ";
 
             Nsf.App.API.Client.DisciplinaAPI api = new Nsf.App.API.Client.DisciplinaAPI();
-            List<Nsf.App.Model.DisciplinaModel> lista;
+            BindingList<Nsf.App.Model.DisciplinaModel> lista = new BindingList<Model.DisciplinaModel>();
 
             if (nome == " " && sigla == " ")
             {
@@ -54,8 +55,8 @@ namespace Nsf.App.UI
         { 
 
             Nsf.App.API.Client.DisciplinaAPI api = new Nsf.App.API.Client.DisciplinaAPI();
-
-            List<Nsf.App.Model.DisciplinaModel> lista = api.Listar();
+            BindingList<Model.DisciplinaModel> lista = new BindingList<Model.DisciplinaModel>();
+           lista = api.Listar();
 
             dgvDisciplinas.AutoGenerateColumns = false;
             dgvDisciplinas.DataSource = lista;
