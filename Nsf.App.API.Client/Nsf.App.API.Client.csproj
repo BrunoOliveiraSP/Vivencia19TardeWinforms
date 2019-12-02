@@ -53,6 +53,7 @@
     <Compile Include="ProfessorAPI.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SalaAPI.cs" />
+    <Compile Include="TurmaApi.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Nsf.App.Model\Nsf.App.Model.csproj">

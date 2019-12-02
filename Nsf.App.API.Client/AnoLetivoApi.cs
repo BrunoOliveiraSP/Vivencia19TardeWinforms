@@ -24,7 +24,7 @@ namespace Nsf.App.API.Client
         public List<Model.AnoLetivoModel> ListarTodos()
         {
             HttpClient client = new HttpClient();
-            string json = client.GetAsync("http://localhost:5000/AnoLetivo/ListarTodos")
+            string json = client.GetAsync("http://localhost:5000/AnoLetivo")
                                 .Result
                                 .Content
                                 .ReadAsStringAsync()
