@@ -15,7 +15,7 @@ namespace Nsf.App.UI
 
             this.Carregar();
         }
-  
+
         private void txtSigla_TextChanged(object sender, EventArgs e)
         {
             this.Consultar();
@@ -38,8 +38,8 @@ namespace Nsf.App.UI
                 if (sigla == string.Empty)
                     sigla = " ";
 
-            Nsf.App.API.Client.DisciplinaAPI api = new Nsf.App.API.Client.DisciplinaAPI();
-            BindingList<Nsf.App.Model.DisciplinaModel> lista = new BindingList<Model.DisciplinaModel>();
+                Nsf.App.API.Client.DisciplinaAPI api = new Nsf.App.API.Client.DisciplinaAPI();
+                BindingList<Nsf.App.Model.DisciplinaModel> lista = new BindingList<Model.DisciplinaModel>();
 
                 if (nome == " " && sigla == " ")
                 {
@@ -60,18 +60,19 @@ namespace Nsf.App.UI
         }
 
         public void Carregar()
-        { 
+        {
 
             Nsf.App.API.Client.DisciplinaAPI api = new Nsf.App.API.Client.DisciplinaAPI();
             BindingList<Model.DisciplinaModel> lista = new BindingList<Model.DisciplinaModel>();
-           lista = api.Listar();
+            lista = api.Listar();
 
-                dgvDisciplinas.AutoGenerateColumns = false;
-                dgvDisciplinas.DataSource = lista;
+            dgvDisciplinas.AutoGenerateColumns = false;
+            dgvDisciplinas.DataSource = lista;
 
         }
+       
 
-        private void dgvDisciplinas_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void dgvDisciplinas_CellClick_1(object sender, DataGridViewCellEventArgs e)
         {
             try
             {
@@ -119,16 +120,6 @@ namespace Nsf.App.UI
             {
                 MessageBox.Show(ex.Message);
             }
-
-        }
-
-        private void dgvDisciplinas_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
         }
     }
 }
