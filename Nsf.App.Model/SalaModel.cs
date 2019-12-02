@@ -16,7 +16,7 @@ namespace Nsf.App.Model
 
         public int NrCapacidadeMaxima { get; set; }
 
-        public ulong BtAtivo { get; set; }
+        public bool BtAtivo { get; set; }
 
         public DateTime DtInclusao { get; set; }
 

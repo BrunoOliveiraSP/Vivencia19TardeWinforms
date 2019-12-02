@@ -18,11 +18,6 @@ namespace Nsf.App.UI
             Carregar();
         }
 
-        private void dgvAnosLetivos_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
         public void Carregar()
         {
             Nsf.App.API.Client.AnoLetivoApi api = new App.API.Client.AnoLetivoApi();
@@ -34,38 +29,68 @@ namespace Nsf.App.UI
 
         private void dgvAnosLetivos_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            if (e.ColumnIndex == 4)
+            {
+                Model.AnoLetivoModel model = dgvAnosLetivos.CurrentRow.DataBoundItem as Model.AnoLetivoModel;
+
+                Nsf.App.UI.frmAnoLetivoCadastrar tela = new frmAnoLetivoCadastrar();
+
+                tela.CarregarTela(model);
+
+                frmInicial.Current.OpenScreen(tela);
+
+                Hide();
+            }
+
             if (e.ColumnIndex == 5)
             {
-                Model.AnoLetivoModel ano = dgvAnosLetivos.CurrentRow.DataBoundItem as Model.AnoLetivoModel;
+                Model.AnoLetivoModel model = dgvAnosLetivos.CurrentRow.DataBoundItem as Model.AnoLetivoModel;
 
                 DialogResult r = MessageBox.Show("Deseja Remover?", "Remover", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
                 if (r == DialogResult.Yes)
                 {
                     Nsf.App.API.Client.AnoLetivoApi api = new App.API.Client.AnoLetivoApi();
-                    api.Remover(ano.IdAnoLetivo);
-                    MessageBox.Show("Removido Com Sucesso");
-                    Carregar();
+
+                    api.Remover(model.IdAnoLetivo);
+                    MessageBox.Show("Removido com sucesso");
                 }
-
-
             }
+        }
+
+        private void dgvAnosLetivos_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
             if (e.ColumnIndex == 4)
             {
-                Model.AnoLetivoModel ano = dgvAnosLetivos.CurrentRow.DataBoundItem as Model.AnoLetivoModel;
-                Model.AnoLetivoModel model = new Model.AnoLetivoModel();
+                Model.AnoLetivoModel model = dgvAnosLetivos.CurrentRow.DataBoundItem as Model.AnoLetivoModel;
 
-                model.IdAnoLetivo = ano.IdAnoLetivo;
-                model.DtInicio = ano.DtInicio;
-                model.DtFim = ano.DtFim;
-                model.NrAno = ano.NrAno;
-                model.TpStatus = ano.TpStatus;
-                model.BtAtivo = ano.BtAtivo;
+                Nsf.App.UI.frmAnoLetivoCadastrar tela = new frmAnoLetivoCadastrar();
 
-                frmAnoLetivoCadastrar tela = new frmAnoLetivoCadastrar();
+                tela.CarregarTela(model);
 
                 frmInicial.Current.OpenScreen(tela);
-                tela.CarregarTela(model);
+
+                Hide();
+            }
+
+            if (e.ColumnIndex == 5)
+            {
+                Model.AnoLetivoModel model = dgvAnosLetivos.CurrentRow.DataBoundItem as Model.AnoLetivoModel;
+
+                DialogResult r = MessageBox.Show("Deseja Remover?", "Remover", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                if (r == DialogResult.Yes)
+                {
+                   Nsf.App.API.Client.AnoLetivoApi api = new App.API.Client.AnoLetivoApi();
+
+                    api.Remover(model.IdAnoLetivo);
+                    MessageBox.Show("Removido com sucesso");
+                }
             }
         }
     }
-}
+
+   
+
+       
+    }

@@ -18,17 +18,42 @@ namespace Nsf.App.UI
 
         private void btnSalvar_Click(object sender, EventArgs e)
         {
-            Nsf.App.Model.CursoModel curso = new Model.CursoModel();
-            curso.NmCurso = txtCurso.Text;
-            curso.BtAtivo = chkAtivo.Checked;
-            curso.DsCategoria = cboCategoria.Text;
-            curso.NrCapacidadeMaxima = Convert.ToInt32(nudCapacidade.Value);
-            curso.DsSigla = txtSigla.Text;
+            int id = Convert.ToInt32(lblId.Text);
 
-            API.CursoAPI api = new API.CursoAPI();
-            api.Inserir(curso);
+            if (id > 0)
+            {
+                Nsf.App.Model.CursoModel curso = new Model.CursoModel();
+                curso.NmCurso = txtCurso.Text;
+                curso.BtAtivo = chkAtivo.Checked;
+                curso.DtCriacao = System.DateTime.Now;
+                curso.DtUltimaAlteracao = System.DateTime.Now;
+                curso.DsCategoria = cboCategoria.Text;
+                curso.NrCapacidadeMaxima = Convert.ToInt32(nudCapacidade.Value);
+                curso.DsSigla = txtSigla.Text;
 
-            MessageBox.Show("Curso salvo com sucesso.");
+                API.CursoAPI api = new API.CursoAPI();
+                api.Alterar(curso);
+
+                MessageBox.Show("Curso alterado com sucesso.");
+            }
+            else
+            {
+                Nsf.App.Model.CursoModel curso = new Model.CursoModel();
+
+                curso.NmCurso = txtCurso.Text;
+                curso.BtAtivo = chkAtivo.Checked;
+                curso.DtCriacao = System.DateTime.Now;
+                curso.DtUltimaAlteracao = System.DateTime.Now;
+                curso.DsCategoria = cboCategoria.Text;
+                curso.NrCapacidadeMaxima = Convert.ToInt32(nudCapacidade.Value);
+                curso.DsSigla = txtSigla.Text;
+
+                API.CursoAPI api = new API.CursoAPI();
+                api.Inserir(curso);
+
+                MessageBox.Show("Curso registrado com sucesso.");
+            }
+
 
         }
 
@@ -53,5 +78,16 @@ namespace Nsf.App.UI
             lbxDisciplinasDoCurso.Items.Remove(lbxDisciplinasDisponiveis.SelectedItem);
             lbxDisciplinasDisponiveis.Items.Add(lbxDisciplinasDisponiveis.SelectedItem);
         }
+
+        public void AlterarInformacao(Model.CursoModel curso)
+        {
+            lblId.Text = Convert.ToString(curso.IdCurso);
+            txtCurso.Text = curso.NmCurso;
+            chkAtivo.Checked = curso.BtAtivo;
+            cboCategoria.Text =  curso.DsCategoria;
+            nudCapacidade.Value = curso.NrCapacidadeMaxima;
+            txtSigla.Text = curso.DsSigla;
+        }
+
     }
 }
