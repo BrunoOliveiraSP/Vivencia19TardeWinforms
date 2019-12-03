@@ -32,10 +32,10 @@
             this.label5 = new System.Windows.Forms.Label();
             this.pnSelected = new System.Windows.Forms.Panel();
             this.dgvAnosLetivos = new System.Windows.Forms.DataGridView();
-            this.Registro = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Nome = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column6 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewImageColumn();
             this.Column1 = new System.Windows.Forms.DataGridViewImageColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAnosLetivos)).BeginInit();
@@ -65,14 +65,14 @@
             this.dgvAnosLetivos.AllowUserToAddRows = false;
             this.dgvAnosLetivos.AllowUserToDeleteRows = false;
             this.dgvAnosLetivos.AllowUserToResizeRows = false;
-            this.dgvAnosLetivos.BackgroundColor = System.Drawing.Color.WhiteSmoke;
+            this.dgvAnosLetivos.BackgroundColor = System.Drawing.Color.DarkGray;
             this.dgvAnosLetivos.ColumnHeadersHeight = 45;
             this.dgvAnosLetivos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dgvAnosLetivos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Registro,
-            this.Nome,
             this.Column3,
             this.Column4,
+            this.Column5,
+            this.Column6,
             this.Column2,
             this.Column1});
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -83,56 +83,53 @@
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dgvAnosLetivos.DefaultCellStyle = dataGridViewCellStyle1;
-            this.dgvAnosLetivos.Location = new System.Drawing.Point(85, 147);
+            this.dgvAnosLetivos.Location = new System.Drawing.Point(143, 113);
             this.dgvAnosLetivos.Name = "dgvAnosLetivos";
             this.dgvAnosLetivos.ReadOnly = true;
             this.dgvAnosLetivos.RowHeadersVisible = false;
             this.dgvAnosLetivos.RowHeadersWidth = 45;
             this.dgvAnosLetivos.RowTemplate.Height = 25;
             this.dgvAnosLetivos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvAnosLetivos.Size = new System.Drawing.Size(637, 350);
+            this.dgvAnosLetivos.Size = new System.Drawing.Size(460, 350);
             this.dgvAnosLetivos.TabIndex = 0;
             this.dgvAnosLetivos.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvAnosLetivos_CellClick);
             this.dgvAnosLetivos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvAnosLetivos_CellContentClick);
             // 
-            // Registro
-            // 
-            this.Registro.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Registro.DataPropertyName = "nr_ano";
-            this.Registro.HeaderText = "Ano";
-            this.Registro.Name = "Registro";
-            this.Registro.ReadOnly = true;
-            // 
-            // Nome
-            // 
-            this.Nome.DataPropertyName = "dt_inicio";
-            this.Nome.HeaderText = "Início";
-            this.Nome.Name = "Nome";
-            this.Nome.ReadOnly = true;
-            this.Nome.Width = 140;
-            // 
             // Column3
             // 
-            this.Column3.DataPropertyName = "dt_fim";
-            this.Column3.HeaderText = "Fim";
+            this.Column3.DataPropertyName = "NrAno";
+            this.Column3.HeaderText = "Ano";
             this.Column3.Name = "Column3";
             this.Column3.ReadOnly = true;
-            this.Column3.Width = 140;
             // 
             // Column4
             // 
-            this.Column4.DataPropertyName = "bt_ativo";
-            this.Column4.HeaderText = "Aberto";
+            this.Column4.DataPropertyName = "DtInicio";
+            this.Column4.HeaderText = "Inicio";
             this.Column4.Name = "Column4";
             this.Column4.ReadOnly = true;
-            this.Column4.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.Column4.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            // 
+            // Column5
+            // 
+            this.Column5.DataPropertyName = "DtFim";
+            this.Column5.HeaderText = "Fim";
+            this.Column5.Name = "Column5";
+            this.Column5.ReadOnly = true;
+            // 
+            // Column6
+            // 
+            this.Column6.DataPropertyName = "BtAtivo";
+            this.Column6.HeaderText = "Aberto";
+            this.Column6.Name = "Column6";
+            this.Column6.ReadOnly = true;
+            this.Column6.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Column6.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             // 
             // Column2
             // 
             this.Column2.HeaderText = "";
             this.Column2.Image = global::Nsf.App.UI.Properties.Resources.edit2;
-            this.Column2.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
+            this.Column2.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Stretch;
             this.Column2.Name = "Column2";
             this.Column2.ReadOnly = true;
             this.Column2.Resizable = System.Windows.Forms.DataGridViewTriState.True;
@@ -143,7 +140,7 @@
             // 
             this.Column1.HeaderText = "";
             this.Column1.Image = global::Nsf.App.UI.Properties.Resources.remove2;
-            this.Column1.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
+            this.Column1.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Stretch;
             this.Column1.Name = "Column1";
             this.Column1.ReadOnly = true;
             this.Column1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
@@ -171,10 +168,10 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Panel pnSelected;
         private System.Windows.Forms.DataGridView dgvAnosLetivos;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Registro;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Nome;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn Column4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn Column6;
         private System.Windows.Forms.DataGridViewImageColumn Column2;
         private System.Windows.Forms.DataGridViewImageColumn Column1;
     }

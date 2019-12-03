@@ -36,6 +36,7 @@
             this.label68 = new System.Windows.Forms.Label();
             this.txtSigla = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.IdCurso = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvtxtCurso = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvtxtSigla = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvtxtNrCapacidadeMaxima = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -73,6 +74,7 @@
             this.dgvCursos.ColumnHeadersHeight = 45;
             this.dgvCursos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dgvCursos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.IdCurso,
             this.dgvtxtCurso,
             this.dgvtxtSigla,
             this.dgvtxtNrCapacidadeMaxima,
@@ -94,7 +96,7 @@
             this.dgvCursos.RowHeadersWidth = 45;
             this.dgvCursos.RowTemplate.Height = 25;
             this.dgvCursos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvCursos.Size = new System.Drawing.Size(742, 396);
+            this.dgvCursos.Size = new System.Drawing.Size(728, 396);
             this.dgvCursos.TabIndex = 2;
             this.dgvCursos.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCursos_CellClick);
             this.dgvCursos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCursos_CellContentClick);
@@ -138,6 +140,14 @@
             this.label1.Size = new System.Drawing.Size(51, 19);
             this.label1.TabIndex = 164;
             this.label1.Text = "Sigla:";
+            // 
+            // IdCurso
+            // 
+            this.IdCurso.DataPropertyName = "IdCurso";
+            this.IdCurso.HeaderText = "ID";
+            this.IdCurso.Name = "IdCurso";
+            this.IdCurso.ReadOnly = true;
+            this.IdCurso.Visible = false;
             // 
             // dgvtxtCurso
             // 
@@ -210,6 +220,7 @@
             this.ForeColor = System.Drawing.Color.Black;
             this.Name = "frmCursoConsultar";
             this.Size = new System.Drawing.Size(800, 600);
+            this.Load += new System.EventHandler(this.frmCursoConsultar_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvCursos)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -219,11 +230,12 @@
         #endregion
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Panel pnSelected;
-        private System.Windows.Forms.DataGridView dgvCursos;
 		private System.Windows.Forms.TextBox txtCurso;
 		private System.Windows.Forms.Label label68;
         private System.Windows.Forms.TextBox txtSigla;
         private System.Windows.Forms.Label label1;
+        public System.Windows.Forms.DataGridView dgvCursos;
+        private System.Windows.Forms.DataGridViewTextBoxColumn IdCurso;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvtxtCurso;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvtxtSigla;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvtxtNrCapacidadeMaxima;
