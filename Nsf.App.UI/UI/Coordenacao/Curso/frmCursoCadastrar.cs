@@ -24,9 +24,9 @@ namespace Nsf.App.UI
 
         private void btnSalvar_Click(object sender, EventArgs e)
         {
-            int id = Convert.ToInt32(lblId.Text);
+            int id = Convert.ToInt32(nudID.Text);
 
-            if (id > 0)
+            /*if (id > 0)
             {
                 Nsf.App.Model.CursoModel curso = new Model.CursoModel();
                 curso.NmCurso = txtCurso.Text;
@@ -41,9 +41,8 @@ namespace Nsf.App.UI
                 api.Alterar(curso);
 
                 MessageBox.Show("Curso alterado com sucesso.");
-            }
-            else
-            {
+            }*/
+            
                 Nsf.App.Model.CursoModel curso = new Model.CursoModel();
 
                 curso.NmCurso = txtCurso.Text;
@@ -58,7 +57,7 @@ namespace Nsf.App.UI
                 api.Inserir(curso);
 
                 MessageBox.Show("Curso registrado com sucesso.");
-            }
+            
 
 
         }
@@ -118,7 +117,7 @@ namespace Nsf.App.UI
 
         public void AlterarInformacao(Model.CursoModel curso)
         {
-            lblId.Text = Convert.ToString(curso.IdCurso);
+            nudID.Text = Convert.ToString(curso.IdCurso);
             txtCurso.Text = curso.NmCurso;
             chkAtivo.Checked = curso.BtAtivo;
             cboCategoria.Text =  curso.DsCategoria;
@@ -126,5 +125,41 @@ namespace Nsf.App.UI
             txtSigla.Text = curso.DsSigla;
         }
 
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (nudID.Value == 0)
+            {
+                btnAlterar.Enabled = false;
+            }
+            else
+            {
+                Nsf.App.Model.CursoModel curso = new Model.CursoModel();
+
+                curso.IdCurso = Convert.ToInt32(nudID.Text);
+                curso.NmCurso = txtCurso.Text;
+                curso.BtAtivo = chkAtivo.Checked;
+                curso.DtCriacao = System.DateTime.Now;
+                curso.DtUltimaAlteracao = System.DateTime.Now;
+                curso.DsCategoria = cboCategoria.Text;
+                curso.NrCapacidadeMaxima = Convert.ToInt32(nudCapacidade.Value);
+                curso.DsSigla = txtSigla.Text;
+
+                API.CursoAPI api = new API.CursoAPI();
+                api.Alterar(curso);
+
+                MessageBox.Show("Curso alterado com sucesso.");
+            }
+
+
+
+
+            //frmInicial.Current.OpenScreen(telaConsultar);
+            // telaConsultar.AlterarInformacao(model);
+        }
+
+        private void lblId_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

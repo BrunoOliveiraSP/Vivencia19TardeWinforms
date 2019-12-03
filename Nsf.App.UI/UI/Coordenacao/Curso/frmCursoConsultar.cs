@@ -12,7 +12,7 @@ namespace Nsf.App.UI
             this.Carregar();
         }
 
-        private void txtCurso_TextChanged(object sender, EventArgs e)
+        public void txtCurso_TextChanged(object sender, EventArgs e)
         {
             string nmcurso = txtCurso.Text;
 
@@ -48,26 +48,22 @@ namespace Nsf.App.UI
 
         }
 
-        private void dgvCursos_CellClick(object sender, DataGridViewCellEventArgs e)
+        public void dgvCursos_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.ColumnIndex == 4)
             {
-                Model.CursoModel curso = dgvCursos.CurrentRow.DataBoundItem as Model.CursoModel;
+                frmCursoCadastrar telaCadastrar = new frmCursoCadastrar();
 
-                Nsf.App.Model.CursoModel model = new Model.CursoModel();
+                Nsf.App.Model.CursoModel curso = dgvCursos.CurrentRow.DataBoundItem as Nsf.App.Model.CursoModel;
+                
+                telaCadastrar.nudID.Value = Convert.ToInt32(curso.IdCurso);
+                telaCadastrar.txtCurso.Text = curso.NmCurso;
+                telaCadastrar.chkAtivo.Checked = curso.BtAtivo;
+                telaCadastrar.cboCategoria.Text = curso.DsCategoria;
+                telaCadastrar.nudCapacidade.Value = Convert.ToInt32(curso.NrCapacidadeMaxima);
+                telaCadastrar.txtSigla.Text = curso.DsSigla;
 
-
-                model.IdCurso = curso.IdCurso;
-                model.NmCurso = curso.NmCurso;
-                model.NrCapacidadeMaxima = curso.NrCapacidadeMaxima;
-                model.DsSigla = curso.DsSigla;
-                model.DsCategoria = curso.DsCategoria;
-                model.BtAtivo = curso.BtAtivo;
-
-                frmCursoCadastrar tela = new frmCursoCadastrar();
-
-                frmInicial.Current.OpenScreen(tela);
-                tela.AlterarInformacao(model);
+                frmInicial.Current.OpenScreen(new frmCursoCadastrar());
             }
 
                 if (e.ColumnIndex == 5)
@@ -86,6 +82,11 @@ namespace Nsf.App.UI
                 }
            
             }
+
+        }
+
+        private void frmCursoConsultar_Load(object sender, EventArgs e)
+        {
 
         }
     }
