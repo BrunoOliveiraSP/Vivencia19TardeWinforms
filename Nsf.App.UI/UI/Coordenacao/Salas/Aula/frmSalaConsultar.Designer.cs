@@ -32,16 +32,16 @@
             this.label5 = new System.Windows.Forms.Label();
             this.pnSelected = new System.Windows.Forms.Panel();
             this.DataGridSalas = new System.Windows.Forms.DataGridView();
-            this.label68 = new System.Windows.Forms.Label();
-            this.txtInstituicao = new System.Windows.Forms.TextBox();
-            this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
-            this.dataGridViewImageColumn2 = new System.Windows.Forms.DataGridViewImageColumn();
             this.Instituicao = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Sala = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Capacidade = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.Column1 = new System.Windows.Forms.DataGridViewImageColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewImageColumn();
+            this.label68 = new System.Windows.Forms.Label();
+            this.txtInstituicao = new System.Windows.Forms.TextBox();
+            this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
+            this.dataGridViewImageColumn2 = new System.Windows.Forms.DataGridViewImageColumn();
             ((System.ComponentModel.ISupportInitialize)(this.DataGridSalas)).BeginInit();
             this.SuspendLayout();
             // 
@@ -98,43 +98,6 @@
             this.DataGridSalas.TabIndex = 1;
             this.DataGridSalas.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridSalas_CellClick);
             // 
-            // label68
-            // 
-            this.label68.AutoSize = true;
-            this.label68.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
-            this.label68.ForeColor = System.Drawing.Color.Black;
-            this.label68.Location = new System.Drawing.Point(89, 141);
-            this.label68.Name = "label68";
-            this.label68.Size = new System.Drawing.Size(90, 19);
-            this.label68.TabIndex = 160;
-            this.label68.Text = "Instituição:";
-            // 
-            // txtInstituicao
-            // 
-            this.txtInstituicao.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtInstituicao.Location = new System.Drawing.Point(185, 138);
-            this.txtInstituicao.Name = "txtInstituicao";
-            this.txtInstituicao.Size = new System.Drawing.Size(518, 27);
-            this.txtInstituicao.TabIndex = 0;
-            // 
-            // dataGridViewImageColumn1
-            // 
-            this.dataGridViewImageColumn1.HeaderText = "";
-            this.dataGridViewImageColumn1.Image = global::Nsf.App.UI.Properties.Resources.edit2;
-            this.dataGridViewImageColumn1.Name = "dataGridViewImageColumn1";
-            this.dataGridViewImageColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewImageColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.dataGridViewImageColumn1.Width = 50;
-            // 
-            // dataGridViewImageColumn2
-            // 
-            this.dataGridViewImageColumn2.HeaderText = "";
-            this.dataGridViewImageColumn2.Image = global::Nsf.App.UI.Properties.Resources.remove2;
-            this.dataGridViewImageColumn2.Name = "dataGridViewImageColumn2";
-            this.dataGridViewImageColumn2.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewImageColumn2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.dataGridViewImageColumn2.Width = 50;
-            // 
             // Instituicao
             // 
             this.Instituicao.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
@@ -189,6 +152,44 @@
             this.Column2.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.Column2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.Column2.Width = 25;
+            // 
+            // label68
+            // 
+            this.label68.AutoSize = true;
+            this.label68.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
+            this.label68.ForeColor = System.Drawing.Color.Black;
+            this.label68.Location = new System.Drawing.Point(89, 141);
+            this.label68.Name = "label68";
+            this.label68.Size = new System.Drawing.Size(90, 19);
+            this.label68.TabIndex = 160;
+            this.label68.Text = "Instituição:";
+            // 
+            // txtInstituicao
+            // 
+            this.txtInstituicao.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtInstituicao.Location = new System.Drawing.Point(185, 138);
+            this.txtInstituicao.Name = "txtInstituicao";
+            this.txtInstituicao.Size = new System.Drawing.Size(518, 27);
+            this.txtInstituicao.TabIndex = 0;
+            this.txtInstituicao.TextChanged += new System.EventHandler(this.txtInstituicao_TextChanged);
+            // 
+            // dataGridViewImageColumn1
+            // 
+            this.dataGridViewImageColumn1.HeaderText = "";
+            this.dataGridViewImageColumn1.Image = global::Nsf.App.UI.Properties.Resources.edit2;
+            this.dataGridViewImageColumn1.Name = "dataGridViewImageColumn1";
+            this.dataGridViewImageColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewImageColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.dataGridViewImageColumn1.Width = 50;
+            // 
+            // dataGridViewImageColumn2
+            // 
+            this.dataGridViewImageColumn2.HeaderText = "";
+            this.dataGridViewImageColumn2.Image = global::Nsf.App.UI.Properties.Resources.remove2;
+            this.dataGridViewImageColumn2.Name = "dataGridViewImageColumn2";
+            this.dataGridViewImageColumn2.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewImageColumn2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.dataGridViewImageColumn2.Width = 50;
             // 
             // frmSalaConsultar
             // 

@@ -28,5 +28,15 @@ namespace Nsf.App.UI
             dgvSalasVestibular.DataSource = consultar;
 
         }
+
+        private void btnVestibularBaixo_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnVestibularAdd_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
