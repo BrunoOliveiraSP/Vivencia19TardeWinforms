@@ -45,15 +45,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AlunoMensalidadeModel.cs" />
     <Compile Include="AnoLetivoModel.cs" />
     <Compile Include="CursoModel.cs" />
     <Compile Include="DisciplinaModel.cs" />
-    <Compile Include="DocumentoModel.cs" />
+    <Compile Include="AlunoDocumentoModel.cs" />
     <Compile Include="ErroModel.cs" />
     <Compile Include="ExemploModel.cs" />
-    <Compile Include="FichaMedicaModel.cs" />
+    <Compile Include="AlunoFichaMedicaModel.cs" />
     <Compile Include="InscricaoModel.cs" />
-    <Compile Include="LocalizacaoModel.cs" />
+    <Compile Include="AlunoLocalizacaoModel.cs" />
     <Compile Include="LoginModel.cs" />
     <Compile Include="ProfessorModel.cs" />
     <Compile Include="ProfessorRequest.cs" />
