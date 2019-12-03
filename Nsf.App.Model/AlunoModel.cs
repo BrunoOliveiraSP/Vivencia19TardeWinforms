@@ -4,9 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Nsf.App.API.Client
+namespace Nsf.App.Model
 {
-    class MatriculaAPI
+    class AlunoModel
     {
+        public int MyProperty { get; set; }
+        
     }
 }
