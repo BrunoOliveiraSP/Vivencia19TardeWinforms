@@ -52,7 +52,7 @@ namespace Nsf.App.API.Client
                              .Result
                              .Content
                              .ReadAsStringAsync()
-                             .Result; ;
+                             .Result; 
         }
     }
 }

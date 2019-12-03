@@ -60,6 +60,7 @@ namespace Nsf.App.UI
             }
 
         }
+        
         private void CarregarCurso()
         {
            API.CursoAPI api = new API.CursoAPI();
@@ -85,6 +86,7 @@ namespace Nsf.App.UI
             {
                 Model.TurmaModell turma = dgvTurma.CurrentRow.DataBoundItem as Model.TurmaModell;
 
+                cboTurmaCurso.Text = turma.NmCurso;
                 cboTurmaPeriodo.Text = turma.TpPeriodo;
                 txtTurmaNome.Text = turma.NmTurma;
                 nudTurmaCapacidade.Value = turma.NrCapacidadeMax;
@@ -115,17 +117,18 @@ namespace Nsf.App.UI
 
             Model.CursoModel combo = cboTurmaCurso.SelectedItem as Model.CursoModel;
 
-            model.TpPeriodo = cboTurmaPeriodo.Text;
-            model.NmTurma = txtTurmaNome.Text;
-            model.NrCapacidadeMax = Convert.ToInt32(nudTurmaCapacidade.Value);
-            model.IdAnoLetivo = idAno;
-            model.IdCurso = combo.IdCurso;
+
+                     
 
             Nsf.App.API.Client.TurmaApii api = new Nsf.App.API.Client.TurmaApii();
 
-            if (IdTurma > 0)
+            if (model.IdTurma == IdTurma)
             {
-                model.IdTurma = IdTurma;
+                model.TpPeriodo = cboTurmaPeriodo.Text;
+                model.NmTurma = txtTurmaNome.Text;
+                model.NrCapacidadeMax = Convert.ToInt32(nudTurmaCapacidade.Value);
+                model.IdCurso = combo.IdCurso;
+              
                 api.Alterar(model);
 
                 MessageBox.Show("Alterado com sucesso");
@@ -133,8 +136,14 @@ namespace Nsf.App.UI
             }
             else
             {
+                model.TpPeriodo = cboTurmaPeriodo.Text;
+                model.NmTurma = txtTurmaNome.Text;
+                model.NrCapacidadeMax = Convert.ToInt32(nudTurmaCapacidade.Value);
+                model.IdCurso = combo.IdCurso;
+
                 api.CadastrarTurma(model);
                 MessageBox.Show("Cadastrado com sucesso");
+                CarregarGrid();
             }
         }
 
