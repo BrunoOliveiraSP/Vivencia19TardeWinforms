@@ -19,5 +19,7 @@ namespace Nsf.App.Model
         public string TpPeriodo { get; set; }
 
         public int NrCapacidadeMax { get; set; }
+
+        public string NmCurso { get { return this.NmCurso; } }
     }
 }
