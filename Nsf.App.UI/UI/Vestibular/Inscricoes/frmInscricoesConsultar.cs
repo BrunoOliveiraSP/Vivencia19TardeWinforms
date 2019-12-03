@@ -26,6 +26,9 @@ namespace Nsf.App.UI
             {
                 App.API.Client.InscricaoAPI inscricao = new App.API.Client.InscricaoAPI();
                 dgvCandidatos.AutoGenerateColumns = false;
+                if(cboAnoLetivo.Text == string.Empty)
+                    dgvCandidatos.DataSource = inscricao.ConsultarNome(txtNome.Text, 0000);
+                else
                 dgvCandidatos.DataSource = inscricao.ConsultarNome(txtNome.Text, Convert.ToInt32(cboAnoLetivo.Text));
             }
 
