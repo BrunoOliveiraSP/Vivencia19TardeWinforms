@@ -8,5 +8,8 @@ namespace Nsf.App.Model
 {
     public class AlunoCarometroModel
     {
+        public int IdAlunoCarometro { get; set; }
+        public int IdAluno { get; set; }
+        public string DsImagem { get; set; }
     }
 }
