@@ -44,6 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AlunoCarometroModel.cs" />
     <Compile Include="AlunoMensalidadeModel.cs" />
     <Compile Include="AlunoModel.cs" />
     <Compile Include="AlunoResponsavel.cs" />

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Nsf.App.Model
 {
-    class AlunoResponsavel
+    public class AlunoResponsavel
     {
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Nsf.App.Model
 {
-    class AlunoMensalidadeModel
+    public class AlunoMensalidadeModel
     {
         public int TbAlunoMensalidade { get; set; }
         public int IdAluno { get; set; }

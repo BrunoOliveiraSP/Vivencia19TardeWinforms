@@ -6,9 +6,15 @@ using System.Threading.Tasks;
 
 namespace Nsf.App.Model
 {
-    class MatriculaRequest
+    public class MatriculaRequest
     {
         public AlunoModel Aluno { get; set; }
+        public AlunoResponsavel Responsavel { get; set; }
+        public AlunoCarometroModel Carometro { get; set; }
+        public AlunoMensalidadeModel Mensalidade { get; set; }
+        public AlunoDocumentoModel Documentos { get; set; }
+        public AlunoFichaMedicaModel FichaMediaca { get; set; }
+        public AlunoLocalizacaoModel Localizacao { get; set; }
 
 
     }

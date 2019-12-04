@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Nsf.App.API.Client
+namespace Nsf.App.Model
 {
-    public class MatriculaAluno
+    public class AlunoCarometroModel
     {
-       
     }
 }
