@@ -22,7 +22,7 @@ namespace Nsf.App.Model
         public string DsEscolaridade { get; set; }
         public string NmEscola { get; set; }
         public string TpEscola { get; set; }
-        public int DsComoConheceu { get; set; }
+        public string DsComoConheceu { get; set; }
         public int QtMoramCasa { get; set; }
         public int QtTrabalhamCasa { get; set; }
         public decimal VlRenda { get; set; }

@@ -13,11 +13,9 @@ namespace Nsf.App.Model
         public string DsResidenciaCep{ get; set; }
         public string DsResidenciaBairro { get; set; }
         public string DsResidenciaCidade { get; set; }
-        public string DsResidenciaEstado { get; set; }
         public string DsResidenciaEndereco { get; set; }
         public string DsResidenciaComplelemento { get; set; }
         public string DsNascimentoCidade { get; set; }
-        public string DsNascimentoEstado { get; set; }
         public string DsNascimentoPais { get; set; }
         public DateTime DtInclusao{ get; set; }
         public DateTime DtUltimaAlteracao{ get; set; }
