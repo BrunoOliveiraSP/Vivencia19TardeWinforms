@@ -50,6 +50,7 @@
     <Compile Include="DisciplinaAPI.cs" />
     <Compile Include="ExemploAPI.cs" />
     <Compile Include="InscricaoAPI.cs" />
+    <Compile Include="MatriculaAPI.cs" />
     <Compile Include="ProfessorAPI.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SalaAPI.cs" />

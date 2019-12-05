@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmSalaVestibularCadastrar));
             this.label5 = new System.Windows.Forms.Label();
             this.pnSelected = new System.Windows.Forms.Panel();
@@ -41,16 +41,16 @@
             this.cboVestibularSala = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
             this.dgvSalasVestibular = new System.Windows.Forms.DataGridView();
-            this.btnVestibularAdd = new System.Windows.Forms.Button();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
-            this.cboPeriodos = new System.Windows.Forms.ComboBox();
             this.Registro = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Nome = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewImageColumn();
             this.Column1 = new System.Windows.Forms.DataGridViewImageColumn();
+            this.btnVestibularAdd = new System.Windows.Forms.Button();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.cboPeriodos = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSalasVestibular)).BeginInit();
             this.SuspendLayout();
             // 
@@ -87,6 +87,7 @@
             this.btnVestibularBaixo.Text = "Baixo";
             this.btnVestibularBaixo.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnVestibularBaixo.UseVisualStyleBackColor = false;
+            this.btnVestibularBaixo.Click += new System.EventHandler(this.btnVestibularBaixo_Click);
             // 
             // btnVestibularCima
             // 
@@ -187,14 +188,14 @@
             this.Column5,
             this.Column2,
             this.Column1});
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Century Gothic", 12F);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(91)))), ((int)(((byte)(190)))), ((int)(((byte)(227)))));
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvSalasVestibular.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Century Gothic", 12F);
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(91)))), ((int)(((byte)(190)))), ((int)(((byte)(227)))));
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvSalasVestibular.DefaultCellStyle = dataGridViewCellStyle3;
             this.dgvSalasVestibular.Location = new System.Drawing.Point(38, 238);
             this.dgvSalasVestibular.Name = "dgvSalasVestibular";
             this.dgvSalasVestibular.ReadOnly = true;
@@ -204,58 +205,6 @@
             this.dgvSalasVestibular.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvSalasVestibular.Size = new System.Drawing.Size(729, 322);
             this.dgvSalasVestibular.TabIndex = 180;
-            // 
-            // btnVestibularAdd
-            // 
-            this.btnVestibularAdd.BackColor = System.Drawing.Color.Transparent;
-            this.btnVestibularAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnVestibularAdd.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
-            this.btnVestibularAdd.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(51)))), ((int)(((byte)(142)))));
-            this.btnVestibularAdd.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnVestibularAdd.Location = new System.Drawing.Point(608, 183);
-            this.btnVestibularAdd.Name = "btnVestibularAdd";
-            this.btnVestibularAdd.Size = new System.Drawing.Size(138, 35);
-            this.btnVestibularAdd.TabIndex = 3;
-            this.btnVestibularAdd.Text = "Adicionar";
-            this.btnVestibularAdd.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnVestibularAdd.UseVisualStyleBackColor = false;
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
-            this.label11.ForeColor = System.Drawing.Color.Black;
-            this.label11.Location = new System.Drawing.Point(518, 150);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(72, 19);
-            this.label11.TabIndex = 181;
-            this.label11.Text = "Período:";
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
-            this.label14.ForeColor = System.Drawing.Color.Salmon;
-            this.label14.Location = new System.Drawing.Point(586, 150);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(16, 19);
-            this.label14.TabIndex = 182;
-            this.label14.Text = "*";
-            // 
-            // cboPeriodos
-            // 
-            this.cboPeriodos.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboPeriodos.Font = new System.Drawing.Font("Century Gothic", 12F);
-            this.cboPeriodos.FormattingEnabled = true;
-            this.cboPeriodos.Items.AddRange(new object[] {
-            "Selecione",
-            "Ação Social NSF",
-            "Cedesp",
-            "Calhim"});
-            this.cboPeriodos.Location = new System.Drawing.Point(608, 146);
-            this.cboPeriodos.Name = "cboPeriodos";
-            this.cboPeriodos.Size = new System.Drawing.Size(138, 29);
-            this.cboPeriodos.TabIndex = 189;
             // 
             // Registro
             // 
@@ -309,6 +258,58 @@
             this.Column1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.Column1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.Column1.Width = 25;
+            // 
+            // btnVestibularAdd
+            // 
+            this.btnVestibularAdd.BackColor = System.Drawing.Color.Transparent;
+            this.btnVestibularAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnVestibularAdd.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
+            this.btnVestibularAdd.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(51)))), ((int)(((byte)(142)))));
+            this.btnVestibularAdd.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnVestibularAdd.Location = new System.Drawing.Point(608, 183);
+            this.btnVestibularAdd.Name = "btnVestibularAdd";
+            this.btnVestibularAdd.Size = new System.Drawing.Size(138, 35);
+            this.btnVestibularAdd.TabIndex = 3;
+            this.btnVestibularAdd.Text = "Adicionar";
+            this.btnVestibularAdd.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnVestibularAdd.UseVisualStyleBackColor = false;
+            this.btnVestibularAdd.Click += new System.EventHandler(this.btnVestibularAdd_Click);
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
+            this.label11.ForeColor = System.Drawing.Color.Black;
+            this.label11.Location = new System.Drawing.Point(518, 150);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(72, 19);
+            this.label11.TabIndex = 181;
+            this.label11.Text = "Período:";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
+            this.label14.ForeColor = System.Drawing.Color.Salmon;
+            this.label14.Location = new System.Drawing.Point(586, 150);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(16, 19);
+            this.label14.TabIndex = 182;
+            this.label14.Text = "*";
+            // 
+            // cboPeriodos
+            // 
+            this.cboPeriodos.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboPeriodos.Font = new System.Drawing.Font("Century Gothic", 12F);
+            this.cboPeriodos.FormattingEnabled = true;
+            this.cboPeriodos.Items.AddRange(new object[] {
+            "Manhã",
+            "Tarde",
+            "Noite"});
+            this.cboPeriodos.Location = new System.Drawing.Point(608, 146);
+            this.cboPeriodos.Name = "cboPeriodos";
+            this.cboPeriodos.Size = new System.Drawing.Size(138, 29);
+            this.cboPeriodos.TabIndex = 189;
             // 
             // frmSalaVestibularCadastrar
             // 
