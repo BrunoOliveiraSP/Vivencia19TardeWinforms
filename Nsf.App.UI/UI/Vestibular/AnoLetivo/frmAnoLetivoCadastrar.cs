@@ -43,7 +43,7 @@ namespace Nsf.App.UI
 
             if  (idAno > 0)
             {
-                add.IdAnoLetivo = idAno;
+                add.IdAnoLetivo = idAno; 
                 api.Alterar(add);
 
                 MessageBox.Show("Alterado com sucesso");
