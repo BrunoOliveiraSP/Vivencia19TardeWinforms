@@ -41,7 +41,7 @@ namespace Nsf.App.UI
 
             Nsf.App.API.Client.AnoLetivoApi api = new App.API.Client.AnoLetivoApi();
 
-            if (idAno > 0)
+            if  (idAno > 0)
             {
                 add.IdAnoLetivo = idAno;
                 api.Alterar(add);
