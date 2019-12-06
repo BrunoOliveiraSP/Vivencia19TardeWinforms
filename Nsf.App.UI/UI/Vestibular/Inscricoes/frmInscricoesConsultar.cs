@@ -26,9 +26,18 @@ namespace Nsf.App.UI
                 }
                 else
                 {
+                    int ano = 0000;
+                    if(cboAnoLetivo.Text == string.Empty)
+                    {
+                        ano = 0000;
+                    }
+                    else
+                    {
+                        ano = Convert.ToInt32(cboAnoLetivo.Text);
+                    }
                     App.API.Client.InscricaoAPI inscricao = new App.API.Client.InscricaoAPI();
                     dgvCandidatos.AutoGenerateColumns = false;
-                    dgvCandidatos.DataSource = inscricao.ConsultarNome(txtNome.Text, Convert.ToInt32(cboAnoLetivo.Text));
+                    dgvCandidatos.DataSource = inscricao.ConsultarNome(txtNome.Text, ano);
                 }
             }
             catch(ArgumentException ex)
