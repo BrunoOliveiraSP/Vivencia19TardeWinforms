@@ -41,9 +41,9 @@ namespace Nsf.App.UI
 
             Nsf.App.API.Client.AnoLetivoApi api = new App.API.Client.AnoLetivoApi();
 
-            if (idAno > 0)
+            if  (idAno > 0)
             {
-                add.IdAnoLetivo = idAno;
+                add.IdAnoLetivo = idAno; 
                 api.Alterar(add);
 
                 MessageBox.Show("Alterado com sucesso");
@@ -85,13 +85,14 @@ namespace Nsf.App.UI
             if (e.ColumnIndex == 4)
             {
                 Model.TurmaModell turma = dgvTurma.CurrentRow.DataBoundItem as Model.TurmaModell;
+                Model.CursoModel combo = cboTurmaCurso.SelectedItem as Model.CursoModel;
 
-                cboTurmaCurso.Text = turma.NmCurso;
+                cboTurmaCurso.Text = combo.NmCurso;
                 cboTurmaPeriodo.Text = turma.TpPeriodo;
                 txtTurmaNome.Text = turma.NmTurma;
                 nudTurmaCapacidade.Value = turma.NrCapacidadeMax;
 
-                IdTurma = turma.IdTurma;
+                turma.IdTurma = IdTurma;
             }
 
             if (e.ColumnIndex == 5)
@@ -118,29 +119,23 @@ namespace Nsf.App.UI
             Model.CursoModel combo = cboTurmaCurso.SelectedItem as Model.CursoModel;
 
 
-                     
+            model.TpPeriodo = cboTurmaPeriodo.Text;
+            model.NmTurma = txtTurmaNome.Text;
+            model.NrCapacidadeMax = Convert.ToInt32(nudTurmaCapacidade.Value);
+            model.IdCurso = combo.IdCurso;
 
             Nsf.App.API.Client.TurmaApii api = new Nsf.App.API.Client.TurmaApii();
 
-            if (model.IdTurma == IdTurma)
+            if (IdTurma > 0)
             {
-                model.TpPeriodo = cboTurmaPeriodo.Text;
-                model.NmTurma = txtTurmaNome.Text;
-                model.NrCapacidadeMax = Convert.ToInt32(nudTurmaCapacidade.Value);
-                model.IdCurso = combo.IdCurso;
-              
+                model.IdTurma = IdTurma;   
                 api.Alterar(model);
 
                 MessageBox.Show("Alterado com sucesso");
                 CarregarGrid();
             }
             else
-            {
-                model.TpPeriodo = cboTurmaPeriodo.Text;
-                model.NmTurma = txtTurmaNome.Text;
-                model.NrCapacidadeMax = Convert.ToInt32(nudTurmaCapacidade.Value);
-                model.IdCurso = combo.IdCurso;
-
+            { 
                 api.CadastrarTurma(model);
                 MessageBox.Show("Cadastrado com sucesso");
                 CarregarGrid();

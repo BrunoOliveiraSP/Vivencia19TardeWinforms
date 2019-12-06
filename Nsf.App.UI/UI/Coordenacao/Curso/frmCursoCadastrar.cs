@@ -18,9 +18,11 @@ namespace Nsf.App.UI
 
             lbxDisciplinasDoCurso.DataSource = atribuidas;
             lbxDisciplinasDoCurso.DisplayMember = nameof(Model.DisciplinaModel.NmDisciplina);
+
+           
         }
 
-       
+        int idcurso = 0;
 
         private void btnSalvar_Click(object sender, EventArgs e)
         {
@@ -54,7 +56,10 @@ namespace Nsf.App.UI
                 curso.DsSigla = txtSigla.Text;
 
                 API.CursoAPI api = new API.CursoAPI();
-                api.Inserir(curso);
+                idcurso = api.Inserir(curso);
+
+                //InserirCursoDiciplina(); --erro de chave estrangeira(banco não consegue achar o id da outra tabela
+
 
                 MessageBox.Show("Curso registrado com sucesso.");
             }
@@ -123,12 +128,18 @@ namespace Nsf.App.UI
 
         public void AlterarInformacao(Model.CursoModel curso)
         {
+            panelId.Visible = true;
+
+            idcurso = curso.IdCurso;
+
             nudID.Text = Convert.ToString(curso.IdCurso);
             txtCurso.Text = curso.NmCurso;
             chkAtivo.Checked = curso.BtAtivo;
             cboCategoria.Text =  curso.DsCategoria;
             nudCapacidade.Value = curso.NrCapacidadeMaxima;
             txtSigla.Text = curso.DsSigla;
+
+          
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -172,5 +183,42 @@ namespace Nsf.App.UI
         {
 
         }
+        public void InserirCursoDiciplina()
+        {
+            Model.CursoDisciplinaModel mod = new Model.CursoDisciplinaModel();
+
+            Nsf.App.API.Client.DisciplinaAPI api = new App.API.Client.DisciplinaAPI();
+
+            foreach (var item in atribuidas)
+            {
+                mod.IdDisciplina = item.IdDisciplina;
+                mod.IdCurso = idcurso;
+
+                api.InserirCursoDisciplina(mod);
+            }
+
+        }
+        public void CarregarCursoDisciplina()
+        {
+            Nsf.App.API.Client.DisciplinaAPI api = new App.API.Client.DisciplinaAPI();
+            atribuidas = api.ListarCursoDisciplina(idcurso);
+
+            
+        }
+        public void AlterarDisciplinaDoCurso()
+        {
+            Model.CursoDisciplinaModel mod = new Model.CursoDisciplinaModel();
+            Nsf.App.API.Client.DisciplinaAPI api = new App.API.Client.DisciplinaAPI();
+
+            foreach (var item in atribuidas)
+            {
+                mod.IdDisciplina = item.IdDisciplina;
+                mod.IdCurso = idcurso;
+
+                api.AlterarCursoDisciplina(mod);
+
+            }
+        }
+    
     }
 }

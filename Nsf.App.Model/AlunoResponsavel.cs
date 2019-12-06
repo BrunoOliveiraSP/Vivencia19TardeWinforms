@@ -12,7 +12,6 @@ namespace Nsf.App.Model
         public int IdAluno { get; set; }
         public string NmResponsavel { get; set; }
         public string DsEmail { get; set; }
-        public string DsRg { get; set; }
         public string DsTelefone1 { get; set; }
         public string DsTelefone2 { get; set; }
         public string DsParentesco { get; set; }

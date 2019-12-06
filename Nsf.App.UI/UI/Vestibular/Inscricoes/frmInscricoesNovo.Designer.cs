@@ -485,7 +485,7 @@
             this.nudId.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.nudId.Location = new System.Drawing.Point(113, 6);
             this.nudId.Maximum = new decimal(new int[] {
-            20000,
+            200000,
             0,
             0,
             0});
@@ -791,7 +791,7 @@
             this.txtNumero.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtNumero.Location = new System.Drawing.Point(113, 80);
             this.txtNumero.Maximum = new decimal(new int[] {
-            20000,
+            200000,
             0,
             0,
             0});
@@ -1755,7 +1755,7 @@
             this.txtRenda.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtRenda.Location = new System.Drawing.Point(355, 61);
             this.txtRenda.Maximum = new decimal(new int[] {
-            20000,
+            200000,
             0,
             0,
             0});
@@ -1799,11 +1799,6 @@
             // 
             this.nudPessoasTrabalhamCasa.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.nudPessoasTrabalhamCasa.Location = new System.Drawing.Point(355, 137);
-            this.nudPessoasTrabalhamCasa.Maximum = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
             this.nudPessoasTrabalhamCasa.Name = "nudPessoasTrabalhamCasa";
             this.nudPessoasTrabalhamCasa.Size = new System.Drawing.Size(90, 27);
             this.nudPessoasTrabalhamCasa.TabIndex = 39;
@@ -1834,11 +1829,6 @@
             // 
             this.nudPessoasMoramCasa.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.nudPessoasMoramCasa.Location = new System.Drawing.Point(355, 99);
-            this.nudPessoasMoramCasa.Maximum = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
             this.nudPessoasMoramCasa.Name = "nudPessoasMoramCasa";
             this.nudPessoasMoramCasa.Size = new System.Drawing.Size(90, 27);
             this.nudPessoasMoramCasa.TabIndex = 38;

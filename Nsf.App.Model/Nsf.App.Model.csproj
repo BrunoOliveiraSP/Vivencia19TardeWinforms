@@ -49,6 +49,8 @@
     <Compile Include="AlunoModel.cs" />
     <Compile Include="AlunoResponsavel.cs" />
     <Compile Include="AnoLetivoModel.cs" />
+    <Compile Include="CursoDisciplinaModel.cs" />
+    <Compile Include="CursoDisciplinaRequest.cs" />
     <Compile Include="CursoModel.cs" />
     <Compile Include="DisciplinaModel.cs" />
     <Compile Include="AlunoDocumentoModel.cs" />

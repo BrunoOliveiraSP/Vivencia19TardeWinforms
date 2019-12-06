@@ -68,21 +68,25 @@ namespace Nsf.App.UI
         {
             try
             {
-                if (e.ColumnIndex == 4)
+                if (e.ColumnIndex == 5)
                 {
 
                     frmCursoCadastrar telaCadastrar = new frmCursoCadastrar();
 
                     Nsf.App.Model.CursoModel curso = dgvCursos.CurrentRow.DataBoundItem as Nsf.App.Model.CursoModel;
 
-                    telaCadastrar.nudID.Value = Convert.ToInt32(curso.IdCurso);
-                    telaCadastrar.txtCurso.Text = curso.NmCurso;
-                    telaCadastrar.chkAtivo.Checked = curso.BtAtivo;
-                    telaCadastrar.cboCategoria.Text = curso.DsCategoria;
-                    telaCadastrar.nudCapacidade.Value = Convert.ToInt32(curso.NrCapacidadeMaxima);
-                    telaCadastrar.txtSigla.Text = curso.DsSigla;
+                    Model.CursoModel mod = new Model.CursoModel();
 
-                    frmInicial.Current.OpenScreen(new frmCursoCadastrar());
+                    mod.IdCurso = Convert.ToInt32(curso.IdCurso);
+                    mod.NmCurso = curso.NmCurso;
+                    mod.BtAtivo = curso.BtAtivo;
+                    mod.DsCategoria= curso.DsCategoria;
+                    mod.NrCapacidadeMaxima = Convert.ToInt32(curso.NrCapacidadeMaxima);
+                    mod.DsSigla = curso.DsSigla;
+
+                    telaCadastrar.AlterarInformacao(mod);
+
+                    frmInicial.Current.OpenScreen(telaCadastrar);
                 }
             }
             catch (ArgumentException ex)
@@ -93,7 +97,7 @@ namespace Nsf.App.UI
 
             try
             {
-                if (e.ColumnIndex == 5)
+                if (e.ColumnIndex == 6)
                 {
                     Model.CursoModel curso = dgvCursos.CurrentRow.DataBoundItem as Model.CursoModel;
 

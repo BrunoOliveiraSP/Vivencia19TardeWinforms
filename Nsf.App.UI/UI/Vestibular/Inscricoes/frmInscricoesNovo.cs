@@ -38,7 +38,7 @@ namespace Nsf.App.UI
                     inscricao.dsCorPele = txtCorDaPele.Text;
                     inscricao.dsCpf = txtCpf.Text;
                     inscricao.dsCurso2Periodo = cboTurno2.Text;
-                    inscricao.dsCursoPeriodo = cboTurno2.Text;
+                    inscricao.dsCursoPeriodo = cboTurno1.Text;
                     inscricao.dsEmail = txtMaeEmail.Text;
                     inscricao.dsEmailInscrito = txtEmailInscrito.Text;
                     inscricao.dsEscolaridade = cboEscolaridade.Text;
@@ -103,7 +103,7 @@ namespace Nsf.App.UI
                     inscricao.dsCorPele = txtCorDaPele.Text;
                     inscricao.dsCpf = txtCpf.Text;
                     inscricao.dsCurso2Periodo = cboTurno2.Text;
-                    inscricao.dsCursoPeriodo = cboTurno2.Text;
+                    inscricao.dsCursoPeriodo = cboTurno1.Text;
                     inscricao.dsEmail = txtMaeEmail.Text;
                     inscricao.dsEmailInscrito = txtEmailInscrito.Text;
                     inscricao.dsEscolaridade = cboEscolaridade.Text;
@@ -122,7 +122,7 @@ namespace Nsf.App.UI
                     inscricao.dsResponsavelEmail = txtResponsavelEmail.Text;
                     inscricao.dsResponsavelNome = txtResponsavel.Text;
                     inscricao.dsResponsavelParentesco = cboGrauParentesco.Text;
-                    inscricao.dsResponsavelRg = "-";
+                    inscricao.dsResponsavelRg = "...";
                     inscricao.dsResponsavelTelefone = txtResponsavelTelefone1.Text;
                     inscricao.dsResponsavelTelefone2 = txtResponsavelTelefone2.Text;
                     inscricao.dsRg = txtRG.Text;
@@ -178,6 +178,12 @@ namespace Nsf.App.UI
 
                 if (Model.CarregarInscrições.idInscricao != 0)
                 {
+
+                    Model.AnoLetivoModel anoLetivo = Api.ConsultarAnoLetivo(Model.CarregarInscrições.idAnoLetivo);
+                    Model.CursoModel curso = Api.ConsultarCurso(Model.CarregarInscrições.idCurso);
+                    Model.CursoModel curso2 = Api.ConsultarCurso(Model.CarregarInscrições.idCurso2);
+
+
                     txtNome.Text = Model.CarregarInscrições.nmInscrito;
                     chkPendenteComprovResidencia.Checked = Model.CarregarInscrições.btPendenteComprovresid;
                     chkPendenteCpf.Checked = Model.CarregarInscrições.btPendenteCpf;
@@ -187,7 +193,7 @@ namespace Nsf.App.UI
                     txtCorDaPele.Text = Model.CarregarInscrições.dsCorPele;
                     txtCpf.Text = Model.CarregarInscrições.dsCpf;
                     cboTurno2.Text = Model.CarregarInscrições.dsCurso2Periodo;
-                    cboTurno2.Text = Model.CarregarInscrições.dsCursoPeriodo;
+                    cboTurno1.Text = Model.CarregarInscrições.dsCursoPeriodo;
                     txtMaeEmail.Text = Model.CarregarInscrições.dsEmail;
                     txtEmailInscrito.Text = Model.CarregarInscrições.dsEmailInscrito;
                     cboEscolaridade.Text = Model.CarregarInscrições.dsEscolaridade;
@@ -214,9 +220,9 @@ namespace Nsf.App.UI
                     txtTelefone2.Text = Model.CarregarInscrições.dsTelefone2;
                     dtpRgEmissao.Value = Model.CarregarInscrições.dtEmissao;
                     txtNascimentoData.Value = Model.CarregarInscrições.dtNascimento;
-                    //cboAnoLetivo.Text = Model.CarregarInscrições.idAnoLetivo; Fazer um 
-                    //= Model.CarregarInscrições.idCurso;
-                    //= Model.CarregarInscrições.idCurso2;
+                    cboAnoLetivo.Text = anoLetivo.NrAno.ToString();
+                    cboCurso1.Text = curso.NmCurso;
+                    cboCurso2.Text = curso2.NmCurso;
                     txtContato.Text = Model.CarregarInscrições.nmContato;
                     txtNomeDaEscola.Text = Model.CarregarInscrições.nmEscola;
                     txtNumero.Text = Model.CarregarInscrições.nrResidenciaEndereco.ToString();
