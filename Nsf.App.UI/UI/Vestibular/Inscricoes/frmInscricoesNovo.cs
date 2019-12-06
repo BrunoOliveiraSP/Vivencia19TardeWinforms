@@ -292,6 +292,7 @@ namespace Nsf.App.UI
                 cboTipoDeEscola.Text = string.Empty;
                 txtRenda.Value = 0;
                 txtNome.Text = string.Empty;
+                txtRenda.Value = 0;
             }
             catch (Exception)
             {
