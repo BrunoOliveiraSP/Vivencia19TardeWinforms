@@ -28,23 +28,6 @@ namespace Nsf.App.UI
         {
             try
             {
-                /*if (id > 0)
-                {
-                    Nsf.App.Model.CursoModel curso = new Model.CursoModel();
-                    curso.NmCurso = txtCurso.Text;
-                    curso.BtAtivo = chkAtivo.Checked;
-                    curso.DtCriacao = System.DateTime.Now;
-                    curso.DtUltimaAlteracao = System.DateTime.Now;
-                    curso.DsCategoria = cboCategoria.Text;
-                    curso.NrCapacidadeMaxima = Convert.ToInt32(nudCapacidade.Value);
-                    curso.DsSigla = txtSigla.Text;
-
-                    API.CursoAPI api = new API.CursoAPI();
-                    api.Alterar(curso);
-
-                    MessageBox.Show("Curso alterado com sucesso.");
-                }*/
-
                 Nsf.App.Model.CursoModel curso = new Model.CursoModel();
 
                 curso.NmCurso = txtCurso.Text;

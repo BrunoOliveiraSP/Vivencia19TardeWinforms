@@ -54,7 +54,7 @@ namespace Nsf.App.UI.API
         {
             HttpClient client = new HttpClient();
 
-            string json = client.GetAsync("http://localhost:5000/Curso/" + NmCurso + "/")
+            string json = client.GetAsync("http://localhost:5000/Curso/NmCurso/" + NmCurso)
                                 .Result
                                 .Content
                                 .ReadAsStringAsync()
@@ -71,7 +71,7 @@ namespace Nsf.App.UI.API
         {
             HttpClient client = new HttpClient();
 
-            string json = client.GetAsync("http://localhost:5000/Curso/" + Sigla + "/")
+            string json = client.GetAsync("http://localhost:5000/Curso/Sigla/" + Sigla)
                                 .Result
                                 .Content
                                 .ReadAsStringAsync()
