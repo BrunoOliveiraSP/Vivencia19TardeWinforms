@@ -31,7 +31,7 @@ namespace Nsf.App.UI
             try
             {
                 Nsf.App.Model.SalaModel sala = new Model.SalaModel();
-
+               
                 sala.NmSala = txtSala.Text;
                 sala.NmLocal = cboInstituicao.Text;
                 sala.NrCapacidadeMaxima = Convert.ToInt32(nudCapacidade.Value);
@@ -46,29 +46,36 @@ namespace Nsf.App.UI
 
                 MessageBox.Show("Sala Alterada com sucesso.");
             }
-            catch (ArgumentException)
+            catch (ArgumentException ex)
             {
-                MessageBox.Show("Erro Grave Renicie Esta Maquina");
+                MessageBox.Show(ex.Message);
             }
         }
         public void CarregarCampos(Model.SalaModel model)
         {
             try
             {
-                Model.SalaModel sala = new Model.SalaModel();
+               
+              
+
+              
                 panelId.Visible = true;
-
-
-                txtSala.Text = sala.NmSala;
-                cboInstituicao.Text = sala.NmLocal;
-                nudCapacidade.Value = sala.NrCapacidadeMaxima;
-                chkAtivo.Checked = sala.BtAtivo;
-
+                lblId.Text = model.IdSala.ToString();
+                txtSala.Text = model.NmSala;
+                cboInstituicao.Text = model.NmLocal;
+                nudCapacidade.Text = model.NrCapacidadeMaxima.ToString();
+                chkAtivo.Checked = model.BtAtivo;
+                 
             }
-            catch (ArgumentException)
+            catch (ArgumentException ex)
             {
-                MessageBox.Show("Erro Grave Rencie A Maquina");
+                MessageBox.Show(ex.Message);
             }
+        }
+
+        private void frmSalaCadastrar_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

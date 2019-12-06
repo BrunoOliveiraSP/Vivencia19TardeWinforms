@@ -229,7 +229,7 @@
             this.ForeColor = System.Drawing.Color.Black;
             this.Name = "frmDisciplinasCadastrar";
             this.Size = new System.Drawing.Size(800, 600);
-         
+            this.Load += new System.EventHandler(this.frmDisciplinasCadastrar_Load);
             this.panelId.ResumeLayout(false);
             this.panelId.PerformLayout();
             this.ResumeLayout(false);

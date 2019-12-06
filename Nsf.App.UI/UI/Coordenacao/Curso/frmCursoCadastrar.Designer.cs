@@ -38,6 +38,7 @@
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.panelId = new System.Windows.Forms.Panel();
+            this.nudID = new System.Windows.Forms.NumericUpDown();
             this.label8 = new System.Windows.Forms.Label();
             this.chkAtivo = new System.Windows.Forms.CheckBox();
             this.nudCapacidade = new System.Windows.Forms.NumericUpDown();
@@ -58,13 +59,12 @@
             this.lbxDisciplinasDisponiveis = new System.Windows.Forms.ListBox();
             this.btnAlterar = new System.Windows.Forms.Button();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.nudID = new System.Windows.Forms.NumericUpDown();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.panelId.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudID)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudCapacidade)).BeginInit();
             this.tabPage2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nudID)).BeginInit();
             this.SuspendLayout();
             // 
             // btnSalvar
@@ -137,6 +137,7 @@
             this.tabPage1.Size = new System.Drawing.Size(736, 356);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Dados";
+            this.tabPage1.Click += new System.EventHandler(this.tabPage1_Click);
             // 
             // cboCategoria
             // 
@@ -184,6 +185,14 @@
             this.panelId.Size = new System.Drawing.Size(190, 58);
             this.panelId.TabIndex = 159;
             this.panelId.Visible = false;
+            // 
+            // nudID
+            // 
+            this.nudID.Enabled = false;
+            this.nudID.Location = new System.Drawing.Point(88, 18);
+            this.nudID.Name = "nudID";
+            this.nudID.Size = new System.Drawing.Size(88, 27);
+            this.nudID.TabIndex = 163;
             // 
             // label8
             // 
@@ -433,14 +442,6 @@
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
             // 
-            // nudID
-            // 
-            this.nudID.Enabled = false;
-            this.nudID.Location = new System.Drawing.Point(88, 18);
-            this.nudID.Name = "nudID";
-            this.nudID.Size = new System.Drawing.Size(88, 27);
-            this.nudID.TabIndex = 163;
-            // 
             // frmCursoCadastrar
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -459,10 +460,10 @@
             this.tabPage1.PerformLayout();
             this.panelId.ResumeLayout(false);
             this.panelId.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudID)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudCapacidade)).EndInit();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nudID)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

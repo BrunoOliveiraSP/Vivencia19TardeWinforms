@@ -1028,6 +1028,7 @@
             this.ForeColor = System.Drawing.Color.Black;
             this.Name = "frmProfessorCadastrar";
             this.Size = new System.Drawing.Size(800, 598);
+            this.Load += new System.EventHandler(this.frmProfessorCadastrar_Load);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();

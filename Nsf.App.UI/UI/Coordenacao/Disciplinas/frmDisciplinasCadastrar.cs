@@ -102,9 +102,11 @@ namespace Nsf.App.UI
         {
            
         }
-       
 
-      
+        private void frmDisciplinasCadastrar_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 
 }

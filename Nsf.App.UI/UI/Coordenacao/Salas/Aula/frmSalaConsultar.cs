@@ -43,7 +43,7 @@ namespace Nsf.App.UI
 
                 }
             }
-            if (e.ColumnIndex == 3)
+            if (e.ColumnIndex == 4)
             {
                 Model.SalaModel sala = DataGridSalas.CurrentRow.DataBoundItem as Model.SalaModel;
 

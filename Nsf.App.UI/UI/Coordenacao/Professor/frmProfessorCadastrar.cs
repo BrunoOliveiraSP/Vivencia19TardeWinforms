@@ -171,5 +171,10 @@ namespace Nsf.App.UI
         {
 
         }
+
+        private void frmProfessorCadastrar_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
