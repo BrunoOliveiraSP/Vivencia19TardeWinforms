@@ -86,7 +86,53 @@ namespace Nsf.App.API.Client
             HttpClient client = new HttpClient();
             var resp = client.DeleteAsync("http://localhost:5000/Disciplina/" + id + "/").Result;
         }
+        public void InserirCursoDisciplina(Nsf.App.Model.CursoDisciplinaModel cd)
+        {
 
+            HttpClient client = new HttpClient();
+
+            string json = JsonConvert.SerializeObject(cd);
+            StringContent body = new StringContent(json, Encoding.UTF8, "application/json");
+
+            var resp = client.PostAsync("http://localhost:5000/Disciplina/InserirCursoDisciplina/", body)
+                             .Result
+                             .Content
+                             .ReadAsStringAsync()
+                             .Result;
+
+            VerificarErro(resp);
+        }
+        public void AlterarCursoDisciplina(Nsf.App.Model.CursoDisciplinaModel cd)
+        {
+
+            HttpClient client = new HttpClient();
+
+            string json = JsonConvert.SerializeObject(cd);
+            StringContent body = new StringContent(json, Encoding.UTF8, "application/json");
+
+            var resp = client.PostAsync("http://localhost:5000/Disciplina/AlterarCursoDisciplina", body)
+                             .Result
+                             .Content
+                             .ReadAsStringAsync()
+                             .Result;
+
+            VerificarErro(resp);
+        }
+        public BindingList<Nsf.App.Model.DisciplinaModel> ListarCursoDisciplina(int id)
+        {
+            HttpClient client = new HttpClient();
+
+            string json = client.GetAsync("http://localhost:5000/Disciplina/ListarCursoDisciplina/" + id + "/")
+                                .Result
+                                .Content
+                                .ReadAsStringAsync()
+                                .Result;
+
+            BindingList<Nsf.App.Model.DisciplinaModel> lista =
+                JsonConvert.DeserializeObject<BindingList<Nsf.App.Model.DisciplinaModel>>(json);
+
+            return lista;
+        }
 
         private void VerificarErro(string respostaAPI)
         {
@@ -96,5 +142,7 @@ namespace Nsf.App.API.Client
                 throw new ArgumentException(erro.Mensagem);
             }
         }
+       
+        
     }
 }
