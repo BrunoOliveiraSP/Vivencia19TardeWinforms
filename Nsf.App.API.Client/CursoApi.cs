@@ -23,11 +23,13 @@ namespace Nsf.App.UI.API
                              .ReadAsStringAsync()
                              .Result;
 
-           int id  = JsonConvert.DeserializeObject<int>(resp);
-
-           
             this.VerificarErro(resp);
 
+
+            int id  = JsonConvert.DeserializeObject<int>(resp);
+
+           
+            
             return id;
         }
 

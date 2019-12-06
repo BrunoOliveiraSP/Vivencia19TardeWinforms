@@ -13,7 +13,7 @@ namespace Nsf.App.API.Client
     {
         
 
-        public void Inserir(Nsf.App.Model.DisciplinaModel disci)
+        public Model.DisciplinaModel Inserir(Nsf.App.Model.DisciplinaModel disci)
         {
            
             HttpClient client = new HttpClient();
@@ -27,7 +27,11 @@ namespace Nsf.App.API.Client
                              .ReadAsStringAsync()
                              .Result;
 
+
             VerificarErro(resp);
+
+            disci = JsonConvert.DeserializeObject<Model.DisciplinaModel>(resp);
+            return disci;
         }
        
          

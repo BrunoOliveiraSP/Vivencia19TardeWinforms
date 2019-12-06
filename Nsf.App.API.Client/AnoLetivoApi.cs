@@ -41,9 +41,13 @@ namespace Nsf.App.API.Client
 
         public void Remover(int id)
         {
-            var resp = client.DeleteAsync("http://localhost:5000/AnoLetivo/" + id).Result;
+            var resp = client.DeleteAsync("http://localhost:5000/AnoLetivo/" + id)
+                .Result
+                .Content
+                .ReadAsStringAsync()
+                .Result;
 
-            
+            VerificarErro(resp);
         }
 
         public void Alterar(Model.AnoLetivoModel ano)
@@ -59,6 +63,7 @@ namespace Nsf.App.API.Client
 
             VerificarErro(resp);
         }
+
         private void VerificarErro(string respostaAPI)
         {
             if (respostaAPI.Contains("codigoErro"))

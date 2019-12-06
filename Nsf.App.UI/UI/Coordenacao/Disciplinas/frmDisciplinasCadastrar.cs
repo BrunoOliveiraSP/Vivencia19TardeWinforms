@@ -1,5 +1,10 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Windows.Forms;
+using System.Linq;
+
+using System.Linq.Expressions;
 
 namespace Nsf.App.UI
 {
@@ -9,15 +14,16 @@ namespace Nsf.App.UI
         public frmDisciplinasCadastrar()
         {
             InitializeComponent();
-           
         }
+
+        Model.DisciplinaModel disciplina;
+
+
         private void btnSalvar_Click(object sender, EventArgs e)
         {
             try
             {
-                int id = Convert.ToInt32(lblId.Text);
-
-                if (id > 0)
+                if (disciplina != null && disciplina.IdDisciplina > 0)
                 {
                     Alterar();
                 }
@@ -26,25 +32,33 @@ namespace Nsf.App.UI
                     Inserir();
                 }
             }
-            catch(ArgumentException ex)
+            catch (ArgumentException ex)
             {
                 MessageBox.Show(ex.Message);
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ocorreu um erro. Entre em contato com o administrador.");
+            }
+
         }
         public void Inserir()
         {
             try
             {
-                Nsf.App.Model.DisciplinaModel model = new Model.DisciplinaModel();
+                disciplina = new Model.DisciplinaModel();
 
-                model.NmDisciplina = txtDisciplina.Text;
-                model.DsSigla = txtSigla.Text;
-                model.DtInclusao = dtpinclusao.Value;
-                model.DtUltimaAlteracao = System.DateTime.Now;
-                model.BtAtivo = Convert.ToBoolean(chkAtivo.Checked);
+                disciplina.NmDisciplina = txtDisciplina.Text;
+                disciplina.DsSigla = txtSigla.Text;
+                disciplina.DtInclusao = dtpinclusao.Value;
+                disciplina.DtUltimaAlteracao = System.DateTime.Now;
+                disciplina.BtAtivo = Convert.ToBoolean(chkAtivo.Checked);
 
                 Nsf.App.API.Client.DisciplinaAPI api = new App.API.Client.DisciplinaAPI();
-                api.Inserir(model);
+                disciplina = api.Inserir(disciplina);
+
+                panelId.Visible = true;
+                lblId.Text = disciplina.IdDisciplina.ToString();
 
                 MessageBox.Show("Disciplina Inserida com sucesso.");
             }
@@ -52,24 +66,45 @@ namespace Nsf.App.UI
             {
                 MessageBox.Show(ex.Message);
             }
-            
         }
+
+        public List<Model.DisciplinaModel> Where(List<Model.DisciplinaModel> lista, 
+                                                 Func<Model.DisciplinaModel, bool> where)
+        {
+            List<Model.DisciplinaModel> l = new List<Model.DisciplinaModel>();
+            foreach (var item in lista)
+            {
+                bool b = where(item);
+                if (b == true)
+                    l.Add(item);
+            }
+            return l;
+        }
+
+        public int Somar(int a, int b)
+        {
+            return a + b;
+        }
+        
+        public int Somar(int a, int b, Func<int, int, int> s)
+        {
+            return s(a, b);
+        }
+
         public void Alterar()
         {
 
             try
             {
-                Nsf.App.Model.DisciplinaModel model = new Model.DisciplinaModel();
-
-                model.IdDisciplina = Convert.ToInt32(lblId.Text);
-                model.NmDisciplina = txtDisciplina.Text;
-                model.DsSigla = txtSigla.Text;
-                model.DtInclusao = dtpinclusao.Value;
-                model.DtUltimaAlteracao = System.DateTime.Now;
-                model.BtAtivo = Convert.ToBoolean(chkAtivo.Checked);
+                disciplina.IdDisciplina = disciplina.IdDisciplina;
+                disciplina.NmDisciplina = txtDisciplina.Text;
+                disciplina.DsSigla = txtSigla.Text;
+                disciplina.DtInclusao = dtpinclusao.Value;
+                disciplina.DtUltimaAlteracao = System.DateTime.Now;
+                disciplina.BtAtivo = Convert.ToBoolean(chkAtivo.Checked);
 
                 Nsf.App.API.Client.DisciplinaAPI api = new App.API.Client.DisciplinaAPI();
-                api.Alterar(model);
+                api.Alterar(disciplina);
 
                 MessageBox.Show("Disciplina Alterada com sucesso.");
             }
@@ -90,6 +125,8 @@ namespace Nsf.App.UI
                 dtpinclusao.Value = model.DtInclusao;
                 model.DtUltimaAlteracao = model.DtInclusao;
                 chkAtivo.Checked = model.BtAtivo;
+
+                disciplina = model;
             }
             catch (ArgumentException ex)
             {

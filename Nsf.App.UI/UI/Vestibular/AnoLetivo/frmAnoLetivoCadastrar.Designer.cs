@@ -509,9 +509,9 @@
             this.tabModulos.Controls.Add(this.label15);
             this.tabModulos.Controls.Add(this.label14);
             this.tabModulos.Controls.Add(this.cboModuloTipo);
-            this.tabModulos.Location = new System.Drawing.Point(4, 25);
+            this.tabModulos.Location = new System.Drawing.Point(4, 33);
             this.tabModulos.Name = "tabModulos";
-            this.tabModulos.Size = new System.Drawing.Size(726, 384);
+            this.tabModulos.Size = new System.Drawing.Size(726, 376);
             this.tabModulos.TabIndex = 2;
             this.tabModulos.Text = "Módulos";
             this.tabModulos.UseVisualStyleBackColor = true;

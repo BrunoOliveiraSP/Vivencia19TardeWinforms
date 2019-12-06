@@ -44,13 +44,15 @@ namespace Nsf.App.API.Client
 		{
 			HttpClient NomeAnoConsulta = new HttpClient();
 
-			string json = NomeAnoConsulta.GetAsync("http://localhost:5000/Inscricao/ConsultarPorNomeEAno/"+ nome + "/" + ano)
-										.Result
+            var json = NomeAnoConsulta.GetAsync("http://localhost:5000/Inscricao/ConsultarPorNomeEAno/" + nome + "/" + ano)
+                                        .Result;
+
+            string jjj = json
 										.Content
 										.ReadAsStringAsync()
 										.Result;
-			VerificarErro(json);
-			return JsonConvert.DeserializeObject<List<Model.InscricaoModel>>(json);
+			VerificarErro(jjj);
+			return JsonConvert.DeserializeObject<List<Model.InscricaoModel>>(jjj);
 				                    
 		}
 

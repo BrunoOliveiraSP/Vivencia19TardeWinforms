@@ -13,6 +13,8 @@ namespace Nsf.App.UI
         public frmAnoLetivoCadastrar()
         {
             InitializeComponent();
+            //((Control)tabTurmas).Enabled = false;
+
             CarregarGrid();
             CarregarCurso();
         }
@@ -85,6 +87,7 @@ namespace Nsf.App.UI
             cboTurmaCurso.DisplayMember = nameof(Model.CursoModel.NmCurso);
             cboTurmaCurso.DataSource = lista;
         }
+
         public void CarregarGrid()
         {
             try
@@ -111,7 +114,7 @@ namespace Nsf.App.UI
                     Model.TurmaModell turma = dgvTurma.CurrentRow.DataBoundItem as Model.TurmaModell;
                     Model.CursoModel combo = cboTurmaCurso.SelectedItem as Model.CursoModel;
 
-                    turma.IdAnoLetivo = 2;
+                    turma.IdAnoLetivo = 2; // ERRO MORTAL
                     cboTurmaCurso.Text = combo.NmCurso;
                     cboTurmaPeriodo.Text = turma.TpPeriodo;
                     txtTurmaNome.Text = turma.NmTurma;

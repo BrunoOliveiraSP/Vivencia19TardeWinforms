@@ -30,7 +30,12 @@ namespace Nsf.App.API.Client
             string json = JsonConvert.SerializeObject(api);
             StringContent body = new StringContent(json, Encoding.UTF8, "application/json");
 
-            var resp = cliente.PostAsync("http://localhost:5000/Sala/Inserir/", body).Result;
+            var resp = cliente.PostAsync("http://localhost:5000/Sala/Inserir/", body)
+                .Result
+                .Content
+                .ReadAsStringAsync()
+                .Result
+                ;
         }
         public List<Model.SalaModel> ListarTudo()
         {
