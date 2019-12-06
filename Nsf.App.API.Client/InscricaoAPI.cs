@@ -83,6 +83,32 @@ namespace Nsf.App.API.Client
             this.VerificarErro(resp);
         }
 
+        public Model.CursoModel ConsultarCurso(int id)
+        {
+            HttpClient NomeAnoConsulta = new HttpClient();
+
+            string json = NomeAnoConsulta.GetAsync("http://localhost:5000/Inscricao/ConsultarCurso/" + id)
+                                        .Result
+                                        .Content
+                                        .ReadAsStringAsync()
+                                        .Result;
+            VerificarErro(json);
+            return JsonConvert.DeserializeObject<Model.CursoModel>(json);
+        }
+
+        public Model.AnoLetivoModel ConsultarAnoLetivo(int id)
+        {
+            HttpClient NomeAnoConsulta = new HttpClient();
+
+            string json = NomeAnoConsulta.GetAsync("http://localhost:5000/Inscricao/ConsultarAnoLetivo/" + id)
+                                        .Result
+                                        .Content
+                                        .ReadAsStringAsync()
+                                        .Result;
+            VerificarErro(json);
+            return JsonConvert.DeserializeObject<Model.AnoLetivoModel>(json);
+        }
+
         private void VerificarErro(string respostaAPI)
         {
             if (respostaAPI.Contains("codigoErro"))

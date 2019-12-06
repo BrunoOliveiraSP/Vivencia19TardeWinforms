@@ -20,6 +20,6 @@ namespace Nsf.App.Model
 
         public int NrCapacidadeMax { get; set; }
 
-        public string NmCurso { get { return this.NmCurso; } }
+       
     }
 }
