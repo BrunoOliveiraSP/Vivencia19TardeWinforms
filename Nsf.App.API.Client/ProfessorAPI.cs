@@ -66,7 +66,7 @@ namespace Nsf.App.API.Client
             }
         }
 
-        public void Inserir(ProfessorRequest professor)
+        public Model.ProfessorRequest Inserir(ProfessorRequest professor)
         {
             _client = new HttpClient();
 
@@ -74,6 +74,8 @@ namespace Nsf.App.API.Client
             StringContent body = new StringContent(json, Encoding.UTF8, "application/json");
 
             var resposta = _client.PostAsync("http://localhost:5000/Professor", body).Result;
+
+            return professor;
         }
 
         List<ProfessorRequest> ICrud<ProfessorRequest>.ListarTodos()

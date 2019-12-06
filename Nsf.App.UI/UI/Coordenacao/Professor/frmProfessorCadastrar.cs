@@ -18,8 +18,9 @@ namespace Nsf.App.UI
 
         public void CarregarCampos(ProfessorRequest professor)
         {
-            txtLogin.Text = professor.Login.DsLogin;
 
+            professor.Professor.IdProfessor = professor.Professor.IdProfessor;
+            txtLogin.Text = professor.Login.DsLogin;
             lblId.Text = professor.Professor.IdProfessor.ToString();
             txtNome.Text = professor.Professor.NmProfessor;
             txtPai.Text = professor.Professor.NmPai;
@@ -120,32 +121,39 @@ namespace Nsf.App.UI
                 }
                 else
                 {
-             
+                    Model.ProfessorModel prof = new ProfessorModel();
+                    Model.LoginModel log = new LoginModel();
 
-                    professor.Professor.NmProfessor = txtNome.Text;
-                    professor.Professor.NmPai = txtPai.Text;
-                    professor.Professor.NmMae = txtNome.Text;
-                    professor.Professor.BtAtivo = chkAtivo.Checked;
-                    professor.Professor.DsCelular = txtCelular.Text;
-                    professor.Professor.DsCpf = txtCpf.Text;
-                    professor.Professor.DsCurso = txtCurso.Text;
-                    professor.Professor.DsCvLattes = txtCvLattes.Text;
-                    professor.Professor.DsEmail = txtEmail.Text;
-                    professor.Professor.DsEstado = txtEstadoNasc.Text;
-                    professor.Professor.DsFaculdade = txtFaculdade.Text;
-                    professor.Professor.DsRg = txtRG.Text;
-                    professor.Professor.DsRgEmissor = txtRGEmissao.Text;
-                    professor.Professor.DsRgOrgao = txtRGOrgao.Text;
-                    professor.Professor.DsTelefone = txtTelefone.Text;
-                    professor.Professor.DtFaculdadeFim = dtpFaculdadeFim.Value;
-                    professor.Professor.DtFaculdadeInicio = dtpFaculdadeInicio.Value;
-                    professor.Professor.DtNascimento = dtpNascimento.Value;
-                    professor.Professor.IdLogin = Convert.ToInt32(txtLogin.Text);
-                    professor.Professor.NrAnoPrimeiroEmprego = Convert.ToInt32(nudPrimeiroEmprego.Value);
-                    professor.Professor.TpContratacao = cboContrato.Text;
+                    log.DsLogin = txtLogin.Text;
+                    log.BtAtivo = chkAtivo.Checked;
+                    prof.NmProfessor = txtNome.Text;
+                    prof.NmPai = txtPai.Text;
+                    prof.NmMae = txtNome.Text;
+                    prof.DsCelular = txtCelular.Text;
+                    prof.DsCpf = txtCpf.Text;
+                    prof.DsCurso = txtCurso.Text;
+                    prof.DsCvLattes = txtCvLattes.Text;
+                    prof.DsEmail = txtEmail.Text;
+                    prof.DsEstado = txtEstadoNasc.Text;
+                    prof.DsFaculdade = txtFaculdade.Text;
+                    prof.DsRg = txtRG.Text;
+                    prof.DsRgEmissor = txtRGEmissao.Text;
+                    prof.DsRgOrgao = txtRGOrgao.Text;
+                    prof.DsTelefone = txtTelefone.Text;
+                    prof.DtFaculdadeFim = dtpFaculdadeFim.Value;
+                    prof.DtFaculdadeInicio = dtpFaculdadeInicio.Value;
+                    prof.DtNascimento = dtpNascimento.Value;
+                    prof.NrAnoPrimeiroEmprego = Convert.ToInt32(nudPrimeiroEmprego.Value);
+                    prof.TpContratacao = cboContrato.Text;
+
+                    professor.Professor = prof;
+                    professor.Login = log;
 
                     ProfessorAPI api = new ProfessorAPI();
-                    api.Inserir(professor);
+                    professor = api.Inserir(professor);
+
+                    lblId.Text = professor.Professor.IdProfessor.ToString();
+                    txtLogin.Text = professor.Login.IdLogin.ToString();
 
                     MessageBox.Show(@"Salvo com sucesso!", "NSF", MessageBoxButtons.OK);
 
@@ -158,6 +166,9 @@ namespace Nsf.App.UI
             }
         }
 
+        private void btnReset_Click(object sender, EventArgs e)
+        {
 
+        }
     }
 }
