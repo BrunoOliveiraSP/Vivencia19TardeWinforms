@@ -13,11 +13,10 @@ namespace Nsf.App.Model
         public string IdAluno { get; set; }
         public int NmTurma { get; set; }
         public int NrChamada { get; set; }
-        public int CdRa { get; set; }
-        public int TpStatus { get; set; }
-        public int BtAtivo { get; set; }
-        public int BtPermissaoAtraso { get; set; }
-        public int DsObservacao { get; set; }
-
+        public string CdRa { get; set; }
+        public string TpStatus { get; set; }
+        public bool BtAtivo { get; set; }
+        public bool BtPermissaoAtraso { get; set; }
+        public string DsObservacao { get; set; }
     }
 }
