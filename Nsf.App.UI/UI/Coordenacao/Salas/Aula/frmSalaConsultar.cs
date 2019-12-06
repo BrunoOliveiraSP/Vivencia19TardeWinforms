@@ -43,6 +43,27 @@ namespace Nsf.App.UI
 
                 }
             }
+            if (e.ColumnIndex == 3)
+            {
+                Model.SalaModel sala = DataGridSalas.CurrentRow.DataBoundItem as Model.SalaModel;
+
+                Nsf.App.Model.SalaModel model = new Model.SalaModel();
+
+
+                model.IdSala = sala.IdSala;
+                model.NmSala = sala.NmSala;
+                model.NmLocal = sala.NmLocal;
+                model.NrCapacidadeMaxima = sala.NrCapacidadeMaxima;
+                model.DtInclusao = sala.DtInclusao;
+                model.BtAtivo = sala.BtAtivo;
+                model.DtAlteracao = sala.DtAlteracao;
+
+                frmSalaCadastrar tela = new frmSalaCadastrar();
+
+                frmInicial.Current.OpenScreen(tela);
+                tela.CarregarCampos(model);
+
+            }
         }
 
         private void txtInstituicao_TextChanged(object sender, EventArgs e)
@@ -59,6 +80,11 @@ namespace Nsf.App.UI
             {
                 this.Consultar();
             }
+        }
+
+        private void DataGridSalas_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }
