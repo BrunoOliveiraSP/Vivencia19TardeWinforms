@@ -503,7 +503,6 @@
             this.lblId.Size = new System.Drawing.Size(19, 21);
             this.lblId.TabIndex = 156;
             this.lblId.Text = "0";
-
             // 
             // txtCpf
             // 
@@ -1014,7 +1013,7 @@
             this.btnReset.Text = "Resetar Senha";
             this.btnReset.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnReset.UseVisualStyleBackColor = false;
-
+            this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
             // 
             // frmProfessorCadastrar
             // 

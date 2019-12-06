@@ -50,14 +50,13 @@ namespace Nsf.App.API.Client
 
             var resp = client.DeleteAsync("http://localhost:5000/Sala/Remover/" + id).Result;
         }
-        public void Alterar(Model.SalaModel sala)
+        public void alterar(Model.SalaModel tabela)
         {
-            HttpClient cliente = new HttpClient();
+            string json = JsonConvert.SerializeObject(tabela);
 
-            string json = JsonConvert.SerializeObject(sala);
             StringContent body = new StringContent(json, Encoding.UTF8, "application/json");
+            var res = client.PutAsync("http://localhost/5000/Sala/Alterar", body).Result;
 
-            var resp = cliente.PutAsync("http://localhost:5000/Sala/Alterar/", body).Result;
         }
     }
 }

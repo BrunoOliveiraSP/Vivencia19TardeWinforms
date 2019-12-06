@@ -10,7 +10,7 @@ namespace Nsf.App.UI.API
 {
     public class CursoAPI
     {
-        public void Inserir(Nsf.App.Model.CursoModel curso)
+        public int Inserir(Nsf.App.Model.CursoModel curso)
         {
             HttpClient client = new HttpClient();
 
@@ -23,7 +23,12 @@ namespace Nsf.App.UI.API
                              .ReadAsStringAsync()
                              .Result;
 
+           int id  = JsonConvert.DeserializeObject<int>(resp);
+
+           
             this.VerificarErro(resp);
+
+            return id;
         }
 
         public List<Nsf.App.Model.CursoModel> ConsultarTodos()

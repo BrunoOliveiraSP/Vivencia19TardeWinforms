@@ -44,24 +44,23 @@ namespace Nsf.App.UI
             if (r == DialogResult.Yes)
             {
                 ProfessorAPI api = new ProfessorAPI();
-                api.Remover(Convert.ToInt32(professor.IdProfessor));
+                api.Remover(professor.IdProfessor);
 
-                MessageBox.Show(@"Atividade Removida com sucesso!");
+                MessageBox.Show(@"Professor Removido com sucesso!");
                 this.ListarTodos();
             }
         }
 
         private void Alterar()
         {
-            ProfessorRequest modelo = dgvProfessores.CurrentRow.DataBoundItem as ProfessorRequest;
+            ProfessorRequest professor = dgvProfessores.CurrentRow.DataBoundItem as ProfessorRequest;
 
-            frmProfessorCadastrar telaCadastrar = new frmProfessorCadastrar();
-            telaCadastrar.CarregarCampos(modelo);
+            frmProfessorCadastrar tela = new frmProfessorCadastrar();
+            tela.CarregarCampos(professor);
 
-            frmInicial.Current.OpenScreen(telaCadastrar);
+            frmInicial.Current.OpenScreen(tela);
+
             this.Hide();
-
-            frmInicial.Current.OpenScreen(new frmProfessorCadastrar());
         }
 
         private void txtNome_TextChanged(object sender, EventArgs e)
@@ -69,17 +68,28 @@ namespace Nsf.App.UI
             this.ListarPorNome();
         }
 
-        private void dgvProfessores_CellClick(object sender, DataGridViewCellEventArgs e)
+
+        private void dgvProfessores_CellClick_1(object sender, DataGridViewCellEventArgs e)
         {
-            if(e.ColumnIndex == 4)
+            if (e.ColumnIndex == 5)
             {
                 this.Alterar();
             }
-            if (e.ColumnIndex == 5)
-            {
-                this.Deletar();
-            }
 
+            if (e.ColumnIndex == 6)
+            {
+                Model.ProfessorRequest professor = new ProfessorRequest();
+
+                DialogResult r = MessageBox.Show("Deseja remover ?", "Remover", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if(r == DialogResult.Yes)
+                {
+                    ProfessorAPI api = new ProfessorAPI();
+                    api.Remover(professor.Professor.IdProfessor);
+
+                    MessageBox.Show("removido com sucessso");
+                }
+
+            }
         }
     }
 }
