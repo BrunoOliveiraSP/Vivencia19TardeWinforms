@@ -14,5 +14,7 @@ namespace Nsf.App.Model
         public int NrOrdem { get; set; }
         public int QtInscritos { get; set; }
 
+        public string NmSala { get; set; }
+        public string NmLocal { get; set; }
     }
 }
