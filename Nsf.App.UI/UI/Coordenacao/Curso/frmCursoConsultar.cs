@@ -17,12 +17,19 @@ namespace Nsf.App.UI
             try
             {
                 string nmcurso = txtCurso.Text;
+                if(nmcurso == string.Empty)
+                {
+                    this.Carregar();
+                }
+                else
+                {
+                    Nsf.App.UI.API.CursoAPI curso = new API.CursoAPI();
+                    List<Nsf.App.Model.CursoModel> lista = curso.ConsultarPorCurso(nmcurso);
 
-                Nsf.App.UI.API.CursoAPI curso = new API.CursoAPI();
-                List<Nsf.App.Model.CursoModel> lista = curso.ConsultarPorCurso(nmcurso);
-
-                dgvCursos.AutoGenerateColumns = false;
-                dgvCursos.DataSource = lista;
+                    dgvCursos.AutoGenerateColumns = false;
+                    dgvCursos.DataSource = lista;
+                }
+                
             }
             catch (ArgumentException ex)
             {
@@ -36,12 +43,19 @@ namespace Nsf.App.UI
             try
             {
                 string sigla = txtSigla.Text;
+                
+                if(sigla == string.Empty)
+                {
+                    this.Carregar();
+                }
+                else
+                {
+                    Nsf.App.UI.API.CursoAPI curso = new API.CursoAPI();
+                    List<Nsf.App.Model.CursoModel> lista = curso.ConsultarPorSigla(sigla);
 
-                Nsf.App.UI.API.CursoAPI curso = new API.CursoAPI();
-                List<Nsf.App.Model.CursoModel> lista = curso.ConsultarPorSigla(sigla);
-
-                dgvCursos.AutoGenerateColumns = false;
-                dgvCursos.DataSource = lista;
+                    dgvCursos.AutoGenerateColumns = false;
+                    dgvCursos.DataSource = lista;
+                }
             }
             catch (ArgumentException ex)
             {
