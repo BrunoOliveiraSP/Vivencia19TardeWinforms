@@ -22,12 +22,14 @@ namespace Nsf.App.API.Client
                              .Content
                              .ReadAsStringAsync()
                              .Result;
-          
+
+            VerificarErro(resp);
+
         }
 
         public List<Nsf.App.Model.TurmaModell> ListarTodos()
         {
-            string json = client.GetAsync("http://localhost:5000/Turma")          
+            string json = client.GetAsync("http://localhost:5000/Turma/")          
                                 .Result
                                 .Content
                                 .ReadAsStringAsync()
@@ -36,6 +38,8 @@ namespace Nsf.App.API.Client
             List<Nsf.App.Model.TurmaModell> lista = JsonConvert.DeserializeObject<List<Nsf.App.Model.TurmaModell>>(json);
 
             return lista;
+
+
         }
 
         public void Remover(int id)
@@ -52,7 +56,17 @@ namespace Nsf.App.API.Client
                              .Result
                              .Content
                              .ReadAsStringAsync()
-                             .Result; 
+                             .Result;
+
+            VerificarErro(resp);
+        }
+        private void VerificarErro(string respostaAPI)
+        {
+            if (respostaAPI.Contains("codigoErro"))
+            {
+                Model.ErroModel erro = JsonConvert.DeserializeObject<Model.ErroModel>(respostaAPI);
+                throw new ArgumentException(erro.Mensagem);
+            }
         }
     }
 }

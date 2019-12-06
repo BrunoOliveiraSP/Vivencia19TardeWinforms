@@ -11,7 +11,7 @@ namespace Nsf.App.API.Client
    public class AnoLetivoApi
    {
         HttpClient client = new HttpClient();
-
+        
         public void CadastrarAnoLetivo(Model.AnoLetivoModel ano)
         {
             string json = JsonConvert.SerializeObject(ano);
@@ -21,7 +21,9 @@ namespace Nsf.App.API.Client
                             .Result
                              .Content
                              .ReadAsStringAsync()
-                             .Result; 
+                             .Result;
+
+            VerificarErro(resp);
         }
 
         public List<Model.AnoLetivoModel> ListarTodos()
@@ -40,6 +42,8 @@ namespace Nsf.App.API.Client
         public void Remover(int id)
         {
             var resp = client.DeleteAsync("http://localhost:5000/AnoLetivo/" + id).Result;
+
+            
         }
 
         public void Alterar(Model.AnoLetivoModel ano)
@@ -51,7 +55,17 @@ namespace Nsf.App.API.Client
                           .Result
                              .Content
                              .ReadAsStringAsync()
-                             .Result; 
+                             .Result;
+
+            VerificarErro(resp);
         }
-   }
+        private void VerificarErro(string respostaAPI)
+        {
+            if (respostaAPI.Contains("codigoErro"))
+            {
+                Model.ErroModel erro = JsonConvert.DeserializeObject<Model.ErroModel>(respostaAPI);
+                throw new ArgumentException(erro.Mensagem);
+            }
+        }
+    }
 }
