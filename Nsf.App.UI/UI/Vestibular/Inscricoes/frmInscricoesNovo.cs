@@ -291,6 +291,8 @@ namespace Nsf.App.UI
                 nudPessoasTrabalhamCasa.Value = 0;
                 cboTipoDeEscola.Text = string.Empty;
                 txtRenda.Value = 0;
+                txtNome.Text = string.Empty;
+                txtRenda.Value = 0;
             }
             catch (Exception)
             {
