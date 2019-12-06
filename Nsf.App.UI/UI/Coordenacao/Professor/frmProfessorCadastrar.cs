@@ -126,6 +126,7 @@ namespace Nsf.App.UI
 
                     log.DsLogin = txtLogin.Text;
                     log.BtAtivo = chkAtivo.Checked;
+                    prof.BtAtivo = chkAtivo.Checked;
                     prof.NmProfessor = txtNome.Text;
                     prof.NmPai = txtPai.Text;
                     prof.NmMae = txtNome.Text;
