@@ -87,6 +87,7 @@
             this.btnVestibularBaixo.Text = "Baixo";
             this.btnVestibularBaixo.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnVestibularBaixo.UseVisualStyleBackColor = false;
+            this.btnVestibularBaixo.Click += new System.EventHandler(this.btnVestibularBaixo_Click);
             // 
             // btnVestibularCima
             // 
@@ -204,18 +205,19 @@
             this.dgvSalasVestibular.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvSalasVestibular.Size = new System.Drawing.Size(729, 322);
             this.dgvSalasVestibular.TabIndex = 180;
+            this.dgvSalasVestibular.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvSalasVestibular_CellClick);
             // 
             // Registro
             // 
             this.Registro.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Registro.DataPropertyName = "nm_local";
+            this.Registro.DataPropertyName = "NmLocal";
             this.Registro.HeaderText = "Instituição";
             this.Registro.Name = "Registro";
             this.Registro.ReadOnly = true;
             // 
             // Nome
             // 
-            this.Nome.DataPropertyName = "nm_sala";
+            this.Nome.DataPropertyName = "NmSala";
             this.Nome.HeaderText = "Sala";
             this.Nome.Name = "Nome";
             this.Nome.ReadOnly = true;
@@ -223,7 +225,7 @@
             // 
             // Column3
             // 
-            this.Column3.DataPropertyName = "ds_periodo";
+            this.Column3.DataPropertyName = "DsPeriodo";
             this.Column3.HeaderText = "Período";
             this.Column3.Name = "Column3";
             this.Column3.ReadOnly = true;
@@ -231,7 +233,7 @@
             // 
             // Column5
             // 
-            this.Column5.DataPropertyName = "nr_ordem";
+            this.Column5.DataPropertyName = "NrOrdem";
             this.Column5.HeaderText = "Ordem";
             this.Column5.Name = "Column5";
             this.Column5.ReadOnly = true;
@@ -272,6 +274,7 @@
             this.btnVestibularAdd.Text = "Adicionar";
             this.btnVestibularAdd.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnVestibularAdd.UseVisualStyleBackColor = false;
+            this.btnVestibularAdd.Click += new System.EventHandler(this.btnVestibularAdd_Click);
             // 
             // label11
             // 
@@ -301,10 +304,9 @@
             this.cboPeriodos.Font = new System.Drawing.Font("Century Gothic", 12F);
             this.cboPeriodos.FormattingEnabled = true;
             this.cboPeriodos.Items.AddRange(new object[] {
-            "Selecione",
-            "Ação Social NSF",
-            "Cedesp",
-            "Calhim"});
+            "Manhã",
+            "Tarde",
+            "Noite"});
             this.cboPeriodos.Location = new System.Drawing.Point(608, 146);
             this.cboPeriodos.Name = "cboPeriodos";
             this.cboPeriodos.Size = new System.Drawing.Size(138, 29);
@@ -333,6 +335,7 @@
             this.ForeColor = System.Drawing.Color.Black;
             this.Name = "frmSalaVestibularCadastrar";
             this.Size = new System.Drawing.Size(800, 600);
+            this.Load += new System.EventHandler(this.frmSalaVestibularCadastrar_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvSalasVestibular)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -354,12 +357,12 @@
         private System.Windows.Forms.Button btnVestibularAdd;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.ComboBox cboPeriodos;
         private System.Windows.Forms.DataGridViewTextBoxColumn Registro;
         private System.Windows.Forms.DataGridViewTextBoxColumn Nome;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
         private System.Windows.Forms.DataGridViewImageColumn Column2;
         private System.Windows.Forms.DataGridViewImageColumn Column1;
-        private System.Windows.Forms.ComboBox cboPeriodos;
     }
 }

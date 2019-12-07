@@ -1,14 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Nsf.App.Model
+namespace Nsf.App.Model.Matricula
 {
-    class FichaMedicaModel
+    public class FichaMedicaModel
     {
-        public  int IdAlunoFIchaMedica { get; set; }
+        public int IdAlunoFichaMedica { get; set; }
         public int IdAluno { get; set; }
         public string DsAlergias { get; set; }
         public string DsCongenitas { get; set; }
@@ -16,7 +12,8 @@ namespace Nsf.App.Model
         public string DsAcompanhamento { get; set; }
         public string DsMedicacao { get; set; }
         public string DsObservacao { get; set; }
-        public DateTime DtInclusao { get; set; }
+        public DateTime DtInclusao{ get; set; }
         public DateTime DtUltimaAlteracao { get; set; }
+        public int IdFuncionarioAlteracao { get; set; }
     }
 }

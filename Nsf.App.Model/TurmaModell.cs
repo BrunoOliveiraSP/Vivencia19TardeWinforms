@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Nsf.App.Model
 {
-    public class TurmaModel
+   public class TurmaModell
     {
         public int IdTurma { get; set; }
 
@@ -19,5 +19,7 @@ namespace Nsf.App.Model
         public string TpPeriodo { get; set; }
 
         public int NrCapacidadeMax { get; set; }
+
+       
     }
 }

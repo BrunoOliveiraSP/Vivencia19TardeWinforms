@@ -6,12 +6,15 @@ using System.Threading.Tasks;
 
 namespace Nsf.App.Model
 {
-    class DocumentoModel
+    public class AlunoResponsavel
     {
-        public int IdAlunoDocumentos { get; set; }
+        public int IdAlunoResponsavel { get; set; }
         public int IdAluno { get; set; }
-        public string NmDocumento{ get; set; }
-        public bool BtEntregue { get; set; }
+        public string NmResponsavel { get; set; }
+        public string DsEmail { get; set; }
+        public string DsTelefone1 { get; set; }
+        public string DsTelefone2 { get; set; }
+        public string DsParentesco { get; set; }
         public DateTime DtInclusao { get; set; }
         public DateTime DtUltimaAlteracao { get; set; }
         public int IdFuncionarioAlteracao { get; set; }

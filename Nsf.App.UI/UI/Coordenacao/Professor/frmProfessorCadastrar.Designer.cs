@@ -503,7 +503,6 @@
             this.lblId.Size = new System.Drawing.Size(19, 21);
             this.lblId.TabIndex = 156;
             this.lblId.Text = "0";
-
             // 
             // txtCpf
             // 
@@ -1014,7 +1013,7 @@
             this.btnReset.Text = "Resetar Senha";
             this.btnReset.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnReset.UseVisualStyleBackColor = false;
-
+            this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
             // 
             // frmProfessorCadastrar
             // 
@@ -1029,6 +1028,7 @@
             this.ForeColor = System.Drawing.Color.Black;
             this.Name = "frmProfessorCadastrar";
             this.Size = new System.Drawing.Size(800, 598);
+            this.Load += new System.EventHandler(this.frmProfessorCadastrar_Load);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();

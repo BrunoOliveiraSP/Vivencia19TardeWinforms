@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.btnSalvar = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.pnSelected = new System.Windows.Forms.Panel();
@@ -37,8 +38,8 @@
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.panelId = new System.Windows.Forms.Panel();
+            this.nudID = new System.Windows.Forms.NumericUpDown();
             this.label8 = new System.Windows.Forms.Label();
-            this.lblId = new System.Windows.Forms.Label();
             this.chkAtivo = new System.Windows.Forms.CheckBox();
             this.nudCapacidade = new System.Windows.Forms.NumericUpDown();
             this.label3 = new System.Windows.Forms.Label();
@@ -56,9 +57,12 @@
             this.btnRemove = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
             this.lbxDisciplinasDisponiveis = new System.Windows.Forms.ListBox();
+            this.btnAlterar = new System.Windows.Forms.Button();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.panelId.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudID)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudCapacidade)).BeginInit();
             this.tabPage2.SuspendLayout();
             this.SuspendLayout();
@@ -133,6 +137,7 @@
             this.tabPage1.Size = new System.Drawing.Size(736, 356);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Dados";
+            this.tabPage1.Click += new System.EventHandler(this.tabPage1_Click);
             // 
             // cboCategoria
             // 
@@ -173,35 +178,32 @@
             // 
             // panelId
             // 
+            this.panelId.Controls.Add(this.nudID);
             this.panelId.Controls.Add(this.label8);
-            this.panelId.Controls.Add(this.lblId);
-            this.panelId.Location = new System.Drawing.Point(103, 81);
+            this.panelId.Location = new System.Drawing.Point(179, 24);
             this.panelId.Name = "panelId";
-            this.panelId.Size = new System.Drawing.Size(573, 38);
+            this.panelId.Size = new System.Drawing.Size(190, 58);
             this.panelId.TabIndex = 159;
             this.panelId.Visible = false;
+            // 
+            // nudID
+            // 
+            this.nudID.Enabled = false;
+            this.nudID.Location = new System.Drawing.Point(88, 18);
+            this.nudID.Name = "nudID";
+            this.nudID.Size = new System.Drawing.Size(88, 27);
+            this.nudID.TabIndex = 163;
             // 
             // label8
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
             this.label8.ForeColor = System.Drawing.Color.Black;
-            this.label8.Location = new System.Drawing.Point(95, 8);
+            this.label8.Location = new System.Drawing.Point(18, 21);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(28, 19);
             this.label8.TabIndex = 155;
-            this.label8.Text = "Id:";
-            // 
-            // lblId
-            // 
-            this.lblId.AutoSize = true;
-            this.lblId.Font = new System.Drawing.Font("Century Gothic", 12F);
-            this.lblId.ForeColor = System.Drawing.Color.Black;
-            this.lblId.Location = new System.Drawing.Point(160, 7);
-            this.lblId.Name = "lblId";
-            this.lblId.Size = new System.Drawing.Size(19, 21);
-            this.lblId.TabIndex = 156;
-            this.lblId.Text = "0";
+            this.label8.Text = "ID:";
             // 
             // chkAtivo
             // 
@@ -419,10 +421,32 @@
             this.lbxDisciplinasDisponiveis.Size = new System.Drawing.Size(250, 256);
             this.lbxDisciplinasDisponiveis.TabIndex = 5;
             // 
+            // btnAlterar
+            // 
+            this.btnAlterar.BackColor = System.Drawing.Color.Transparent;
+            this.btnAlterar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAlterar.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
+            this.btnAlterar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(51)))), ((int)(((byte)(142)))));
+            this.btnAlterar.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnAlterar.Location = new System.Drawing.Point(218, 511);
+            this.btnAlterar.Name = "btnAlterar";
+            this.btnAlterar.Size = new System.Drawing.Size(163, 47);
+            this.btnAlterar.TabIndex = 11;
+            this.btnAlterar.Text = "Alterar";
+            this.btnAlterar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnAlterar.UseVisualStyleBackColor = false;
+            this.btnAlterar.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
+            // 
             // frmCursoCadastrar
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.Controls.Add(this.btnAlterar);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.btnSalvar);
             this.Controls.Add(this.label5);
@@ -436,6 +460,7 @@
             this.tabPage1.PerformLayout();
             this.panelId.ResumeLayout(false);
             this.panelId.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudID)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudCapacidade)).EndInit();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
@@ -450,8 +475,6 @@
         private System.Windows.Forms.Panel pnSelected;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.TextBox txtSigla;
-        private System.Windows.Forms.TextBox txtCurso;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Label label6;
@@ -465,13 +488,17 @@
         private System.Windows.Forms.ListBox lbxDisciplinasDisponiveis;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.NumericUpDown nudCapacidade;
-        private System.Windows.Forms.CheckBox chkAtivo;
 		private System.Windows.Forms.Panel panelId;
 		private System.Windows.Forms.Label label8;
-		private System.Windows.Forms.Label lblId;
-        private System.Windows.Forms.ComboBox cboCategoria;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Button btnAlterar;
+        public System.Windows.Forms.TextBox txtSigla;
+        public System.Windows.Forms.TextBox txtCurso;
+        public System.Windows.Forms.NumericUpDown nudCapacidade;
+        public System.Windows.Forms.CheckBox chkAtivo;
+        public System.Windows.Forms.ComboBox cboCategoria;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        public System.Windows.Forms.NumericUpDown nudID;
     }
 }

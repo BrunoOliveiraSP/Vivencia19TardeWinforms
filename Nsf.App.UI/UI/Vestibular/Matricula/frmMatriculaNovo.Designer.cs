@@ -60,7 +60,7 @@
             this.dtpRgEmissao = new System.Windows.Forms.DateTimePicker();
             this.label13 = new System.Windows.Forms.Label();
             this.lblNascimento = new System.Windows.Forms.Label();
-            this.txtNascimentoData = new System.Windows.Forms.DateTimePicker();
+            this.dtpNascimentoData = new System.Windows.Forms.DateTimePicker();
             this.txtNome = new System.Windows.Forms.TextBox();
             this.lblNome = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -261,6 +261,7 @@
             this.btnSalvar.Text = "Salvar";
             this.btnSalvar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnSalvar.UseVisualStyleBackColor = false;
+            this.btnSalvar.Click += new System.EventHandler(this.btnSalvar_Click);
             // 
             // pnSelected
             // 
@@ -521,7 +522,7 @@
             this.groupBox5.Controls.Add(this.dtpRgEmissao);
             this.groupBox5.Controls.Add(this.label13);
             this.groupBox5.Controls.Add(this.lblNascimento);
-            this.groupBox5.Controls.Add(this.txtNascimentoData);
+            this.groupBox5.Controls.Add(this.dtpNascimentoData);
             this.groupBox5.Controls.Add(this.txtNome);
             this.groupBox5.Controls.Add(this.lblNome);
             this.groupBox5.Controls.Add(this.label2);
@@ -643,13 +644,13 @@
             this.lblNascimento.TabIndex = 572;
             this.lblNascimento.Text = "Nasc.:";
             // 
-            // txtNascimentoData
+            // dtpNascimentoData
             // 
-            this.txtNascimentoData.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.txtNascimentoData.Location = new System.Drawing.Point(99, 67);
-            this.txtNascimentoData.Name = "txtNascimentoData";
-            this.txtNascimentoData.Size = new System.Drawing.Size(136, 25);
-            this.txtNascimentoData.TabIndex = 4;
+            this.dtpNascimentoData.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpNascimentoData.Location = new System.Drawing.Point(99, 67);
+            this.dtpNascimentoData.Name = "dtpNascimentoData";
+            this.dtpNascimentoData.Size = new System.Drawing.Size(136, 25);
+            this.dtpNascimentoData.TabIndex = 4;
             // 
             // txtNome
             // 
@@ -2797,7 +2798,7 @@
         private System.Windows.Forms.GroupBox groupBox5;
         private System.Windows.Forms.TextBox txtRG;
         private System.Windows.Forms.DateTimePicker dtpRgEmissao;
-        private System.Windows.Forms.DateTimePicker txtNascimentoData;
+        private System.Windows.Forms.DateTimePicker dtpNascimentoData;
         private System.Windows.Forms.ComboBox cboAnoLetivo;
         private System.Windows.Forms.TextBox txtEtnia;
         private System.Windows.Forms.Label label74;

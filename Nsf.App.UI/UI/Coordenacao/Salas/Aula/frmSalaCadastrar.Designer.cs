@@ -225,6 +225,7 @@
             this.btnSalvar.Text = "Salvar";
             this.btnSalvar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnSalvar.UseVisualStyleBackColor = false;
+            this.btnSalvar.Click += new System.EventHandler(this.btnSalvar_Click);
             // 
             // label18
             // 
@@ -270,6 +271,7 @@
             this.ForeColor = System.Drawing.Color.Black;
             this.Name = "frmSalaCadastrar";
             this.Size = new System.Drawing.Size(800, 600);
+            this.Load += new System.EventHandler(this.frmSalaCadastrar_Load);
             this.panelId.ResumeLayout(false);
             this.panelId.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudCapacidade)).EndInit();

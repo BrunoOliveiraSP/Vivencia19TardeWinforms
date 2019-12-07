@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
@@ -10,8 +11,9 @@ namespace Nsf.App.API.Client
 {
     public  class DisciplinaAPI
     {
+        
 
-        public void Inserir(Nsf.App.Model.DisciplinaModel disci)
+        public Model.DisciplinaModel Inserir(Nsf.App.Model.DisciplinaModel disci)
         {
            
             HttpClient client = new HttpClient();
@@ -25,11 +27,15 @@ namespace Nsf.App.API.Client
                              .ReadAsStringAsync()
                              .Result;
 
+
             VerificarErro(resp);
+
+            disci = JsonConvert.DeserializeObject<Model.DisciplinaModel>(resp);
+            return disci;
         }
        
-        
-        public List<Nsf.App.Model.DisciplinaModel> Listar()
+         
+        public BindingList<Nsf.App.Model.DisciplinaModel> Listar()
         {
             HttpClient client = new HttpClient();
 
@@ -39,14 +45,14 @@ namespace Nsf.App.API.Client
                                 .ReadAsStringAsync()
                                 .Result;
 
-            List<Nsf.App.Model.DisciplinaModel> lista =
-                JsonConvert.DeserializeObject<List<Nsf.App.Model.DisciplinaModel>>(json);
+            BindingList<Nsf.App.Model.DisciplinaModel> lista =
+                JsonConvert.DeserializeObject<BindingList<Nsf.App.Model.DisciplinaModel>>(json);
 
             return lista;
         }
 
 
-        public List<Nsf.App.Model.DisciplinaModel> Consultar(string nome, string sigla)
+        public BindingList<Nsf.App.Model.DisciplinaModel> Consultar(string nome, string sigla)
         {
             HttpClient client = new HttpClient();
 
@@ -56,8 +62,8 @@ namespace Nsf.App.API.Client
                                 .ReadAsStringAsync()
                                 .Result;
 
-            List<Nsf.App.Model.DisciplinaModel> lista =
-                JsonConvert.DeserializeObject<List<Nsf.App.Model.DisciplinaModel>>(json);
+            BindingList<Nsf.App.Model.DisciplinaModel> lista =
+                JsonConvert.DeserializeObject<BindingList<Nsf.App.Model.DisciplinaModel>>(json);
 
             return lista;
         }
@@ -84,7 +90,53 @@ namespace Nsf.App.API.Client
             HttpClient client = new HttpClient();
             var resp = client.DeleteAsync("http://localhost:5000/Disciplina/" + id + "/").Result;
         }
+        public void InserirCursoDisciplina(Nsf.App.Model.CursoDisciplinaModel cd)
+        {
 
+            HttpClient client = new HttpClient();
+
+            string json = JsonConvert.SerializeObject(cd);
+            StringContent body = new StringContent(json, Encoding.UTF8, "application/json");
+
+            var resp = client.PostAsync("http://localhost:5000/Disciplina/InserirCursoDisciplina/", body)
+                             .Result
+                             .Content
+                             .ReadAsStringAsync()
+                             .Result;
+
+            VerificarErro(resp);
+        }
+        public void AlterarCursoDisciplina(Nsf.App.Model.CursoDisciplinaModel cd)
+        {
+
+            HttpClient client = new HttpClient();
+
+            string json = JsonConvert.SerializeObject(cd);
+            StringContent body = new StringContent(json, Encoding.UTF8, "application/json");
+
+            var resp = client.PostAsync("http://localhost:5000/Disciplina/AlterarCursoDisciplina", body)
+                             .Result
+                             .Content
+                             .ReadAsStringAsync()
+                             .Result;
+
+            VerificarErro(resp);
+        }
+        public BindingList<Nsf.App.Model.DisciplinaModel> ListarCursoDisciplina(int id)
+        {
+            HttpClient client = new HttpClient();
+
+            string json = client.GetAsync("http://localhost:5000/Disciplina/ListarCursoDisciplina/" + id + "/")
+                                .Result
+                                .Content
+                                .ReadAsStringAsync()
+                                .Result;
+
+            BindingList<Nsf.App.Model.DisciplinaModel> lista =
+                JsonConvert.DeserializeObject<BindingList<Nsf.App.Model.DisciplinaModel>>(json);
+
+            return lista;
+        }
 
         private void VerificarErro(string respostaAPI)
         {
@@ -94,5 +146,7 @@ namespace Nsf.App.API.Client
                 throw new ArgumentException(erro.Mensagem);
             }
         }
+       
+        
     }
 }

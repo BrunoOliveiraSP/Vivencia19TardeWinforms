@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label5 = new System.Windows.Forms.Label();
             this.pnSelected = new System.Windows.Forms.Panel();
             this.dgvDisciplinas = new System.Windows.Forms.DataGridView();
@@ -79,14 +79,14 @@
             this.Column3,
             this.Column2,
             this.Column1});
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Century Gothic", 12F);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvDisciplinas.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Century Gothic", 12F);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvDisciplinas.DefaultCellStyle = dataGridViewCellStyle1;
             this.dgvDisciplinas.Location = new System.Drawing.Point(10, 178);
             this.dgvDisciplinas.Name = "dgvDisciplinas";
             this.dgvDisciplinas.ReadOnly = true;
@@ -95,8 +95,7 @@
             this.dgvDisciplinas.RowTemplate.Height = 25;
             this.dgvDisciplinas.Size = new System.Drawing.Size(787, 391);
             this.dgvDisciplinas.TabIndex = 2;
-            this.dgvDisciplinas.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDisciplinas_CellClick);
-            this.dgvDisciplinas.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDisciplinas_CellContentClick);
+            this.dgvDisciplinas.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDisciplinas_CellClick_1);
             // 
             // Registro
             // 
