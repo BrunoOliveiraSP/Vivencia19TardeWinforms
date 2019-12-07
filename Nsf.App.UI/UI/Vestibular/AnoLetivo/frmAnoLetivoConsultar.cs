@@ -18,9 +18,10 @@ namespace Nsf.App.UI
             Carregar();
         }
 
+        Nsf.App.API.Client.AnoLetivoApi api = new App.API.Client.AnoLetivoApi();
+
         public void Carregar()
         {
-            Nsf.App.API.Client.AnoLetivoApi api = new App.API.Client.AnoLetivoApi();
             List<Model.AnoLetivoModel> lista = api.ListarTodos();
 
             dgvAnosLetivos.AutoGenerateColumns = false;
@@ -58,9 +59,12 @@ namespace Nsf.App.UI
             }
         }
 
-       
+        private void dgvAnosLetivos_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
+}
 
    
 

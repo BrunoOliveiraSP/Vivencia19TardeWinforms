@@ -18,20 +18,27 @@ namespace Nsf.App.UI
             CarregarGrid();
             CarregarCurso();
         }
+
+        Model.CursoModel curso = new CursoModel();
+        Model.TurmaModell model = new TurmaModell();
+        Model.AnoLetivoModel add = new AnoLetivoModel();
+        Nsf.App.API.Client.TurmaApii api = new App.API.Client.TurmaApii();
+
         int idAno = 0;
         int IdTurma = 0;
+
         public void CarregarTela(Model.AnoLetivoModel model)
         {
             try
             {
                 ulong btAberto = Convert.ToUInt32(rdnAberto.Checked);
 
+                btAberto = model.BtAtivo;
                 idAno = model.IdAnoLetivo;
                 nudAno.Value = model.NrAno;
-                dtpInicio.Value = model.DtInicio;
                 dtpFim.Value = model.DtFim;
                 cboStatus.Text = model.TpStatus;
-                btAberto = model.BtAtivo;
+                dtpInicio.Value = model.DtInicio;
             }
             catch (ArgumentException ex)
             {
@@ -43,11 +50,10 @@ namespace Nsf.App.UI
         {
             try
             {
-                Model.AnoLetivoModel add = new Model.AnoLetivoModel();
-                add.NrAno = Convert.ToInt32(nudAno.Value);
-                add.DtInicio = dtpInicio.Value;
                 add.DtFim = dtpFim.Value;
                 add.TpStatus = cboStatus.Text;
+                add.DtInicio = dtpInicio.Value;
+                add.NrAno = Convert.ToInt32(nudAno.Value);
                 add.BtAtivo = Convert.ToUInt32(rdnAberto.Checked);
 
                 Nsf.App.API.Client.AnoLetivoApi api = new App.API.Client.AnoLetivoApi();
@@ -77,7 +83,6 @@ namespace Nsf.App.UI
             }
         }
 
-
         private void CarregarCurso()
         {
             API.CursoAPI api = new API.CursoAPI();
@@ -92,7 +97,6 @@ namespace Nsf.App.UI
         {
             try
             {
-                Nsf.App.API.Client.TurmaApii api = new App.API.Client.TurmaApii();
                 List<Model.TurmaModell> turma = api.ListarTodos();
 
                 dgvTurma.AutoGenerateColumns = false;
@@ -115,9 +119,9 @@ namespace Nsf.App.UI
                     Model.CursoModel combo = cboTurmaCurso.SelectedItem as Model.CursoModel;
 
                     turma.IdAnoLetivo = 2; // ERRO MORTAL
+                    txtTurmaNome.Text = turma.NmTurma;
                     cboTurmaCurso.Text = combo.NmCurso;
                     cboTurmaPeriodo.Text = turma.TpPeriodo;
-                    txtTurmaNome.Text = turma.NmTurma;
                     nudTurmaCapacidade.Value = turma.NrCapacidadeMax;
 
                     IdTurma = turma.IdTurma;
@@ -131,8 +135,6 @@ namespace Nsf.App.UI
 
                     if (r == DialogResult.Yes)
                     {
-                        Nsf.App.API.Client.TurmaApii api = new App.API.Client.TurmaApii();
-
                         api.Remover(turma.IdTurma);
 
                         MessageBox.Show("Removido com sucesso");
@@ -149,17 +151,14 @@ namespace Nsf.App.UI
         {
             try
             {
-                Nsf.App.Model.TurmaModell model = new Model.TurmaModell();
-
                 Model.CursoModel combo = cboTurmaCurso.SelectedItem as Model.CursoModel;
 
-
                 model.IdAnoLetivo = 2;
-                model.TpPeriodo = cboTurmaPeriodo.Text;
-                model.NmTurma = txtTurmaNome.Text;
-                model.NrCapacidadeMax = Convert.ToInt32(nudTurmaCapacidade.Value);
                 model.IdCurso = combo.IdCurso;
-
+                model.NmTurma = txtTurmaNome.Text;
+                model.TpPeriodo = cboTurmaPeriodo.Text;             
+                model.NrCapacidadeMax = Convert.ToInt32(nudTurmaCapacidade.Value);
+                
                 Nsf.App.API.Client.TurmaApii api = new Nsf.App.API.Client.TurmaApii();
 
                 if (IdTurma > 0)
@@ -181,7 +180,11 @@ namespace Nsf.App.UI
             catch (ArgumentException ex)
             {
                 MessageBox.Show(ex.Message);
-            }
+            } 
+        }
+
+        private void dgvTurma_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
 
         }
     }

@@ -9,7 +9,7 @@ using System.Net.Http;
 namespace Nsf.App.API.Client
 {
    public  class TurmaApii
-    {
+   {
         HttpClient client = new HttpClient();
 
         public void CadastrarTurma(Nsf.App.Model.TurmaModell turma)
@@ -24,7 +24,6 @@ namespace Nsf.App.API.Client
                              .Result;
 
             VerificarErro(resp);
-
         }
 
         public List<Nsf.App.Model.TurmaModell> ListarTodos()
@@ -38,8 +37,6 @@ namespace Nsf.App.API.Client
             List<Nsf.App.Model.TurmaModell> lista = JsonConvert.DeserializeObject<List<Nsf.App.Model.TurmaModell>>(json);
 
             return lista;
-
-
         }
 
         public void Remover(int id)
@@ -60,6 +57,7 @@ namespace Nsf.App.API.Client
 
             VerificarErro(resp);
         }
+
         private void VerificarErro(string respostaAPI)
         {
             if (respostaAPI.Contains("codigoErro"))
@@ -68,6 +66,6 @@ namespace Nsf.App.API.Client
                 throw new ArgumentException(erro.Mensagem);
             }
         }
-    }
+   }
 }
 

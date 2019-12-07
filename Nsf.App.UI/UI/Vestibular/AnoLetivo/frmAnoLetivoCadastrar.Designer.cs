@@ -509,9 +509,9 @@
             this.tabModulos.Controls.Add(this.label15);
             this.tabModulos.Controls.Add(this.label14);
             this.tabModulos.Controls.Add(this.cboModuloTipo);
-            this.tabModulos.Location = new System.Drawing.Point(4, 33);
+            this.tabModulos.Location = new System.Drawing.Point(4, 25);
             this.tabModulos.Name = "tabModulos";
-            this.tabModulos.Size = new System.Drawing.Size(726, 376);
+            this.tabModulos.Size = new System.Drawing.Size(726, 384);
             this.tabModulos.TabIndex = 2;
             this.tabModulos.Text = "Módulos";
             this.tabModulos.UseVisualStyleBackColor = true;
@@ -818,6 +818,7 @@
             this.dgvTurma.Size = new System.Drawing.Size(445, 189);
             this.dgvTurma.TabIndex = 10;
             this.dgvTurma.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvTurma_CellClick);
+            this.dgvTurma.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvTurma_CellContentClick);
             // 
             // Column3
             // 
