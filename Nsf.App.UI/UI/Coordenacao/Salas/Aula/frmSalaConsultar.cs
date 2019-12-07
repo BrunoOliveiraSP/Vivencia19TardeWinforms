@@ -41,6 +41,7 @@ namespace Nsf.App.UI
 
                     MessageBox.Show("Removido com sucesso!","NSF");
 
+                    this.Consultar();
                 }
             }
             if (e.ColumnIndex == 4)
@@ -48,7 +49,6 @@ namespace Nsf.App.UI
                 Model.SalaModel sala = DataGridSalas.CurrentRow.DataBoundItem as Model.SalaModel;
 
                 Nsf.App.Model.SalaModel model = new Model.SalaModel();
-
 
                 model.IdSala = sala.IdSala;
                 model.NmSala = sala.NmSala;

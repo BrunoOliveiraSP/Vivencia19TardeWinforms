@@ -34,13 +34,12 @@ namespace Nsf.App.API.Client
                 .Result
                 .Content
                 .ReadAsStringAsync()
-                .Result
-                ;
+                .Result;
+                
         }
         public List<Model.SalaModel> ListarTudo()
         {
             
-
             string json = client.GetAsync("http://localhost:5000/Sala/ListarTudo")
                                 .Result
                                 .Content

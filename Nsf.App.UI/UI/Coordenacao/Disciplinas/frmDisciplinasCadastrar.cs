@@ -32,11 +32,11 @@ namespace Nsf.App.UI
                     Inserir();
                 }
             }
-            catch (ArgumentException ex)
+            catch(ArgumentException ex)
             {
                 MessageBox.Show(ex.Message);
             }
-            catch (Exception ex)
+            catch(Exception)
             {
                 MessageBox.Show("Ocorreu um erro. Entre em contato com o administrador.");
             }
