@@ -38,7 +38,7 @@ namespace Nsf.App.UI
             
         }
 
-        private void txtSigla_TextChanged(object sender, EventArgs e)
+          private void txtSigla_TextChanged(object sender, EventArgs e)
         {
             try
             {
