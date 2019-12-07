@@ -299,6 +299,19 @@ namespace Nsf.App.UI
                 MessageBox.Show("Ocorreu um erro");
             }
         }
-    }
 
+        private void txtCep_Leave(object sender, EventArgs e)
+        {
+            CorreioApi correioApi = new CorreioApi();
+            CorreioResponse correioResponse = new CorreioResponse();
+            correioApi.BuscarAPICorreio(txtCep.Text, out correioResponse);
+            txtBairro.Text = correioResponse.bairro;
+            cboUf.Text = correioResponse.uf;
+            txtCidade.Text = correioResponse.localidade;
+            txtComplemento.Text = correioResponse.complemento;
+            txtEndereco.Text = correioResponse.logradouro + " " +
+            correioResponse.complemento + ", " + correioResponse.bairro + " " + 
+            correioResponse.localidade + " - " + correioResponse.uf;
+        }
+    }
 }

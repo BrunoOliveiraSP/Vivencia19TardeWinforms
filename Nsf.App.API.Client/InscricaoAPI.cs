@@ -111,6 +111,19 @@ namespace Nsf.App.API.Client
             return JsonConvert.DeserializeObject<Model.AnoLetivoModel>(json);
         }
 
+        public List<Model.InscricaoModel> ConsultarAnoLetivoLista(int id)
+        {
+            HttpClient NomeAnoConsulta = new HttpClient();
+
+            string json = NomeAnoConsulta.GetAsync("http://localhost:5000/Inscricao/ConsultarAnoLetivoLista/" + id)
+                                        .Result
+                                        .Content
+                                        .ReadAsStringAsync()
+                                        .Result;
+            VerificarErro(json);
+            return JsonConvert.DeserializeObject<List<Model.InscricaoModel>>(json);
+        }
+
         private void VerificarErro(string respostaAPI)
         {
             if (respostaAPI.Contains("codigoErro"))

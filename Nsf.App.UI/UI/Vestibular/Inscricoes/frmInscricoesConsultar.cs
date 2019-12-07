@@ -15,38 +15,30 @@ namespace Nsf.App.UI
 
         App.API.Client.InscricaoAPI InscricaoAPI = new App.API.Client.InscricaoAPI();
 
-        private void txtNome_TextChanged(object sender, EventArgs e)
+       private void txtNome_TextChanged(object sender, EventArgs e)
        {
             try
             {
-                if (string.IsNullOrWhiteSpace(txtNome.Text) && cboAnoLetivo.Text == string.Empty)
+                if (string.IsNullOrWhiteSpace(txtNome.Text))
                 {
                     dgvCandidatos.AutoGenerateColumns = false;
                     dgvCandidatos.DataSource = InscricaoAPI.ConsultarTodos();
                 }
                 else
                 {
-                    int ano = 0000;
-                    if(cboAnoLetivo.Text == string.Empty)
-                    {
-                        ano = 0000;
-                    }
-                    else
-                    {
-                        ano = Convert.ToInt32(cboAnoLetivo.Text);
-                    }
+                    var func = cboAnoLetivo.SelectedItem as Model.InscricaoModel;
                     App.API.Client.InscricaoAPI inscricao = new App.API.Client.InscricaoAPI();
                     dgvCandidatos.AutoGenerateColumns = false;
-                    dgvCandidatos.DataSource = inscricao.ConsultarNome(txtNome.Text, ano);
+                    dgvCandidatos.DataSource = inscricao.ConsultarNome(txtNome.Text, func.idAnoLetivo);
                 }
             }
             catch(ArgumentException ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message, "NSF", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             catch (Exception)
             {
-                MessageBox.Show("Ocorreu um erro");
+                MessageBox.Show("Ocorreu um erro. Entre em contato com o administrador.", "NSF", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -56,15 +48,23 @@ namespace Nsf.App.UI
             {
                 App.API.Client.InscricaoAPI inscricao = new App.API.Client.InscricaoAPI();
                 dgvCandidatos.AutoGenerateColumns = false;
-                dgvCandidatos.DataSource = inscricao.ConsultarNome(txtNome.Text, Convert.ToInt32(cboAnoLetivo.Text));
+                var func = cboAnoLetivo.SelectedItem as Model.InscricaoModel;
+                if(string.IsNullOrWhiteSpace(txtNome.Text))
+                {
+                    dgvCandidatos.DataSource = inscricao.ConsultarAnoLetivoLista(func.idAnoLetivo);
+                }
+                else
+                {
+                    dgvCandidatos.DataSource = inscricao.ConsultarNome(txtNome.Text, func.idAnoLetivo);
+                }
             }
             catch(ArgumentException ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message, "NSF", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             catch (Exception)
             {
-                MessageBox.Show("Ocorreu um erro");
+                MessageBox.Show("Ocorreu um erro. Entre em contato com o administrador.", "NSF", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -72,16 +72,19 @@ namespace Nsf.App.UI
         {
             try
             {
+                App.API.Client.AnoLetivoApi anoLetivoApi = new App.API.Client.AnoLetivoApi();
+                cboAnoLetivo.ValueMember = nameof(Model.AnoLetivoModel.NrAno);
+                cboAnoLetivo.DataSource = anoLetivoApi.ListarTodos();
                 dgvCandidatos.AutoGenerateColumns = false;
                 dgvCandidatos.DataSource = InscricaoAPI.ConsultarTodos();
             }
             catch(ArgumentException ex)
             {
-                MessageBox.Show(ex.Message, "Inscrições", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, "NSF", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             catch (Exception)
             {
-                MessageBox.Show("Ocorreu um erro");
+                MessageBox.Show("Ocorreu um erro. Entre em contato com o administrador.", "NSF", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -169,42 +172,13 @@ namespace Nsf.App.UI
             }
             catch (ArgumentException ex)
             {
-                MessageBox.Show(ex.Message, "Inscrições", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, "NSF", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             catch (Exception)
             {
-                MessageBox.Show("Ocorreu um erro");
+                MessageBox.Show("Ocorreu um erro. Entre em contato com o administrador.", "NSF", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
-        private void cboAnoLetivo_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                App.API.Client.AnoLetivoApi anoLetivoApi = new App.API.Client.AnoLetivoApi();
-                cboAnoLetivo.ValueMember = nameof(Model.AnoLetivoModel.NrAno);
-                cboAnoLetivo.DataSource = anoLetivoApi.ListarTodos();
-            }
-            catch (ArgumentException ex)
-            {
-                MessageBox.Show(ex.Message, "Inscrições", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private void frmInscricoesConsultar_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                CarregarGrid();
-            }
-            catch(ArgumentException ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("Ocorreu um erro");
-            }
-        }
     }
 }

@@ -659,7 +659,6 @@
             this.cboAnoLetivo.Size = new System.Drawing.Size(100, 29);
             this.cboAnoLetivo.TabIndex = 165;
             this.cboAnoLetivo.SelectedIndexChanged += new System.EventHandler(this.cboAnoLetivo_SelectedIndexChanged);
-            this.cboAnoLetivo.Click += new System.EventHandler(this.cboAnoLetivo_Click);
             // 
             // label3
             // 
@@ -723,7 +722,6 @@
             this.ForeColor = System.Drawing.Color.Black;
             this.Name = "frmInscricoesConsultar";
             this.Size = new System.Drawing.Size(800, 600);
-            this.Click += new System.EventHandler(this.frmInscricoesConsultar_Click);
             ((System.ComponentModel.ISupportInitialize)(this.dgvCandidatos)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

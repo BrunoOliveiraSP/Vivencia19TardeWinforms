@@ -820,6 +820,7 @@
             this.txtCep.Size = new System.Drawing.Size(180, 25);
             this.txtCep.TabIndex = 13;
             this.txtCep.ValidatingType = typeof(System.DateTime);
+            this.txtCep.Leave += new System.EventHandler(this.txtCep_Leave);
             // 
             // label49
             // 
