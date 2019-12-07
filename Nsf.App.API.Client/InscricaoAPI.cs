@@ -30,7 +30,7 @@ namespace Nsf.App.API.Client
         {
             HttpClient client = new HttpClient();
 
-            string json = client.GetAsync("http://localhost:5000/Inscricao/ConsultarTodos")
+            string json = client.GetAsync("http://localhost:5000/Inscricao")
                                 .Result
                                 .Content
                                 .ReadAsStringAsync()

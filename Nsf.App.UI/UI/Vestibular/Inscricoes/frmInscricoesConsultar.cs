@@ -26,10 +26,10 @@ namespace Nsf.App.UI
                 }
                 else
                 {
-                    var func = cboAnoLetivo.SelectedItem as Model.InscricaoModel;
+                    var func = cboAnoLetivo.SelectedItem as Model.AnoLetivoModel;
                     App.API.Client.InscricaoAPI inscricao = new App.API.Client.InscricaoAPI();
                     dgvCandidatos.AutoGenerateColumns = false;
-                    dgvCandidatos.DataSource = inscricao.ConsultarNome(txtNome.Text, func.idAnoLetivo);
+                    dgvCandidatos.DataSource = inscricao.ConsultarNome(txtNome.Text, func.IdAnoLetivo);
                 }
             }
             catch(ArgumentException ex)
@@ -48,14 +48,14 @@ namespace Nsf.App.UI
             {
                 App.API.Client.InscricaoAPI inscricao = new App.API.Client.InscricaoAPI();
                 dgvCandidatos.AutoGenerateColumns = false;
-                var func = cboAnoLetivo.SelectedItem as Model.InscricaoModel;
+                var func = cboAnoLetivo.SelectedItem as Model.AnoLetivoModel;
                 if(string.IsNullOrWhiteSpace(txtNome.Text))
                 {
-                    dgvCandidatos.DataSource = inscricao.ConsultarAnoLetivoLista(func.idAnoLetivo);
+                    dgvCandidatos.DataSource = inscricao.ConsultarAnoLetivoLista(func.IdAnoLetivo);
                 }
                 else
                 {
-                    dgvCandidatos.DataSource = inscricao.ConsultarNome(txtNome.Text, func.idAnoLetivo);
+                    dgvCandidatos.DataSource = inscricao.ConsultarNome(txtNome.Text, func.IdAnoLetivo);
                 }
             }
             catch(ArgumentException ex)
@@ -64,7 +64,7 @@ namespace Nsf.App.UI
             }
             catch (Exception)
             {
-                MessageBox.Show("Ocorreu um erro. Entre em contato com o administrador.", "NSF", MessageBoxButtons.OK, MessageBoxIcon.Error);
+               MessageBox.Show("Ocorreu um erro. Entre em contato com o administrador.", "NSF", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
