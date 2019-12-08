@@ -47,6 +47,10 @@ namespace Nsf.App.UI
             {
                 MessageBox.Show(ex.Message);
             }
+            catch(Exception ex)
+            {
+                MessageBox.Show("Ocorreu um erro", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void btnSalvar_Click(object sender, EventArgs e)
@@ -67,46 +71,83 @@ namespace Nsf.App.UI
             {
                 MessageBox.Show(ex.Message);
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ocorreu um erro", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
         
         public void Inserir()
         {
-            anoModel = new AnoLetivoModel();
+            try
+            {
+                anoModel = new AnoLetivoModel();
 
-            anoModel.DtFim = dtpFim.Value;
-            anoModel.TpStatus = cboStatus.Text;
-            anoModel.DtInicio = dtpInicio.Value;
-            anoModel.NrAno = Convert.ToInt32(nudAno.Value);
-            anoModel.BtAtivo = Convert.ToUInt32(rdnAberto.Checked);
+                anoModel.DtFim = dtpFim.Value;
+                anoModel.TpStatus = cboStatus.Text;
+                anoModel.DtInicio = dtpInicio.Value;
+                anoModel.NrAno = Convert.ToInt32(nudAno.Value);
+                anoModel.BtAtivo = Convert.ToUInt32(rdnAberto.Checked);
 
-            Nsf.App.API.Client.AnoLetivoApi api = new App.API.Client.AnoLetivoApi();
-            api.CadastrarAnoLetivo(anoModel);
+                Nsf.App.API.Client.AnoLetivoApi api = new App.API.Client.AnoLetivoApi();
+                api.CadastrarAnoLetivo(anoModel);
 
-            MessageBox.Show("Ano letivo cadastrado com sucesso.", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Ano letivo cadastrado com sucesso.", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (ArgumentException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ocorreu um erro", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         public void Alterar()
         {
-            anoModel.IdAnoLetivo = anoModel.IdAnoLetivo;
-            anoModel.DtFim = dtpFim.Value;
-            anoModel.TpStatus = cboStatus.Text;
-            anoModel.DtInicio = dtpInicio.Value;
-            anoModel.NrAno = Convert.ToInt32(nudAno.Value);
-            anoModel.BtAtivo = Convert.ToUInt32(rdnAberto.Checked);
+            try
+            {
+                anoModel.IdAnoLetivo = anoModel.IdAnoLetivo;
+                anoModel.DtFim = dtpFim.Value;
+                anoModel.TpStatus = cboStatus.Text;
+                anoModel.DtInicio = dtpInicio.Value;
+                anoModel.NrAno = Convert.ToInt32(nudAno.Value);
+                anoModel.BtAtivo = Convert.ToUInt32(rdnAberto.Checked);
 
-            Nsf.App.API.Client.AnoLetivoApi api = new App.API.Client.AnoLetivoApi();
-            api.Alterar(anoModel);
-            MessageBox.Show("Ano letivo alterado com sucesso.", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                Nsf.App.API.Client.AnoLetivoApi api = new App.API.Client.AnoLetivoApi();
+                api.Alterar(anoModel);
+                MessageBox.Show("Ano letivo alterado com sucesso.", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (ArgumentException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ocorreu um erro", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void CarregarCurso()
         {
-            API.CursoAPI api = new API.CursoAPI();
+            try
+            {
+                API.CursoAPI api = new API.CursoAPI();
 
-            List<Model.CursoModel> lista = api.ConsultarTodos();
+                List<Model.CursoModel> lista = api.ConsultarTodos();
 
-            cboTurmaCurso.DisplayMember = nameof(Model.CursoModel.NmCurso);
-            cboTurmaCurso.DataSource = lista;
+                cboTurmaCurso.DisplayMember = nameof(Model.CursoModel.NmCurso);
+                cboTurmaCurso.DataSource = lista;
+            }
+            catch (ArgumentException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ocorreu um erro", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         public void CarregarGrid()
@@ -121,6 +162,10 @@ namespace Nsf.App.UI
             catch (ArgumentException ex)
             {
                 MessageBox.Show(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ocorreu um erro", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -163,6 +208,10 @@ namespace Nsf.App.UI
             {
                 MessageBox.Show(ex.Message);
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ocorreu um erro", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void btnTurmaAdd_Click_1(object sender, EventArgs e)
@@ -183,40 +232,67 @@ namespace Nsf.App.UI
             catch (ArgumentException ex)
             {
                 MessageBox.Show(ex.Message);
-            } 
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ocorreu um erro", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         public void InserirTurma()
         {
-            turmaModel = new TurmaModell();
-            Model.CursoModel combo = cboTurmaCurso.SelectedItem as Model.CursoModel;
+            try
+            {
+                turmaModel = new TurmaModell();
 
-            turmaModel.IdAnoLetivo = anoModel.IdAnoLetivo;
-            turmaModel.IdCurso = combo.IdCurso;
-            turmaModel.NmTurma = txtTurmaNome.Text;
-            turmaModel.TpPeriodo = cboTurmaPeriodo.Text;
-            turmaModel.NrCapacidadeMax = Convert.ToInt32(nudTurmaCapacidade.Value);
+                Model.CursoModel combo = cboTurmaCurso.SelectedItem as Model.CursoModel;
 
-            turmaApi.CadastrarTurma(turmaModel);
+                turmaModel.IdAnoLetivo = anoModel.IdAnoLetivo;
+                turmaModel.IdCurso = combo.IdCurso;
+                turmaModel.NmTurma = txtTurmaNome.Text;
+                turmaModel.TpPeriodo = cboTurmaPeriodo.Text;
+                turmaModel.NrCapacidadeMax = Convert.ToInt32(nudTurmaCapacidade.Value);
 
-            MessageBox.Show("Turma cadastrada com sucesso.", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                turmaApi.CadastrarTurma(turmaModel);
+
+                MessageBox.Show("Turma cadastrada com sucesso.", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (ArgumentException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ocorreu um erro", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         public void AlterarTurma()
         {
-            turmaModel = new TurmaModell();
-            Model.CursoModel combo = cboTurmaCurso.SelectedItem as Model.CursoModel;
+            try
+            {
+                turmaModel = new TurmaModell();
+                Model.CursoModel combo = cboTurmaCurso.SelectedItem as Model.CursoModel;
 
-            turmaModel.IdTurma = turmaModel.IdTurma;
-            turmaModel.IdAnoLetivo = anoModel.IdAnoLetivo;
-            turmaModel.IdCurso = combo.IdCurso;
-            turmaModel.NmTurma = txtTurmaNome.Text;
-            turmaModel.TpPeriodo = cboTurmaPeriodo.Text;
-            turmaModel.NrCapacidadeMax = Convert.ToInt32(nudTurmaCapacidade.Value);
+                turmaModel.IdTurma = turmaModel.IdTurma;
+                turmaModel.IdAnoLetivo = anoModel.IdAnoLetivo;
+                turmaModel.IdCurso = combo.IdCurso;
+                turmaModel.NmTurma = txtTurmaNome.Text;
+                turmaModel.TpPeriodo = cboTurmaPeriodo.Text;
+                turmaModel.NrCapacidadeMax = Convert.ToInt32(nudTurmaCapacidade.Value);
 
-            turmaApi.CadastrarTurma(turmaModel);
+                turmaApi.CadastrarTurma(turmaModel);
 
-            MessageBox.Show("Turma alterada com sucesso.", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Turma alterada com sucesso.", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (ArgumentException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ocorreu um erro", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void dgvTurma_CellContentClick(object sender, DataGridViewCellEventArgs e)
