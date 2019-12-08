@@ -171,12 +171,12 @@ namespace Nsf.App.UI
             {
                 if (turmaModel != null && turmaModel.IdTurma > 0)
                 {
-                    InserirTurma();
+                    AlterarTurma();
                     CarregarGrid();
                 }
                 else
                 {
-                    AlterarTurma();
+                    InserirTurma();
                     CarregarGrid();
                 }
             }
