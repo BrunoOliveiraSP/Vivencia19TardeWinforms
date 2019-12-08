@@ -50,7 +50,7 @@ namespace Nsf.App.UI
 
                 disciplina.NmDisciplina = txtDisciplina.Text;
                 disciplina.DsSigla = txtSigla.Text;
-                disciplina.DtInclusao = dtpinclusao.Value;
+                disciplina.DtInclusao = System.DateTime.Now;
                 disciplina.DtUltimaAlteracao = System.DateTime.Now;
                 disciplina.BtAtivo = Convert.ToBoolean(chkAtivo.Checked);
 
@@ -99,7 +99,6 @@ namespace Nsf.App.UI
                 disciplina.IdDisciplina = disciplina.IdDisciplina;
                 disciplina.NmDisciplina = txtDisciplina.Text;
                 disciplina.DsSigla = txtSigla.Text;
-                disciplina.DtInclusao = dtpinclusao.Value;
                 disciplina.DtUltimaAlteracao = System.DateTime.Now;
                 disciplina.BtAtivo = Convert.ToBoolean(chkAtivo.Checked);
 
@@ -122,7 +121,6 @@ namespace Nsf.App.UI
                 lblId.Text = model.IdDisciplina.ToString();
                 txtDisciplina.Text = model.NmDisciplina;
                 txtSigla.Text = model.DsSigla;
-                dtpinclusao.Value = model.DtInclusao;
                 model.DtUltimaAlteracao = model.DtInclusao;
                 chkAtivo.Checked = model.BtAtivo;
 

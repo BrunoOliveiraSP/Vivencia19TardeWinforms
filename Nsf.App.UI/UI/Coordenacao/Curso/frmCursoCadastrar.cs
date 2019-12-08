@@ -16,10 +16,8 @@ namespace Nsf.App.UI
             InitializeComponent();
             CarregarDisciplinas();
 
-            lbxDisciplinasDoCurso.DataSource = atribuidas;
-            lbxDisciplinasDoCurso.DisplayMember = nameof(Model.DisciplinaModel.NmDisciplina);
-
            
+            lbxDisciplinasDoCurso.DisplayMember = nameof(Model.DisciplinaModel.NmDisciplina);
         }
 
         int idcurso = 0;
@@ -41,7 +39,7 @@ namespace Nsf.App.UI
                 API.CursoAPI api = new API.CursoAPI();
                 idcurso = api.Inserir(curso);
 
-                //InserirCursoDiciplina(); --erro de chave estrangeira(banco não consegue achar o id da outra tabela
+                InserirCursoDiciplina();
 
 
                 MessageBox.Show("Curso registrado com sucesso.");
@@ -79,6 +77,11 @@ namespace Nsf.App.UI
                     throw new ArgumentException("Selecione uma disciplina para adicionar ao curso");
                 }
 
+                foreach (var item in lista)
+                {
+                    if (item.NmDisciplina == mod.NmDisciplina)
+                        throw new ArgumentException("A disciplina já foi atribuida");
+                }
                 atribuidas.Add(mod);
                 lista.Remove(mod);
             }
@@ -99,7 +102,7 @@ namespace Nsf.App.UI
                 {
                     throw new ArgumentException("Selecione uma disciplina para remover do curso");
                 }
-
+               
                 atribuidas.Remove(mod);
                 lista.Add(mod);
             }
@@ -122,7 +125,9 @@ namespace Nsf.App.UI
             nudCapacidade.Value = curso.NrCapacidadeMaxima;
             txtSigla.Text = curso.DsSigla;
 
-          
+            CarregarCursoDisciplina();
+
+
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -176,6 +181,7 @@ namespace Nsf.App.UI
             {
                 mod.IdDisciplina = item.IdDisciplina;
                 mod.IdCurso = idcurso;
+                mod.NrCargaHoraria = 1200;
 
                 api.InserirCursoDisciplina(mod);
             }
@@ -186,7 +192,9 @@ namespace Nsf.App.UI
             Nsf.App.API.Client.DisciplinaAPI api = new App.API.Client.DisciplinaAPI();
             atribuidas = api.ListarCursoDisciplina(idcurso);
 
-            
+            lbxDisciplinasDoCurso.DataSource = atribuidas;
+
+
         }
         public void AlterarDisciplinaDoCurso()
         {
