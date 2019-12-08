@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Linq;
 using System.Windows.Forms;
+using Nsf.App.API;
 
 namespace Nsf.App.UI
 {
@@ -19,26 +20,28 @@ namespace Nsf.App.UI
             CarregarCurso();
         }
 
-        Model.CursoModel curso = new CursoModel();
-        Model.TurmaModell model = new TurmaModell();
-        Model.AnoLetivoModel add = new AnoLetivoModel();
-        Nsf.App.API.Client.TurmaApii api = new App.API.Client.TurmaApii();
+        Model.CursoModel curso;
+        Model.TurmaModell turmaModel;
+        Model.AnoLetivoModel anoModel;
 
-        int idAno = 0;
-        int IdTurma = 0;
+        Nsf.App.API.Client.TurmaApii turmaApi = new App.API.Client.TurmaApii();
 
         public void CarregarTela(Model.AnoLetivoModel model)
         {
             try
             {
+                anoModel  = new AnoLetivoModel ();
+
                 ulong btAberto = Convert.ToUInt32(rdnAberto.Checked);
 
                 btAberto = model.BtAtivo;
-                idAno = model.IdAnoLetivo;
+                anoModel.IdAnoLetivo = model.IdAnoLetivo;
                 nudAno.Value = model.NrAno;
                 dtpFim.Value = model.DtFim;
                 cboStatus.Text = model.TpStatus;
                 dtpInicio.Value = model.DtInicio;
+
+                anoModel = model;
             }
             catch (ArgumentException ex)
             {
@@ -50,37 +53,50 @@ namespace Nsf.App.UI
         {
             try
             {
-                add.DtFim = dtpFim.Value;
-                add.TpStatus = cboStatus.Text;
-                add.DtInicio = dtpInicio.Value;
-                add.NrAno = Convert.ToInt32(nudAno.Value);
-                add.BtAtivo = Convert.ToUInt32(rdnAberto.Checked);
-
-                Nsf.App.API.Client.AnoLetivoApi api = new App.API.Client.AnoLetivoApi();
-
-                if (idAno > 0)
+                if (anoModel != null && anoModel.IdAnoLetivo > 0)
                 {
-                    add.IdAnoLetivo = idAno;
-                    api.Alterar(add);
-
-                    MessageBox.Show("Alterado com sucesso");
+                    Alterar();
                 }
 
                 else
                 {
-                    api.CadastrarAnoLetivo(add);
-                    DialogResult r = MessageBox.Show("Cadastrado com sucesso", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    //if (r == DialogResult.Yes)
-                    //{
-                    //    tabControl1.TabPages.Remove(tabTurmas);
-                    //}
+                    Inserir();
                 }
-
             }
             catch (ArgumentException ex)
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+        
+        public void Inserir()
+        {
+            anoModel = new AnoLetivoModel();
+
+            anoModel.DtFim = dtpFim.Value;
+            anoModel.TpStatus = cboStatus.Text;
+            anoModel.DtInicio = dtpInicio.Value;
+            anoModel.NrAno = Convert.ToInt32(nudAno.Value);
+            anoModel.BtAtivo = Convert.ToUInt32(rdnAberto.Checked);
+
+            Nsf.App.API.Client.AnoLetivoApi api = new App.API.Client.AnoLetivoApi();
+            api.CadastrarAnoLetivo(anoModel);
+
+            MessageBox.Show("Ano letivo cadastrado com sucesso.", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        public void Alterar()
+        {
+            anoModel.IdAnoLetivo = anoModel.IdAnoLetivo;
+            anoModel.DtFim = dtpFim.Value;
+            anoModel.TpStatus = cboStatus.Text;
+            anoModel.DtInicio = dtpInicio.Value;
+            anoModel.NrAno = Convert.ToInt32(nudAno.Value);
+            anoModel.BtAtivo = Convert.ToUInt32(rdnAberto.Checked);
+
+            Nsf.App.API.Client.AnoLetivoApi api = new App.API.Client.AnoLetivoApi();
+            api.Alterar(anoModel);
+            MessageBox.Show("Ano letivo alterado com sucesso.", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void CarregarCurso()
@@ -97,7 +113,7 @@ namespace Nsf.App.UI
         {
             try
             {
-                List<Model.TurmaModell> turma = api.ListarTodos();
+                List<Model.TurmaModell> turma = turmaApi.ListarTodos();
 
                 dgvTurma.AutoGenerateColumns = false;
                 dgvTurma.DataSource = turma;
@@ -115,16 +131,18 @@ namespace Nsf.App.UI
             {
                 if (e.ColumnIndex == 4)
                 {
+                    turmaModel = new TurmaModell();
                     Model.TurmaModell turma = dgvTurma.CurrentRow.DataBoundItem as Model.TurmaModell;
                     Model.CursoModel combo = cboTurmaCurso.SelectedItem as Model.CursoModel;
 
-                    turma.IdAnoLetivo = 2; // ERRO MORTAL
+                    turmaModel.IdTurma = turma.IdTurma;
+                    turma.IdAnoLetivo = anoModel.IdAnoLetivo;
                     txtTurmaNome.Text = turma.NmTurma;
                     cboTurmaCurso.Text = combo.NmCurso;
                     cboTurmaPeriodo.Text = turma.TpPeriodo;
                     nudTurmaCapacidade.Value = turma.NrCapacidadeMax;
 
-                    IdTurma = turma.IdTurma;
+                    turmaModel = turma;
                 }
 
                 if (e.ColumnIndex == 5)
@@ -135,7 +153,7 @@ namespace Nsf.App.UI
 
                     if (r == DialogResult.Yes)
                     {
-                        api.Remover(turma.IdTurma);
+                        turmaApi.Remover(turma.IdTurma);
 
                         MessageBox.Show("Removido com sucesso");
                     }
@@ -151,36 +169,54 @@ namespace Nsf.App.UI
         {
             try
             {
-                Model.CursoModel combo = cboTurmaCurso.SelectedItem as Model.CursoModel;
-
-                model.IdAnoLetivo = 2;
-                model.IdCurso = combo.IdCurso;
-                model.NmTurma = txtTurmaNome.Text;
-                model.TpPeriodo = cboTurmaPeriodo.Text;             
-                model.NrCapacidadeMax = Convert.ToInt32(nudTurmaCapacidade.Value);
-                
-                Nsf.App.API.Client.TurmaApii api = new Nsf.App.API.Client.TurmaApii();
-
-                if (IdTurma > 0)
+                if (turmaModel != null && turmaModel.IdTurma > 0)
                 {
-                    model.IdTurma = IdTurma;
-                    api.Alterar(model);
-
-                    MessageBox.Show("Alterado com sucesso");
+                    InserirTurma();
                     CarregarGrid();
                 }
                 else
                 {
-                    api.CadastrarTurma(model);
-                    MessageBox.Show("Cadastrado com sucesso");
+                    AlterarTurma();
                     CarregarGrid();
                 }
-
             }
             catch (ArgumentException ex)
             {
                 MessageBox.Show(ex.Message);
             } 
+        }
+
+        public void InserirTurma()
+        {
+            turmaModel = new TurmaModell();
+            Model.CursoModel combo = cboTurmaCurso.SelectedItem as Model.CursoModel;
+
+            turmaModel.IdAnoLetivo = anoModel.IdAnoLetivo;
+            turmaModel.IdCurso = combo.IdCurso;
+            turmaModel.NmTurma = txtTurmaNome.Text;
+            turmaModel.TpPeriodo = cboTurmaPeriodo.Text;
+            turmaModel.NrCapacidadeMax = Convert.ToInt32(nudTurmaCapacidade.Value);
+
+            turmaApi.CadastrarTurma(turmaModel);
+
+            MessageBox.Show("Turma cadastrada com sucesso.", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        public void AlterarTurma()
+        {
+            turmaModel = new TurmaModell();
+            Model.CursoModel combo = cboTurmaCurso.SelectedItem as Model.CursoModel;
+
+            turmaModel.IdTurma = turmaModel.IdTurma;
+            turmaModel.IdAnoLetivo = anoModel.IdAnoLetivo;
+            turmaModel.IdCurso = combo.IdCurso;
+            turmaModel.NmTurma = txtTurmaNome.Text;
+            turmaModel.TpPeriodo = cboTurmaPeriodo.Text;
+            turmaModel.NrCapacidadeMax = Convert.ToInt32(nudTurmaCapacidade.Value);
+
+            turmaApi.CadastrarTurma(turmaModel);
+
+            MessageBox.Show("Turma alterada com sucesso.", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void dgvTurma_CellContentClick(object sender, DataGridViewCellEventArgs e)
