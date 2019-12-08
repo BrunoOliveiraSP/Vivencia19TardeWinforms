@@ -24,7 +24,7 @@ namespace Nsf.App.UI
         Model.TurmaModell turmaModel;
         Model.AnoLetivoModel anoModel;
 
-        Nsf.App.API.Client.TurmaApii turmaApi = new App.API.Client.TurmaApii();
+        Nsf.App.API.Client.TurmaApi turmaApi = new App.API.Client.TurmaApi();
 
         public void CarregarTela(Model.AnoLetivoModel model)
         {
