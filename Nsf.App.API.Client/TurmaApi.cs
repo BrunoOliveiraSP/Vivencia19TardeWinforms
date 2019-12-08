@@ -8,7 +8,7 @@ using System.Net.Http;
 
 namespace Nsf.App.API.Client
 {
-   public  class TurmaApii
+   public  class TurmaApi
    {
         HttpClient client = new HttpClient();
 
