@@ -99,12 +99,12 @@ namespace Nsf.App.UI
 
         private void dgvProfessores_CellClick_1(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.ColumnIndex == 5)
+            if (e.ColumnIndex == 4)
             {
                 this.Alterar();
             }
 
-            if (e.ColumnIndex == 6)
+            if (e.ColumnIndex == 5)
             {
                 this.Deletar();
             }
