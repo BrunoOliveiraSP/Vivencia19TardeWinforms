@@ -90,7 +90,11 @@ namespace Nsf.App.UI
             }
             catch (ArgumentException ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch(Exception)
+            {
+                MessageBox.Show("Ocorreu um erro. Entre em contato com o administrador.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
            
         }
@@ -111,7 +115,11 @@ namespace Nsf.App.UI
             }
             catch (ArgumentException ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch(Exception)
+            {
+                MessageBox.Show("Ocorreu um erro. Entre em contato com o administrador.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
