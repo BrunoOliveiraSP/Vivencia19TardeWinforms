@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Nsf.App.API.Client
 {
-    public class ProfessorAPI : ICrud<ProfessorRequest>
+    public class ProfessorAPI
     {
         HttpClient _client;
 
@@ -36,6 +36,16 @@ namespace Nsf.App.API.Client
             return professores;
         }
 
+        public List<LoginModel> ListarPorID(int id)
+        {
+            _client = new HttpClient();
+
+            var json = _client.GetAsync("http://localhost:5000/Professor/Id/" + id).Result
+                                                                .Content.ReadAsStringAsync().Result;
+
+            List<LoginModel> login = JsonConvert.DeserializeObject<List<LoginModel>>(json);
+            return login;
+        }
         #endregion
 
         public void Alterar(ProfessorRequest professor)
@@ -48,23 +58,13 @@ namespace Nsf.App.API.Client
             var resposta = _client.PutAsync("http://localhost:5000/Professor", body).Result;
         }
 
-        public void Remover(int id)
+        public void Remover(int idProfessor, int idLogin)
         {
             _client = new HttpClient();
-            var resp = _client.DeleteAsync("http://localhost:5000/Atividade/" + id).Result;
+            var resp = _client.DeleteAsync("http://localhost:5000/Atividade/" + idProfessor + "/" + idLogin).Result;
         }
 
-        public void Salvar(ProfessorRequest professor)
-        {
-            if(professor.Professor.IdProfessor > 0)
-            {
-                this.Alterar(professor);
-            }
-            else
-            {
-                this.Salvar(professor);
-            }
-        }
+
 
         public Model.ProfessorRequest Inserir(ProfessorRequest professor)
         {
@@ -78,9 +78,5 @@ namespace Nsf.App.API.Client
             return professor;
         }
 
-        List<ProfessorRequest> ICrud<ProfessorRequest>.ListarTodos()
-        {
-            throw new NotImplementedException();
-        }
     }
 }
