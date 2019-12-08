@@ -61,7 +61,7 @@ namespace Nsf.App.API.Client
         public void Remover(int idProfessor, int idLogin)
         {
             _client = new HttpClient();
-            var resp = _client.DeleteAsync("http://localhost:5000/Atividade/" + idProfessor + "/" + idLogin).Result;
+            var resp = _client.DeleteAsync("http://localhost:5000/Professor/" + idProfessor + "/" + idLogin).Result;
         }
 
 

@@ -88,7 +88,7 @@ namespace Nsf.App.UI
             frmInicial.Current.OpenScreen(tela);
             tela.CarregarCampos(model);
 
-            this.Hide();
+            this.Hide();    
         }
 
         private void txtNome_TextChanged(object sender, EventArgs e)
