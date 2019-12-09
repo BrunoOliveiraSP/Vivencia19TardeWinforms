@@ -22,6 +22,23 @@ namespace Nsf.App.UI
 
         private void btnSalvar_Click(object sender, EventArgs e)
         {
+         
+
+        }
+
+        
+        private void ALterar()
+        {
+
+        }
+
+        private void Inserir()
+        {
+
+        }
+
+        private Model.MatriculaRequest CarregarModelo()
+        {
             //AlunoModel
 
             Nsf.App.Model.AlunoModel aluno = new Model.AlunoModel();
@@ -112,7 +129,7 @@ namespace Nsf.App.UI
 
             Nsf.App.Model.AlunoCarometroModel alunoCarometro = new Model.AlunoCarometroModel();
 
-           // alunoCarometro.DsImagem = imgAluno.Image; ???
+            // alunoCarometro.DsImagem = imgAluno.Image; ???
 
 
             //Matricula 
@@ -127,7 +144,7 @@ namespace Nsf.App.UI
             matricula.Responsavel3 = responsavel3;
             matricula.Carometro = alunoCarometro;
 
-
+            return matricula;
         }
 
     }

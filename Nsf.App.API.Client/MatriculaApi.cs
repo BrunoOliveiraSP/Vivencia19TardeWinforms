@@ -5,14 +5,17 @@ using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using Nsf.App.Model;
 
 namespace Nsf.App.API.Client
 {
     public class MatriculaAPI
     {
+
+        HttpClient client = new HttpClient();
+
         public void Inserir(Nsf.App.Model.MatriculaRequest matricula)
         {
-            HttpClient client = new HttpClient();
 
             string json = JsonConvert.SerializeObject(matricula);
             StringContent body = new StringContent(json, Encoding.UTF8, "application/json");
@@ -28,7 +31,6 @@ namespace Nsf.App.API.Client
 
         public void Alterar(Nsf.App.Model.MatriculaRequest matricula)
         {
-            HttpClient client = new HttpClient();
 
             string json = JsonConvert.SerializeObject(matricula);
             StringContent body = new StringContent(json, Encoding.UTF8, "application/json");
@@ -46,8 +48,6 @@ namespace Nsf.App.API.Client
 
         public void Deletar(int id)
         {
-            HttpClient client = new HttpClient();
-
             var resp = client.DeleteAsync("http://localhost:5000/Matricula/" + id)
                .Result
                .Content
@@ -55,6 +55,20 @@ namespace Nsf.App.API.Client
                .Result;
 
             VerificarErro(resp);
+        }
+
+        public List<Model.MatriculaRequest> ListarTodos()
+        {
+
+            var resp = client.GetAsync("http://localhost:5000/Matricula/")
+               .Result
+               .Content
+               .ReadAsStringAsync()
+               .Result;
+
+            List < Model.MatriculaRequest > lista= JsonConvert.DeserializeObject<List<Model.MatriculaRequest>>(resp);
+
+            return lista;
         }
 
         
