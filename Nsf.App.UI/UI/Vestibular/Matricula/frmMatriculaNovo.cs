@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Nsf.App.Utils;
-using Nsf.App.Utils.APIs;
+using Nsf.App.API.Client;
 using System.IO;
 
 namespace Nsf.App.UI
@@ -18,26 +18,27 @@ namespace Nsf.App.UI
 		public frmMatriculaNovo()
 		{
 			InitializeComponent();
+            API.CursoAPI curso = new API.CursoAPI();
+            List<Model.CursoModel> cursos = curso.ConsultarTodos();
+
+            cboCurso.DisplayMember = nameof(Model.CursoModel.NmCurso);
+            cboCurso.DataSource = cursos;
         }
+
+        MatriculaAPI Api = new MatriculaAPI();
+
 
         private void btnSalvar_Click(object sender, EventArgs e)
         {
-         
+            Model.MatriculaRequest matricula = this.CarregarModelo();
 
+            if (matricula.Aluno.IdAluno == 0)
+                Api.Inserir(matricula);
+            else if (matricula.Aluno.IdAluno > 0)
+                Api.Alterar(matricula);
         }
 
-        
-        private void ALterar()
-        {
-
-        }
-
-        private void Inserir()
-        {
-
-        }
-
-        private Model.MatriculaRequest CarregarModelo()
+        public Model.MatriculaRequest CarregarModelo()
         {
             //AlunoModel
 
