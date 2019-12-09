@@ -40,9 +40,20 @@ namespace Nsf.App.UI
 
         private void CarregarGrid()
         {
-            List<Model.MatriculaRequest> lista = MatriculaApi.ListarTodos();
+            try
+            {
+                List<Model.MatriculaRequest> lista = MatriculaApi.ListarTodos();
 
-            dgvCandidatos.DataSource = lista;
+                dgvCandidatos.DataSource = lista;
+            }
+            catch (ArgumentException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("Ocorreu erro", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }
