@@ -9,6 +9,7 @@ namespace Nsf.App.UI
 		public frmMatriculaConsultar()
 		{
 			InitializeComponent();
+            CarregarGrid();
 		}
         Nsf.App.API.Client.MatriculaAPI MatriculaApi = new App.API.Client.MatriculaAPI();
 
@@ -16,8 +17,6 @@ namespace Nsf.App.UI
         {
             if(e.ColumnIndex == 9)
             {
-                
-
                 Model.MatriculaRequest matricula = dgvCandidatos.CurrentRow.DataBoundItem as Model.MatriculaRequest;
 
                 DialogResult result = MessageBox.Show("Dejesa Remover?", "NSF", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
@@ -39,9 +38,11 @@ namespace Nsf.App.UI
             }
         }
 
-        private List<Model.MatriculaRequest> CarregarGrid()
+        private void CarregarGrid()
         {
-            MatriculaApi.
+            List<Model.MatriculaRequest> lista = MatriculaApi.ListarTodos();
+
+            dgvCandidatos.DataSource = lista;
         }
     }
 }
