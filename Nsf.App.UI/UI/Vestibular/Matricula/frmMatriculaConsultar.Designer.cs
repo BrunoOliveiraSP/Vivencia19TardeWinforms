@@ -53,6 +53,7 @@
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewImageColumn();
+            this.Column6 = new System.Windows.Forms.DataGridViewImageColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCandidatos)).BeginInit();
             this.SuspendLayout();
             // 
@@ -91,7 +92,8 @@
             this.Periodo,
             this.Column1,
             this.Column5,
-            this.Column2});
+            this.Column2,
+            this.Column6});
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Century Gothic", 12F);
@@ -108,6 +110,7 @@
             this.dgvCandidatos.RowTemplate.Height = 30;
             this.dgvCandidatos.Size = new System.Drawing.Size(768, 367);
             this.dgvCandidatos.TabIndex = 1;
+            this.dgvCandidatos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCandidatos_CellContentClick);
             // 
             // txtNome
             // 
@@ -320,6 +323,15 @@
             this.Column2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.Column2.Width = 25;
             // 
+            // Column6
+            // 
+            this.Column6.HeaderText = "";
+            this.Column6.Image = global::Nsf.App.UI.Properties.Resources.remove2;
+            this.Column6.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Stretch;
+            this.Column6.Name = "Column6";
+            this.Column6.ReadOnly = true;
+            this.Column6.Width = 20;
+            // 
             // frmMatriculaConsultar
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -374,5 +386,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
         private System.Windows.Forms.DataGridViewImageColumn Column2;
+        private System.Windows.Forms.DataGridViewImageColumn Column6;
     }
 }

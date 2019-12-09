@@ -11,5 +11,16 @@ namespace Nsf.App.UI
 			InitializeComponent();
 		}
 
+        private void dgvCandidatos_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if(e.ColumnIndex == 9)
+            {
+                Nsf.App.API.Client.MatriculaAPI api = new App.API.Client.MatriculaAPI();
+
+                Model.MatriculaRequest matricula = 
+
+                api.Deletar()
+            }
+        }
     }
 }
