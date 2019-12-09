@@ -60,7 +60,7 @@ namespace Nsf.App.API.Client
         public List<Model.MatriculaRequest> ListarTodos()
         {
 
-            var resp = client.GetAsync("http://localhost:5000/Matricula/")
+            var resp = client.GetAsync("http://localhost:5000/Matricula")
                .Result
                .Content
                .ReadAsStringAsync()
