@@ -117,7 +117,6 @@ namespace Nsf.App.UI
             try
             {
                 panelId.Visible = true;
-
                 lblId.Text = model.IdDisciplina.ToString();
                 txtDisciplina.Text = model.NmDisciplina;
                 txtSigla.Text = model.DsSigla;

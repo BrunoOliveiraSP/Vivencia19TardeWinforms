@@ -19,7 +19,13 @@ namespace Nsf.App.API.Client
         {
             _client = new HttpClient();
 
-            var json = _client.GetAsync("http://localhost:5000/Professor").Result.Content.ReadAsStringAsync().Result;
+            var json = _client.GetAsync("http://localhost:5000/Professor")
+                              .Result
+                              .Content
+                              .ReadAsStringAsync()
+                              .Result;
+
+            this.VerificarErro(json);
 
             List<ProfessorModel> professores = JsonConvert.DeserializeObject<List<ProfessorModel>>(json);
             return professores;
@@ -29,8 +35,13 @@ namespace Nsf.App.API.Client
         {
             _client = new HttpClient();
 
-            var json = _client.GetAsync("http://localhost:5000/Professor/Nome/" + nome).Result
-                                                                 .Content.ReadAsStringAsync().Result;
+            var json = _client.GetAsync("http://localhost:5000/Professor/Nome/" + nome)
+                              .Result
+                              .Content
+                              .ReadAsStringAsync()
+                              .Result;
+
+            this.VerificarErro(json);
 
             List<ProfessorModel> professores = JsonConvert.DeserializeObject<List<ProfessorModel>>(json);
             return professores;
@@ -40,8 +51,11 @@ namespace Nsf.App.API.Client
         {
             _client = new HttpClient();
 
-            var json = _client.GetAsync("http://localhost:5000/Professor/Id/" + id).Result
-                                                                .Content.ReadAsStringAsync().Result;
+            var json = _client.GetAsync("http://localhost:5000/Professor/Id/" + id)
+                              .Result
+                              .Content
+                              .ReadAsStringAsync()
+                              .Result;
 
             List<LoginModel> login = JsonConvert.DeserializeObject<List<LoginModel>>(json);
             return login;
@@ -55,13 +69,25 @@ namespace Nsf.App.API.Client
             string json = JsonConvert.SerializeObject(professor);
             StringContent body = new StringContent(json, Encoding.UTF8, "application/json");
 
-            var resposta = _client.PutAsync("http://localhost:5000/Professor", body).Result;
+            var resposta = _client.PutAsync("http://localhost:5000/Professor", body)
+                                  .Result
+                                  .Content
+                                  .ReadAsStringAsync()
+                                  .Result;
+
+            this.VerificarErro(json);
         }
 
         public void Remover(int idProfessor, int idLogin)
         {
             _client = new HttpClient();
-            var resp = _client.DeleteAsync("http://localhost:5000/Professor/" + idProfessor + "/" + idLogin).Result;
+            var resp = _client.DeleteAsync("http://localhost:5000/Professor/" + idProfessor + "/" + idLogin)
+                              .Result
+                              .Content
+                              .ReadAsStringAsync()
+                              .Result;
+
+            this.VerificarErro(resp);
         }
 
 
@@ -73,9 +99,23 @@ namespace Nsf.App.API.Client
             string json = JsonConvert.SerializeObject(professor);
             StringContent body = new StringContent(json, Encoding.UTF8, "application/json");
 
-            var resposta = _client.PostAsync("http://localhost:5000/Professor", body).Result;
+            var resposta = _client.PostAsync("http://localhost:5000/Professor", body)
+                                  .Result
+                                  .Content
+                                  .ReadAsStringAsync()
+                                  .Result;
+
+            this.VerificarErro(resposta);
 
             return professor;
+        }
+        private void VerificarErro(string respostaApi)
+        {
+            if(respostaApi.Contains("codigoErro"))
+            {
+                Model.ErroModel erro = JsonConvert.DeserializeObject<Model.ErroModel>(respostaApi);
+                throw new ArgumentException(erro.Mensagem);
+            }
         }
 
     }
