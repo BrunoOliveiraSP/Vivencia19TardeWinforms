@@ -56,6 +56,10 @@ namespace Nsf.App.UI
             {
                 MessageBox.Show(ex.Message);
             }
+            catch(Exception )
+            {
+                MessageBox.Show("Ocorreu um erro. Entre em contato com o administrador.");
+            }
 
         }
 

@@ -34,11 +34,11 @@ namespace Nsf.App.UI
             }
             catch(ArgumentException ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.YesNo ,MessageBoxIcon.Exclamation);
             }
             catch(Exception)
             {
-                MessageBox.Show("Ocorreu um erro. Entre em contato com o administrador.");
+                MessageBox.Show("Ocorreu um erro. Entre em contato com o administrador.", "Error", MessageBoxButtons.YesNo, MessageBoxIcon.Error);
             }
 
         }
@@ -60,11 +60,15 @@ namespace Nsf.App.UI
                 panelId.Visible = true;
                 lblId.Text = disciplina.IdDisciplina.ToString();
 
-                MessageBox.Show("Disciplina Inserida com sucesso.");
+                MessageBox.Show("Disciplina Inserida com sucesso.", "Disciplina", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
             catch (ArgumentException ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message, "Disciplina", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Ocorreu um erro. Entre em contato com o administrador.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -105,11 +109,15 @@ namespace Nsf.App.UI
                 Nsf.App.API.Client.DisciplinaAPI api = new App.API.Client.DisciplinaAPI();
                 api.Alterar(disciplina);
 
-                MessageBox.Show("Disciplina Alterada com sucesso.");
+                MessageBox.Show("Disciplina Alterada com sucesso.", "Alteração", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (ArgumentException ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message, "Diciplina", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Ocorreu um erro. Entre em contato com o administrador.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         public void CarregarCampos(Model.DisciplinaModel model)
@@ -127,7 +135,11 @@ namespace Nsf.App.UI
             }
             catch (ArgumentException ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Ocorreu um erro. Entre em contato com o administrador.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
         }
