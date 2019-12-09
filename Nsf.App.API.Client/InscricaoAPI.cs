@@ -26,7 +26,7 @@ namespace Nsf.App.API.Client
             VerificarErro(resp);
         }
 
-        public List<Model.InscricaoModel> ConsultarTodos()
+        public List<Model.InscricaoResponse> ConsultarTodos()
         {
             HttpClient client = new HttpClient();
 
@@ -38,23 +38,22 @@ namespace Nsf.App.API.Client
 
             VerificarErro(json);
 
-            return JsonConvert.DeserializeObject<List<Model.InscricaoModel>>(json);
+            return JsonConvert.DeserializeObject<List<Model.InscricaoResponse>>(json);
         }
-		public List<Model.InscricaoModel> ConsultarNome(string nome,  int ano)
+		public List<Model.InscricaoResponse> ConsultarNome(string nome,  int ano)
 		{
 			HttpClient NomeAnoConsulta = new HttpClient();
 
             var json = NomeAnoConsulta.GetAsync("http://localhost:5000/Inscricao/ConsultarPorNomeEAno/" + nome + "/" + ano)
-                                        .Result;
-
-            string jjj = json
+                                        .Result
 										.Content
 										.ReadAsStringAsync()
 										.Result;
-			VerificarErro(jjj);
-			return JsonConvert.DeserializeObject<List<Model.InscricaoModel>>(jjj);
-				                    
-		}
+			VerificarErro(json);
+			return JsonConvert.DeserializeObject<List<Model.InscricaoResponse>>(json);
+
+            
+        }
 
         public void Alterar(Model.InscricaoModel inscricao)
         {
@@ -111,7 +110,7 @@ namespace Nsf.App.API.Client
             return JsonConvert.DeserializeObject<Model.AnoLetivoModel>(json);
         }
 
-        public List<Model.InscricaoModel> ConsultarAnoLetivoLista(int id)
+        public List<Model.InscricaoResponse> ConsultarAnoLetivoLista(int id)
         {
             HttpClient NomeAnoConsulta = new HttpClient();
 
@@ -121,7 +120,7 @@ namespace Nsf.App.API.Client
                                         .ReadAsStringAsync()
                                         .Result;
             VerificarErro(json);
-            return JsonConvert.DeserializeObject<List<Model.InscricaoModel>>(json);
+            return JsonConvert.DeserializeObject<List<Model.InscricaoResponse>>(json);
         }
 
         private void VerificarErro(string respostaAPI)

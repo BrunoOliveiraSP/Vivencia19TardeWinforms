@@ -66,7 +66,6 @@ namespace Nsf.App.UI
         {
             login.DsLogin = txtLogin.Text;
             login.BtAtivo = chkAtivo.Checked;
-
             _professor.IdProfessor = _professor.IdProfessor;
             _professor.IdLogin = login.IdLogin;
             _professor.BtAtivo = chkAtivo.Checked;
@@ -89,7 +88,6 @@ namespace Nsf.App.UI
             _professor.DtNascimento = dtpNascimento.Value;
             _professor.NrAnoPrimeiroEmprego = Convert.ToInt32(nudPrimeiroEmprego.Value);
             _professor.TpContratacao = cboContrato.Text;
-
             professorReq.Professor = _professor;
             professorReq.Login = login;
 
@@ -158,7 +156,7 @@ namespace Nsf.App.UI
         {
             try
             {
-                if(professorReq != null && professorReq.Professor.IdProfessor > 0)
+                if(_professor != null && professorReq.Professor.IdProfessor > 0)
                 {
                     this.Alterar();
                 }
@@ -171,11 +169,15 @@ namespace Nsf.App.UI
             {
                 MessageBox.Show(ex.Message, "NSF", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-            catch (Exception)
-            {
-                MessageBox.Show("Ocorreu um erro. Entre em contato com o administrador.", "NSF", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            //catch (Exception)
+            //{
+            //    MessageBox.Show("Ocorreu um erro. Entre em contato com o administrador.", "NSF", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //}
         }
 
+        private void txtRGEmissao_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

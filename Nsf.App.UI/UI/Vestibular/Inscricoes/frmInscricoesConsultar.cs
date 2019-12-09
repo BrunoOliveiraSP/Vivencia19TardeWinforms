@@ -92,7 +92,7 @@ namespace Nsf.App.UI
         {
             try
             {
-                if (e.ColumnIndex == 5)
+                if (e.ColumnIndex == 7)
                 {
                     Model.InscricaoModel inscricao = dgvCandidatos.CurrentRow.DataBoundItem as Model.InscricaoModel;
 
@@ -157,15 +157,15 @@ namespace Nsf.App.UI
                     frmInicial.Current.OpenScreen(new frmInscricoesNovo());
                 }
 
-                if (e.ColumnIndex == 6)
+                if (e.ColumnIndex == 8)
                 {
                     Model.InscricaoModel inscricao = dgvCandidatos.CurrentRow.DataBoundItem as Model.InscricaoModel;
 
-                    DialogResult result = MessageBox.Show("Dejesa Remover?", "Inscrição", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+                    DialogResult result = MessageBox.Show("Dejesa Remover?", "NSF", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
                     if (result == DialogResult.Yes)
                     {
                         InscricaoAPI.Remover(inscricao.idInscricao);
-                        MessageBox.Show("Registro removido");
+                        MessageBox.Show("Registro removido", "NSF", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         CarregarGrid();
                     }
                 }
