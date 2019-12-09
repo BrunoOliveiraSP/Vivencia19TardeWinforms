@@ -50,9 +50,97 @@ namespace Nsf.App.UI
             {
                 MessageBox.Show(ex.Message);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                MessageBox.Show("Ocorreu erro", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Registro removido", "NSF", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private void cboCurso_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string ra = txtRA.Text;
+            string nome = txtNome.Text;
+            string curso = cboCurso.Text;
+            string turma = cboTurma.Text;
+
+            try
+            {
+                List<Model.MatriculaRequest> lista = MatriculaApi.ConsultarPorParametros(nome, ra, curso, turma);
+                dgvCandidatos.DataSource = lista;
+            }
+            catch (ArgumentException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Registro removido", "NSF", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private void cboTurma_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string ra = txtRA.Text;
+            string nome = txtNome.Text;
+            string curso = cboCurso.Text;
+            string turma = cboTurma.Text;
+
+            try
+            {
+                List<Model.MatriculaRequest> lista = MatriculaApi.ConsultarPorParametros(nome, ra, curso, turma);
+                dgvCandidatos.DataSource = lista;
+            }
+            catch (ArgumentException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Registro removido", "NSF", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private void txtNome_TextChanged(object sender, EventArgs e)
+        {
+            string ra = txtRA.Text;
+            string nome = txtNome.Text;
+            string curso = cboCurso.Text;
+            string turma = cboTurma.Text;
+
+            try
+            {
+                List<Model.MatriculaRequest> lista = MatriculaApi.ConsultarPorParametros(nome, ra, curso, turma);
+                dgvCandidatos.DataSource = lista;
+            }
+            catch (ArgumentException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Registro removido", "NSF", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private void txtRA_TextChanged(object sender, EventArgs e)
+        {
+            string ra = txtRA.Text;
+            string nome = txtNome.Text;
+            string curso = cboCurso.Text;
+            string turma = cboTurma.Text;
+
+            try
+            {
+                List<Model.MatriculaRequest> lista = MatriculaApi.ConsultarPorParametros(nome, ra, curso, turma);
+                dgvCandidatos.DataSource = lista;
+            }
+            catch (ArgumentException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Registro removido", "NSF", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
     }
