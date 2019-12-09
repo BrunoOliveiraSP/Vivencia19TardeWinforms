@@ -1256,6 +1256,7 @@
             this.cboTurno2.Name = "cboTurno2";
             this.cboTurno2.Size = new System.Drawing.Size(154, 28);
             this.cboTurno2.TabIndex = 35;
+            this.cboTurno2.SelectedIndexChanged += new System.EventHandler(this.cboTurno2_SelectedIndexChanged);
             // 
             // label42
             // 
@@ -1292,6 +1293,7 @@
             this.cboTurno1.Name = "cboTurno1";
             this.cboTurno1.Size = new System.Drawing.Size(153, 28);
             this.cboTurno1.TabIndex = 33;
+            this.cboTurno1.SelectedIndexChanged += new System.EventHandler(this.cboTurno1_SelectedIndexChanged);
             // 
             // label37
             // 

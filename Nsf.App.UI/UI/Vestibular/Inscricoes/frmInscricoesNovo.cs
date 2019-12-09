@@ -87,7 +87,11 @@ namespace Nsf.App.UI
 
                     Api.Alterar(inscricao);
 
-                    MessageBox.Show("Alteração efetuada.", "Inscrição", MessageBoxButtons.OK);
+                    DialogResult result = MessageBox.Show("Alteração efetuada com sucesso. Deseja Consultar sua Alteração?", "NSF", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+                    if (result == DialogResult.Yes)
+                    {
+                        frmInicial.Current.OpenScreen(new frmInscricoesConsultar());
+                    }
                 }
                 else
                 {
@@ -152,7 +156,7 @@ namespace Nsf.App.UI
 
                     Api.Inserir(inscricao);
 
-                    MessageBox.Show("Inscrição efetuada.", "Inscrição", MessageBoxButtons.OK);
+                    MessageBox.Show("Inscrição efetuada.", "NSF", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
 
                 Model.CarregarInscrições.idInscricao = 0;
@@ -160,7 +164,11 @@ namespace Nsf.App.UI
             }
             catch (ArgumentException ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message, "NSF", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch(Exception)
+            {
+                MessageBox.Show("Ocorreu um erro. Entre em contato com o administrador.", "NSF", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -234,11 +242,11 @@ namespace Nsf.App.UI
             }
             catch(ArgumentException ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message, "NSF", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             catch (Exception)
             {
-                MessageBox.Show("Ocorreu um erro");
+                MessageBox.Show("Ocorreu um erro. Entre em contato com o administrador.", "NSF", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -281,9 +289,6 @@ namespace Nsf.App.UI
                 txtTelefone2.Text = string.Empty;
                 dtpRgEmissao.Value = DateTime.Now.Date;
                 txtNascimentoData.Value = DateTime.Now.Date;
-                //cboAnoLetivo.Text = Model.CarregarInscrições.idAnoLetivo; Fazer um 
-                //= Model.CarregarInscrições.idCurso;
-                //= Model.CarregarInscrições.idCurso2;
                 txtContato.Text = string.Empty;
                 txtNomeDaEscola.Text = string.Empty;
                 txtNumero.Text = string.Empty;
@@ -296,22 +301,92 @@ namespace Nsf.App.UI
             }
             catch (Exception)
             {
-                MessageBox.Show("Ocorreu um erro");
+                MessageBox.Show("Ocorreu um erro. Entre em contato com o administrador.", "NSF", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+        
 
         private void txtCep_Leave(object sender, EventArgs e)
         {
-            CorreioApi correioApi = new CorreioApi();
-            CorreioResponse correioResponse = new CorreioResponse();
-            correioApi.BuscarAPICorreio(txtCep.Text, out correioResponse);
-            txtBairro.Text = correioResponse.bairro;
-            cboUf.Text = correioResponse.uf;
-            txtCidade.Text = correioResponse.localidade;
-            txtComplemento.Text = correioResponse.complemento;
-            txtEndereco.Text = correioResponse.logradouro + " " +
-            correioResponse.complemento + ", " + correioResponse.bairro + " " + 
-            correioResponse.localidade + " - " + correioResponse.uf;
+            try
+            {
+                CorreioApi correioApi = new CorreioApi();
+                CorreioResponse correioResponse = new CorreioResponse();
+                bool encontrouCep = correioApi.BuscarAPICorreio(txtCep.Text, out correioResponse);
+
+                if (encontrouCep == false)
+                {
+                    MessageBox.Show("Cep não encontrado, por favor, tente novamente.", "NSF", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
+                else
+                {
+                    txtBairro.Text = correioResponse.bairro;
+                    cboUf.Text = correioResponse.uf;
+                    txtCidade.Text = correioResponse.localidade;
+                    txtComplemento.Text = correioResponse.complemento;
+                    txtEndereco.Text = correioResponse.logradouro + " " +
+                    correioResponse.complemento + ", " + correioResponse.bairro + " " +
+                    correioResponse.localidade + " - " + correioResponse.uf;
+                }
+            }
+            catch(ArgumentException ex)
+            {
+                MessageBox.Show(ex.Message, "NSF", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Ocorreu um erro. Entre em contato com o administrador.", "NSF", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void cboTurno1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                string turno = cboTurno1.Text;
+
+                var func = cboCurso1.SelectedItem as Model.CursoModel;
+
+                if (turno == "Noite" && func.DsCategoria == "Técnico")
+                {
+                    MessageBox.Show("O Curso Técnico " + func.NmCurso + ", não estão disponível no período selecionado.", "NSF", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    cboTurno1.SelectedItem = 0;
+                }
+                else if (turno == "Noite" && func.DsCategoria == "Qualificação")
+                {
+                    MessageBox.Show("O Curso de Qualificação " + func.NmCurso + ", não estão disponível no período selecionado.", "NSF", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    cboTurno1.SelectedItem = 0;
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Ocorreu um erro. Entre em contato com o administrador.", "NSF", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void cboTurno2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                string turno = cboTurno1.Text;
+
+                var func = cboCurso2.SelectedItem as Model.CursoModel;
+
+                if (turno == "Noite" && func.DsCategoria == "Técnico")
+                {
+                    MessageBox.Show("O Curso Técnico " + func.NmCurso + ", não estão disponível no período selecionado.", "NSF", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    cboTurno2.SelectedItem = 0;
+                }
+                else if (turno == "Noite" && func.DsCategoria == "Qualificação")
+                {
+                    MessageBox.Show("O Curso de Qualificação " + func.NmCurso + ", não estão disponível no período selecionado.", "NSF", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    cboTurno2.SelectedItem = 0;
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Ocorreu um erro. Entre em contato com o administrador.", "NSF", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }
