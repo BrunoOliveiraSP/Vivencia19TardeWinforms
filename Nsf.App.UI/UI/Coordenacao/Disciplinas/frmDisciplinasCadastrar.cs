@@ -32,13 +32,13 @@ namespace Nsf.App.UI
                     Inserir();
                 }
             }
-            catch (ArgumentException ex)
+            catch(ArgumentException ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.YesNo ,MessageBoxIcon.Exclamation);
             }
-            catch (Exception ex)
+            catch(Exception)
             {
-                MessageBox.Show("Ocorreu um erro. Entre em contato com o administrador.");
+                MessageBox.Show("Ocorreu um erro. Entre em contato com o administrador.", "Error", MessageBoxButtons.YesNo, MessageBoxIcon.Error);
             }
 
         }
@@ -50,7 +50,7 @@ namespace Nsf.App.UI
 
                 disciplina.NmDisciplina = txtDisciplina.Text;
                 disciplina.DsSigla = txtSigla.Text;
-                disciplina.DtInclusao = dtpinclusao.Value;
+                disciplina.DtInclusao = System.DateTime.Now;
                 disciplina.DtUltimaAlteracao = System.DateTime.Now;
                 disciplina.BtAtivo = Convert.ToBoolean(chkAtivo.Checked);
 
@@ -60,11 +60,15 @@ namespace Nsf.App.UI
                 panelId.Visible = true;
                 lblId.Text = disciplina.IdDisciplina.ToString();
 
-                MessageBox.Show("Disciplina Inserida com sucesso.");
+                MessageBox.Show("Disciplina Inserida com sucesso.", "Disciplina", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
             catch (ArgumentException ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message, "Disciplina", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Ocorreu um erro. Entre em contato com o administrador.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -99,18 +103,21 @@ namespace Nsf.App.UI
                 disciplina.IdDisciplina = disciplina.IdDisciplina;
                 disciplina.NmDisciplina = txtDisciplina.Text;
                 disciplina.DsSigla = txtSigla.Text;
-                disciplina.DtInclusao = dtpinclusao.Value;
                 disciplina.DtUltimaAlteracao = System.DateTime.Now;
                 disciplina.BtAtivo = Convert.ToBoolean(chkAtivo.Checked);
 
                 Nsf.App.API.Client.DisciplinaAPI api = new App.API.Client.DisciplinaAPI();
                 api.Alterar(disciplina);
 
-                MessageBox.Show("Disciplina Alterada com sucesso.");
+                MessageBox.Show("Disciplina Alterada com sucesso.", "Alteração", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (ArgumentException ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message, "Diciplina", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Ocorreu um erro. Entre em contato com o administrador.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         public void CarregarCampos(Model.DisciplinaModel model)
@@ -118,11 +125,9 @@ namespace Nsf.App.UI
             try
             {
                 panelId.Visible = true;
-
                 lblId.Text = model.IdDisciplina.ToString();
                 txtDisciplina.Text = model.NmDisciplina;
                 txtSigla.Text = model.DsSigla;
-                dtpinclusao.Value = model.DtInclusao;
                 model.DtUltimaAlteracao = model.DtInclusao;
                 chkAtivo.Checked = model.BtAtivo;
 
@@ -130,20 +135,16 @@ namespace Nsf.App.UI
             }
             catch (ArgumentException ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Ocorreu um erro. Entre em contato com o administrador.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-           
-        }
-
-        private void frmDisciplinasCadastrar_Load(object sender, EventArgs e)
-        {
-
-        }
+   
     }
 
 }

@@ -65,7 +65,9 @@
     <Compile Include="ProfessorRequest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SalaModel.cs" />
+    <Compile Include="SalaVestibualrResponse.cs" />
     <Compile Include="SalaVestibularModel.cs" />
+    <Compile Include="SalaVestibularRequest.cs" />
     <Compile Include="TurmaModell.cs" />
   </ItemGroup>
   <ItemGroup>

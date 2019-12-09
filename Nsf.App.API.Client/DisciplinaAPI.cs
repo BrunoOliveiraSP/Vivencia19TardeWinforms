@@ -106,21 +106,20 @@ namespace Nsf.App.API.Client
 
             VerificarErro(resp);
         }
-        public void AlterarCursoDisciplina(Nsf.App.Model.CursoDisciplinaModel cd)
+        public void RemoverCursoDisciplina(int idcurso)
         {
 
             HttpClient client = new HttpClient();
-
-            string json = JsonConvert.SerializeObject(cd);
-            StringContent body = new StringContent(json, Encoding.UTF8, "application/json");
-
-            var resp = client.PostAsync("http://localhost:5000/Disciplina/AlterarCursoDisciplina", body)
+            
+            var resp = client.DeleteAsync("http://localhost:5000/Disciplina/RemoverDisciplinasCurso" + "/" + idcurso + "/")
                              .Result
                              .Content
                              .ReadAsStringAsync()
                              .Result;
 
             VerificarErro(resp);
+
+            
         }
         public BindingList<Nsf.App.Model.DisciplinaModel> ListarCursoDisciplina(int id)
         {

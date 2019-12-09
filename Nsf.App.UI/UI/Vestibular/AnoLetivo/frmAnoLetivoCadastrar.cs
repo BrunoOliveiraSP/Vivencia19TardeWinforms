@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Linq;
 using System.Windows.Forms;
+using Nsf.App.API;
 
 namespace Nsf.App.UI
 {
@@ -18,24 +19,37 @@ namespace Nsf.App.UI
             CarregarGrid();
             CarregarCurso();
         }
-        int idAno = 0;
-        int IdTurma = 0;
+
+        Model.CursoModel curso;
+        Model.TurmaModell turmaModel;
+        Model.AnoLetivoModel anoModel;
+
+        Nsf.App.API.Client.TurmaApi turmaApi = new App.API.Client.TurmaApi();
+
         public void CarregarTela(Model.AnoLetivoModel model)
         {
             try
             {
+                anoModel  = new AnoLetivoModel ();
+
                 ulong btAberto = Convert.ToUInt32(rdnAberto.Checked);
 
-                idAno = model.IdAnoLetivo;
+                btAberto = model.BtAtivo;
+                anoModel.IdAnoLetivo = model.IdAnoLetivo;
                 nudAno.Value = model.NrAno;
-                dtpInicio.Value = model.DtInicio;
                 dtpFim.Value = model.DtFim;
                 cboStatus.Text = model.TpStatus;
-                btAberto = model.BtAtivo;
+                dtpInicio.Value = model.DtInicio;
+
+                anoModel = model;
             }
             catch (ArgumentException ex)
             {
                 MessageBox.Show(ex.Message);
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("Ocorreu um erro", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -43,57 +57,104 @@ namespace Nsf.App.UI
         {
             try
             {
-                Model.AnoLetivoModel add = new Model.AnoLetivoModel();
-                add.NrAno = Convert.ToInt32(nudAno.Value);
-                add.DtInicio = dtpInicio.Value;
-                add.DtFim = dtpFim.Value;
-                add.TpStatus = cboStatus.Text;
-                add.BtAtivo = Convert.ToUInt32(rdnAberto.Checked);
-
-                Nsf.App.API.Client.AnoLetivoApi api = new App.API.Client.AnoLetivoApi();
-
-                if (idAno > 0)
+                if (anoModel != null && anoModel.IdAnoLetivo > 0)
                 {
-                    add.IdAnoLetivo = idAno;
-                    api.Alterar(add);
-
-                    MessageBox.Show("Alterado com sucesso");
+                    Alterar();
                 }
 
                 else
                 {
-                    api.CadastrarAnoLetivo(add);
-                    DialogResult r = MessageBox.Show("Cadastrado com sucesso", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    //if (r == DialogResult.Yes)
-                    //{
-                    //    tabControl1.TabPages.Remove(tabTurmas);
-                    //}
+                    Inserir();
                 }
-
             }
             catch (ArgumentException ex)
             {
                 MessageBox.Show(ex.Message);
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ocorreu um erro", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        
+        public void Inserir()
+        {
+            try
+            {
+                anoModel = new AnoLetivoModel();
+
+                anoModel.DtFim = dtpFim.Value;
+                anoModel.TpStatus = cboStatus.Text;
+                anoModel.DtInicio = dtpInicio.Value;
+                anoModel.NrAno = Convert.ToInt32(nudAno.Value);
+                anoModel.BtAtivo = Convert.ToUInt32(rdnAberto.Checked);
+
+                Nsf.App.API.Client.AnoLetivoApi api = new App.API.Client.AnoLetivoApi();
+                api.CadastrarAnoLetivo(anoModel);
+
+                MessageBox.Show("Ano letivo cadastrado com sucesso.", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (ArgumentException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ocorreu um erro", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
+        public void Alterar()
+        {
+            try
+            {
+                anoModel.IdAnoLetivo = anoModel.IdAnoLetivo;
+                anoModel.DtFim = dtpFim.Value;
+                anoModel.TpStatus = cboStatus.Text;
+                anoModel.DtInicio = dtpInicio.Value;
+                anoModel.NrAno = Convert.ToInt32(nudAno.Value);
+                anoModel.BtAtivo = Convert.ToUInt32(rdnAberto.Checked);
+
+                Nsf.App.API.Client.AnoLetivoApi api = new App.API.Client.AnoLetivoApi();
+                api.Alterar(anoModel);
+                MessageBox.Show("Ano letivo alterado com sucesso.", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (ArgumentException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ocorreu um erro", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
 
         private void CarregarCurso()
         {
-            API.CursoAPI api = new API.CursoAPI();
+            try
+            {
+                API.CursoAPI api = new API.CursoAPI();
 
-            List<Model.CursoModel> lista = api.ConsultarTodos();
+                List<Model.CursoModel> lista = api.ConsultarTodos();
 
-            cboTurmaCurso.DisplayMember = nameof(Model.CursoModel.NmCurso);
-            cboTurmaCurso.DataSource = lista;
+                cboTurmaCurso.DisplayMember = nameof(Model.CursoModel.NmCurso);
+                cboTurmaCurso.DataSource = lista;
+            }
+            catch (ArgumentException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ocorreu um erro", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         public void CarregarGrid()
         {
             try
             {
-                Nsf.App.API.Client.TurmaApii api = new App.API.Client.TurmaApii();
-                List<Model.TurmaModell> turma = api.ListarTodos();
+                List<Model.TurmaModell> turma = turmaApi.ListarTodos();
 
                 dgvTurma.AutoGenerateColumns = false;
                 dgvTurma.DataSource = turma;
@@ -101,6 +162,10 @@ namespace Nsf.App.UI
             catch (ArgumentException ex)
             {
                 MessageBox.Show(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ocorreu um erro", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -111,16 +176,18 @@ namespace Nsf.App.UI
             {
                 if (e.ColumnIndex == 4)
                 {
+                    turmaModel = new TurmaModell();
                     Model.TurmaModell turma = dgvTurma.CurrentRow.DataBoundItem as Model.TurmaModell;
                     Model.CursoModel combo = cboTurmaCurso.SelectedItem as Model.CursoModel;
 
-                    turma.IdAnoLetivo = 2; // ERRO MORTAL
+                    turmaModel.IdTurma = turma.IdTurma;
+                    turma.IdAnoLetivo = anoModel.IdAnoLetivo;
+                    txtTurmaNome.Text = turma.NmTurma;
                     cboTurmaCurso.Text = combo.NmCurso;
                     cboTurmaPeriodo.Text = turma.TpPeriodo;
-                    txtTurmaNome.Text = turma.NmTurma;
                     nudTurmaCapacidade.Value = turma.NrCapacidadeMax;
 
-                    IdTurma = turma.IdTurma;
+                    turmaModel = turma;
                 }
 
                 if (e.ColumnIndex == 5)
@@ -131,9 +198,7 @@ namespace Nsf.App.UI
 
                     if (r == DialogResult.Yes)
                     {
-                        Nsf.App.API.Client.TurmaApii api = new App.API.Client.TurmaApii();
-
-                        api.Remover(turma.IdTurma);
+                        turmaApi.Remover(turma.IdTurma);
 
                         MessageBox.Show("Removido com sucesso");
                     }
@@ -143,45 +208,95 @@ namespace Nsf.App.UI
             {
                 MessageBox.Show(ex.Message);
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ocorreu um erro", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void btnTurmaAdd_Click_1(object sender, EventArgs e)
         {
             try
             {
-                Nsf.App.Model.TurmaModell model = new Model.TurmaModell();
-
-                Model.CursoModel combo = cboTurmaCurso.SelectedItem as Model.CursoModel;
-
-
-                model.IdAnoLetivo = 2;
-                model.TpPeriodo = cboTurmaPeriodo.Text;
-                model.NmTurma = txtTurmaNome.Text;
-                model.NrCapacidadeMax = Convert.ToInt32(nudTurmaCapacidade.Value);
-                model.IdCurso = combo.IdCurso;
-
-                Nsf.App.API.Client.TurmaApii api = new Nsf.App.API.Client.TurmaApii();
-
-                if (IdTurma > 0)
+                if (turmaModel != null && turmaModel.IdTurma > 0)
                 {
-                    model.IdTurma = IdTurma;
-                    api.Alterar(model);
-
-                    MessageBox.Show("Alterado com sucesso");
+                    AlterarTurma();
                     CarregarGrid();
                 }
                 else
                 {
-                    api.CadastrarTurma(model);
-                    MessageBox.Show("Cadastrado com sucesso");
+                    InserirTurma();
                     CarregarGrid();
                 }
-
             }
             catch (ArgumentException ex)
             {
                 MessageBox.Show(ex.Message);
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ocorreu um erro", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        public void InserirTurma()
+        {
+            try
+            {
+                turmaModel = new TurmaModell();
+
+                Model.CursoModel combo = cboTurmaCurso.SelectedItem as Model.CursoModel;
+
+                turmaModel.IdAnoLetivo = anoModel.IdAnoLetivo;
+                turmaModel.IdCurso = combo.IdCurso;
+                turmaModel.NmTurma = txtTurmaNome.Text;
+                turmaModel.TpPeriodo = cboTurmaPeriodo.Text;
+                turmaModel.NrCapacidadeMax = Convert.ToInt32(nudTurmaCapacidade.Value);
+
+                turmaApi.CadastrarTurma(turmaModel);
+
+                MessageBox.Show("Turma cadastrada com sucesso.", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (ArgumentException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ocorreu um erro", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        public void AlterarTurma()
+        {
+            try
+            {
+                turmaModel = new TurmaModell();
+                Model.CursoModel combo = cboTurmaCurso.SelectedItem as Model.CursoModel;
+
+                turmaModel.IdTurma = turmaModel.IdTurma;
+                turmaModel.IdAnoLetivo = anoModel.IdAnoLetivo;
+                turmaModel.IdCurso = combo.IdCurso;
+                turmaModel.NmTurma = txtTurmaNome.Text;
+                turmaModel.TpPeriodo = cboTurmaPeriodo.Text;
+                turmaModel.NrCapacidadeMax = Convert.ToInt32(nudTurmaCapacidade.Value);
+
+                turmaApi.CadastrarTurma(turmaModel);
+
+                MessageBox.Show("Turma alterada com sucesso.", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (ArgumentException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ocorreu um erro", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void dgvTurma_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
 
         }
     }

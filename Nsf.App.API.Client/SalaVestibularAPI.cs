@@ -10,39 +10,78 @@ namespace Nsf.App.API.Client
 {
     public class SalaVestibularAPI
     {
+        HttpClient cliente = new HttpClient();
+
         public List<Model.SalaVestibularModel> listarTudo()
         {
-            HttpClient cliente = new HttpClient();
 
-            string json = cliente.GetAsync("http://localhost:5000/SalaVestibular/ListarTudo/").Result.Content.ReadAsStringAsync().Result;
+            string json = cliente.GetAsync("http://localhost:5000/SalaVestibular/")
+                                .Result
+                                .Content
+                                .ReadAsStringAsync()
+                                .Result;
 
+            this.VerificarErro(json);
+                                                                                                
             List<Model.SalaVestibularModel> teste = JsonConvert.DeserializeObject<List< Model.SalaVestibularModel >>(json);
             return teste;
         }
-        public void Inserir(Model.SalaVestibularModel api)
+        public Model.SalaVestibularRequest Inserir(Model.SalaVestibularRequest request)
         {
-            HttpClient cliente = new HttpClient();
 
-            string json = JsonConvert.SerializeObject(api);
+            string json = JsonConvert.SerializeObject(request);
             StringContent body = new StringContent(json, Encoding.UTF8, "application/json");
 
-            var resp = cliente.PostAsync("http://localhost:5000/SalaVestibular/Inserir/", body).Result;
+            HttpResponseMessage resp = cliente.PostAsync("http://localhost:5000/SalaVestibular/", body).Result;
+
+            string jsonresposta = LerJsonDeResposta(resp);
+            request = JsonConvert.DeserializeObject<Model.SalaVestibularRequest>(jsonresposta);
+
+            return request;
         }
+           
         public void Remover(int id)
         {
-            HttpClient cliente = new HttpClient();
 
-            var resp = cliente.DeleteAsync("http://localhost:5000/SalaVestibular/Remover/" + id).Result;
+            var resp = cliente.DeleteAsync("http://localhost:5000/SalaVestibular/Remover/" + id)
+                             .Result
+                             .Content
+                             .ReadAsStringAsync()
+                             .Result;
+
+            this.VerificarErro(resp);
         }
         public void Alterar(Model.SalaVestibularModel sala)
-        {
-            HttpClient cliente = new HttpClient();
+        {           
 
             string json = JsonConvert.SerializeObject(sala);
             StringContent body = new StringContent(json, Encoding.UTF8, "application/json");
 
-            var resp = cliente.PutAsync("http://localhost:5000/SalaVestibular/Alterar/", body).Result;
+            var resp = cliente.PutAsync("http://localhost:5000/SalaVestibular/", body)
+                             .Result
+                             .Content
+                             .ReadAsStringAsync()
+                             .Result;
         }
 
+        private string LerJsonDeResposta(HttpResponseMessage respoosta)
+        {
+            string jsonResposta = respoosta.Content.ReadAsStringAsync().Result;
+
+            if(respoosta.IsSuccessStatusCode == false)
+            {
+                Model.ErroModel erro = JsonConvert.DeserializeObject<Model.ErroModel>(jsonResposta);
+                throw new ArgumentException(erro.Mensagem);
+            }
+            return jsonResposta;
+        }
+        private void VerificarErro(string respostaAPI)
+        {
+            if (respostaAPI.Contains("codigoErro"))
+            {
+                Model.ErroModel erro = JsonConvert.DeserializeObject<Model.ErroModel>(respostaAPI);
+                throw new ArgumentException(erro.Mensagem);
+            }
+        }
     }
 }

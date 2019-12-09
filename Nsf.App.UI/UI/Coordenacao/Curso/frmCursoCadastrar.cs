@@ -16,10 +16,8 @@ namespace Nsf.App.UI
             InitializeComponent();
             CarregarDisciplinas();
 
-            lbxDisciplinasDoCurso.DataSource = atribuidas;
-            lbxDisciplinasDoCurso.DisplayMember = nameof(Model.DisciplinaModel.NmDisciplina);
-
            
+            lbxDisciplinasDoCurso.DisplayMember = nameof(Model.DisciplinaModel.NmDisciplina);
         }
 
         int idcurso = 0;
@@ -41,7 +39,7 @@ namespace Nsf.App.UI
                 API.CursoAPI api = new API.CursoAPI();
                 idcurso = api.Inserir(curso);
 
-                //InserirCursoDiciplina(); --erro de chave estrangeira(banco não consegue achar o id da outra tabela
+                InserirCursoDiciplina();
 
 
                 MessageBox.Show("Curso registrado com sucesso.");
@@ -73,18 +71,30 @@ namespace Nsf.App.UI
             try
             {
                 Model.DisciplinaModel mod = lbxDisciplinasDisponiveis.SelectedItem as Model.DisciplinaModel;
+                
 
                 if(mod == null)
                 {
                     throw new ArgumentException("Selecione uma disciplina para adicionar ao curso");
                 }
 
+                foreach (var item in atribuidas)
+                {
+                    if (item.NmDisciplina == mod.NmDisciplina)
+                        throw new ArgumentException("A disciplina já foi atribuida");
+                }
                 atribuidas.Add(mod);
                 lista.Remove(mod);
+
+                lbxDisciplinasDoCurso.DataSource = atribuidas;
             }
             catch (ArgumentException ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch(Exception)
+            {
+                MessageBox.Show("Ocorreu um erro. Entre em contato com o administrador.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
            
         }
@@ -99,13 +109,17 @@ namespace Nsf.App.UI
                 {
                     throw new ArgumentException("Selecione uma disciplina para remover do curso");
                 }
-
+               
                 atribuidas.Remove(mod);
                 lista.Add(mod);
             }
             catch (ArgumentException ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch(Exception)
+            {
+                MessageBox.Show("Ocorreu um erro. Entre em contato com o administrador.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -122,7 +136,9 @@ namespace Nsf.App.UI
             nudCapacidade.Value = curso.NrCapacidadeMaxima;
             txtSigla.Text = curso.DsSigla;
 
-          
+            CarregarCursoDisciplina();
+
+
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -131,11 +147,13 @@ namespace Nsf.App.UI
             {
                 if (nudID.Value == 0)
                 {
-                    btnAlterar.Enabled = false;
+                    btnAlterar.Enabled = true;
                 }
                 else
                 {
                     Nsf.App.Model.CursoModel curso = new Model.CursoModel();
+
+                    idcurso = Convert.ToInt32(nudID.Value);
 
                     curso.IdCurso = Convert.ToInt32(nudID.Text);
                     curso.NmCurso = txtCurso.Text;
@@ -148,6 +166,7 @@ namespace Nsf.App.UI
 
                     API.CursoAPI api = new API.CursoAPI();
                     api.Alterar(curso);
+                    AlterarDisciplinaDoCurso();
 
                     MessageBox.Show("Curso alterado com sucesso.");
 
@@ -172,10 +191,18 @@ namespace Nsf.App.UI
 
             Nsf.App.API.Client.DisciplinaAPI api = new App.API.Client.DisciplinaAPI();
 
+            if (lbxDisciplinasDoCurso.DataSource == null)
+            {
+                tabControl1.SelectedTab = tabPage2;
+                throw new ArgumentException("A atribuição de disciplinas ao curso é obrigatória");
+                
+            }
+
             foreach (var item in atribuidas)
             {
                 mod.IdDisciplina = item.IdDisciplina;
                 mod.IdCurso = idcurso;
+                mod.NrCargaHoraria = 1200;
 
                 api.InserirCursoDisciplina(mod);
             }
@@ -186,21 +213,44 @@ namespace Nsf.App.UI
             Nsf.App.API.Client.DisciplinaAPI api = new App.API.Client.DisciplinaAPI();
             atribuidas = api.ListarCursoDisciplina(idcurso);
 
-            
+            lbxDisciplinasDoCurso.DataSource = atribuidas;
+
+
         }
         public void AlterarDisciplinaDoCurso()
         {
             Model.CursoDisciplinaModel mod = new Model.CursoDisciplinaModel();
             Nsf.App.API.Client.DisciplinaAPI api = new App.API.Client.DisciplinaAPI();
+            
+            api.RemoverCursoDisciplina(idcurso);
 
-            foreach (var item in atribuidas)
+            if(cboCategoria.Text == "Selecione")
             {
-                mod.IdDisciplina = item.IdDisciplina;
-                mod.IdCurso = idcurso;
-
-                api.AlterarCursoDisciplina(mod);
-
+                throw new ArgumentException("A categoria do curso é obrigatória");
             }
+            else if (cboCategoria.Text == "Livre")
+            {
+                mod.NrCargaHoraria = 0;
+            }
+            else if (cboCategoria.Text == "Técnico")
+            {
+                mod.NrCargaHoraria = 1200;
+            }
+            else if (cboCategoria.Text == "Qualificação")
+            {
+                mod.NrCargaHoraria = 160; 
+            }
+
+            
+
+            foreach (Model.DisciplinaModel item in atribuidas)
+            {
+                mod.IdCurso = idcurso;
+                mod.IdDisciplina = item.IdDisciplina;
+
+               api.InserirCursoDisciplina(mod);
+            }
+
         }
 
         private void tabPage1_Click(object sender, EventArgs e)

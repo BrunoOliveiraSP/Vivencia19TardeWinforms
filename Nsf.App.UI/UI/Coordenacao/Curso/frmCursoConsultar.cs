@@ -120,7 +120,10 @@ namespace Nsf.App.UI
                     if (r == DialogResult.Yes)
                     {
                         API.CursoAPI api = new API.CursoAPI();
+                        Nsf.App.API.Client.DisciplinaAPI API = new App.API.Client.DisciplinaAPI();
+
                         api.Remover(curso.IdCurso);
+                        API.RemoverCursoDisciplina(curso.IdCurso);
 
                         MessageBox.Show("Removido com sucesso");
                         Carregar();

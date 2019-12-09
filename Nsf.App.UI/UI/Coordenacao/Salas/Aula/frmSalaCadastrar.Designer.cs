@@ -271,7 +271,6 @@
             this.ForeColor = System.Drawing.Color.Black;
             this.Name = "frmSalaCadastrar";
             this.Size = new System.Drawing.Size(800, 600);
-            this.Load += new System.EventHandler(this.frmSalaCadastrar_Load);
             this.panelId.ResumeLayout(false);
             this.panelId.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudCapacidade)).EndInit();
