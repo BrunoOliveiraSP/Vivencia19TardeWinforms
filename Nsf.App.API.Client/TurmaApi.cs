@@ -12,21 +12,20 @@ namespace Nsf.App.API.Client
    {
         HttpClient client = new HttpClient();
 
-        public void CadastrarTurma(Nsf.App.Model.TurmaModell turma)
+        public Model.TurmaRequest CadastrarTurma(Nsf.App.Model.TurmaRequest turma)
         {
             string json = JsonConvert.SerializeObject(turma);
             StringContent body = new StringContent(json, Encoding.UTF8, "application/json");
 
-            var resp = client.PostAsync("http://localhost:5000/Turma/", body)
-                             .Result
-                             .Content
-                             .ReadAsStringAsync()
-                             .Result;
+            HttpResponseMessage resposta = client.PostAsync("http://localhost:5000/Turma/", body).Result;
 
-            VerificarErro(resp);
+            string jsonResposta = LerJson(resposta);
+            turma = JsonConvert.DeserializeObject<Model.TurmaRequest>(json);
+                                                                                    
+            return turma;
         }
 
-        public List<Nsf.App.Model.TurmaModell> ListarTodos()
+        public List<Nsf.App.Model.TurmaResponse> ListarTodos()
         {
             string json = client.GetAsync("http://localhost:5000/Turma/")          
                                 .Result
@@ -34,7 +33,7 @@ namespace Nsf.App.API.Client
                                 .ReadAsStringAsync()
                                 .Result;
 
-            List<Nsf.App.Model.TurmaModell> lista = JsonConvert.DeserializeObject<List<Nsf.App.Model.TurmaModell>>(json);
+            List<Nsf.App.Model.TurmaResponse> lista = JsonConvert.DeserializeObject<List<Nsf.App.Model.TurmaResponse>>(json);
 
             return lista;
         }
@@ -65,6 +64,18 @@ namespace Nsf.App.API.Client
                 Model.ErroModel erro = JsonConvert.DeserializeObject<Model.ErroModel>(respostaAPI);
                 throw new ArgumentException(erro.Mensagem);
             }
+        }
+        private string LerJson(HttpResponseMessage resposta)
+        {
+            string json = resposta.Content.ReadAsStringAsync().Result;
+
+            if(resposta.IsSuccessStatusCode == false)
+            {
+                Model.ErroModel erro = JsonConvert.DeserializeObject<Model.ErroModel>(json);
+                throw new ArgumentException(erro.Mensagem);
+            }
+            return json;
+
         }
    }
 }

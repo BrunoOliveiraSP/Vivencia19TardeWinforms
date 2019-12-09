@@ -69,6 +69,8 @@
     <Compile Include="SalaVestibularModel.cs" />
     <Compile Include="SalaVestibularRequest.cs" />
     <Compile Include="TurmaModell.cs" />
+    <Compile Include="TurmaRequest.cs" />
+    <Compile Include="TurmaResponse.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

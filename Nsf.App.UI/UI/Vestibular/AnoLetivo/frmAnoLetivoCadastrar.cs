@@ -23,6 +23,7 @@ namespace Nsf.App.UI
         Model.CursoModel curso;
         Model.TurmaModell turmaModel;
         Model.AnoLetivoModel anoModel;
+        Model.TurmaRequest turmaRequest;
 
         Nsf.App.API.Client.TurmaApi turmaApi = new App.API.Client.TurmaApi();
 
@@ -154,7 +155,7 @@ namespace Nsf.App.UI
         {
             try
             {
-                List<Model.TurmaModell> turma = turmaApi.ListarTodos();
+                List<Model.TurmaResponse> turma = turmaApi.ListarTodos();
 
                 dgvTurma.AutoGenerateColumns = false;
                 dgvTurma.DataSource = turma;
@@ -253,7 +254,16 @@ namespace Nsf.App.UI
                 turmaModel.TpPeriodo = cboTurmaPeriodo.Text;
                 turmaModel.NrCapacidadeMax = Convert.ToInt32(nudTurmaCapacidade.Value);
 
-                turmaApi.CadastrarTurma(turmaModel);
+                curso = new CursoModel();
+                curso.NmCurso = cboTurmaCurso.Text;
+
+                turmaRequest = new TurmaRequest();
+                turmaRequest.Turma = turmaModel;
+                turmaRequest.Curso = curso;
+          
+                turmaApi.CadastrarTurma(turmaRequest);
+
+                CarregarGrid();
 
                 MessageBox.Show("Turma cadastrada com sucesso.", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
@@ -274,14 +284,21 @@ namespace Nsf.App.UI
                 turmaModel = new TurmaModell();
                 Model.CursoModel combo = cboTurmaCurso.SelectedItem as Model.CursoModel;
 
-                turmaModel.IdTurma = turmaModel.IdTurma;
-                turmaModel.IdAnoLetivo = anoModel.IdAnoLetivo;
+                turmaModel.IdTurma = turmaModel.IdTurma;               
                 turmaModel.IdCurso = combo.IdCurso;
                 turmaModel.NmTurma = txtTurmaNome.Text;
                 turmaModel.TpPeriodo = cboTurmaPeriodo.Text;
                 turmaModel.NrCapacidadeMax = Convert.ToInt32(nudTurmaCapacidade.Value);
+                
 
-                turmaApi.CadastrarTurma(turmaModel);
+                curso = new CursoModel();
+                curso.NmCurso = cboTurmaCurso.Text;
+
+                turmaRequest = new TurmaRequest();
+                turmaRequest.Turma = turmaModel;
+                turmaRequest.Curso = curso;
+
+                turmaApi.Alterar(turmaModel);
 
                 MessageBox.Show("Turma alterada com sucesso.", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }

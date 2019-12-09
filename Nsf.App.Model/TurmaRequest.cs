@@ -6,12 +6,11 @@ using System.Threading.Tasks;
 
 namespace Nsf.App.Model
 {
-    class TurmaRequest
+    public class TurmaRequest
     {
-        public TurmaModel Turma { get; set; }
-
-        public AnoLetivoModel AnoLetivo { get; set; }
-
         public CursoModel Curso { get; set; }
+        public  TurmaModell Turma { get; set; }
+      
     }
 }
+
