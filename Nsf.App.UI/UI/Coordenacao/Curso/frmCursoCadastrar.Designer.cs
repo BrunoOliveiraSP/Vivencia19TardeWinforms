@@ -38,6 +38,7 @@
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.panelId = new System.Windows.Forms.Panel();
+            this.lblID = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.chkAtivo = new System.Windows.Forms.CheckBox();
             this.nudCapacidade = new System.Windows.Forms.NumericUpDown();
@@ -57,7 +58,6 @@
             this.btnAdd = new System.Windows.Forms.Button();
             this.lbxDisciplinasDisponiveis = new System.Windows.Forms.ListBox();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.lblID = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.panelId.SuspendLayout();
@@ -143,7 +143,6 @@
             this.cboCategoria.Font = new System.Drawing.Font("Century Gothic", 12F);
             this.cboCategoria.FormattingEnabled = true;
             this.cboCategoria.Items.AddRange(new object[] {
-            "Selecione",
             "Livre",
             "Técnico",
             "Qualificação"});
@@ -183,6 +182,15 @@
             this.panelId.Size = new System.Drawing.Size(190, 58);
             this.panelId.TabIndex = 159;
             this.panelId.Visible = false;
+            // 
+            // lblID
+            // 
+            this.lblID.AutoSize = true;
+            this.lblID.Location = new System.Drawing.Point(107, 19);
+            this.lblID.Name = "lblID";
+            this.lblID.Size = new System.Drawing.Size(19, 21);
+            this.lblID.TabIndex = 12;
+            this.lblID.Text = "0";
             // 
             // label8
             // 
@@ -415,15 +423,6 @@
             // 
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
-            // 
-            // lblID
-            // 
-            this.lblID.AutoSize = true;
-            this.lblID.Location = new System.Drawing.Point(107, 19);
-            this.lblID.Name = "lblID";
-            this.lblID.Size = new System.Drawing.Size(19, 21);
-            this.lblID.TabIndex = 12;
-            this.lblID.Text = "0";
             // 
             // frmCursoCadastrar
             // 

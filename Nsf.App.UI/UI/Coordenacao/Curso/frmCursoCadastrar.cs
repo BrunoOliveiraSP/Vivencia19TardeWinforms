@@ -89,14 +89,11 @@ namespace Nsf.App.UI
                 {
                     MessageBox.Show("Entre em contato com o desenvolvedor do programa", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-
-
             }
 
-
-
-
         }
+
+
 
         BindingList<Model.DisciplinaModel> disciplinas;
         public void CarregarDisciplinas()
