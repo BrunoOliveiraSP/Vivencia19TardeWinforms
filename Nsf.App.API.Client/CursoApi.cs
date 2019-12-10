@@ -102,11 +102,11 @@ namespace Nsf.App.UI.API
 
         private void VerificarErro(string respostaApi)
         {
-            if(respostaApi.Contains("codigoErro"))
-            {
-                Model.ErroModel erro = JsonConvert.DeserializeObject<Model.ErroModel>(respostaApi);
-                throw new ArgumentException(erro.Mensagem);
-            }
+           if(respostaApi.Contains("codigoErro"))
+           {
+               Model.ErroModel erro = JsonConvert.DeserializeObject<Model.ErroModel>(respostaApi);
+               throw new ArgumentException(erro.Mensagem);
+           }
         }
 
     }
