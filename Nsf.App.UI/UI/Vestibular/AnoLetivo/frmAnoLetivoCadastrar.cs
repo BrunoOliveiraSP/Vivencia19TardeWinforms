@@ -134,7 +134,7 @@ namespace Nsf.App.UI
         {
             try
             {
-                API.CursoAPI api = new API.CursoAPI();
+                API.Client.CursoAPI api = new API.Client.CursoAPI();
 
                 List<Model.CursoModel> lista = api.ConsultarTodos();
 

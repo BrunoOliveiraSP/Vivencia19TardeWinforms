@@ -29,7 +29,7 @@ namespace Nsf.App.UI
             {
                 try
                 {
-                    Nsf.App.Model.CursoModel curso = new Model.CursoModel();
+                    Model.CursoModel curso = new Model.CursoModel();
 
                     curso.NrCapacidadeMaxima = Convert.ToInt32(nudCapacidade.Value);
                     curso.DtUltimaAlteracao = System.DateTime.Now;
@@ -39,7 +39,7 @@ namespace Nsf.App.UI
                     curso.NmCurso = txtCurso.Text;
                     curso.DsSigla = txtSigla.Text;
 
-                    API.CursoAPI api = new API.CursoAPI();
+                    API.Client.CursoAPI api = new API.Client.CursoAPI();
                     idcurso = api.Inserir(curso);
 
                     InserirCursoDiciplina();
@@ -74,7 +74,7 @@ namespace Nsf.App.UI
                     curso.DsSigla = txtSigla.Text;
 
 
-                    API.CursoAPI api = new API.CursoAPI();
+                    API.Client.CursoAPI api = new API.Client.CursoAPI();
                     api.Alterar(curso);
                     
                     AlterarDisciplinaDoCurso();

@@ -74,30 +74,6 @@ namespace Nsf.App.API.Client
             string jsonResposta = VerificarErro(respostaApi);
         }
 
-        public Model.CursoModel ConsultarCurso(int id)
-        {
-            HttpClient client = new HttpClient();
-
-            HttpResponseMessage respostaApi = client.GetAsync("http://localhost:5000/Inscricao/ConsultarCurso/" + id)
-                                        .Result;
-
-            string jsonResposta = VerificarErro(respostaApi);
-
-            return JsonConvert.DeserializeObject<Model.CursoModel>(jsonResposta);
-        }
-
-        public Model.AnoLetivoModel ConsultarAnoLetivo(int id)
-        {
-            HttpClient client = new HttpClient();
-
-            HttpResponseMessage respostaApi = client.GetAsync("http://localhost:5000/Inscricao/ConsultarAnoLetivo/" + id)
-                                        .Result;
-
-            string jsonResposta = VerificarErro(respostaApi);
-
-            return JsonConvert.DeserializeObject<Model.AnoLetivoModel>(jsonResposta);
-        }
-
         public List<Model.InscricaoResponse> ConsultarAnoLetivoLista(int id)
         {
             HttpClient client = new HttpClient();
