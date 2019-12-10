@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Nsf.App.Utils;
-using Nsf.App.Utils.APIs;
+using Nsf.App.API.Client;
 using System.IO;
 
 namespace Nsf.App.UI
@@ -18,57 +18,154 @@ namespace Nsf.App.UI
 		public frmMatriculaNovo()
 		{
 			InitializeComponent();
+            API.CursoAPI curso = new API.CursoAPI();
+            List<Model.CursoModel> cursos = curso.ConsultarTodos();
+
+            cboCurso.DisplayMember = nameof(Model.CursoModel.NmCurso);
+            cboCurso.DataSource = cursos;
         }
 
+        MatriculaAPI Api = new MatriculaAPI();
+
+
         private void btnSalvar_Click(object sender, EventArgs e)
+        {
+            Model.MatriculaRequest matricula = this.CarregarModelo();
+
+            try
+            {
+                if (matricula.Aluno.IdAluno == 0)
+                    Api.Inserir(matricula);
+                else if (matricula.Aluno.IdAluno > 0)
+                    Api.Alterar(matricula);
+            }
+            catch (ArgumentException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ocorreu um erro", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        public void CarregarTela(Model.MatriculaRequest matricula)
+        {
+            //Aluno responsavel 1
+            txtResponsavel1.Text = matricula.Responsavel1.NmResponsavel;
+            cboGrauParentesco1.Text = matricula.Responsavel1.DsTelefone1;
+            txtResponsavel1Email.Text= matricula.Responsavel1.DsParentesco;
+            txtResponsavel1Telefone1.Text= matricula.Responsavel1.DsTelefone1;
+            txtResponsavel1Telefone2.Text= matricula.Responsavel1.DsTelefone2;
+
+            // Aluno responsavel 2 
+            txtResponsavel2Email.Text = matricula.Responsavel1.DsEmail;
+            txtResponsavel2.Text = matricula.Responsavel1.NmResponsavel;
+            cboGrauParentesco2.Text = matricula.Responsavel1.DsParentesco;
+            txtResponsavel2Telefone1.Text = matricula.Responsavel1.DsTelefone1;
+            txtResponsavel2Telefone2.Text = matricula.Responsavel1.DsTelefone2;
+
+            //Aluno Responsavel 3
+
+            txtResponsavel3Email.Text = matricula.Responsavel3.DsEmail;
+            txtResponsavel3.Text = matricula.Responsavel3.NmResponsavel;
+            cboGrauParentesco3.Text = matricula.Responsavel3.DsParentesco;
+            txtResponsavel3Telefone1.Text = matricula.Responsavel3.DsTelefone1;
+            txtResponsavel3Telefone2.Text = matricula.Responsavel3.DsTelefone2;
+
+            //Aluno
+
+            txtRG.Text = matricula.Aluno.DsRg;
+            txtCpf.Text = matricula.Aluno.DsCpf;
+            cboSexo.Text = matricula.Aluno.DsSexo;
+            txtNome.Text = matricula.Aluno.NmAluno;
+            txtEtnia.Text = matricula.Aluno.DsEtinia;
+            nudRenda.Value = matricula.Aluno.VlRenda;
+            txtRgOrgao.Text = matricula.Aluno.DsOrgao;
+            txtCelular.Text = matricula.Aluno.DsCelular;
+            txtAlunoEmail.Text = matricula.Aluno.DsEmail;
+            dtpRgEmissao.Value = matricula.Aluno.DtEmissao;
+            cboTipoDeEscola.Text = matricula.Aluno.TpEscola;
+            txtNomeDaEscola.Text = matricula.Aluno.NmEscola;
+            txtObservacoes.Text = matricula.Aluno.DsObservacao;
+            cboComoConheceu.Text = matricula.Aluno.DsComoConheceu;
+            cboEscolaridade.Text = matricula.Aluno.DsEscolaridade;
+            dtpNascimentoData.Value = matricula.Aluno.DtNascimento;
+            nudPessoasMoramCasa.Value = matricula.Aluno.QtMoramCasa;
+            nudPessoasTrabalhamCasa.Value = matricula.Aluno.QtTrabalhamCasa;
+
+            //Localização
+
+            txtCep.Text = matricula.Localizacao.DsResidenciaCep;
+            txtBairro.Text = matricula.Localizacao.DsResidenciaBairro;
+            txtCidade.Text = matricula.Localizacao.DsResidenciaCidade;
+            txtEndereco.Text = matricula.Localizacao.DsResidenciaEndereco;
+            txtNascimentoPais.Text = matricula.Localizacao.DsNascimentoPais;
+            txtNascimentoCidade.Text = matricula.Localizacao.DsNascimentoCidade;
+            txtComplemento.Text = matricula.Localizacao.DsResidenciaComplelemento;
+
+            //Aluno Ficha Medica
+
+            txtAlergias.Text = matricula.FichaMedica.DsAlergias;
+            txtMedicacao.Text = matricula.FichaMedica.DsMedicacao;
+            txtCongenitas.Text = matricula.FichaMedica.DsCongenitas;
+            txtTratamento.Text = matricula.FichaMedica.DsTratamento;
+            txtObservacoesMedicas.Text = matricula.FichaMedica.DsObservacao;
+            txtAcompanhamento.Text = matricula.FichaMedica.DsAcompanhamento;
+
+
+        }
+
+        public Model.MatriculaRequest CarregarModelo()
         {
             //AlunoModel
 
             Nsf.App.Model.AlunoModel aluno = new Model.AlunoModel();
-            aluno.NmAluno = txtNome.Text;
-            aluno.DsCelular = txtCelular.Text;
-            aluno.DsComoConheceu = cboComoConheceu.Text;
-            aluno.DsCpf = txtCpf.Text;
-            aluno.DsEmail = txtAlunoEmail.Text;
-            aluno.DsEscolaridade = cboEscolaridade.Text;
-            aluno.DsEtinia = txtEtnia.Text;
-            aluno.DsObservacao = txtObservacoes.Text;
-            aluno.DsOrgao = txtRgOrgao.Text;
+
             aluno.DsRg = txtRG.Text;
+            aluno.DsCpf = txtCpf.Text;
             aluno.DsSexo = cboSexo.Text;
-            aluno.DtEmissao = dtpRgEmissao.Value;
+            aluno.NmAluno = txtNome.Text;
+            aluno.DsEtinia = txtEtnia.Text;
+            aluno.DsOrgao = txtRgOrgao.Text;
             aluno.DtInclusao = DateTime.Now;
-            aluno.DtNascimento = dtpNascimentoData.Value;
-            aluno.DtUltimaAlteracao = DateTime.Now;
+            aluno.DsCelular = txtCelular.Text;
+            aluno.DsEmail = txtAlunoEmail.Text;
+            aluno.DtEmissao = dtpRgEmissao.Value;
+            aluno.TpEscola = cboTipoDeEscola.Text;
             aluno.NmEscola = txtNomeDaEscola.Text;
+            aluno.DtUltimaAlteracao = DateTime.Now;
+            aluno.DsObservacao = txtObservacoes.Text;
+            aluno.DsComoConheceu = cboComoConheceu.Text;
+            aluno.DsEscolaridade = cboEscolaridade.Text;
+            aluno.DtNascimento = dtpNascimentoData.Value;
+            aluno.VlRenda = Convert.ToDecimal(nudRenda.Value);
             aluno.QtMoramCasa = Convert.ToInt32(nudPessoasMoramCasa.Value);
             aluno.QtTrabalhamCasa = Convert.ToInt32(nudPessoasTrabalhamCasa.Value);
-            aluno.TpEscola = cboTipoDeEscola.Text;
-            aluno.VlRenda = Convert.ToDecimal(nudRenda.Value);
 
             //Aluno Responsavel Model
 
             Nsf.App.Model.AlunoResponsavel responsavel1 = new Model.AlunoResponsavel();
 
+            responsavel1.DtInclusao = DateTime.Now;
+            responsavel1.DtUltimaAlteracao = DateTime.Now;
             responsavel1.DsEmail = txtResponsavel1Email.Text;
+            responsavel1.NmResponsavel = txtResponsavel1.Text;
             responsavel1.DsParentesco = cboGrauParentesco1.Text;
             responsavel1.DsTelefone1 = txtResponsavel1Telefone1.Text;
             responsavel1.DsTelefone2 = txtResponsavel1Telefone2.Text;
-            responsavel1.DtInclusao = DateTime.Now;
-            responsavel1.DtUltimaAlteracao = DateTime.Now;
-            responsavel1.NmResponsavel = txtResponsavel1.Text;
 
             // Aluno responsavel 2 
 
             Nsf.App.Model.AlunoResponsavel responsavel2 = new Model.AlunoResponsavel();
 
+            responsavel2.DtInclusao = DateTime.Now;
+            responsavel2.DtUltimaAlteracao = DateTime.Now;
             responsavel2.DsEmail = txtResponsavel2Email.Text;
+            responsavel2.NmResponsavel = txtResponsavel2.Text;
             responsavel2.DsParentesco = cboGrauParentesco2.Text;
             responsavel2.DsTelefone1 = txtResponsavel2Telefone1.Text;
             responsavel2.DsTelefone2 = txtResponsavel2Telefone2.Text;
-            responsavel2.DtInclusao = DateTime.Now;
-            responsavel2.DtUltimaAlteracao = DateTime.Now;
-            responsavel2.NmResponsavel = txtResponsavel2.Text;
 
             // Aluno responsavel 3
 
@@ -85,34 +182,32 @@ namespace Nsf.App.UI
             // Aluno Localizacao 
 
             Nsf.App.Model.AlunoLocalizacaoModel alunoLocalizacao = new Model.AlunoLocalizacaoModel();
-            alunoLocalizacao.DsNascimentoCidade = txtNascimentoCidade.Text;
-            alunoLocalizacao.DsNascimentoPais = txtNascimentoPais.Text;
-            alunoLocalizacao.DsResidenciaBairro = txtBairro.Text;
             alunoLocalizacao.DsResidenciaCep = txtCep.Text;
             alunoLocalizacao.DsResidenciaCidade = txtCidade.Text;
-            alunoLocalizacao.DsResidenciaComplelemento = txtComplemento.Text;
+            alunoLocalizacao.DsResidenciaBairro = txtBairro.Text;
             alunoLocalizacao.DsResidenciaEndereco = txtEndereco.Text;
-            alunoLocalizacao.DtInclusao = DateTime.Now;
-            alunoLocalizacao.DtUltimaAlteracao = DateTime.Now;
+            alunoLocalizacao.DsNascimentoPais = txtNascimentoPais.Text;
+            alunoLocalizacao.DsNascimentoCidade = txtNascimentoCidade.Text;
+            alunoLocalizacao.DsResidenciaComplelemento = txtComplemento.Text;
 
             // aluno Ficha Medica
 
             Nsf.App.Model.AlunoFichaMedicaModel alunoFicha = new Model.AlunoFichaMedicaModel();
 
-            alunoFicha.DsAcompanhamento = txtAcompanhamento.Text;
-            alunoFicha.DsAlergias = txtAlergias.Text;
-            alunoFicha.DsCongenitas = txtCongenitas.Text;
-            alunoFicha.DsMedicacao = txtMedicacao.Text;
-            alunoFicha.DsObservacao = txtObservacoesMedicas.Text;
-            alunoFicha.DsTratamento = txtTratamento.Text;
             alunoFicha.DtInclusao = DateTime.Now;
+            alunoFicha.DsAlergias = txtAlergias.Text;
+            alunoFicha.DsMedicacao = txtMedicacao.Text;
             alunoFicha.DtUltimaAlteracao = DateTime.Now;
+            alunoFicha.DsTratamento = txtTratamento.Text;
+            alunoFicha.DsCongenitas = txtCongenitas.Text;
+            alunoFicha.DsAcompanhamento = txtAcompanhamento.Text;
+            alunoFicha.DsObservacao = txtObservacoesMedicas.Text;
 
             //AlunoCarometro
 
             Nsf.App.Model.AlunoCarometroModel alunoCarometro = new Model.AlunoCarometroModel();
 
-           // alunoCarometro.DsImagem = imgAluno.Image; ???
+            // alunoCarometro.DsImagem = imgAluno.Image; ???
 
 
             //Matricula 
@@ -121,13 +216,13 @@ namespace Nsf.App.UI
 
             matricula.Aluno = aluno;
             matricula.FichaMedica = alunoFicha;
-            matricula.Localizacao = alunoLocalizacao;
+            matricula.Carometro = alunoCarometro;
             matricula.Responsavel1 = responsavel1;
             matricula.Responsavel2 = responsavel2;
             matricula.Responsavel3 = responsavel3;
-            matricula.Carometro = alunoCarometro;
+            matricula.Localizacao = alunoLocalizacao;
 
-
+            return matricula;
         }
 
     }
