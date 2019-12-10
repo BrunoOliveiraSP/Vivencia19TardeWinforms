@@ -79,7 +79,13 @@ namespace Nsf.App.UI
                     
                     AlterarDisciplinaDoCurso();
 
-                    MessageBox.Show("Curso alterado com sucesso; deseja alterar mais algum campo?","Pergunta", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                   DialogResult r = MessageBox.Show("Curso alterado com sucesso; deseja voltar a tela de consultar?","Pergunta", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    
+                    if(r == DialogResult.Yes)
+                    {
+                        frmInicial.Current.OpenScreen(new frmCursoConsultar());
+                    }
+
                 }
                 catch (ArgumentException ex)
                 {
