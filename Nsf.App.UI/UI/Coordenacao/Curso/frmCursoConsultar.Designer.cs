@@ -99,7 +99,6 @@
             this.dgvCursos.Size = new System.Drawing.Size(728, 396);
             this.dgvCursos.TabIndex = 2;
             this.dgvCursos.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCursos_CellClick);
-            this.dgvCursos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCursos_CellContentClick);
             // 
             // txtCurso
             // 

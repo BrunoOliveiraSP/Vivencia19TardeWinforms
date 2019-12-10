@@ -82,10 +82,6 @@ namespace Nsf.App.UI
             dgvCursos.DataSource = lista;
         }
 
-        private void dgvCursos_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
 
         public void dgvCursos_CellClick(object sender, DataGridViewCellEventArgs e)
         {

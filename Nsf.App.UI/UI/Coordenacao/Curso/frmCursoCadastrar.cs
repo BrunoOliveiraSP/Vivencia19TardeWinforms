@@ -25,7 +25,16 @@ namespace Nsf.App.UI
         private void btnSalvar_Click(object sender, EventArgs e)
         {
             int idCursoCondicao = Convert.ToInt32(lblID.Text);
-            if (idCursoCondicao == 0 && idCursoCondicao == null)
+            string lbxDisciplinaCurso = Convert.ToString(lbxDisciplinasDoCurso.DataSource);
+          
+            if (lbxDisciplinaCurso == null || lbxDisciplinaCurso == "")
+            {
+                tabControl1.SelectedTab = tabPage2;
+                MessageBox.Show("A atribuição de disciplinas ao curso é obrigatória", "Exigencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+
+
+            else if (idCursoCondicao == 0 ) 
             {
                 try
                 {
@@ -54,6 +63,7 @@ namespace Nsf.App.UI
                 {
                     MessageBox.Show("Entre em contato com o desenvolvedor do programa", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
+                
             }
             else
             {
@@ -79,12 +89,17 @@ namespace Nsf.App.UI
                     
                     AlterarDisciplinaDoCurso();
 
-                   DialogResult r = MessageBox.Show("Curso alterado com sucesso; deseja voltar a tela de consultar?","Pergunta", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                   DialogResult r = MessageBox.Show("Curso alterado com sucesso; deseja cadastrar um curso?","Pergunta", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     
-                    if(r == DialogResult.Yes)
+                    if(r == DialogResult.No)
                     {
                         frmInicial.Current.OpenScreen(new frmCursoConsultar());
                     }
+                    else
+                    {
+                        frmInicial.Current.OpenScreen(new frmCursoCadastrar());
+                    }
+                    
 
                 }
                 catch (ArgumentException ex)
@@ -203,13 +218,6 @@ namespace Nsf.App.UI
             Model.CursoDisciplinaModel mod = new Model.CursoDisciplinaModel();
 
             Nsf.App.API.Client.DisciplinaAPI api = new App.API.Client.DisciplinaAPI();
-
-            if (lbxDisciplinasDoCurso.DataSource == null)
-            {
-                tabControl1.SelectedTab = tabPage2;
-                throw new ArgumentException("A atribuição de disciplinas ao curso é obrigatória");
-                
-            }
 
             foreach (var item in atribuidas)
             {
