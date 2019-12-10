@@ -51,6 +51,9 @@ namespace Nsf.App.UI
                     API.Client.CursoAPI api = new API.Client.CursoAPI();
                     idcurso = api.Inserir(curso);
 
+                    panelId.Visible = true;
+                    lblID.Text = Convert.ToString(idcurso);
+
                     InserirCursoDiciplina();
 
                     MessageBox.Show("Curso registrado com sucesso.","Processo com exito", MessageBoxButtons.OK, MessageBoxIcon.Information);
