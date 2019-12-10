@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Nsf.App.Model
 {
-    class SalaVestibualrResponse
+    public class SalaVestibualrResponse
     {
         public string DsPeriodo { get; set; }
         public string NmLocal { get; set; }

@@ -45,31 +45,34 @@ namespace Nsf.App.UI
 
         private void txtSigla_TextChanged(object sender, EventArgs e)
         {
-            try
+            if (txtCurso.Text != "")
             {
-                string sigla = txtSigla.Text;
-
-
-                if (sigla == string.Empty)
+                try
                 {
-                    this.Carregar();
-                }
-                else
-                {
-                    API.Client.CursoAPI api = new API.Client.CursoAPI();
-                    List<Nsf.App.Model.CursoModel> lista = api.ConsultarPorSigla(sigla);
+                    string sigla = txtSigla.Text;
 
-                    dgvCursos.AutoGenerateColumns = false;
-                    dgvCursos.DataSource = lista;
+
+                    if (sigla == string.Empty)
+                    {
+                        this.Carregar();
+                    }
+                    else
+                    {
+                        API.Client.CursoAPI api = new API.Client.CursoAPI();
+                        List<Nsf.App.Model.CursoModel> lista = api.ConsultarPorSigla(sigla);
+
+                        dgvCursos.AutoGenerateColumns = false;
+                        dgvCursos.DataSource = lista;
+                    }
                 }
-            }
-            catch (ArgumentException ex)
-            {
-                MessageBox.Show(ex.Message, "Exigencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-            }
-            catch (Exception )
-            {
-                MessageBox.Show("Entre em contato com o desenvolvedor do programa", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                catch (ArgumentException ex)
+                {
+                    MessageBox.Show(ex.Message, "Exigencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Entre em contato com o desenvolvedor do programa", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
 
@@ -152,6 +155,11 @@ namespace Nsf.App.UI
         }
 
         private void frmCursoConsultar_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dgvCursos_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }
