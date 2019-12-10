@@ -18,8 +18,13 @@ namespace Nsf.App.UI
 		public frmMatriculaNovo()
 		{
 			InitializeComponent();
-            API.CursoAPI curso = new API.CursoAPI();
+            API.Client.AnoLetivoApi ano = new AnoLetivoApi();
+            CursoAPI curso = new CursoAPI();
             List<Model.CursoModel> cursos = curso.ConsultarTodos();
+            List<Model.AnoLetivoModel> anos = ano.ListarTodos();
+
+            cboAnoLetivo.DisplayMember = nameof(Model.AnoLetivoModel.NrAno);
+            cboAnoLetivo.DataSource = anos;
 
             cboCurso.DisplayMember = nameof(Model.CursoModel.NmCurso);
             cboCurso.DataSource = cursos;

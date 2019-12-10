@@ -25,7 +25,7 @@ namespace Nsf.App.UI
             try
             {
                 Nsf.App.API.Client.SalaVestibularAPI api = new App.API.Client.SalaVestibularAPI();
-                List<Model.SalaVestibularModel> consultar = api.listarTudo();
+                List<Model.SalaVestibualrResponse> consultar = api.listarTudo();
 
                 dgvSalasVestibular.AutoGenerateColumns = false;
                 dgvSalasVestibular.DataSource = consultar;
@@ -46,20 +46,22 @@ namespace Nsf.App.UI
         {
             try
             {
-                Model.SalaVestibularModel vestibular = new Model.SalaVestibularModel();
+                var func = cboVestibularSala.SelectedItem as Model.SalaModel;
 
+                Model.SalaVestibularModel vestibular = new Model.SalaVestibularModel();
                 vestibular.DsPeriodo = cboPeriodos.Text;
+                vestibular.IdSala = func.IdSala;
 
                 Model.SalaModel sala = new Model.SalaModel();
                 sala.NmLocal = cboVestibularInstituicao.Text;
-                sala.NmSala = cboVestibularSala.Text();
-
+                sala.NmSala = cboVestibularSala.Text;
+                                      
                 Model.SalaVestibularRequest request = new Model.SalaVestibularRequest();
                 request.Vestibular = vestibular;
                 request.Sala = sala;
-
+                               
                 Nsf.App.API.Client.SalaVestibularAPI api = new App.API.Client.SalaVestibularAPI();
-                api.Inserir(request);
+                api.Inserir(vestibular);
 
                 MessageBox.Show("Inserido com sucesso.", "NSF", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
@@ -106,9 +108,9 @@ namespace Nsf.App.UI
             {
                 if (e.ColumnIndex == 4)
                 {
-                    Model.SalaVestibularModel teste = dgvSalasVestibular.CurrentRow.DataBoundItem as Model.SalaVestibularModel;
+                    Model.SalaVestibularModel te = dgvSalasVestibular.CurrentRow.DataBoundItem as Model.SalaVestibularModel;
 
-                    cboPeriodos.Text = teste.DsPeriodo;
+                    cboPeriodos.Text = te.DsPeriodo;
 
 
                     DialogResult resp = MessageBox.Show("Deseja realmente fazer uma alteração?", "NSF",
@@ -117,10 +119,10 @@ namespace Nsf.App.UI
                     if (resp == DialogResult.Yes)
                     {
 
-                        teste.DsPeriodo = cboPeriodos.Text;
+                        te.DsPeriodo = cboPeriodos.Text;
 
                         Nsf.App.API.Client.SalaVestibularAPI api = new App.API.Client.SalaVestibularAPI();
-                        api.Alterar(teste);
+                        api.Alterar(te);
 
                         MessageBox.Show("Alterado com sucesso.", "NSF", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
