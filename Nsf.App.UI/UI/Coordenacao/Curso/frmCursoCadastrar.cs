@@ -14,7 +14,7 @@ namespace Nsf.App.UI
         public frmCursoCadastrar()
         {
             InitializeComponent();
-            CarregarDisciplinas();
+           
 
            
             lbxDisciplinasDoCurso.DisplayMember = nameof(Model.DisciplinaModel.NmDisciplina);
@@ -120,12 +120,33 @@ namespace Nsf.App.UI
         public void CarregarDisciplinas()
         {
             App.API.Client.DisciplinaAPI API = new App.API.Client.DisciplinaAPI();
-            lista = API.Listar();
 
-            lbxDisciplinasDisponiveis.DisplayMember = nameof(Model.DisciplinaModel.NmDisciplina);
-            lbxDisciplinasDisponiveis.SelectedValue = nameof(Model.DisciplinaModel.IdDisciplina);
+            if (idcurso > 0)
+            {
+                atribuidas = API.ListarCursoDisciplina(idcurso);
 
-            lbxDisciplinasDisponiveis.DataSource = lista;
+                lbxDisciplinasDoCurso.DataSource = atribuidas;
+                
+                lista = API.Listar();
+                lbxDisciplinasDisponiveis.DataSource = lista;
+                lbxDisciplinasDisponiveis.DisplayMember = nameof(Model.DisciplinaModel.NmDisciplina);
+
+                foreach (var item in atribuidas)
+                {
+                    var remover = lista.FirstOrDefault(x => x.IdDisciplina == item.IdDisciplina);
+                    if (remover != null)
+                        lista.Remove(remover);
+                }
+            }
+            else
+            {
+                lista = API.Listar();
+
+                lbxDisciplinasDisponiveis.DisplayMember = nameof(Model.DisciplinaModel.NmDisciplina);
+                lbxDisciplinasDisponiveis.SelectedValue = nameof(Model.DisciplinaModel.IdDisciplina);
+
+                lbxDisciplinasDisponiveis.DataSource = lista;
+            }
          
         }
         private void btnAdd_Click(object sender, EventArgs e)
@@ -231,12 +252,7 @@ namespace Nsf.App.UI
         }
         public void CarregarCursoDisciplina()
         {
-            Nsf.App.API.Client.DisciplinaAPI api = new App.API.Client.DisciplinaAPI();
-            atribuidas = api.ListarCursoDisciplina(idcurso);
-
-            lbxDisciplinasDoCurso.DataSource = atribuidas;
-
-
+           
         }
         public void AlterarDisciplinaDoCurso()
         {
@@ -277,6 +293,14 @@ namespace Nsf.App.UI
         private void tabPage1_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void tabControl1_Selected(object sender, TabControlEventArgs e)
+        {
+            if( e.TabPage == tabPage2 )
+            {
+                CarregarDisciplinas();
+            }
         }
     }
 }

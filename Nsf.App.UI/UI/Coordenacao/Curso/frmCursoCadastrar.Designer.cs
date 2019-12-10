@@ -111,6 +111,7 @@
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(744, 393);
             this.tabControl1.TabIndex = 4;
+            this.tabControl1.Selected += new System.Windows.Forms.TabControlEventHandler(this.tabControl1_Selected);
             // 
             // tabPage1
             // 
@@ -350,7 +351,7 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
             this.label2.ForeColor = System.Drawing.Color.Black;
-            this.label2.Location = new System.Drawing.Point(400, 75);
+            this.label2.Location = new System.Drawing.Point(401, 57);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(87, 19);
             this.label2.TabIndex = 101;
@@ -361,7 +362,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
             this.label1.ForeColor = System.Drawing.Color.Black;
-            this.label1.Location = new System.Drawing.Point(70, 75);
+            this.label1.Location = new System.Drawing.Point(71, 57);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(94, 19);
             this.label1.TabIndex = 100;
@@ -372,7 +373,7 @@
             this.lbxDisciplinasDoCurso.Font = new System.Drawing.Font("Century Gothic", 12F);
             this.lbxDisciplinasDoCurso.FormattingEnabled = true;
             this.lbxDisciplinasDoCurso.ItemHeight = 21;
-            this.lbxDisciplinasDoCurso.Location = new System.Drawing.Point(404, 101);
+            this.lbxDisciplinasDoCurso.Location = new System.Drawing.Point(405, 83);
             this.lbxDisciplinasDoCurso.Name = "lbxDisciplinasDoCurso";
             this.lbxDisciplinasDoCurso.Size = new System.Drawing.Size(250, 256);
             this.lbxDisciplinasDoCurso.TabIndex = 9;
@@ -384,7 +385,7 @@
             this.btnRemove.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRemove.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(51)))), ((int)(((byte)(142)))));
             this.btnRemove.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnRemove.Location = new System.Drawing.Point(330, 223);
+            this.btnRemove.Location = new System.Drawing.Point(331, 205);
             this.btnRemove.Name = "btnRemove";
             this.btnRemove.Size = new System.Drawing.Size(68, 41);
             this.btnRemove.TabIndex = 6;
@@ -400,7 +401,7 @@
             this.btnAdd.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAdd.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(51)))), ((int)(((byte)(142)))));
             this.btnAdd.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnAdd.Location = new System.Drawing.Point(330, 176);
+            this.btnAdd.Location = new System.Drawing.Point(331, 158);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(68, 41);
             this.btnAdd.TabIndex = 5;
@@ -414,7 +415,7 @@
             this.lbxDisciplinasDisponiveis.Font = new System.Drawing.Font("Century Gothic", 12F);
             this.lbxDisciplinasDisponiveis.FormattingEnabled = true;
             this.lbxDisciplinasDisponiveis.ItemHeight = 21;
-            this.lbxDisciplinasDisponiveis.Location = new System.Drawing.Point(74, 101);
+            this.lbxDisciplinasDisponiveis.Location = new System.Drawing.Point(75, 83);
             this.lbxDisciplinasDisponiveis.Name = "lbxDisciplinasDisponiveis";
             this.lbxDisciplinasDisponiveis.Size = new System.Drawing.Size(250, 256);
             this.lbxDisciplinasDisponiveis.TabIndex = 5;
