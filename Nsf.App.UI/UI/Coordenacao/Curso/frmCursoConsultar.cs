@@ -33,18 +33,24 @@ namespace Nsf.App.UI
             }
             catch (ArgumentException ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message, "Exigencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
-            
+            catch (Exception )
+            {
+                MessageBox.Show("Entre em contato com o desenvolvedor do programa", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+
         }
 
-          private void txtSigla_TextChanged(object sender, EventArgs e)
+        private void txtSigla_TextChanged(object sender, EventArgs e)
         {
             try
             {
                 string sigla = txtSigla.Text;
-                
-                if(sigla == string.Empty)
+
+
+                if (sigla == string.Empty)
                 {
                     this.Carregar();
                 }
@@ -59,9 +65,15 @@ namespace Nsf.App.UI
             }
             catch (ArgumentException ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message, "Exigencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
-            
+            catch (Exception )
+            {
+                MessageBox.Show("Entre em contato com o desenvolvedor do programa", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+
+
         }
 
         private void Carregar()
@@ -105,7 +117,11 @@ namespace Nsf.App.UI
             }
             catch (ArgumentException ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message,"Exigencia",MessageBoxButtons.OK, MessageBoxIcon.Exclamation  );
+            }
+            catch (Exception )
+            {
+                MessageBox.Show("Entre em contato com o desenvolvedor do programa", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
 
@@ -133,9 +149,12 @@ namespace Nsf.App.UI
             }
             catch (ArgumentException ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message, "Exigencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
-            
+            catch (Exception )
+            {
+                MessageBox.Show("Entre em contato com o desenvolvedor do programa", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
 
         }
 

@@ -44,11 +44,15 @@ namespace Nsf.App.UI
 
                     InserirCursoDiciplina();
 
-                    MessageBox.Show("Curso registrado com sucesso.");
+                    MessageBox.Show("Curso registrado com sucesso.","Processo com exito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 catch (ArgumentException ex)
                 {
-                    MessageBox.Show(ex.Message);
+                    MessageBox.Show(ex.Message, "Exigencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Entre em contato com o desenvolvedor do programa", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             else
@@ -75,15 +79,21 @@ namespace Nsf.App.UI
                     
                     AlterarDisciplinaDoCurso();
 
-                    MessageBox.Show("Curso alterado com sucesso.");
+                    MessageBox.Show("Curso alterado com sucesso; deseja alterar mais algum campo?","Pergunta", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 }
                 catch (ArgumentException ex)
                 {
-                    MessageBox.Show(ex.Message);
+                    MessageBox.Show(ex.Message, "Exigencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 }
+                catch (Exception )
+                {
+                    MessageBox.Show("Entre em contato com o desenvolvedor do programa", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+
+
             }
-          
-            
+
+
 
 
         }
@@ -126,7 +136,7 @@ namespace Nsf.App.UI
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            catch(Exception)
+            catch(Exception )
             {
                 MessageBox.Show("Ocorreu um erro. Entre em contato com o administrador.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
