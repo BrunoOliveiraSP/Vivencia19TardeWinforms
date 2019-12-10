@@ -22,30 +22,47 @@ namespace Nsf.App.UI
 
         public void ListarTudo()
         {
-            try
-            {
+          //try
+          //  {
                 Nsf.App.API.Client.SalaVestibularAPI api = new App.API.Client.SalaVestibularAPI();
                 List<Model.SalaVestibularModel> consultar = api.listarTudo();
 
+            Model.SalaVestibularModel sala = new Model.SalaVestibularModel();
+
+
+
+            int n = 0;
+
+            foreach(Model.SalaVestibularModel item in consultar )
+            {
+                item.NrOrdem = n;
+                n++;
+            }
+
+
                 dgvSalasVestibular.AutoGenerateColumns = false;
                 dgvSalasVestibular.DataSource = consultar;
-            }
-            catch(ArgumentException ex)
-            {
-                MessageBox.Show(ex.Message, "NSF", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            catch(Exception)
-            {
-                MessageBox.Show("Ocorreu um erro entre em contato com o administrador", "NSF",
-                           MessageBoxButtons.OK,
-                           MessageBoxIcon.Error);
-            }
+          //  }
+         //   catch(ArgumentException ex)
+         //   {
+               // MessageBox.Show(ex.Message, "NSF", MessageBoxButtons.OK, MessageBoxIcon.Error);
+          //  }
+         //   catch(Exception)
+          //  {
+           //     MessageBox.Show("Ocorreu um erro entre em contato com o administrador", "NSF",
+           //                MessageBoxButtons.OK,
+           //                MessageBoxIcon.Error);
+           // }
         }
 
         private void btnVestibularAdd_Click(object sender, EventArgs e)
         {
-            try
-            {
+            //  try
+            //  { 
+            var func = cboVestibularSala.SelectedItem as Model.SalaModel;
+                
+
+            
                 Model.SalaVestibularModel vestibular = new Model.SalaVestibularModel();
 
                 vestibular.DsPeriodo = cboPeriodos.Text;
@@ -53,57 +70,61 @@ namespace Nsf.App.UI
                 Model.SalaModel sala = new Model.SalaModel();
                 sala.NmLocal = cboVestibularInstituicao.Text;
                 sala.NmSala = cboVestibularSala.Text();
-
-                Model.SalaVestibularRequest request = new Model.SalaVestibularRequest();
-                request.Vestibular = vestibular;
-                request.Sala = sala;
-
+ 
+               Model.SalaVestibularModel salas = new Model.SalaVestibularModel();
+            salas.DsPeriodo = cboPeriodos.Text;
+            salas.IdSala = func.IdSala;
+        
+          
+          
+            
+             
                 Nsf.App.API.Client.SalaVestibularAPI api = new App.API.Client.SalaVestibularAPI();
-                api.Inserir(request);
+                api.Inserir(salas);
 
                 MessageBox.Show("Inserido com sucesso.", "NSF", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 this.ListarTudo();
-            }
-            catch (ArgumentException ex)
-            {
-                MessageBox.Show(ex.Message, "NSF", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("Ocorreu um erro. Entre em contato com o administrador.", "NSF",
-                           MessageBoxButtons.OK,
-                           MessageBoxIcon.Error);
-            }
+          //  }
+         //   catch (ArgumentException ex)
+          //  {
+       //         MessageBox.Show(ex.Message, "NSF", MessageBoxButtons.OK, MessageBoxIcon.Error);
+          //  }
+          //  catch (Exception)
+         //   {
+            //    MessageBox.Show("Ocorreu um erro. Entre em contato com o administrador.", "NSF",
+              //             MessageBoxButtons.OK,
+                         //  MessageBoxIcon.Error);
+          //  }
         }
 
         private void CarregarCombo()
         {
-            try
-            {
+           // try
+           // {
                 Nsf.App.API.Client.SalaAPI api = new App.API.Client.SalaAPI();
                 List<Model.SalaModel> model = api.ListarTudo();
 
                 cboVestibularSala.DisplayMember = nameof(Model.SalaModel.NmSala);
                 cboVestibularSala.DataSource = model;
-            }
-            catch(ArgumentException ex)
-            {
+         //   }
+          //  catch(ArgumentException ex)
+          //  {
 
-                MessageBox.Show(ex.Message, "NSF", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            catch(Exception)
-            {
-                MessageBox.Show("Ocorreu um erro. Entre em contato com o administardor", "NSF",
-                           MessageBoxButtons.OK,
-                           MessageBoxIcon.Error);
-            }
+          //      MessageBox.Show(ex.Message, "NSF", MessageBoxButtons.OK, MessageBoxIcon.Error);
+          //  }
+          //  catch(Exception)
+          //  {
+               // MessageBox.Show("Ocorreu um erro. Entre em contato com o administardor", "NSF",
+           //                MessageBoxButtons.OK,
+                   //        MessageBoxIcon.Error);
+           // }
         }
 
         private void dgvSalasVestibular_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            try
-            {
+            //try
+          //  {
                 if (e.ColumnIndex == 4)
                 {
                     Model.SalaVestibularModel teste = dgvSalasVestibular.CurrentRow.DataBoundItem as Model.SalaVestibularModel;
@@ -126,37 +147,34 @@ namespace Nsf.App.UI
                     }
                 }
 
-                if (e.ColumnIndex == 6)
+            if (e.ColumnIndex == 5)
+            {
+                Model.SalaVestibularModel teste = dgvSalasVestibular.CurrentRow.DataBoundItem as Model.SalaVestibularModel;
+
+                DialogResult resp = MessageBox.Show("Deseja realmente excluir este dado?", "NSF", MessageBoxButtons.YesNo);
+                if (resp == DialogResult.Yes)
                 {
-                    Model.SalaVestibularModel teste = dgvSalasVestibular.CurrentRow.DataBoundItem as Model.SalaVestibularModel;
+                    Nsf.App.API.Client.SalaVestibularAPI api = new App.API.Client.SalaVestibularAPI();
+                    api.Remover(teste.IdSalaVestibular);
 
-                    DialogResult resp = MessageBox.Show("Deseja realmente excluir este dado?", "NSF", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
+                    MessageBox.Show("Removido com sucesso!", "NSF");
 
-                    if (resp == DialogResult.Yes)
-                    {
-
-                        Nsf.App.API.Client.SalaVestibularAPI api = new App.API.Client.SalaVestibularAPI();
-                        api.Remover(teste.IdSalaVestibular);
-
-                        MessageBox.Show("Excluido com sucesso.", "NSF",
-                                   MessageBoxButtons.OK,
-                                   MessageBoxIcon.Information);
-
-                        this.ListarTudo();
-                    }
-
+                    this.ListarTudo();
                 }
+            
             }
-            catch(ArgumentException ex)
-            {
-                MessageBox.Show(ex.Message, "NSF", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            catch(Exception)
-            {
-                MessageBox.Show("Ocorreu um erro. Entre em contato com o administrador", "NSF", 
-                           MessageBoxButtons.OK, 
-                           MessageBoxIcon.Error);
-            }
+
+        }
+            //}
+            //catch(ArgumentException ex)
+           // {
+          //      MessageBox.Show(ex.Message, "NSF", MessageBoxButtons.OK, MessageBoxIcon.Error);
+           // }
+         //   catch(Exception)
+            //{
+              //  MessageBox.Show("Ocorreu um erro. Entre em contato com o administrador", "NSF", 
+              //             MessageBoxButtons.OK, 
+                       //    MessageBoxIcon.Error);
+           // }
         }
     }
-}
