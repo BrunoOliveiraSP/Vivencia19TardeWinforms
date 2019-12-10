@@ -26,7 +26,7 @@ namespace Nsf.App.API.Client
             List<Model.SalaVestibualrResponse> teste = JsonConvert.DeserializeObject<List< Model.SalaVestibualrResponse>>(json);
             return teste;
         }
-        public Model.SalaVestibularRequest Inserir(Model.SalaVestibularRequest request)
+        public void  Inserir(Model.SalaVestibularModel request)
         {
 
             string json = JsonConvert.SerializeObject(request);
@@ -34,22 +34,19 @@ namespace Nsf.App.API.Client
 
             HttpResponseMessage resp = cliente.PostAsync("http://localhost:5000/SalaVestibular/", body).Result;
 
-            string jsonresposta = LerJsonDeResposta(resp);
-            request = JsonConvert.DeserializeObject<Model.SalaVestibularRequest>(jsonresposta);
 
-            return request;
+
+            
         }
            
         public void Remover(int id)
         {
 
-            var resp = cliente.DeleteAsync("http://localhost:5000/SalaVestibular/Remover/" + id)
-                             .Result
-                             .Content
-                             .ReadAsStringAsync()
-                             .Result;
+            var resp = cliente.DeleteAsync("http://localhost:5000/SalaVestibular/Remover/" + id).Result;
+                             
+                             
 
-            this.VerificarErro(resp);
+          
         }
         public void Alterar(Model.SalaVestibularModel sala)
         {           
@@ -64,17 +61,7 @@ namespace Nsf.App.API.Client
                              .Result;
         }
 
-        private string LerJsonDeResposta(HttpResponseMessage respoosta)
-        {
-            string jsonResposta = respoosta.Content.ReadAsStringAsync().Result;
-
-            if(respoosta.IsSuccessStatusCode == false)
-            {
-                Model.ErroModel erro = JsonConvert.DeserializeObject<Model.ErroModel>(jsonResposta);
-                throw new ArgumentException(erro.Mensagem);
-            }
-            return jsonResposta;
-        }
+      
         private void VerificarErro(string respostaAPI)
         {
             if (respostaAPI.Contains("codigoErro"))

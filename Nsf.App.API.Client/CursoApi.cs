@@ -6,7 +6,7 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Nsf.App.UI.API
+namespace Nsf.App.API.Client
 {
     public class CursoAPI
     {
@@ -16,7 +16,7 @@ namespace Nsf.App.UI.API
         {
             string json = JsonConvert.SerializeObject(curso);
             StringContent body = new StringContent(json, Encoding.UTF8, "application/json");
-            
+
             var resp = client.PostAsync("http://localhost:5000/Curso/", body)
                              .Result
                              .Content
@@ -25,8 +25,8 @@ namespace Nsf.App.UI.API
 
             this.VerificarErro(resp);
 
-            int id  = JsonConvert.DeserializeObject<int>(resp);
-     
+            int id = JsonConvert.DeserializeObject<int>(resp);
+
             return id;
         }
 
@@ -102,12 +102,34 @@ namespace Nsf.App.UI.API
 
         private void VerificarErro(string respostaApi)
         {
-           if(respostaApi.Contains("codigoErro"))
-           {
-               Model.ErroModel erro = JsonConvert.DeserializeObject<Model.ErroModel>(respostaApi);
-               throw new ArgumentException(erro.Mensagem);
-           }
+            if (respostaApi.Contains("codigoErro"))
+            {
+                Model.ErroModel erro = JsonConvert.DeserializeObject<Model.ErroModel>(respostaApi);
+                throw new ArgumentException(erro.Mensagem);
+            }
+        }
+        public Model.CursoModel ConsultarCurso(int id)
+        {
+            HttpClient client = new HttpClient();
+
+            HttpResponseMessage respostaApi = client.GetAsync("http://localhost:5000/Curso/ConsultarCurso/" + id)
+                                        .Result;
+
+            string jsonResposta = VerificarErroCorreto(respostaApi);
+
+            return JsonConvert.DeserializeObject<Model.CursoModel>(jsonResposta);
         }
 
+        private string VerificarErroCorreto(HttpResponseMessage respostaAPI)
+        {
+            string jsonResposta = respostaAPI.Content.ReadAsStringAsync().Result;
+
+            if (respostaAPI.IsSuccessStatusCode == false)
+            {
+                Model.ErroModel erro = JsonConvert.DeserializeObject<Model.ErroModel>(jsonResposta);
+                throw new ArgumentException(erro.Mensagem);
+            }
+            return jsonResposta;
+        }
     }
 }

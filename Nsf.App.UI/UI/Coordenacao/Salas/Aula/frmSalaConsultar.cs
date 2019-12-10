@@ -95,5 +95,9 @@ namespace Nsf.App.UI
 
         }
 
+        private void DataGridSalas_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }

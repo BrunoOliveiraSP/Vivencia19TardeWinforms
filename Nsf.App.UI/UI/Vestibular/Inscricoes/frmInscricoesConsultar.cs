@@ -18,7 +18,7 @@ namespace Nsf.App.UI
        private void txtNome_TextChanged(object sender, EventArgs e)
        {
             try
-            {
+          {
                 if (string.IsNullOrWhiteSpace(txtNome.Text))
                 {
                     dgvCandidatos.AutoGenerateColumns = false;
@@ -36,7 +36,7 @@ namespace Nsf.App.UI
             {
                 MessageBox.Show(ex.Message, "NSF", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 MessageBox.Show("Ocorreu um erro. Entre em contato com o administrador.", "NSF", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -159,12 +159,12 @@ namespace Nsf.App.UI
 
                 if (e.ColumnIndex == 8)
                 {
-                    Model.InscricaoModel inscricao = dgvCandidatos.CurrentRow.DataBoundItem as Model.InscricaoModel;
+                    Model.InscricaoResponse inscricao = dgvCandidatos.CurrentRow.DataBoundItem as Model.InscricaoResponse;
 
                     DialogResult result = MessageBox.Show("Dejesa Remover?", "NSF", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
                     if (result == DialogResult.Yes)
                     {
-                        InscricaoAPI.Remover(inscricao.idInscricao);
+                        InscricaoAPI.Remover(inscricao.IdInscricao);
                         MessageBox.Show("Registro removido", "NSF", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         CarregarGrid();
                     }

@@ -16,7 +16,7 @@ namespace Nsf.App.UI
 
         App.API.Client.InscricaoAPI Api = new App.API.Client.InscricaoAPI();
         App.API.Client.AnoLetivoApi AnoLetivoApi = new App.API.Client.AnoLetivoApi();
-        API.CursoAPI CursoAPI = new API.CursoAPI();
+        API.Client.CursoAPI CursoAPI = new API.Client.CursoAPI();
         private void btnCoordenacao_Click(object sender, EventArgs e)
         {
             try
@@ -213,10 +213,11 @@ namespace Nsf.App.UI
 
                 if (Model.CarregarInscrições.idInscricao != 0)
                 {
-
-                    Model.AnoLetivoModel anoLetivo = Api.ConsultarAnoLetivo(Model.CarregarInscrições.idAnoLetivo);
-                    Model.CursoModel curso = Api.ConsultarCurso(Model.CarregarInscrições.idCurso);
-                    Model.CursoModel curso2 = Api.ConsultarCurso(Model.CarregarInscrições.idCurso2);
+                    API.Client.AnoLetivoApi anoLetivoApi = new API.Client.AnoLetivoApi();
+                   
+                    Model.AnoLetivoModel anoLetivo = anoLetivoApi.ConsultarAnoLetivo(Model.CarregarInscrições.idAnoLetivo);
+                    Model.CursoModel curso = CursoAPI.ConsultarCurso(Model.CarregarInscrições.idCurso);
+                    Model.CursoModel curso2 = CursoAPI.ConsultarCurso(Model.CarregarInscrições.idCurso2);
 
 
                     txtNome.Text = Model.CarregarInscrições.nmInscrito;

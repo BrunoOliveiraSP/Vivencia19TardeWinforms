@@ -50,7 +50,7 @@ namespace Nsf.App.UI
             }
             catch(Exception ex)
             {
-                MessageBox.Show("Ocorreu um erro", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Ocorreu um erro.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -74,7 +74,7 @@ namespace Nsf.App.UI
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Ocorreu um erro", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Ocorreu um erro.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         
@@ -91,7 +91,7 @@ namespace Nsf.App.UI
                 anoModel.BtAtivo = Convert.ToUInt32(rdnAberto.Checked);
 
                 Nsf.App.API.Client.AnoLetivoApi api = new App.API.Client.AnoLetivoApi();
-                api.CadastrarAnoLetivo(anoModel);
+                anoModel = api.CadastrarAnoLetivo(anoModel);
 
                 MessageBox.Show("Ano letivo cadastrado com sucesso.", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
@@ -101,7 +101,7 @@ namespace Nsf.App.UI
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Ocorreu um erro", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Ocorreu um erro.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -126,7 +126,7 @@ namespace Nsf.App.UI
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Ocorreu um erro", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Ocorreu um erro.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -134,7 +134,7 @@ namespace Nsf.App.UI
         {
             try
             {
-                API.CursoAPI api = new API.CursoAPI();
+                API.Client.CursoAPI api = new API.Client.CursoAPI();
 
                 List<Model.CursoModel> lista = api.ConsultarTodos();
 
@@ -145,9 +145,9 @@ namespace Nsf.App.UI
             {
                 MessageBox.Show(ex.Message);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                MessageBox.Show("Ocorreu um erro", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Ocorreu um erro.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -166,7 +166,7 @@ namespace Nsf.App.UI
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Ocorreu um erro", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Ocorreu um erro.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -211,7 +211,7 @@ namespace Nsf.App.UI
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Ocorreu um erro", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Ocorreu um erro.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -236,7 +236,7 @@ namespace Nsf.App.UI
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Ocorreu um erro", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Ocorreu um erro.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -273,7 +273,7 @@ namespace Nsf.App.UI
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Ocorreu um erro", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Ocorreu um erro.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -308,7 +308,7 @@ namespace Nsf.App.UI
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Ocorreu um erro", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Ocorreu um erro.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
