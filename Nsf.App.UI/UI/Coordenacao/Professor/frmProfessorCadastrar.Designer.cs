@@ -742,7 +742,7 @@
             this.txtRGEmissao.Name = "txtRGEmissao";
             this.txtRGEmissao.Size = new System.Drawing.Size(118, 27);
             this.txtRGEmissao.TabIndex = 19;
-            this.txtRGEmissao.TextChanged += new System.EventHandler(this.txtRGEmissao_TextChanged);
+
             // 
             // label18
             // 
