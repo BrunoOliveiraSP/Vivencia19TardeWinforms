@@ -15,7 +15,7 @@ namespace Nsf.App.API.Client
         HttpClient _client;
 
         #region|Listar|
-        public List<ProfessorModel> ListarTodos()
+        public List<ProfessorResponse> ListarTodos()
         {
             _client = new HttpClient();
 
@@ -27,23 +27,20 @@ namespace Nsf.App.API.Client
 
             this.VerificarErro(json);
 
-            List<ProfessorModel> professores = JsonConvert.DeserializeObject<List<ProfessorModel>>(json);
+            List<ProfessorResponse> professores = JsonConvert.DeserializeObject<List<ProfessorResponse>>(json);
             return professores;
         }
 
-        public List<ProfessorModel> ListarPorNome(string nome)
+        public List<ProfessorResponse> ListarPorNome(string nome)
         {
             _client = new HttpClient();
 
-            var json = _client.GetAsync("http://localhost:5000/Professor/Nome/" + nome)
-                              .Result
-                              .Content
-                              .ReadAsStringAsync()
-                              .Result;
+            HttpResponseMessage respostaApi = _client.GetAsync("http://localhost:5000/Professor/Nome/" + nome)
+                                                    .Result;
 
-            this.VerificarErro(json);
+            string jsonResposta = LerJsonResposta(respostaApi);
 
-            List<ProfessorModel> professores = JsonConvert.DeserializeObject<List<ProfessorModel>>(json);
+            List<ProfessorResponse> professores = JsonConvert.DeserializeObject<List<ProfessorResponse>>(jsonResposta);
             return professores;
         }
 
@@ -109,6 +106,7 @@ namespace Nsf.App.API.Client
 
             return professor;
         }
+
         private void VerificarErro(string respostaApi)
         {
             if(respostaApi.Contains("codigoErro"))
@@ -116,6 +114,12 @@ namespace Nsf.App.API.Client
                 Model.ErroModel erro = JsonConvert.DeserializeObject<Model.ErroModel>(respostaApi);
                 throw new ArgumentException(erro.Mensagem);
             }
+        }
+
+        private string LerJsonResposta(HttpResponseMessage respostaApi)
+        {
+            string jsonResposta = respostaApi.Content.ReadAsStringAsync().Result;
+            return jsonResposta;
         }
 
     }
