@@ -27,11 +27,58 @@ namespace Nsf.App.UI
 
         private void Carregar()
         {
-            Model.CursoModel cursoModel1 = cboCurso1.SelectedItem as Model.CursoModel;
-            Model.CursoModel cursoModel2 = cboCurso2.SelectedItem as Model.CursoModel;
-            Model.AnoLetivoModel anoLetivoModel = cboAnoLetivo.SelectedItem as Model.AnoLetivoModel;
+            API.Client.AnoLetivoApi anoLetivoApi = new API.Client.AnoLetivoApi();
+
+            Model.AnoLetivoModel anoLetivo = anoLetivoApi.ConsultarAnoLetivo(inscricaoModel.IdAnoLetivo);
+            Model.CursoModel curso = CursoAPI.ConsultarCurso(inscricaoModel.IdCurso);
+            Model.CursoModel curso2 = CursoAPI.ConsultarCurso(inscricaoModel.IdCurso2);
 
 
+            txtNome.Text = inscricaoModel.NmInscrito;
+            chkPendenteCpf.Checked = inscricaoModel.BtPendenteCpf;
+            chkPendenteEscolaridade.Checked = inscricaoModel.BtPendenteEscolaridade;
+            nudId.Value = inscricaoModel.CdInscricao;
+            cboComoConheceu.Text = inscricaoModel.DsComoConheceu;
+            txtCorDaPele.Text = inscricaoModel.DsCorPele;
+            txtCpf.Text = inscricaoModel.DsCpf;
+            cboTurno2.Text = inscricaoModel.DsCurso2Periodo;
+            cboTurno1.Text = inscricaoModel.DsCursoPeriodo;
+            txtMaeEmail.Text = inscricaoModel.DsEmail;
+            txtEmailInscrito.Text = inscricaoModel.DsEmailInscrito;
+            cboEscolaridade.Text = inscricaoModel.DsEscolaridade;
+            txtNascimentoCidade.Text = inscricaoModel.DsNascimentoCidade;
+            cboNascimentoUf.Text = inscricaoModel.DsNascimentoEstado;
+            txtNascimentoPais.Text = inscricaoModel.DsNascimentoPais;
+            txtObservacoes.Text = inscricaoModel.DsObservacao;
+            txtRgOrgao.Text = inscricaoModel.DsOrgao;
+            txtBairro.Text = inscricaoModel.DsResidenciaBairro;
+            txtCep.Text = inscricaoModel.DsResidenciaCep;
+            txtCidade.Text = inscricaoModel.DsResidenciaCidade;
+            txtComplemento.Text = inscricaoModel.DsResidenciaComplelemento;
+            txtEndereco.Text = inscricaoModel.DsResidenciaEndereco;
+            cboUf.Text = inscricaoModel.DsResidenciaEstado;
+            txtCpf.Text = inscricaoModel.DsResponsavelCpf;
+            txtResponsavelEmail.Text = inscricaoModel.DsResponsavelEmail;
+            txtResponsavel.Text = inscricaoModel.DsResponsavelNome;
+            cboGrauParentesco.Text = inscricaoModel.DsResponsavelParentesco;
+            txtResponsavelTelefone1.Text = inscricaoModel.DsResponsavelTelefone;
+            txtResponsavelTelefone2.Text = inscricaoModel.DsResponsavelTelefone2;
+            txtRG.Text = inscricaoModel.DsRg;
+            cboSexo.Text = inscricaoModel.DsSexo;
+            txtTelefone1.Text = inscricaoModel.DsTelefone;
+            txtTelefone2.Text = inscricaoModel.DsTelefone2;
+            dtpRgEmissao.Value = inscricaoModel.DtEmissao;
+            txtNascimentoData.Value = inscricaoModel.DtNascimento;
+            cboAnoLetivo.Text = anoLetivo.NrAno.ToString();
+            cboCurso1.Text = curso.NmCurso;
+            cboCurso2.Text = curso2.NmCurso;
+            txtContato.Text = inscricaoModel.NmContato;
+            txtNomeDaEscola.Text = inscricaoModel.NmEscola;
+            txtNumero.Text = inscricaoModel.NrResidenciaEndereco.ToString();
+            nudPessoasMoramCasa.Value = inscricaoModel.QtMoramCasa;
+            nudPessoasTrabalhamCasa.Value = inscricaoModel.QtTrabalhamCasa;
+            cboTipoDeEscola.Text = inscricaoModel.TpEscola;
+            txtRenda.Value = inscricaoModel.VlRenda;
         }
         private void btnCoordenacao_Click(object sender, EventArgs e)
         {
