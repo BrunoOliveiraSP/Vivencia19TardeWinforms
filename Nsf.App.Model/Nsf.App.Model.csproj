@@ -69,6 +69,7 @@
     <Compile Include="SalaVestibualrResponse.cs" />
     <Compile Include="SalaVestibularModel.cs" />
     <Compile Include="SalaVestibularRequest.cs" />
+    <Compile Include="TurmaAluno.cs" />
     <Compile Include="TurmaModell.cs" />
     <Compile Include="TurmaRequest.cs" />
     <Compile Include="TurmaResponse.cs" />
