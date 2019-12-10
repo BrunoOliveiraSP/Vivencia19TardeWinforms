@@ -41,14 +41,11 @@ namespace Nsf.App.API.Client
 		{
 			HttpClient NomeAnoConsulta = new HttpClient();
 
-            HttpResponseMessage respostaApi = NomeAnoConsulta.GetAsync("http://localhost:5000/Inscricao/ConsultarPorNomeEAno/" + nome + "/" + ano).Result;
+            HttpResponseMessage respostaApi = NomeAnoConsulta.GetAsync("http://localhost:5000/Inscricao/Consultar?nome=" + nome + "&ano=" + ano).Result;
 
             string jsonResposta = VerificarErro(respostaApi);
 			return JsonConvert.DeserializeObject<List<Model.InscricaoResponse>>(jsonResposta);
-
-            
         }
-
         public Model.InscricaoModel Alterar(Model.InscricaoModel inscricao)
         {
             HttpClient client = new HttpClient();
@@ -63,7 +60,6 @@ namespace Nsf.App.API.Client
 
             return JsonConvert.DeserializeObject<Model.InscricaoModel>(jsonResposta);
         }
-
         public  void Remover(int id)
         {
             HttpClient client = new HttpClient();
@@ -73,7 +69,6 @@ namespace Nsf.App.API.Client
 
             string jsonResposta = VerificarErro(respostaApi);
         }
-
         public List<Model.InscricaoResponse> ConsultarAnoLetivoLista(int id)
         {
             HttpClient client = new HttpClient();
@@ -83,7 +78,6 @@ namespace Nsf.App.API.Client
             string jsonResposta = VerificarErro(respostaApi);
             return JsonConvert.DeserializeObject<List<Model.InscricaoResponse>>(jsonResposta);
         }
-
         private string VerificarErro(HttpResponseMessage respostaAPI)
         {
             string jsonResposta = respostaAPI.Content.ReadAsStringAsync().Result;
