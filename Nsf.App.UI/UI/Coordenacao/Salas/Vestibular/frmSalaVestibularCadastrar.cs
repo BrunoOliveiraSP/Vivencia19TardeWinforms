@@ -60,8 +60,8 @@ namespace Nsf.App.UI
                 request.Vestibular = vestibular;
                 request.Sala = sala;
                                
-                Nsf.App.API.Client.SalaVestibularAPI api = new App.API.Client.SalaVestibularAPI();
-                api.Inserir(request);
+                //Nsf.App.API.Client.SalaVestibularAPI api = new App.API.Client.SalaVestibularAPI();
+                //api.Inserir(request);
 
                 MessageBox.Show("Inserido com sucesso.", "NSF", MessageBoxButtons.OK, MessageBoxIcon.Information);
 

@@ -42,18 +42,18 @@ namespace Nsf.App.UI
         {
             try
             {
-                List<Model.MatriculaRequest> lista = MatriculaApi.ListarTodos();
-
+                
+                List<Model.MatriculaResponse> lista = MatriculaApi.ListarTodos();
                 dgvCandidatos.DataSource = lista;
             }
             catch (ArgumentException ex)
             {
                 MessageBox.Show(ex.Message);
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Registro removido", "NSF", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show("Ocorreu um erro","error", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            //}
         }
 
         private void cboCurso_SelectedIndexChanged(object sender, EventArgs e)

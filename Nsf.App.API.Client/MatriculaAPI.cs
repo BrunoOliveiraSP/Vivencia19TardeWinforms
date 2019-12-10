@@ -53,16 +53,16 @@ namespace Nsf.App.API.Client
             VerificarErro(resp);
         }
 
-        public List<Model.MatriculaRequest> ListarTodos()
+        public List<Model.MatriculaResponse> ListarTodos()
         {
 
-            var resp = client.GetAsync("http://localhost:5000/Matricula/")
+            var resp = client.GetAsync("http://localhost:5000/Matricula/ListarTodos")
                .Result
                .Content
                .ReadAsStringAsync()
                .Result;
 
-            List<Model.MatriculaRequest> lista = JsonConvert.DeserializeObject<List<Model.MatriculaRequest>>(resp);
+            List<Model.MatriculaResponse> lista = JsonConvert.DeserializeObject<List<Model.MatriculaResponse>>(resp);
 
             return lista;
         }

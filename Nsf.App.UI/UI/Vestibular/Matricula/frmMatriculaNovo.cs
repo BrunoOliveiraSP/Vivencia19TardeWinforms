@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using Nsf.App.Utils;
 using Nsf.App.API.Client;
 using System.IO;
+using Nsf.App.Utils.APIs;
 
 namespace Nsf.App.UI
 {
@@ -230,5 +231,20 @@ namespace Nsf.App.UI
             return matricula;
         }
 
+        private void txtCep_Leave(object sender, EventArgs e)
+        {
+            string cep = txtCep.Text;
+
+            CorreioResponse response;
+
+            Nsf.App.Utils.APIs.CorreioApi api = new Utils.APIs.CorreioApi();
+            if (api.BuscarAPICorreio(cep, out response))
+            {
+                txtBairro.Text = response.bairro;
+                cboUf.Text = response.uf;
+                txtEndereco.Text = response.logradouro;
+                txtCidade.Text = response.localidade;
+            }
+        }
     }
 }

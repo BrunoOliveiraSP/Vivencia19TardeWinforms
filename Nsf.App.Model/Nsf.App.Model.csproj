@@ -62,6 +62,7 @@
     <Compile Include="AlunoLocalizacaoModel.cs" />
     <Compile Include="LoginModel.cs" />
     <Compile Include="MatriculaRequest.cs" />
+    <Compile Include="MatriculaResponse.cs" />
     <Compile Include="ProfessorModel.cs" />
     <Compile Include="ProfessorRequest.cs" />
     <Compile Include="ProfessorResponse.cs" />
