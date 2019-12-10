@@ -27,7 +27,6 @@ namespace Nsf.App.UI
 
             login.DsLogin = txtLogin.Text;
             login.BtAtivo = chkAtivo.Checked;
-                
             _professor.BtAtivo = chkAtivo.Checked;
             _professor.NmProfessor = txtNome.Text;
             _professor.NmPai = txtPai.Text;
@@ -64,10 +63,10 @@ namespace Nsf.App.UI
 
         public void Alterar()
         {
+            Model.ProfessorResponse professor = new Model.ProfessorResponse();
+
             login.DsLogin = txtLogin.Text;
             login.BtAtivo = chkAtivo.Checked;
-            _professor.IdProfessor = _professor.IdProfessor;
-            _professor.IdLogin = login.IdLogin;
             _professor.BtAtivo = chkAtivo.Checked;
             _professor.NmProfessor = txtNome.Text;
             _professor.NmPai = txtPai.Text;
@@ -88,8 +87,12 @@ namespace Nsf.App.UI
             _professor.DtNascimento = dtpNascimento.Value;
             _professor.NrAnoPrimeiroEmprego = Convert.ToInt32(nudPrimeiroEmprego.Value);
             _professor.TpContratacao = cboContrato.Text;
+
+            professor.IdProfessor = _professor.IdProfessor;
+
             professorReq.Professor = _professor;
             professorReq.Login = login;
+            
 
             ProfessorAPI api = new ProfessorAPI();
             api.Alterar(professorReq);

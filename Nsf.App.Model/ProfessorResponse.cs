@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Nsf.App.Model
 {
-    public class ProfessorModel
+    public class ProfessorResponse
     {
         public int IdProfessor { get; set; }
 
@@ -17,6 +17,8 @@ namespace Nsf.App.Model
         public string DsCelular { get; set; }
 
         public string DsTelefone { get; set; }
+
+        public DateTime DtNascimento { get; set; }
 
         public string DsEstado { get; set; }
 
@@ -46,13 +48,10 @@ namespace Nsf.App.Model
 
         public string DsCurso { get; set; }
 
-        public string DsLogin { get; set; }
-
-        public DateTime DtNascimento { get; set; }
-
         public DateTime DtFaculdadeInicio { get; set; }
 
         public DateTime DtFaculdadeFim { get; set; }
 
+        public string DsLogin { get; set; }
     }
 }
