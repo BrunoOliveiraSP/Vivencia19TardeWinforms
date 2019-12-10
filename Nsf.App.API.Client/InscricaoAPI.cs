@@ -10,126 +10,114 @@ namespace Nsf.App.API.Client
 {
     public class InscricaoAPI
     {
-        public void Inserir(Model.InscricaoModel inscricao)
+        public Model.InscricaoModel Inserir(Model.InscricaoModel inscricao)
         {
             HttpClient client = new HttpClient();
 
             string json = JsonConvert.SerializeObject(inscricao);
             StringContent body = new StringContent(json, Encoding.UTF8, "application/json");
 
-            var resp = client.PostAsync("http://localhost:5000/Inscricao", body)
-                             .Result
-                             .Content
-                             .ReadAsStringAsync()
-                             .Result;
+            HttpResponseMessage respostaApi = client.PostAsync("http://localhost:5000/Inscricao", body).Result;
+                             
 
-            VerificarErro(resp);
+            string resposta = VerificarErro(respostaApi);
+
+
+            return JsonConvert.DeserializeObject<Model.InscricaoModel>(resposta);
         }
 
         public List<Model.InscricaoResponse> ConsultarTodos()
         {
             HttpClient client = new HttpClient();
 
-            string json = client.GetAsync("http://localhost:5000/Inscricao")
-                                .Result
-                                .Content
-                                .ReadAsStringAsync()
-                                .Result;
+            HttpResponseMessage respostaApi = client.GetAsync("http://localhost:5000/Inscricao").Result;
 
-            VerificarErro(json);
 
-            return JsonConvert.DeserializeObject<List<Model.InscricaoResponse>>(json);
+            string jsonResposta = VerificarErro(respostaApi);
+
+            return JsonConvert.DeserializeObject<List<Model.InscricaoResponse>>(jsonResposta);
         }
 		public List<Model.InscricaoResponse> ConsultarNome(string nome,  int ano)
 		{
 			HttpClient NomeAnoConsulta = new HttpClient();
 
-            var json = NomeAnoConsulta.GetAsync("http://localhost:5000/Inscricao/ConsultarPorNomeEAno/" + nome + "/" + ano)
-                                        .Result
-										.Content
-										.ReadAsStringAsync()
-										.Result;
-			VerificarErro(json);
-			return JsonConvert.DeserializeObject<List<Model.InscricaoResponse>>(json);
+            HttpResponseMessage respostaApi = NomeAnoConsulta.GetAsync("http://localhost:5000/Inscricao/ConsultarPorNomeEAno/" + nome + "/" + ano).Result;
+
+            string jsonResposta = VerificarErro(respostaApi);
+			return JsonConvert.DeserializeObject<List<Model.InscricaoResponse>>(jsonResposta);
 
             
         }
 
-        public void Alterar(Model.InscricaoModel inscricao)
+        public Model.InscricaoModel Alterar(Model.InscricaoModel inscricao)
         {
             HttpClient client = new HttpClient();
 
             string json = JsonConvert.SerializeObject(inscricao);
             StringContent body = new StringContent(json, Encoding.UTF8, "application/json");
 
-            var resp = client.PutAsync("http://localhost:5000/Inscricao", body)
-                             .Result
-                             .Content
-                             .ReadAsStringAsync()
+            HttpResponseMessage respostaApi = client.PutAsync("http://localhost:5000/Inscricao", body)
                              .Result;
 
-            this.VerificarErro(resp);
+            string jsonResposta = VerificarErro(respostaApi);
+
+            return JsonConvert.DeserializeObject<Model.InscricaoModel>(jsonResposta);
         }
 
         public  void Remover(int id)
         {
             HttpClient client = new HttpClient();
 
-            var resp = client.DeleteAsync("http://localhost:5000/Inscricao/" + id)
-                            .Result
-                            .Content
-                            .ReadAsStringAsync()
+            HttpResponseMessage respostaApi = client.DeleteAsync("http://localhost:5000/Inscricao/" + id)
                             .Result;
 
-            this.VerificarErro(resp);
+            string jsonResposta = VerificarErro(respostaApi);
         }
 
         public Model.CursoModel ConsultarCurso(int id)
         {
-            HttpClient NomeAnoConsulta = new HttpClient();
+            HttpClient client = new HttpClient();
 
-            string json = NomeAnoConsulta.GetAsync("http://localhost:5000/Inscricao/ConsultarCurso/" + id)
-                                        .Result
-                                        .Content
-                                        .ReadAsStringAsync()
+            HttpResponseMessage respostaApi = client.GetAsync("http://localhost:5000/Inscricao/ConsultarCurso/" + id)
                                         .Result;
-            VerificarErro(json);
-            return JsonConvert.DeserializeObject<Model.CursoModel>(json);
+
+            string jsonResposta = VerificarErro(respostaApi);
+
+            return JsonConvert.DeserializeObject<Model.CursoModel>(jsonResposta);
         }
 
         public Model.AnoLetivoModel ConsultarAnoLetivo(int id)
         {
-            HttpClient NomeAnoConsulta = new HttpClient();
+            HttpClient client = new HttpClient();
 
-            string json = NomeAnoConsulta.GetAsync("http://localhost:5000/Inscricao/ConsultarAnoLetivo/" + id)
-                                        .Result
-                                        .Content
-                                        .ReadAsStringAsync()
+            HttpResponseMessage respostaApi = client.GetAsync("http://localhost:5000/Inscricao/ConsultarAnoLetivo/" + id)
                                         .Result;
-            VerificarErro(json);
-            return JsonConvert.DeserializeObject<Model.AnoLetivoModel>(json);
+
+            string jsonResposta = VerificarErro(respostaApi);
+
+            return JsonConvert.DeserializeObject<Model.AnoLetivoModel>(jsonResposta);
         }
 
         public List<Model.InscricaoResponse> ConsultarAnoLetivoLista(int id)
         {
-            HttpClient NomeAnoConsulta = new HttpClient();
+            HttpClient client = new HttpClient();
 
-            string json = NomeAnoConsulta.GetAsync("http://localhost:5000/Inscricao/ConsultarAnoLetivoLista/" + id)
-                                        .Result
-                                        .Content
-                                        .ReadAsStringAsync()
+            HttpResponseMessage respostaApi = client.GetAsync("http://localhost:5000/Inscricao/ConsultarAnoLetivoLista/" + id)
                                         .Result;
-            VerificarErro(json);
-            return JsonConvert.DeserializeObject<List<Model.InscricaoResponse>>(json);
+            string jsonResposta = VerificarErro(respostaApi);
+            return JsonConvert.DeserializeObject<List<Model.InscricaoResponse>>(jsonResposta);
         }
 
-        private void VerificarErro(string respostaAPI)
+        private string VerificarErro(HttpResponseMessage respostaAPI)
         {
-            if (respostaAPI.Contains("codigoErro"))
+            string jsonResposta = respostaAPI.Content.ReadAsStringAsync().Result;
+
+            if (respostaAPI.IsSuccessStatusCode == false)
             {
-                Model.ErroModel erro = JsonConvert.DeserializeObject<Model.ErroModel>(respostaAPI);
+                Model.ErroModel erro = JsonConvert.DeserializeObject<Model.ErroModel>(jsonResposta);
                 throw new ArgumentException(erro.Mensagem);
             }
+            return jsonResposta;
         }
     }
 }
