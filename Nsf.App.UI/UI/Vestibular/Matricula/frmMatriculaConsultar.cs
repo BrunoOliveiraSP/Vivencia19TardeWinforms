@@ -11,7 +11,7 @@ namespace Nsf.App.UI
 			InitializeComponent();
             CarregarGrid();
 		}
-        Nsf.App.API.Client.MatriculaAPI MatriculaApi = new App.API.Client.MatriculaAPI();
+        App.API.Client.MatriculaAPI MatriculaApi = new App.API.Client.MatriculaAPI();
 
         private void dgvCandidatos_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
