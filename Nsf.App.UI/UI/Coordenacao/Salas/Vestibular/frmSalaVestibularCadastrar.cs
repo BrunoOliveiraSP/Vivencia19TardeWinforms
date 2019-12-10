@@ -25,7 +25,7 @@ namespace Nsf.App.UI
             try
             {
                 Nsf.App.API.Client.SalaVestibularAPI api = new App.API.Client.SalaVestibularAPI();
-                List<Model.SalaVestibularModel> consultar = api.listarTudo();
+                List<Model.SalaVestibualrResponse> consultar = api.listarTudo();
 
                 dgvSalasVestibular.AutoGenerateColumns = false;
                 dgvSalasVestibular.DataSource = consultar;
@@ -46,18 +46,20 @@ namespace Nsf.App.UI
         {
             try
             {
-                Model.SalaVestibularModel vestibular = new Model.SalaVestibularModel();
+                var func = cboVestibularSala.SelectedItem as Model.SalaModel;
 
+                Model.SalaVestibularModel vestibular = new Model.SalaVestibularModel();
                 vestibular.DsPeriodo = cboPeriodos.Text;
+                vestibular.IdSala = func.IdSala;
 
                 Model.SalaModel sala = new Model.SalaModel();
                 sala.NmLocal = cboVestibularInstituicao.Text;
-                sala.NmSala = cboVestibularSala.Text();
-
+                sala.NmSala = cboVestibularSala.Text;
+                                      
                 Model.SalaVestibularRequest request = new Model.SalaVestibularRequest();
                 request.Vestibular = vestibular;
                 request.Sala = sala;
-
+                               
                 Nsf.App.API.Client.SalaVestibularAPI api = new App.API.Client.SalaVestibularAPI();
                 api.Inserir(request);
 
