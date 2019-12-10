@@ -158,5 +158,10 @@ namespace Nsf.App.UI
         {
 
         }
+
+        private void dgvCursos_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }
