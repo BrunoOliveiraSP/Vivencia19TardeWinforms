@@ -17,10 +17,10 @@ namespace Nsf.App.UI
         public frmInscricoesNovo(Model.InscricaoResponse model) : this()
         {
             inscricaoModel = model;
+            Carregar();
         }
 
         Model.InscricaoResponse inscricaoModel = new Model.InscricaoResponse();
-
         API.Client.InscricaoAPI Api = new API.Client.InscricaoAPI();
         API.Client.AnoLetivoApi AnoLetivoApi = new API.Client.AnoLetivoApi();
         API.Client.CursoAPI CursoAPI = new API.Client.CursoAPI();
@@ -152,13 +152,13 @@ namespace Nsf.App.UI
                     inscricao.vlNota = 100;
                     inscricao.vlRenda = txtRenda.Value;
 
-                    Model.InscricaoModel alterar = Api.Inserir(inscricao);
-
+                    Model.InscricaoModel inserir = Api.Inserir(inscricao);
+                    inscricaoModel.IdInscricao = inserir.idInscricao;
                     MessageBox.Show("Inscrição efetuada.", "NSF", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     DialogResult result = MessageBox.Show("Inscrição efetuada com sucesso. Deseja fazer alguma alteração?", "NSF", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
                     if (result == DialogResult.Yes)
                     {
-                        Alterar();
+                        MessageBox.Show("Altere os campos desejados, e clique em salvar para concluir sua alteração.", "NSF", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
                     }
                     else
                     {
@@ -167,7 +167,6 @@ namespace Nsf.App.UI
                 }
 
                 inscricaoModel.IdInscricao = 0;
-                LimparCampos();
             }
             catch (ArgumentException ex)
             {
@@ -178,7 +177,6 @@ namespace Nsf.App.UI
                 MessageBox.Show("Ocorreu um erro. Entre em contato com o administrador.", "NSF", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
         private void Alterar()
         {
             try
@@ -251,6 +249,11 @@ namespace Nsf.App.UI
                 if (result == DialogResult.Yes)
                 {
                     frmInicial.Current.OpenScreen(new frmInscricoesConsultar());
+                }
+                else
+                {
+                    inscricaoModel = null;
+                    inscricaoModel.IdInscricao = 0;
                 }
             }
             catch (ArgumentException ex)
@@ -358,10 +361,7 @@ namespace Nsf.App.UI
                     txtBairro.Text = correioResponse.bairro;
                     cboUf.Text = correioResponse.uf;
                     txtCidade.Text = correioResponse.localidade;
-                    txtComplemento.Text = correioResponse.complemento;
-                    txtEndereco.Text = correioResponse.logradouro + " " +
-                    correioResponse.complemento + ", " + correioResponse.bairro + " " +
-                    correioResponse.localidade + " - " + correioResponse.uf;
+                    txtEndereco.Text = correioResponse.logradouro;
                 }
             }
             catch(ArgumentException ex)
