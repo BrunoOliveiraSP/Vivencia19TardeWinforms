@@ -35,7 +35,7 @@ namespace Nsf.App.UI
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Ocorreu um erro", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Ocorreu um erro.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -67,7 +67,9 @@ namespace Nsf.App.UI
                         Nsf.App.API.Client.AnoLetivoApi api = new App.API.Client.AnoLetivoApi();
 
                         api.Remover(model.IdAnoLetivo);
-                        MessageBox.Show("Removido com sucesso");
+                        MessageBox.Show("Removido com sucesso", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                        Carregar();
                     }
                 }
             }
@@ -77,14 +79,10 @@ namespace Nsf.App.UI
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Ocorreu um erro", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Ocorreu um erro.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
-        private void dgvAnosLetivos_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
+       
     }
 }
 

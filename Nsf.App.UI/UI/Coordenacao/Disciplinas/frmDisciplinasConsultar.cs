@@ -30,8 +30,8 @@ namespace Nsf.App.UI
         {
             try
             {
-                string nome = txtDisciplina.Text;
-                string sigla = txtSigla.Text;
+                string nome = txtDisciplina.Text.ToLower();
+                string sigla = txtSigla.Text.ToLower();
 
                 if (nome == string.Empty)
                     nome = " ";
@@ -45,6 +45,10 @@ namespace Nsf.App.UI
                 {
                     lista = api.Listar();
                 }
+                if(nome == " " && sigla != string.Empty)
+                {
+                    throw new ArgumentException("Nome da disciplina é obrigatório para consulta");
+                }
                 else
                 {
                     lista = api.Consultar(nome, sigla);
@@ -54,11 +58,11 @@ namespace Nsf.App.UI
             }
             catch (ArgumentException ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message, "NSF", MessageBoxButtons.OK);
             }
             catch(Exception )
             {
-                MessageBox.Show("Ocorreu um erro. Entre em contato com o administrador.");
+                MessageBox.Show("Ocorreu um erro. Entre em contato com o administrador.", "NSF", MessageBoxButtons.OK);
             }
 
         }
