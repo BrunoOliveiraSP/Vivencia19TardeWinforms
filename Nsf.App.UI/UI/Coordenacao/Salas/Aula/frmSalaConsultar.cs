@@ -51,6 +51,7 @@ namespace Nsf.App.UI
                     this.Consultar();
                 }
             }
+
             if (e.ColumnIndex == 4)
             {
                 Model.SalaModel sala = DataGridSalas.CurrentRow.DataBoundItem as Model.SalaModel;
