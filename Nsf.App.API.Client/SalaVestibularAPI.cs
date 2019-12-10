@@ -48,7 +48,7 @@ namespace Nsf.App.API.Client
 
           
         }
-        public void Alterar(Model.SalaVestibularModel sala)
+        public void Alterar(Model.SalaVestibualrResponse sala)
         {           
 
             string json = JsonConvert.SerializeObject(sala);

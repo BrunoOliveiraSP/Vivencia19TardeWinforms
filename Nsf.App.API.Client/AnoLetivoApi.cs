@@ -12,7 +12,7 @@ namespace Nsf.App.API.Client
    {
         HttpClient client = new HttpClient();
         
-        public Model.AnoLetivoModel CadastrarAnoLetivo(Model.AnoLetivoModel ano)
+        public Model.AnoLetivoModel Cadastar(Model.AnoLetivoModel ano)
         {
             string json = JsonConvert.SerializeObject(ano);
             StringContent body = new StringContent(json, Encoding.UTF8, "application/json");

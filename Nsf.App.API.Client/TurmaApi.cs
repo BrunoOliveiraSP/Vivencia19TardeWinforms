@@ -12,7 +12,7 @@ namespace Nsf.App.API.Client
    {
         HttpClient client = new HttpClient();
 
-        public Model.TurmaRequest CadastrarTurma(Nsf.App.Model.TurmaRequest turma)
+        public Model.TurmaModell Cadastrar(Nsf.App.Model.TurmaModell turma)
         {
             string json = JsonConvert.SerializeObject(turma);
             StringContent body = new StringContent(json, Encoding.UTF8, "application/json");
@@ -20,7 +20,7 @@ namespace Nsf.App.API.Client
             HttpResponseMessage resposta = client.PostAsync("http://localhost:5000/Turma/", body).Result;
 
             string jsonResposta = LerJson(resposta);
-            turma = JsonConvert.DeserializeObject<Model.TurmaRequest>(json);
+            turma = JsonConvert.DeserializeObject<Model.TurmaModell>(json);
                                                                                     
             return turma;
         }
