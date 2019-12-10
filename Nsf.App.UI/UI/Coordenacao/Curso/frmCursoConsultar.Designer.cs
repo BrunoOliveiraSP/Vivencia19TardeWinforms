@@ -192,7 +192,7 @@
             this.Column2.ReadOnly = true;
             this.Column2.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.Column2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.Column2.Width = 133;
+            this.Column2.Width = 25;
             // 
             // Column1
             // 
@@ -203,7 +203,7 @@
             this.Column1.ReadOnly = true;
             this.Column1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.Column1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.Column1.Width = 134;
+            this.Column1.Width = 25;
             // 
             // frmCursoConsultar
             // 

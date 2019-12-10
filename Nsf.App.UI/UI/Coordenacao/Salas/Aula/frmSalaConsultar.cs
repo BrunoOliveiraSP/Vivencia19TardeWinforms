@@ -13,78 +13,115 @@ namespace Nsf.App.UI
 
         public void Consultar()
         {
-            Nsf.App.API.Client.SalaAPI api = new App.API.Client.SalaAPI();
-            List<Model.SalaModel> teste = api.ListarTudo();
+            try
+            {
+                Nsf.App.API.Client.SalaAPI api = new App.API.Client.SalaAPI();
+                List<Model.SalaModel> teste = api.ListarTudo();
 
-            DataGridSalas.AutoGenerateColumns = false;
-            DataGridSalas.DataSource = teste;
+                DataGridSalas.AutoGenerateColumns = false;
+                DataGridSalas.DataSource = teste;
+            }
+            catch (ArgumentException ex)
+            {
+                MessageBox.Show(ex.Message, "NSF", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Ocorreu um erro. Entre em contato com o administrador.", "NSF",
+                           MessageBoxButtons.OK,
+                           MessageBoxIcon.Error);
+            }
+
         }
 
         private void frmSalaConsultar_Load(object sender, EventArgs e)
         {
             this.Consultar();
-           
+
         }
 
         private void DataGridSalas_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-
-            if (e.ColumnIndex == 5)
+            try
             {
-                Model.SalaModel teste = DataGridSalas.CurrentRow.DataBoundItem as Model.SalaModel;
-
-                DialogResult resp = MessageBox.Show("Deseja realmente excluir este dado?", "NSF", MessageBoxButtons.YesNo);
-                if (resp == DialogResult.Yes)
+                if (e.ColumnIndex == 5)
                 {
-                    Nsf.App.API.Client.SalaAPI api = new App.API.Client.SalaAPI();
-                    api.Remover(teste.IdSala);
+                    Model.SalaModel teste = DataGridSalas.CurrentRow.DataBoundItem as Model.SalaModel;
 
-                    MessageBox.Show("Removido com sucesso!","NSF");
+                    DialogResult resp = MessageBox.Show("Deseja realmente excluir este dado?", "NSF", MessageBoxButtons.YesNo);
+                    if (resp == DialogResult.Yes)
+                    {
+                        Nsf.App.API.Client.SalaAPI api = new App.API.Client.SalaAPI();
+                        api.Remover(teste.IdSala);
 
-                    this.Consultar();
+                        MessageBox.Show("Removido com sucesso!", "NSF");
+
+                        this.Consultar();
+                    }
+                }
+
+                if (e.ColumnIndex == 4)
+                {
+                    Model.SalaModel sala = DataGridSalas.CurrentRow.DataBoundItem as Model.SalaModel;
+
+                    Nsf.App.Model.SalaModel model = new Model.SalaModel();
+
+                    model.NrCapacidadeMaxima = sala.NrCapacidadeMaxima;
+                    model.DtAlteracao = sala.DtAlteracao;
+                    model.DtInclusao = sala.DtInclusao;
+                    model.NmLocal = sala.NmLocal;
+                    model.BtAtivo = sala.BtAtivo;
+                    model.IdSala = sala.IdSala;
+                    model.NmSala = sala.NmSala;
+
+                    Consultar();
+
+                    frmSalaCadastrar tela = new frmSalaCadastrar();
+
+                    frmInicial.Current.OpenScreen(tela);
+                    tela.CarregarCampos(model);
+
                 }
             }
-            if (e.ColumnIndex == 4)
+            catch (ArgumentException ex)
             {
-                Model.SalaModel sala = DataGridSalas.CurrentRow.DataBoundItem as Model.SalaModel;
-
-                Nsf.App.Model.SalaModel model = new Model.SalaModel();
-
-                model.IdSala = sala.IdSala;
-                model.NmSala = sala.NmSala;
-                model.NmLocal = sala.NmLocal;
-                model.NrCapacidadeMaxima = sala.NrCapacidadeMaxima;
-                model.DtInclusao = sala.DtInclusao;
-                model.BtAtivo = sala.BtAtivo;
-                model.DtAlteracao = sala.DtAlteracao;
-
-                frmSalaCadastrar tela = new frmSalaCadastrar();
-
-                frmInicial.Current.OpenScreen(tela);
-                tela.CarregarCampos(model);
-
+                MessageBox.Show(ex.Message, "NSF", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Ocorreu um erro. Entre em contato com o administrador.", "NSF",
+                           MessageBoxButtons.OK,
+                           MessageBoxIcon.Error);
             }
         }
 
         private void txtInstituicao_TextChanged(object sender, EventArgs e)
         {
-            string insti = txtInstituicao.Text;
-
-            Nsf.App.API.Client.SalaAPI api = new App.API.Client.SalaAPI();
-            List<Model.SalaModel> teste = api.ConsultaPorInstituicao(insti);
-
-            DataGridSalas.AutoGenerateColumns = false;
-            DataGridSalas.DataSource = teste;
-
-            if(txtInstituicao.Text == String.Empty)
+            try
             {
-                this.Consultar();
+                string insti = txtInstituicao.Text;
+
+                Nsf.App.API.Client.SalaAPI api = new App.API.Client.SalaAPI();
+                List<Model.SalaModel> teste = api.ConsultaPorInstituicao(insti);
+
+                DataGridSalas.AutoGenerateColumns = false;
+                DataGridSalas.DataSource = teste;
+
+                if (txtInstituicao.Text == String.Empty)
+                {
+                    this.Consultar();
+                }
             }
-        }
-
-        private void DataGridSalas_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
+            catch (ArgumentException ex)
+            {
+                MessageBox.Show(ex.Message, "NSF", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Ocorreu um erro. Entre em contato com o administrador.", "NSF",
+                           MessageBoxButtons.OK,
+                           MessageBoxIcon.Error);
+            }
         }
     }
 }

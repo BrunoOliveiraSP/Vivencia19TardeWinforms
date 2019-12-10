@@ -26,72 +26,7 @@ namespace Nsf.App.UI
                 Model.AnoLetivoModel anoLetivoModel = cboAnoLetivo.SelectedItem as Model.AnoLetivoModel;
                 if(Model.CarregarInscrições.idInscricao > 0)
                 {
-                    Model.InscricaoModel inscricao = new Model.InscricaoModel();
-                    inscricao.btMatriculado = Model.CarregarInscrições.btMatriculado ;
-                    inscricao.btPendenteComprovresid = chkPendenteComprovResidencia.Checked;
-                    inscricao.btPendenteCpf = chkPendenteCpf.Checked;
-                    inscricao.btPendenteEscolaridade = chkPendenteEscolaridade.Checked;
-                    inscricao.btPendentePagamento = Model.CarregarInscrições.btPendentePagamento;
-                    inscricao.btPendenteRg = chkPendenteRg.Checked;
-                    inscricao.cdInscricao = Convert.ToInt32(nudId.Value);
-                    inscricao.dsComoConheceu = cboComoConheceu.Text;
-                    inscricao.dsCorPele = txtCorDaPele.Text;
-                    inscricao.dsCpf = txtCpf.Text;
-                    inscricao.dsCurso2Periodo = cboTurno2.Text;
-                    inscricao.dsCursoPeriodo = cboTurno1.Text;
-                    inscricao.dsEmail = txtMaeEmail.Text;
-                    inscricao.dsEmailInscrito = txtEmailInscrito.Text;
-                    inscricao.dsEscolaridade = cboEscolaridade.Text;
-                    inscricao.dsNascimentoCidade = txtNascimentoCidade.Text;
-                    inscricao.dsNascimentoEstado = cboNascimentoUf.Text;
-                    inscricao.dsNascimentoPais = txtNascimentoPais.Text;
-                    inscricao.dsObservacao = txtObservacoes.Text;
-                    inscricao.dsOrgao = txtRgOrgao.Text;
-                    inscricao.dsResidenciaBairro = txtBairro.Text;
-                    inscricao.dsResidenciaCep = txtCep.Text;
-                    inscricao.dsResidenciaCidade = txtCidade.Text;
-                    inscricao.dsResidenciaComplelemento = txtComplemento.Text;
-                    inscricao.dsResidenciaEndereco = txtEndereco.Text;
-                    inscricao.dsResidenciaEstado = cboUf.Text;
-                    inscricao.dsResponsavelCpf = txtCpf.Text;
-                    inscricao.dsResponsavelEmail = txtResponsavelEmail.Text;
-                    inscricao.dsResponsavelNome = txtResponsavel.Text;
-                    inscricao.dsResponsavelParentesco = cboGrauParentesco.Text;
-                    inscricao.dsResponsavelRg = Model.CarregarInscrições.dsResponsavelRg;
-                    inscricao.dsResponsavelTelefone = txtResponsavelTelefone1.Text;
-                    inscricao.dsResponsavelTelefone2 = txtResponsavelTelefone2.Text;
-                    inscricao.dsRg = txtRG.Text;
-                    inscricao.dsSexo = cboSexo.Text;
-                    inscricao.dsSituacao = Model.CarregarInscrições.dsSituacao;
-                    inscricao.dsTelefone = txtTelefone1.Text;
-                    inscricao.dsTelefone2 = txtTelefone2.Text;
-                    inscricao.dtEmissao = dtpRgEmissao.Value;
-                    inscricao.dtInclusao = Model.CarregarInscrições.dtInclusao;
-                    inscricao.dtNascimento = txtNascimentoData.Value;
-                    inscricao.dtUltimaAlteracao = DateTime.Now;
-                    inscricao.idAnoLetivo = anoLetivoModel.IdAnoLetivo;
-                    inscricao.idCurso = cursoModel1.IdCurso;
-                    inscricao.idCurso2 = cursoModel1.IdCurso;
-                    inscricao.idFuncionarioAlteracao = 1;
-                    inscricao.idInscricao = Model.CarregarInscrições.idInscricao;
-                    inscricao.idSalaVestibular = Model.CarregarInscrições.idSalaVestibular;
-                    inscricao.nmContato = txtContato.Text;
-                    inscricao.nmEscola = txtNomeDaEscola.Text;
-                    inscricao.nmInscrito = txtNome.Text;
-                    inscricao.nrResidenciaEndereco = Convert.ToInt32(txtNumero.Text);
-                    inscricao.qtMoramCasa = Convert.ToInt32(nudPessoasMoramCasa.Value);
-                    inscricao.qtTrabalhamCasa = Convert.ToInt32(nudPessoasTrabalhamCasa.Value);
-                    inscricao.tpEscola = cboTipoDeEscola.Text;
-                    inscricao.vlNota = Model.CarregarInscrições.vlNota;
-                    inscricao.vlRenda = txtRenda.Value;
-
-                    Api.Alterar(inscricao);
-
-                    DialogResult result = MessageBox.Show("Alteração efetuada com sucesso. Deseja Consultar sua Alteração?", "NSF", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
-                    if (result == DialogResult.Yes)
-                    {
-                        frmInicial.Current.OpenScreen(new frmInscricoesConsultar());
-                    }
+                    Alterar();
                 }
                 else
                 {
@@ -154,9 +89,18 @@ namespace Nsf.App.UI
                     inscricao.vlNota = 100;
                     inscricao.vlRenda = txtRenda.Value;
 
-                    Api.Inserir(inscricao);
+                    Model.InscricaoModel alterar = Api.Inserir(inscricao);
 
                     MessageBox.Show("Inscrição efetuada.", "NSF", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    DialogResult result = MessageBox.Show("Inscrição efetuada com sucesso. Deseja fazer alguma alteração?", "NSF", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+                    if (result == DialogResult.Yes)
+                    {
+                        Alterar();
+                    }
+                    else
+                    {
+                        LimparCampos();
+                    }
                 }
 
                 Model.CarregarInscrições.idInscricao = 0;
@@ -172,6 +116,89 @@ namespace Nsf.App.UI
             }
         }
 
+        private void Alterar()
+        {
+            try
+            {
+                Model.CursoModel cursoModel1 = cboCurso1.SelectedItem as Model.CursoModel;
+                Model.CursoModel cursoModel2 = cboCurso2.SelectedItem as Model.CursoModel;
+                Model.AnoLetivoModel anoLetivoModel = cboAnoLetivo.SelectedItem as Model.AnoLetivoModel;
+                Model.InscricaoModel inscricao = new Model.InscricaoModel();
+                inscricao.btMatriculado = Model.CarregarInscrições.btMatriculado;
+                inscricao.btPendenteComprovresid = chkPendenteComprovResidencia.Checked;
+                inscricao.btPendenteCpf = chkPendenteCpf.Checked;
+                inscricao.btPendenteEscolaridade = chkPendenteEscolaridade.Checked;
+                inscricao.btPendentePagamento = Model.CarregarInscrições.btPendentePagamento;
+                inscricao.btPendenteRg = chkPendenteRg.Checked;
+                inscricao.cdInscricao = Convert.ToInt32(nudId.Value);
+                inscricao.dsComoConheceu = cboComoConheceu.Text;
+                inscricao.dsCorPele = txtCorDaPele.Text;
+                inscricao.dsCpf = txtCpf.Text;
+                inscricao.dsCurso2Periodo = cboTurno2.Text;
+                inscricao.dsCursoPeriodo = cboTurno1.Text;
+                inscricao.dsEmail = txtMaeEmail.Text;
+                inscricao.dsEmailInscrito = txtEmailInscrito.Text;
+                inscricao.dsEscolaridade = cboEscolaridade.Text;
+                inscricao.dsNascimentoCidade = txtNascimentoCidade.Text;
+                inscricao.dsNascimentoEstado = cboNascimentoUf.Text;
+                inscricao.dsNascimentoPais = txtNascimentoPais.Text;
+                inscricao.dsObservacao = txtObservacoes.Text;
+                inscricao.dsOrgao = txtRgOrgao.Text;
+                inscricao.dsResidenciaBairro = txtBairro.Text;
+                inscricao.dsResidenciaCep = txtCep.Text;
+                inscricao.dsResidenciaCidade = txtCidade.Text;
+                inscricao.dsResidenciaComplelemento = txtComplemento.Text;
+                inscricao.dsResidenciaEndereco = txtEndereco.Text;
+                inscricao.dsResidenciaEstado = cboUf.Text;
+                inscricao.dsResponsavelCpf = txtCpf.Text;
+                inscricao.dsResponsavelEmail = txtResponsavelEmail.Text;
+                inscricao.dsResponsavelNome = txtResponsavel.Text;
+                inscricao.dsResponsavelParentesco = cboGrauParentesco.Text;
+                inscricao.dsResponsavelRg = Model.CarregarInscrições.dsResponsavelRg;
+                inscricao.dsResponsavelTelefone = txtResponsavelTelefone1.Text;
+                inscricao.dsResponsavelTelefone2 = txtResponsavelTelefone2.Text;
+                inscricao.dsRg = txtRG.Text;
+                inscricao.dsSexo = cboSexo.Text;
+                inscricao.dsSituacao = Model.CarregarInscrições.dsSituacao;
+                inscricao.dsTelefone = txtTelefone1.Text;
+                inscricao.dsTelefone2 = txtTelefone2.Text;
+                inscricao.dtEmissao = dtpRgEmissao.Value;
+                inscricao.dtInclusao = Model.CarregarInscrições.dtInclusao;
+                inscricao.dtNascimento = txtNascimentoData.Value;
+                inscricao.dtUltimaAlteracao = DateTime.Now;
+                inscricao.idAnoLetivo = anoLetivoModel.IdAnoLetivo;
+                inscricao.idCurso = cursoModel1.IdCurso;
+                inscricao.idCurso2 = cursoModel1.IdCurso;
+                inscricao.idFuncionarioAlteracao = 1;
+                inscricao.idInscricao = Model.CarregarInscrições.idInscricao;
+                inscricao.idSalaVestibular = Model.CarregarInscrições.idSalaVestibular;
+                inscricao.nmContato = txtContato.Text;
+                inscricao.nmEscola = txtNomeDaEscola.Text;
+                inscricao.nmInscrito = txtNome.Text;
+                inscricao.nrResidenciaEndereco = Convert.ToInt32(txtNumero.Text);
+                inscricao.qtMoramCasa = Convert.ToInt32(nudPessoasMoramCasa.Value);
+                inscricao.qtTrabalhamCasa = Convert.ToInt32(nudPessoasTrabalhamCasa.Value);
+                inscricao.tpEscola = cboTipoDeEscola.Text;
+                inscricao.vlNota = Model.CarregarInscrições.vlNota;
+                inscricao.vlRenda = txtRenda.Value;
+
+                Api.Alterar(inscricao);
+
+                DialogResult result = MessageBox.Show("Alteração efetuada com sucesso. Deseja Consultar sua Alteração?", "NSF", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+                if (result == DialogResult.Yes)
+                {
+                    frmInicial.Current.OpenScreen(new frmInscricoesConsultar());
+                }
+            }
+            catch (ArgumentException ex)
+            {
+                MessageBox.Show(ex.Message, "NSF", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch(Exception)
+            {
+                MessageBox.Show("Ocorreu um erro. Entre em contato com o administrador.", "NSF", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
         private void CarregarCampos()
         {
             try
@@ -249,7 +276,6 @@ namespace Nsf.App.UI
                 MessageBox.Show("Ocorreu um erro. Entre em contato com o administrador.", "NSF", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
         private void LimparCampos()
         {
             try
@@ -304,8 +330,6 @@ namespace Nsf.App.UI
                 MessageBox.Show("Ocorreu um erro. Entre em contato com o administrador.", "NSF", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        
-
         private void txtCep_Leave(object sender, EventArgs e)
         {
             try
@@ -338,7 +362,6 @@ namespace Nsf.App.UI
                 MessageBox.Show("Ocorreu um erro. Entre em contato com o administrador.", "NSF", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
         private void cboTurno1_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
@@ -363,7 +386,6 @@ namespace Nsf.App.UI
                 MessageBox.Show("Ocorreu um erro. Entre em contato com o administrador.", "NSF", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
         private void cboTurno2_SelectedIndexChanged(object sender, EventArgs e)
         {
             try

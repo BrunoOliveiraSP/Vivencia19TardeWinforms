@@ -91,11 +91,11 @@ namespace Nsf.App.UI
 
                     Model.CursoModel mod = new Model.CursoModel();
 
+                    mod.NrCapacidadeMaxima = Convert.ToInt32(curso.NrCapacidadeMaxima);
                     mod.IdCurso = Convert.ToInt32(curso.IdCurso);
+                    mod.DsCategoria= curso.DsCategoria;
                     mod.NmCurso = curso.NmCurso;
                     mod.BtAtivo = curso.BtAtivo;
-                    mod.DsCategoria= curso.DsCategoria;
-                    mod.NrCapacidadeMaxima = Convert.ToInt32(curso.NrCapacidadeMaxima);
                     mod.DsSigla = curso.DsSigla;
 
                     telaCadastrar.AlterarInformacao(mod);

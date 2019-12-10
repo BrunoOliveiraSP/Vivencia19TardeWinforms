@@ -97,7 +97,6 @@
             this.DataGridSalas.Size = new System.Drawing.Size(740, 398);
             this.DataGridSalas.TabIndex = 1;
             this.DataGridSalas.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridSalas_CellClick);
-            this.DataGridSalas.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridSalas_CellContentClick);
             // 
             // Instituicao
             // 

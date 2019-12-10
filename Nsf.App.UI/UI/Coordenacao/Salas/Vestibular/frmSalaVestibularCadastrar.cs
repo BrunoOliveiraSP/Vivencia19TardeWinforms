@@ -32,8 +32,7 @@ namespace Nsf.App.UI
             }
             catch(ArgumentException ex)
             {
-
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message, "NSF", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             catch(Exception)
             {
@@ -45,8 +44,8 @@ namespace Nsf.App.UI
 
         private void btnVestibularAdd_Click(object sender, EventArgs e)
         {
-           try
-           {
+            try
+            {
                 Model.SalaVestibularModel vestibular = new Model.SalaVestibularModel();
 
                 vestibular.DsPeriodo = cboPeriodos.Text;
@@ -65,17 +64,17 @@ namespace Nsf.App.UI
                 MessageBox.Show("Inserido com sucesso.", "NSF", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 this.ListarTudo();
-           }
-           catch(ArgumentException ex)
-           {
-                MessageBox.Show(ex.Message, "NSF");
-           }
-           catch(Exception)
-           {              
+            }
+            catch (ArgumentException ex)
+            {
+                MessageBox.Show(ex.Message, "NSF", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception)
+            {
                 MessageBox.Show("Ocorreu um erro. Entre em contato com o administrador.", "NSF",
                            MessageBoxButtons.OK,
                            MessageBoxIcon.Error);
-           }
+            }
         }
 
         private void CarregarCombo()
@@ -91,7 +90,7 @@ namespace Nsf.App.UI
             catch(ArgumentException ex)
             {
 
-                MessageBox.Show(ex.Message, "NSF");
+                MessageBox.Show(ex.Message, "NSF", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             catch(Exception)
             {
@@ -150,7 +149,7 @@ namespace Nsf.App.UI
             }
             catch(ArgumentException ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message, "NSF", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             catch(Exception)
             {
