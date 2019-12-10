@@ -18,7 +18,7 @@ namespace Nsf.App.UI
 		public frmMatriculaNovo()
 		{
 			InitializeComponent();
-            API.CursoAPI curso = new API.CursoAPI();
+            CursoAPI curso = new CursoAPI();
             List<Model.CursoModel> cursos = curso.ConsultarTodos();
 
             cboCurso.DisplayMember = nameof(Model.CursoModel.NmCurso);

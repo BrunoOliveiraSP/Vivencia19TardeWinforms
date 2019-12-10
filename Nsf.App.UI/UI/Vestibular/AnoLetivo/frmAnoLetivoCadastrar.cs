@@ -134,7 +134,7 @@ namespace Nsf.App.UI
         {
             try
             {
-                API.CursoAPI api = new API.CursoAPI();
+                API.Client.CursoAPI api = new API.Client.CursoAPI();
 
                 List<Model.CursoModel> lista = api.ConsultarTodos();
 
@@ -145,7 +145,7 @@ namespace Nsf.App.UI
             {
                 MessageBox.Show(ex.Message);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 MessageBox.Show("Ocorreu um erro", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }

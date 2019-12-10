@@ -25,13 +25,20 @@ namespace Nsf.App.UI
         private void btnSalvar_Click(object sender, EventArgs e)
         {
             int idCursoCondicao = Convert.ToInt32(lblID.Text);
+            string lbxDisciplinaCurso = Convert.ToString(lbxDisciplinasDoCurso.DataSource);
           
+            if (lbxDisciplinaCurso == null || lbxDisciplinaCurso == "")
+            {
+                tabControl1.SelectedTab = tabPage2;
+                MessageBox.Show("A atribuição de disciplinas ao curso é obrigatória", "Exigencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
 
-             if (idCursoCondicao == 0 ) //&& idCursoCondicao == null
+
+            else if (idCursoCondicao == 0 ) 
             {
                 try
                 {
-                    Nsf.App.Model.CursoModel curso = new Model.CursoModel();
+                    Model.CursoModel curso = new Model.CursoModel();
 
                     curso.NrCapacidadeMaxima = Convert.ToInt32(nudCapacidade.Value);
                     curso.DtUltimaAlteracao = System.DateTime.Now;
@@ -41,7 +48,7 @@ namespace Nsf.App.UI
                     curso.NmCurso = txtCurso.Text;
                     curso.DsSigla = txtSigla.Text;
 
-                    API.CursoAPI api = new API.CursoAPI();
+                    API.Client.CursoAPI api = new API.Client.CursoAPI();
                     idcurso = api.Inserir(curso);
 
                     InserirCursoDiciplina();
@@ -77,7 +84,7 @@ namespace Nsf.App.UI
                     curso.DsSigla = txtSigla.Text;
 
 
-                    API.CursoAPI api = new API.CursoAPI();
+                    API.Client.CursoAPI api = new API.Client.CursoAPI();
                     api.Alterar(curso);
                     
                     AlterarDisciplinaDoCurso();
@@ -211,13 +218,6 @@ namespace Nsf.App.UI
             Model.CursoDisciplinaModel mod = new Model.CursoDisciplinaModel();
 
             Nsf.App.API.Client.DisciplinaAPI api = new App.API.Client.DisciplinaAPI();
-
-            if (lbxDisciplinasDoCurso.DataSource == null)
-            {
-                tabControl1.SelectedTab = tabPage2;
-                throw new ArgumentException("A atribuição de disciplinas ao curso é obrigatória");
-                
-            }
 
             foreach (var item in atribuidas)
             {
