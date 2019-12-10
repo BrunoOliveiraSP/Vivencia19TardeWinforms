@@ -24,29 +24,63 @@ namespace Nsf.App.UI
 
         private void btnSalvar_Click(object sender, EventArgs e)
         {
-            try
+            int idCursoCondicao = Convert.ToInt32(lblID.Text);
+            if (idCursoCondicao == 0 && idCursoCondicao == null)
             {
-                Nsf.App.Model.CursoModel curso = new Model.CursoModel();
+                try
+                {
+                    Nsf.App.Model.CursoModel curso = new Model.CursoModel();
 
-                curso.NmCurso = txtCurso.Text;
-                curso.BtAtivo = chkAtivo.Checked;
-                curso.DtCriacao = System.DateTime.Now;
-                curso.DtUltimaAlteracao = System.DateTime.Now;
-                curso.DsCategoria = cboCategoria.Text;
-                curso.NrCapacidadeMaxima = Convert.ToInt32(nudCapacidade.Value);
-                curso.DsSigla = txtSigla.Text;
+                    curso.NrCapacidadeMaxima = Convert.ToInt32(nudCapacidade.Value);
+                    curso.DtUltimaAlteracao = System.DateTime.Now;
+                    curso.DtCriacao = System.DateTime.Now;
+                    curso.DsCategoria = cboCategoria.Text;
+                    curso.BtAtivo = chkAtivo.Checked;
+                    curso.NmCurso = txtCurso.Text;
+                    curso.DsSigla = txtSigla.Text;
 
-                API.CursoAPI api = new API.CursoAPI();
-                idcurso = api.Inserir(curso);
+                    API.CursoAPI api = new API.CursoAPI();
+                    idcurso = api.Inserir(curso);
 
-                InserirCursoDiciplina();
+                    InserirCursoDiciplina();
 
-
-                MessageBox.Show("Curso registrado com sucesso.");
+                    MessageBox.Show("Curso registrado com sucesso.");
+                }
+                catch (ArgumentException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
             }
-            catch (ArgumentException ex)
+            else
             {
-                MessageBox.Show(ex.Message);
+                try
+                {
+                   
+                    Nsf.App.Model.CursoModel curso = new Model.CursoModel();
+
+                    int idCurso = Convert.ToInt32(lblID.Text);
+
+                    curso.NrCapacidadeMaxima = Convert.ToInt32(nudCapacidade.Value);
+                    curso.DtUltimaAlteracao = System.DateTime.Now;
+                    curso.IdCurso = Convert.ToInt32(lblID.Text);
+                    curso.DsCategoria = cboCategoria.Text;
+                    curso.DtCriacao = System.DateTime.Now;
+                    curso.BtAtivo = chkAtivo.Checked;
+                    curso.NmCurso = txtCurso.Text;
+                    curso.DsSigla = txtSigla.Text;
+
+
+                    API.CursoAPI api = new API.CursoAPI();
+                    api.Alterar(curso);
+                    
+                    AlterarDisciplinaDoCurso();
+
+                    MessageBox.Show("Curso alterado com sucesso.");
+                }
+                catch (ArgumentException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
             }
           
             
@@ -129,7 +163,7 @@ namespace Nsf.App.UI
 
             idcurso = curso.IdCurso;
 
-            nudID.Text = Convert.ToString(curso.IdCurso);
+            lblID.Text = Convert.ToString(curso.IdCurso);
             txtCurso.Text = curso.NmCurso;
             chkAtivo.Checked = curso.BtAtivo;
             cboCategoria.Text =  curso.DsCategoria;
@@ -143,41 +177,7 @@ namespace Nsf.App.UI
 
         private void button1_Click(object sender, EventArgs e)
         {
-            try
-            {
-                if (nudID.Value == 0)
-                {
-                    btnAlterar.Enabled = true;
-                }
-                else
-                {
-                    Nsf.App.Model.CursoModel curso = new Model.CursoModel();
-
-                    idcurso = Convert.ToInt32(nudID.Value);
-
-                    curso.IdCurso = Convert.ToInt32(nudID.Text);
-                    curso.NmCurso = txtCurso.Text;
-                    curso.BtAtivo = chkAtivo.Checked;
-                    curso.DtCriacao = System.DateTime.Now;
-                    curso.DtUltimaAlteracao = System.DateTime.Now;
-                    curso.DsCategoria = cboCategoria.Text;
-                    curso.NrCapacidadeMaxima = Convert.ToInt32(nudCapacidade.Value);
-                    curso.DsSigla = txtSigla.Text;
-
-                    API.CursoAPI api = new API.CursoAPI();
-                    api.Alterar(curso);
-                    AlterarDisciplinaDoCurso();
-
-                    MessageBox.Show("Curso alterado com sucesso.");
-
-                    //frmInicial.Current.OpenScreen(telaConsultar);
-                    // telaConsultar.AlterarInformacao(model);
-                }
-            }
-            catch (ArgumentException ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
+            
             
         }
 

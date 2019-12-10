@@ -9,9 +9,10 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Nsf.App.Model</RootNamespace>
     <AssemblyName>Nsf.App.Model</AssemblyName>
-    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -68,6 +69,7 @@
     <Compile Include="SalaVestibualrResponse.cs" />
     <Compile Include="SalaVestibularModel.cs" />
     <Compile Include="SalaVestibularRequest.cs" />
+    <Compile Include="TurmaAluno.cs" />
     <Compile Include="TurmaModell.cs" />
     <Compile Include="TurmaRequest.cs" />
     <Compile Include="TurmaResponse.cs" />

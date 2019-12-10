@@ -10,46 +10,71 @@ namespace Nsf.App.UI
             InitializeComponent();
         }
 
+        frmSalaConsultar tela = new frmSalaConsultar();
+
         private void btnSalvar_Click(object sender, EventArgs e)
         {
             try
             {
                 Model.SalaModel sala = new Model.SalaModel();
 
-                if (sala.IdSala == 0)
+                if (Convert.ToInt32(lblId.Text) == 0)
                 {
-                    sala.NmSala = txtSala.Text;
-                    sala.NmLocal = cboInstituicao.Text;
-                    sala.NrCapacidadeMaxima = Convert.ToInt32(nudCapacidade.Value);
-                    sala.BtAtivo = Convert.ToBoolean(chkAtivo.Checked);
-                    Nsf.App.API.Client.SalaAPI api = new App.API.Client.SalaAPI();
-                    api.inserir(sala);
-
-                    MessageBox.Show("Cadastrado com sucesso");
+                    tela.Consultar();
+                    this.inserir(sala);
                 }
-                else if (sala.IdSala > 0)
+                else if (Convert.ToInt32(lblId.Text) > 0)
                 {
+                    tela.Consultar();
                     this.Alterar(sala);
                 }
             }
             catch (ArgumentException ex)
-            { 
+            {
 
                 MessageBox.Show(ex.Message);
             }
-            catch
+            catch (Exception)
             {
-                MessageBox.Show("Ocorreu um erro. Entre em contato com o administrador.", "NSF",
+                MessageBox.Show("Ocorreu um erro. Entre em contato com o administrador", "NSF",
                            MessageBoxButtons.OK,
                            MessageBoxIcon.Error);
-            }      
+            }
+        }
+
+        public void inserir(Model.SalaModel sala)
+        {
+            try
+            {
+                sala.NrCapacidadeMaxima = Convert.ToInt32(nudCapacidade.Value);
+                sala.BtAtivo = Convert.ToBoolean(chkAtivo.Checked);
+                sala.NmLocal = cboInstituicao.Text;
+                sala.NmSala = txtSala.Text;
+
+                Nsf.App.API.Client.SalaAPI api = new App.API.Client.SalaAPI();
+                api.inserir(sala);
+
+                MessageBox.Show("Cadastrado com sucesso", "NSF",
+                           MessageBoxButtons.OK,
+                           MessageBoxIcon.Information);
+            }
+            catch (ArgumentException ex)
+            {
+                MessageBox.Show(ex.Message, "NSF");
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Ocorreu um erro. Entre em contato com o administrador", "NSF",
+                           MessageBoxButtons.OK,
+                           MessageBoxIcon.Error);
+            }
         }
 
         public void Alterar(Model.SalaModel sala)
         {
             try
             {
-                            
+                sala.IdSala = Convert.ToInt32(lblId.Text);
                 sala.NmSala = txtSala.Text;
                 sala.NmLocal = cboInstituicao.Text;
                 sala.NrCapacidadeMaxima = Convert.ToInt32(nudCapacidade.Value);
@@ -61,7 +86,7 @@ namespace Nsf.App.UI
                 tela.CarregarCampos(sala);
 
                 Nsf.App.API.Client.SalaAPI api = new App.API.Client.SalaAPI();
-                api.alterar(sala);
+                api.Alterar(sala);
 
                 MessageBox.Show("Alterado com sucesso", "NSF", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
@@ -69,30 +94,30 @@ namespace Nsf.App.UI
             {
                 MessageBox.Show(ex.Message, "NSF");
             }
-            catch(Exception)
+            catch (Exception)
             {
-                MessageBox.Show("Ocorreu um erro. Entre em contato com o administrador.", "NSF", 
-                           MessageBoxButtons.OK, 
+                MessageBox.Show("Ocorreu um erro. Entre em contato com o administrador", "NSF",
+                           MessageBoxButtons.OK,
                            MessageBoxIcon.Error);
             }
         }
+
         public void CarregarCampos(Model.SalaModel model)
         {
             try
-            {             
-                panelId.Visible = true;
-                lblId.Text = model.IdSala.ToString();
-                txtSala.Text = model.NmSala;
-                cboInstituicao.Text = model.NmLocal;
+            {
                 nudCapacidade.Text = model.NrCapacidadeMaxima.ToString();
+                lblId.Text = model.IdSala.ToString();
+                cboInstituicao.Text = model.NmLocal;
                 chkAtivo.Checked = model.BtAtivo;
-                 
+                txtSala.Text = model.NmSala;
+                panelId.Visible = true;
             }
             catch (ArgumentException ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message, "NSF");
             }
-            catch
+            catch(Exception)
             {
                 MessageBox.Show("Ocorreu um erro. Entre em contato com o administrador", "NSF", 
                            MessageBoxButtons.OK, 
@@ -101,3 +126,4 @@ namespace Nsf.App.UI
         }
     }
 }
+  
