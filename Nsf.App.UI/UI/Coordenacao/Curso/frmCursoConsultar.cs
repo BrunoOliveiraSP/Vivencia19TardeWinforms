@@ -23,8 +23,8 @@ namespace Nsf.App.UI
                 }
                 else
                 {
-                    Nsf.App.UI.API.CursoAPI curso = new API.CursoAPI();
-                    List<Nsf.App.Model.CursoModel> lista = curso.ConsultarPorCurso(nmcurso);
+                    API.Client.CursoAPI api = new API.Client.CursoAPI();
+                    List<Nsf.App.Model.CursoModel> lista = api.ConsultarPorCurso(nmcurso);
 
                     dgvCursos.AutoGenerateColumns = false;
                     dgvCursos.DataSource = lista;
@@ -56,8 +56,8 @@ namespace Nsf.App.UI
                 }
                 else
                 {
-                    Nsf.App.UI.API.CursoAPI curso = new API.CursoAPI();
-                    List<Nsf.App.Model.CursoModel> lista = curso.ConsultarPorSigla(sigla);
+                    API.Client.CursoAPI api = new API.Client.CursoAPI();
+                    List<Nsf.App.Model.CursoModel> lista = api.ConsultarPorSigla(sigla);
 
                     dgvCursos.AutoGenerateColumns = false;
                     dgvCursos.DataSource = lista;
@@ -71,15 +71,12 @@ namespace Nsf.App.UI
             {
                 MessageBox.Show("Entre em contato com o desenvolvedor do programa", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
-
-
         }
 
         private void Carregar()
         {
-            Nsf.App.UI.API.CursoAPI curso = new API.CursoAPI();
-            List<Nsf.App.Model.CursoModel> lista = curso.ConsultarTodos();
+            API.Client.CursoAPI api = new API.Client.CursoAPI();
+            List<Nsf.App.Model.CursoModel> lista = api.ConsultarTodos();
 
             dgvCursos.AutoGenerateColumns = false;
             dgvCursos.DataSource = lista;
@@ -131,7 +128,7 @@ namespace Nsf.App.UI
 
                     if (r == DialogResult.Yes)
                     {
-                        API.CursoAPI api = new API.CursoAPI();
+                        API.Client.CursoAPI api = new API.Client.CursoAPI();
                         Nsf.App.API.Client.DisciplinaAPI API = new App.API.Client.DisciplinaAPI();
 
                         api.Remover(curso.IdCurso);

@@ -453,7 +453,6 @@
         private System.Windows.Forms.Button btnSalvar;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Panel pnSelected;
-        private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label17;
@@ -462,7 +461,6 @@
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ListBox lbxDisciplinasDoCurso;
         private System.Windows.Forms.Button btnRemove;
         private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.ListBox lbxDisciplinasDisponiveis;
@@ -479,5 +477,7 @@
         public System.Windows.Forms.ComboBox cboCategoria;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.Label lblID;
+        public System.Windows.Forms.ListBox lbxDisciplinasDoCurso;
+        public System.Windows.Forms.TabControl tabControl1;
     }
 }

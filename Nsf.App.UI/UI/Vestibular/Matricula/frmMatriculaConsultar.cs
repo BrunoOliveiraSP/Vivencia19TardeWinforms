@@ -116,7 +116,7 @@ namespace Nsf.App.UI
             {
                 MessageBox.Show(ex.Message);
             }
-            catch (Exception ex)
+            catch (Exception )
             {
                 MessageBox.Show("Registro removido", "NSF", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
