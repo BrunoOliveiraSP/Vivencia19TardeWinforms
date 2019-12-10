@@ -15,8 +15,6 @@ namespace Nsf.App.UI
             this.ListarTodos();
         }
 
-
-
         private void ListarPorNome()
         {
             ProfessorAPI api = new ProfessorAPI();
@@ -55,32 +53,6 @@ namespace Nsf.App.UI
         private void Alterar()
         {
             ProfessorResponse professor = dgvProfessores.CurrentRow.DataBoundItem as ProfessorResponse;                    
-
-            //ProfessorModel model = new ProfessorModel();
-
-            //model.IdProfessor = professor.IdProfessor;
-            //model.IdLogin = professor.IdLogin;
-            //model.BtAtivo = professor.BtAtivo;
-            //model.NmProfessor = professor.NmProfessor;
-            //model.NmPai = professor.NmPai;
-            //model.NmMae = professor.NmMae;
-            //model.DsCelular = professor.DsCelular;
-            //model.DsCpf = professor.DsCpf;
-            //model.DsCurso = professor.DsCurso;
-            //model.DsCvLattes = professor.DsCvLattes;
-            //model.DsEmail = professor.DsEmail;
-            //model.DsEstado = professor.DsEstado;
-            //model.DsFaculdade = professor.DsFaculdade;
-            //model.DsRg = professor.DsRg;
-            //model.DsRgEmissor = professor.DsRgEmissor;
-            //model.DsRgOrgao = professor.DsRgOrgao;
-            //model.DsTelefone = professor.DsTelefone;
-            //model.DtFaculdadeFim = professor.DtFaculdadeFim;
-            //model.DtFaculdadeInicio = professor.DtFaculdadeInicio;
-            //model.DtNascimento = professor.DtNascimento;
-            //model.NrAnoPrimeiroEmprego = professor.NrAnoPrimeiroEmprego;
-            //model.TpContratacao = professor.TpContratacao;
-
 
             frmProfessorCadastrar tela = new frmProfessorCadastrar();
             
