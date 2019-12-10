@@ -12,7 +12,7 @@ namespace Nsf.App.API.Client
     {
         HttpClient cliente = new HttpClient();
 
-        public List<Model.SalaVestibularModel> listarTudo()
+        public List<Model.SalaVestibualrResponse> listarTudo()
         {
 
             string json = cliente.GetAsync("http://localhost:5000/SalaVestibular/")
@@ -23,7 +23,7 @@ namespace Nsf.App.API.Client
 
             this.VerificarErro(json);
                                                                                                 
-            List<Model.SalaVestibularModel> teste = JsonConvert.DeserializeObject<List< Model.SalaVestibularModel >>(json);
+            List<Model.SalaVestibualrResponse> teste = JsonConvert.DeserializeObject<List< Model.SalaVestibualrResponse>>(json);
             return teste;
         }
         public Model.SalaVestibularRequest Inserir(Model.SalaVestibularRequest request)
