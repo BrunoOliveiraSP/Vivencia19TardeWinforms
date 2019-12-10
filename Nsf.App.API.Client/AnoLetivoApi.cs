@@ -18,7 +18,7 @@ namespace Nsf.App.API.Client
             StringContent body = new StringContent(json, Encoding.UTF8, "application/json");
 
             var resp = client.PostAsync("http://localhost:5000/AnoLetivo/", body)
-                            .Result
+                             .Result
                              .Content
                              .ReadAsStringAsync()
                              .Result;
