@@ -384,12 +384,12 @@ namespace Nsf.App.UI
                 if (turno == "Noite" && func.DsCategoria == "Técnico")
                 {
                     MessageBox.Show("O Curso Técnico " + func.NmCurso + ", não estão disponível no período selecionado.", "NSF", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    cboTurno1.SelectedItem = 0;
+                    cboTurno1.Text = "Selecione";
                 }
                 else if (turno == "Noite" && func.DsCategoria == "Qualificação")
                 {
                     MessageBox.Show("O Curso de Qualificação " + func.NmCurso + ", não estão disponível no período selecionado.", "NSF", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    cboTurno1.SelectedItem = 0;
+                    cboTurno1.Text = "Selecione";
                 }
             }
             catch (Exception)
