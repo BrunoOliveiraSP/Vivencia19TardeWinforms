@@ -14,7 +14,7 @@ namespace Nsf.App.UI
         public frmCursoCadastrar()
         {
             InitializeComponent();
-            CarregarDisciplinas();
+           
 
            
             lbxDisciplinasDoCurso.DisplayMember = nameof(Model.DisciplinaModel.NmDisciplina);
@@ -24,46 +24,132 @@ namespace Nsf.App.UI
 
         private void btnSalvar_Click(object sender, EventArgs e)
         {
-            try
-            {
-                Nsf.App.Model.CursoModel curso = new Model.CursoModel();
-
-                curso.NmCurso = txtCurso.Text;
-                curso.BtAtivo = chkAtivo.Checked;
-                curso.DtCriacao = System.DateTime.Now;
-                curso.DtUltimaAlteracao = System.DateTime.Now;
-                curso.DsCategoria = cboCategoria.Text;
-                curso.NrCapacidadeMaxima = Convert.ToInt32(nudCapacidade.Value);
-                curso.DsSigla = txtSigla.Text;
-
-                API.CursoAPI api = new API.CursoAPI();
-                idcurso = api.Inserir(curso);
-
-                InserirCursoDiciplina();
-
-
-                MessageBox.Show("Curso registrado com sucesso.");
-            }
-            catch (ArgumentException ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
+            int idCursoCondicao = Convert.ToInt32(lblID.Text);
+            string lbxDisciplinaCurso = Convert.ToString(lbxDisciplinasDoCurso.DataSource);
           
-            
+            if (lbxDisciplinaCurso == null || lbxDisciplinaCurso == "")
+            {
+                tabControl1.SelectedTab = tabPage2;
+                MessageBox.Show("A atribuição de disciplinas ao curso é obrigatória", "Exigencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
 
+
+            else if (idCursoCondicao == 0 ) 
+            {
+                try
+                {
+                    Model.CursoModel curso = new Model.CursoModel();
+
+                    curso.NrCapacidadeMaxima = Convert.ToInt32(nudCapacidade.Value);
+                    curso.DtUltimaAlteracao = System.DateTime.Now;
+                    curso.DtCriacao = System.DateTime.Now;
+                    curso.DsCategoria = cboCategoria.Text;
+                    curso.BtAtivo = chkAtivo.Checked;
+                    curso.NmCurso = txtCurso.Text;
+                    curso.DsSigla = txtSigla.Text;
+
+                    API.Client.CursoAPI api = new API.Client.CursoAPI();
+                    idcurso = api.Inserir(curso);
+
+                    panelId.Visible = true;
+                    lblID.Text = Convert.ToString(idcurso);
+
+                    InserirCursoDiciplina();
+
+                    MessageBox.Show("Curso registrado com sucesso.","Processo com exito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                catch (ArgumentException ex)
+                {
+                    MessageBox.Show(ex.Message, "Exigencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Entre em contato com o desenvolvedor do programa", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                
+            }
+            else
+            {
+                try
+                {
+                   
+                    Nsf.App.Model.CursoModel curso = new Model.CursoModel();
+
+                    int idCurso = Convert.ToInt32(lblID.Text);
+
+                    curso.NrCapacidadeMaxima = Convert.ToInt32(nudCapacidade.Value);
+                    curso.DtUltimaAlteracao = System.DateTime.Now;
+                    curso.IdCurso = Convert.ToInt32(lblID.Text);
+                    curso.DsCategoria = cboCategoria.Text;
+                    curso.DtCriacao = System.DateTime.Now;
+                    curso.BtAtivo = chkAtivo.Checked;
+                    curso.NmCurso = txtCurso.Text;
+                    curso.DsSigla = txtSigla.Text;
+
+
+                    API.Client.CursoAPI api = new API.Client.CursoAPI();
+                    api.Alterar(curso);
+                    
+                    AlterarDisciplinaDoCurso();
+
+                   DialogResult r = MessageBox.Show("Curso alterado com sucesso; deseja cadastrar um curso?","Pergunta", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    
+                    if(r == DialogResult.No)
+                    {
+                        frmInicial.Current.OpenScreen(new frmCursoConsultar());
+                    }
+                    else
+                    {
+                        frmInicial.Current.OpenScreen(new frmCursoCadastrar());
+                    }
+                    
+
+                }
+                catch (ArgumentException ex)
+                {
+                    MessageBox.Show(ex.Message, "Exigencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
+                catch (Exception )
+                {
+                    MessageBox.Show("Entre em contato com o desenvolvedor do programa", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
 
         }
+
+
 
         BindingList<Model.DisciplinaModel> disciplinas;
         public void CarregarDisciplinas()
         {
             App.API.Client.DisciplinaAPI API = new App.API.Client.DisciplinaAPI();
-            lista = API.Listar();
 
-            lbxDisciplinasDisponiveis.DisplayMember = nameof(Model.DisciplinaModel.NmDisciplina);
-            lbxDisciplinasDisponiveis.SelectedValue = nameof(Model.DisciplinaModel.IdDisciplina);
+            if (idcurso > 0)
+            {
+                atribuidas = API.ListarCursoDisciplina(idcurso);
 
-            lbxDisciplinasDisponiveis.DataSource = lista;
+                lbxDisciplinasDoCurso.DataSource = atribuidas;
+                
+                lista = API.Listar();
+                lbxDisciplinasDisponiveis.DataSource = lista;
+                lbxDisciplinasDisponiveis.DisplayMember = nameof(Model.DisciplinaModel.NmDisciplina);
+
+                foreach (var item in atribuidas)
+                {
+                    var remover = lista.FirstOrDefault(x => x.IdDisciplina == item.IdDisciplina);
+                    if (remover != null)
+                        lista.Remove(remover);
+                }
+            }
+            else
+            {
+                lista = API.Listar();
+
+                lbxDisciplinasDisponiveis.DisplayMember = nameof(Model.DisciplinaModel.NmDisciplina);
+                lbxDisciplinasDisponiveis.SelectedValue = nameof(Model.DisciplinaModel.IdDisciplina);
+
+                lbxDisciplinasDisponiveis.DataSource = lista;
+            }
          
         }
         private void btnAdd_Click(object sender, EventArgs e)
@@ -92,7 +178,7 @@ namespace Nsf.App.UI
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            catch(Exception)
+            catch(Exception )
             {
                 MessageBox.Show("Ocorreu um erro. Entre em contato com o administrador.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -129,7 +215,7 @@ namespace Nsf.App.UI
 
             idcurso = curso.IdCurso;
 
-            nudID.Text = Convert.ToString(curso.IdCurso);
+            lblID.Text = Convert.ToString(curso.IdCurso);
             txtCurso.Text = curso.NmCurso;
             chkAtivo.Checked = curso.BtAtivo;
             cboCategoria.Text =  curso.DsCategoria;
@@ -143,41 +229,7 @@ namespace Nsf.App.UI
 
         private void button1_Click(object sender, EventArgs e)
         {
-            try
-            {
-                if (nudID.Value == 0)
-                {
-                    btnAlterar.Enabled = true;
-                }
-                else
-                {
-                    Nsf.App.Model.CursoModel curso = new Model.CursoModel();
-
-                    idcurso = Convert.ToInt32(nudID.Value);
-
-                    curso.IdCurso = Convert.ToInt32(nudID.Text);
-                    curso.NmCurso = txtCurso.Text;
-                    curso.BtAtivo = chkAtivo.Checked;
-                    curso.DtCriacao = System.DateTime.Now;
-                    curso.DtUltimaAlteracao = System.DateTime.Now;
-                    curso.DsCategoria = cboCategoria.Text;
-                    curso.NrCapacidadeMaxima = Convert.ToInt32(nudCapacidade.Value);
-                    curso.DsSigla = txtSigla.Text;
-
-                    API.CursoAPI api = new API.CursoAPI();
-                    api.Alterar(curso);
-                    AlterarDisciplinaDoCurso();
-
-                    MessageBox.Show("Curso alterado com sucesso.");
-
-                    //frmInicial.Current.OpenScreen(telaConsultar);
-                    // telaConsultar.AlterarInformacao(model);
-                }
-            }
-            catch (ArgumentException ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
+            
             
         }
 
@@ -191,13 +243,6 @@ namespace Nsf.App.UI
 
             Nsf.App.API.Client.DisciplinaAPI api = new App.API.Client.DisciplinaAPI();
 
-            if (lbxDisciplinasDoCurso.DataSource == null)
-            {
-                tabControl1.SelectedTab = tabPage2;
-                throw new ArgumentException("A atribuição de disciplinas ao curso é obrigatória");
-                
-            }
-
             foreach (var item in atribuidas)
             {
                 mod.IdDisciplina = item.IdDisciplina;
@@ -210,12 +255,7 @@ namespace Nsf.App.UI
         }
         public void CarregarCursoDisciplina()
         {
-            Nsf.App.API.Client.DisciplinaAPI api = new App.API.Client.DisciplinaAPI();
-            atribuidas = api.ListarCursoDisciplina(idcurso);
-
-            lbxDisciplinasDoCurso.DataSource = atribuidas;
-
-
+           
         }
         public void AlterarDisciplinaDoCurso()
         {
@@ -256,6 +296,14 @@ namespace Nsf.App.UI
         private void tabPage1_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void tabControl1_Selected(object sender, TabControlEventArgs e)
+        {
+            if( e.TabPage == tabPage2 )
+            {
+                CarregarDisciplinas();
+            }
         }
     }
 }

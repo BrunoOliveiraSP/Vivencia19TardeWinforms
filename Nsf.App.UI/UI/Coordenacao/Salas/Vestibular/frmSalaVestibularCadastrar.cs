@@ -22,18 +22,17 @@ namespace Nsf.App.UI
 
         public void ListarTudo()
         {
-            try
-            {
+           try
+           {
                 Nsf.App.API.Client.SalaVestibularAPI api = new App.API.Client.SalaVestibularAPI();
-                List<Model.SalaVestibularModel> consultar = api.listarTudo();
+                List<Model.SalaVestibualrResponse> consultar = api.listarTudo();
 
                 dgvSalasVestibular.AutoGenerateColumns = false;
                 dgvSalasVestibular.DataSource = consultar;
             }
             catch(ArgumentException ex)
             {
-
-                MessageBox.Show(ex.Message);
+               MessageBox.Show(ex.Message, "NSF", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             catch(Exception)
             {
@@ -45,37 +44,40 @@ namespace Nsf.App.UI
 
         private void btnVestibularAdd_Click(object sender, EventArgs e)
         {
-           try
-           {
-                Model.SalaVestibularModel vestibular = new Model.SalaVestibularModel();
+            try
+            {
+              
+                var func = cboVestibularSala.SelectedItem as Model.SalaModel;
 
+                Model.SalaVestibularModel vestibular = new Model.SalaVestibularModel();
                 vestibular.DsPeriodo = cboPeriodos.Text;
+                vestibular.IdSala = func.IdSala;
 
                 Model.SalaModel sala = new Model.SalaModel();
                 sala.NmLocal = cboVestibularInstituicao.Text;
-                sala.NmSala = cboVestibularSala.Text();
-
+                sala.NmSala = cboVestibularSala.Text;
+                                      
                 Model.SalaVestibularRequest request = new Model.SalaVestibularRequest();
                 request.Vestibular = vestibular;
                 request.Sala = sala;
-
+                               
                 Nsf.App.API.Client.SalaVestibularAPI api = new App.API.Client.SalaVestibularAPI();
-                api.Inserir(request);
+                api.Inserir(vestibular);
 
                 MessageBox.Show("Inserido com sucesso.", "NSF", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 this.ListarTudo();
-           }
-           catch(ArgumentException ex)
-           {
-                MessageBox.Show(ex.Message, "NSF");
-           }
-           catch(Exception)
-           {              
+            }
+            catch (ArgumentException ex)
+            {
+               MessageBox.Show(ex.Message, "NSF", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception)
+            {
                 MessageBox.Show("Ocorreu um erro. Entre em contato com o administrador.", "NSF",
-                           MessageBoxButtons.OK,
+                          MessageBoxButtons.OK,
                            MessageBoxIcon.Error);
-           }
+            }
         }
 
         private void CarregarCombo()
@@ -91,7 +93,7 @@ namespace Nsf.App.UI
             catch(ArgumentException ex)
             {
 
-                MessageBox.Show(ex.Message, "NSF");
+                MessageBox.Show(ex.Message, "NSF", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             catch(Exception)
             {
@@ -101,63 +103,68 @@ namespace Nsf.App.UI
             }
         }
 
+        public void Alterar(Model.SalaVestibualrResponse response)
+        {
+            response.NmSala = cboVestibularSala.Text;
+            response.NmLocal = cboVestibularInstituicao.Text;
+            response.DsPeriodo = cboPeriodos.Text;
+
+            Nsf.App.API.Client.SalaVestibularAPI api = new App.API.Client.SalaVestibularAPI();
+            api.Alterar(response);
+
+            MessageBox.Show("Alterado com sucesso", "NSF",
+                           MessageBoxButtons.OK,
+                           MessageBoxIcon.Information);
+
+        }
+
         private void dgvSalasVestibular_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            try
-            {
+            //try
+         //   {
                 if (e.ColumnIndex == 4)
                 {
-                    Model.SalaVestibularModel teste = dgvSalasVestibular.CurrentRow.DataBoundItem as Model.SalaVestibularModel;
+                   
+                    Model.SalaVestibualrResponse te = dgvSalasVestibular.CurrentRow.DataBoundItem as Model.SalaVestibualrResponse;
 
-                    cboPeriodos.Text = teste.DsPeriodo;
+                    Model.SalaVestibualrResponse model = new Model.SalaVestibualrResponse();
 
+                    this.Alterar(model);
 
-                    DialogResult resp = MessageBox.Show("Deseja realmente fazer uma alteração?", "NSF",
-                                                   MessageBoxButtons.YesNo,
-                                                   MessageBoxIcon.Exclamation);
-                    if (resp == DialogResult.Yes)
-                    {
-
-                        teste.DsPeriodo = cboPeriodos.Text;
-
-                        Nsf.App.API.Client.SalaVestibularAPI api = new App.API.Client.SalaVestibularAPI();
-                        api.Alterar(teste);
-
-                        MessageBox.Show("Alterado com sucesso.", "NSF", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
+                    model.DsPeriodo = te.DsPeriodo;
+                    model.NmLocal = te.NmSala;
+                    model.NmSala = te.NmSala;
+                  
                 }
 
-                if (e.ColumnIndex == 6)
+
+                if (e.ColumnIndex == 5)
                 {
-                    Model.SalaVestibularModel teste = dgvSalasVestibular.CurrentRow.DataBoundItem as Model.SalaVestibularModel;
+                    Model.SalaVestibualrResponse teste = dgvSalasVestibular.CurrentRow.DataBoundItem as Model.SalaVestibualrResponse;
 
-                    DialogResult resp = MessageBox.Show("Deseja realmente excluir este dado?", "NSF", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
-
+                    DialogResult resp = MessageBox.Show("Deseja realmente excluir este dado?", "NSF", MessageBoxButtons.YesNo);
                     if (resp == DialogResult.Yes)
                     {
-
                         Nsf.App.API.Client.SalaVestibularAPI api = new App.API.Client.SalaVestibularAPI();
                         api.Remover(teste.IdSalaVestibular);
 
-                        MessageBox.Show("Excluido com sucesso.", "NSF",
-                                   MessageBoxButtons.OK,
-                                   MessageBoxIcon.Information);
+                        MessageBox.Show("Removido com sucesso!", "NSF");
 
                         this.ListarTudo();
                     }
 
                 }
-            }
-            catch(ArgumentException ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            catch(Exception)
-            {
-                MessageBox.Show("Ocorreu um erro. Entre em contato com o administrador", "NSF", 
-                           MessageBoxButtons.OK, 
-                           MessageBoxIcon.Error);
-            }
+           // }
+          //  catch(ArgumentException ex)
+           // {
+               // MessageBox.Show(ex.Message, "NSF", MessageBoxButtons.OK, MessageBoxIcon.Error);
+          //  }
+           // catch(Exception)
+          //  {
+           //     MessageBox.Show("Ocorreu um erro. Entre em contato com o administrador", "NSF", 
+           //                MessageBoxButtons.OK, 
+           //                MessageBoxIcon.Error);
+         //   }
         }
     }
 }

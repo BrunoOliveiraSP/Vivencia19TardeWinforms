@@ -14,7 +14,7 @@ namespace Nsf.App.UI
         public frmAnoLetivoCadastrar()
         {
             InitializeComponent();
-            //((Control)tabTurmas).Enabled = false;
+           //((Control)tabTurmas).Enabled = false;
 
             CarregarGrid();
             CarregarCurso();
@@ -46,11 +46,11 @@ namespace Nsf.App.UI
             }
             catch (ArgumentException ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);;
             }
             catch(Exception ex)
             {
-                MessageBox.Show("Ocorreu um erro", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Ocorreu um erro.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -70,11 +70,11 @@ namespace Nsf.App.UI
             }
             catch (ArgumentException ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Ocorreu um erro", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Ocorreu um erro.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         
@@ -91,17 +91,20 @@ namespace Nsf.App.UI
                 anoModel.BtAtivo = Convert.ToUInt32(rdnAberto.Checked);
 
                 Nsf.App.API.Client.AnoLetivoApi api = new App.API.Client.AnoLetivoApi();
-                api.CadastrarAnoLetivo(anoModel);
+                anoModel = api.Cadastar(anoModel);
 
-                MessageBox.Show("Ano letivo cadastrado com sucesso.", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                DialogResult d = MessageBox.Show("Ano letivo cadastrado com sucesso.", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                
+                //if(d == DialogResult.OK)
+                //    ((Control)tabTurmas).Enabled = false;
             }
             catch (ArgumentException ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);;
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Ocorreu um erro", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Ocorreu um erro.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -122,11 +125,11 @@ namespace Nsf.App.UI
             }
             catch (ArgumentException ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);;
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Ocorreu um erro", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Ocorreu um erro.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -134,7 +137,7 @@ namespace Nsf.App.UI
         {
             try
             {
-                API.CursoAPI api = new API.CursoAPI();
+                API.Client.CursoAPI api = new API.Client.CursoAPI();
 
                 List<Model.CursoModel> lista = api.ConsultarTodos();
 
@@ -143,11 +146,11 @@ namespace Nsf.App.UI
             }
             catch (ArgumentException ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                MessageBox.Show("Ocorreu um erro", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Ocorreu um erro.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -159,14 +162,16 @@ namespace Nsf.App.UI
 
                 dgvTurma.AutoGenerateColumns = false;
                 dgvTurma.DataSource = turma;
+                
+                
             }
             catch (ArgumentException ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);;
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Ocorreu um erro", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Ocorreu um erro.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -175,20 +180,21 @@ namespace Nsf.App.UI
         {
             try
             {
+
                 if (e.ColumnIndex == 4)
                 {
                     turmaModel = new TurmaModell();
-                    Model.TurmaModell turma = dgvTurma.CurrentRow.DataBoundItem as Model.TurmaModell;
+                    Model.TurmaResponse turma = dgvTurma.CurrentRow.DataBoundItem as Model.TurmaResponse;
                     Model.CursoModel combo = cboTurmaCurso.SelectedItem as Model.CursoModel;
 
                     turmaModel.IdTurma = turma.IdTurma;
-                    turma.IdAnoLetivo = anoModel.IdAnoLetivo;
+                    turma.IdAnoLetivo = turma.IdAnoLetivo;
                     txtTurmaNome.Text = turma.NmTurma;
                     cboTurmaCurso.Text = combo.NmCurso;
                     cboTurmaPeriodo.Text = turma.TpPeriodo;
                     nudTurmaCapacidade.Value = turma.NrCapacidadeMax;
 
-                    turmaModel = turma;
+
                 }
 
                 if (e.ColumnIndex == 5)
@@ -201,17 +207,17 @@ namespace Nsf.App.UI
                     {
                         turmaApi.Remover(turma.IdTurma);
 
-                        MessageBox.Show("Removido com sucesso");
+                        MessageBox.Show("Removido com sucesso", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                 }
             }
             catch (ArgumentException ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error); ;
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Ocorreu um erro", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Ocorreu um erro.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -232,11 +238,11 @@ namespace Nsf.App.UI
             }
             catch (ArgumentException ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);;
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Ocorreu um erro", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Ocorreu um erro.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -248,11 +254,12 @@ namespace Nsf.App.UI
 
                 Model.CursoModel combo = cboTurmaCurso.SelectedItem as Model.CursoModel;
 
-                turmaModel.IdAnoLetivo = anoModel.IdAnoLetivo;
+                
                 turmaModel.IdCurso = combo.IdCurso;
                 turmaModel.NmTurma = txtTurmaNome.Text;
                 turmaModel.TpPeriodo = cboTurmaPeriodo.Text;
                 turmaModel.NrCapacidadeMax = Convert.ToInt32(nudTurmaCapacidade.Value);
+               
 
                 curso = new CursoModel();
                 curso.NmCurso = cboTurmaCurso.Text;
@@ -261,7 +268,7 @@ namespace Nsf.App.UI
                 turmaRequest.Turma = turmaModel;
                 turmaRequest.Curso = curso;
           
-                turmaApi.CadastrarTurma(turmaRequest);
+                turmaApi.Cadastrar(turmaModel);
 
                 CarregarGrid();
 
@@ -269,11 +276,11 @@ namespace Nsf.App.UI
             }
             catch (ArgumentException ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);;
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Ocorreu um erro", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Ocorreu um erro.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -282,14 +289,15 @@ namespace Nsf.App.UI
             try
             {
                 turmaModel = new TurmaModell();
+
                 Model.CursoModel combo = cboTurmaCurso.SelectedItem as Model.CursoModel;
 
-                turmaModel.IdTurma = turmaModel.IdTurma;               
+
                 turmaModel.IdCurso = combo.IdCurso;
                 turmaModel.NmTurma = txtTurmaNome.Text;
                 turmaModel.TpPeriodo = cboTurmaPeriodo.Text;
                 turmaModel.NrCapacidadeMax = Convert.ToInt32(nudTurmaCapacidade.Value);
-                
+                turmaModel.IdAnoLetivo = anoModel.IdAnoLetivo;
 
                 curso = new CursoModel();
                 curso.NmCurso = cboTurmaCurso.Text;
@@ -300,15 +308,17 @@ namespace Nsf.App.UI
 
                 turmaApi.Alterar(turmaModel);
 
+                CarregarGrid();
+
                 MessageBox.Show("Turma alterada com sucesso.", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (ArgumentException ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);;
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Ocorreu um erro", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Ocorreu um erro.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

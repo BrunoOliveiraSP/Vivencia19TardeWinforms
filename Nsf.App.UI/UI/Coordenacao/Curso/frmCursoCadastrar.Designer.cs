@@ -38,7 +38,7 @@
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.panelId = new System.Windows.Forms.Panel();
-            this.nudID = new System.Windows.Forms.NumericUpDown();
+            this.lblID = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.chkAtivo = new System.Windows.Forms.CheckBox();
             this.nudCapacidade = new System.Windows.Forms.NumericUpDown();
@@ -57,12 +57,10 @@
             this.btnRemove = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
             this.lbxDisciplinasDisponiveis = new System.Windows.Forms.ListBox();
-            this.btnAlterar = new System.Windows.Forms.Button();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.panelId.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nudID)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudCapacidade)).BeginInit();
             this.tabPage2.SuspendLayout();
             this.SuspendLayout();
@@ -113,6 +111,7 @@
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(744, 393);
             this.tabControl1.TabIndex = 4;
+            this.tabControl1.Selected += new System.Windows.Forms.TabControlEventHandler(this.tabControl1_Selected);
             // 
             // tabPage1
             // 
@@ -145,7 +144,6 @@
             this.cboCategoria.Font = new System.Drawing.Font("Century Gothic", 12F);
             this.cboCategoria.FormattingEnabled = true;
             this.cboCategoria.Items.AddRange(new object[] {
-            "Selecione",
             "Livre",
             "Técnico",
             "Qualificação"});
@@ -178,7 +176,7 @@
             // 
             // panelId
             // 
-            this.panelId.Controls.Add(this.nudID);
+            this.panelId.Controls.Add(this.lblID);
             this.panelId.Controls.Add(this.label8);
             this.panelId.Location = new System.Drawing.Point(179, 24);
             this.panelId.Name = "panelId";
@@ -186,13 +184,14 @@
             this.panelId.TabIndex = 159;
             this.panelId.Visible = false;
             // 
-            // nudID
+            // lblID
             // 
-            this.nudID.Enabled = false;
-            this.nudID.Location = new System.Drawing.Point(88, 18);
-            this.nudID.Name = "nudID";
-            this.nudID.Size = new System.Drawing.Size(88, 27);
-            this.nudID.TabIndex = 163;
+            this.lblID.AutoSize = true;
+            this.lblID.Location = new System.Drawing.Point(107, 19);
+            this.lblID.Name = "lblID";
+            this.lblID.Size = new System.Drawing.Size(19, 21);
+            this.lblID.TabIndex = 12;
+            this.lblID.Text = "0";
             // 
             // label8
             // 
@@ -352,7 +351,7 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
             this.label2.ForeColor = System.Drawing.Color.Black;
-            this.label2.Location = new System.Drawing.Point(400, 75);
+            this.label2.Location = new System.Drawing.Point(401, 57);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(87, 19);
             this.label2.TabIndex = 101;
@@ -363,7 +362,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
             this.label1.ForeColor = System.Drawing.Color.Black;
-            this.label1.Location = new System.Drawing.Point(70, 75);
+            this.label1.Location = new System.Drawing.Point(71, 57);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(94, 19);
             this.label1.TabIndex = 100;
@@ -374,7 +373,7 @@
             this.lbxDisciplinasDoCurso.Font = new System.Drawing.Font("Century Gothic", 12F);
             this.lbxDisciplinasDoCurso.FormattingEnabled = true;
             this.lbxDisciplinasDoCurso.ItemHeight = 21;
-            this.lbxDisciplinasDoCurso.Location = new System.Drawing.Point(404, 101);
+            this.lbxDisciplinasDoCurso.Location = new System.Drawing.Point(405, 83);
             this.lbxDisciplinasDoCurso.Name = "lbxDisciplinasDoCurso";
             this.lbxDisciplinasDoCurso.Size = new System.Drawing.Size(250, 256);
             this.lbxDisciplinasDoCurso.TabIndex = 9;
@@ -386,7 +385,7 @@
             this.btnRemove.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRemove.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(51)))), ((int)(((byte)(142)))));
             this.btnRemove.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnRemove.Location = new System.Drawing.Point(330, 223);
+            this.btnRemove.Location = new System.Drawing.Point(331, 205);
             this.btnRemove.Name = "btnRemove";
             this.btnRemove.Size = new System.Drawing.Size(68, 41);
             this.btnRemove.TabIndex = 6;
@@ -402,7 +401,7 @@
             this.btnAdd.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAdd.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(51)))), ((int)(((byte)(142)))));
             this.btnAdd.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnAdd.Location = new System.Drawing.Point(330, 176);
+            this.btnAdd.Location = new System.Drawing.Point(331, 158);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(68, 41);
             this.btnAdd.TabIndex = 5;
@@ -416,26 +415,10 @@
             this.lbxDisciplinasDisponiveis.Font = new System.Drawing.Font("Century Gothic", 12F);
             this.lbxDisciplinasDisponiveis.FormattingEnabled = true;
             this.lbxDisciplinasDisponiveis.ItemHeight = 21;
-            this.lbxDisciplinasDisponiveis.Location = new System.Drawing.Point(74, 101);
+            this.lbxDisciplinasDisponiveis.Location = new System.Drawing.Point(75, 83);
             this.lbxDisciplinasDisponiveis.Name = "lbxDisciplinasDisponiveis";
             this.lbxDisciplinasDisponiveis.Size = new System.Drawing.Size(250, 256);
             this.lbxDisciplinasDisponiveis.TabIndex = 5;
-            // 
-            // btnAlterar
-            // 
-            this.btnAlterar.BackColor = System.Drawing.Color.Transparent;
-            this.btnAlterar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAlterar.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
-            this.btnAlterar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(51)))), ((int)(((byte)(142)))));
-            this.btnAlterar.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnAlterar.Location = new System.Drawing.Point(218, 511);
-            this.btnAlterar.Name = "btnAlterar";
-            this.btnAlterar.Size = new System.Drawing.Size(163, 47);
-            this.btnAlterar.TabIndex = 11;
-            this.btnAlterar.Text = "Alterar";
-            this.btnAlterar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnAlterar.UseVisualStyleBackColor = false;
-            this.btnAlterar.Click += new System.EventHandler(this.button1_Click);
             // 
             // contextMenuStrip1
             // 
@@ -446,7 +429,6 @@
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.Controls.Add(this.btnAlterar);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.btnSalvar);
             this.Controls.Add(this.label5);
@@ -460,7 +442,6 @@
             this.tabPage1.PerformLayout();
             this.panelId.ResumeLayout(false);
             this.panelId.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nudID)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudCapacidade)).EndInit();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
@@ -473,7 +454,6 @@
         private System.Windows.Forms.Button btnSalvar;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Panel pnSelected;
-        private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label17;
@@ -482,7 +462,6 @@
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ListBox lbxDisciplinasDoCurso;
         private System.Windows.Forms.Button btnRemove;
         private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.ListBox lbxDisciplinasDisponiveis;
@@ -492,13 +471,14 @@
 		private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Button btnAlterar;
         public System.Windows.Forms.TextBox txtSigla;
         public System.Windows.Forms.TextBox txtCurso;
         public System.Windows.Forms.NumericUpDown nudCapacidade;
         public System.Windows.Forms.CheckBox chkAtivo;
         public System.Windows.Forms.ComboBox cboCategoria;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
-        public System.Windows.Forms.NumericUpDown nudID;
+        private System.Windows.Forms.Label lblID;
+        public System.Windows.Forms.ListBox lbxDisciplinasDoCurso;
+        public System.Windows.Forms.TabControl tabControl1;
     }
 }

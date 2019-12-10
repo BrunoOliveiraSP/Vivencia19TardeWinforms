@@ -15,45 +15,18 @@ namespace Nsf.App.UI
 			InitializeComponent();
 		}
 
-        ProfessorRequest professorReq;
-        ProfessorModel _professor;
-        LoginModel login;
+        ProfessorResponse professor = new ProfessorResponse();
 
         public void Inserir()
         {
-            professorReq = new ProfessorRequest();
-            _professor = new ProfessorModel();
-            login = new LoginModel();
-
-            login.DsLogin = txtLogin.Text;
-            login.BtAtivo = chkAtivo.Checked;
-                
-            _professor.BtAtivo = chkAtivo.Checked;
-            _professor.NmProfessor = txtNome.Text;
-            _professor.NmPai = txtPai.Text;
-            _professor.NmMae = txtNome.Text;
-            _professor.DsCelular = txtCelular.Text;
-            _professor.DsCpf = txtCpf.Text;
-            _professor.DsCurso = txtCurso.Text;
-            _professor.DsCvLattes = txtCvLattes.Text;
-            _professor.DsEmail = txtEmail.Text;
-            _professor.DsEstado = txtEstadoNasc.Text;
-            _professor.DsFaculdade = txtFaculdade.Text;
-            _professor.DsRg = txtRG.Text;
-            _professor.DsRgEmissor = txtRGEmissao.Text;
-            _professor.DsRgOrgao = txtRGOrgao.Text;
-            _professor.DsTelefone = txtTelefone.Text;
-            _professor.DtFaculdadeFim = dtpFaculdadeFim.Value;
-            _professor.DtFaculdadeInicio = dtpFaculdadeInicio.Value;
-            _professor.DtNascimento = dtpNascimento.Value;
-            _professor.NrAnoPrimeiroEmprego = Convert.ToInt32(nudPrimeiroEmprego.Value);
-            _professor.TpContratacao = cboContrato.Text;
-
-            professorReq.Professor = _professor;
-            professorReq.Login = login;
+            ProfessorRequest professorReq = CarregarRequest();
 
             ProfessorAPI api = new ProfessorAPI();
             professorReq = api.Inserir(professorReq);
+
+            professor.IdProfessor = professorReq.Professor.IdProfessor;
+            professor.IdLogin = professorReq.Login.IdLogin;
+
 
             MessageBox.Show(@"Salvo com sucesso!", "NSF", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
@@ -64,32 +37,11 @@ namespace Nsf.App.UI
 
         public void Alterar()
         {
-            login.DsLogin = txtLogin.Text;
-            login.BtAtivo = chkAtivo.Checked;
-            _professor.IdProfessor = _professor.IdProfessor;
-            _professor.IdLogin = login.IdLogin;
-            _professor.BtAtivo = chkAtivo.Checked;
-            _professor.NmProfessor = txtNome.Text;
-            _professor.NmPai = txtPai.Text;
-            _professor.NmMae = txtNome.Text;
-            _professor.DsCelular = txtCelular.Text;
-            _professor.DsCpf = txtCpf.Text;
-            _professor.DsCurso = txtCurso.Text;
-            _professor.DsCvLattes = txtCvLattes.Text;
-            _professor.DsEmail = txtEmail.Text;
-            _professor.DsEstado = txtEstadoNasc.Text;
-            _professor.DsFaculdade = txtFaculdade.Text;
-            _professor.DsRg = txtRG.Text;
-            _professor.DsRgEmissor = txtRGEmissao.Text;
-            _professor.DsRgOrgao = txtRGOrgao.Text;
-            _professor.DsTelefone = txtTelefone.Text;
-            _professor.DtFaculdadeFim = dtpFaculdadeFim.Value;
-            _professor.DtFaculdadeInicio = dtpFaculdadeInicio.Value;
-            _professor.DtNascimento = dtpNascimento.Value;
-            _professor.NrAnoPrimeiroEmprego = Convert.ToInt32(nudPrimeiroEmprego.Value);
-            _professor.TpContratacao = cboContrato.Text;
-            professorReq.Professor = _professor;
-            professorReq.Login = login;
+            ProfessorRequest professorReq = CarregarRequest();
+            professorReq.Professor.IdProfessor = this.professor.IdProfessor;
+            professorReq.Professor.IdLogin = this.professor.IdLogin;
+            professorReq.Login.IdLogin = this.professor.IdLogin;
+
 
             ProfessorAPI api = new ProfessorAPI();
             api.Alterar(professorReq);
@@ -97,66 +49,75 @@ namespace Nsf.App.UI
             MessageBox.Show(@"Alterado com sucesso!", "NSF", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
-        public void CarregarCampos(ProfessorModel professor)
-        {
-            panelId.Visible = true;
-            lblId.Text = professor.IdProfessor.ToString();
-            txtNome.Text = professor.NmProfessor;
-            txtPai.Text = professor.NmPai;
-            txtMae.Text = professor.NmMae;
-            chkAtivo.Checked = professor.BtAtivo;
-            txtCelular.Text = professor.DsCelular;
-            txtCpf.Text = professor.DsCpf;
-            txtCurso.Text = professor.DsCurso;
-            txtCvLattes.Text = professor.DsCvLattes;
-            txtEmail.Text = professor.DsEmail;
-            txtEstadoNasc.Text = professor.DsEstado;
-            txtFaculdade.Text = professor.DsFaculdade;
-            txtRG.Text = professor.DsRg;
-            txtRGEmissao.Text = professor.DsRgEmissor;
-            txtRGOrgao.Text = professor.DsRgOrgao;
-            txtTelefone.Text = professor.DsTelefone;
-            dtpFaculdadeFim.Value = professor.DtFaculdadeFim;
-            dtpFaculdadeInicio.Value = professor.DtFaculdadeInicio;
-            dtpNascimento.Value = professor.DtNascimento;
-            txtLogin.Text = professor.IdLogin.ToString();
-            nudPrimeiroEmprego.Value = professor.NrAnoPrimeiroEmprego;
-            cboContrato.Text = professor.TpContratacao;
 
-            _professor = professor;
+        public ProfessorRequest CarregarRequest()
+        {
+            ProfessorRequest professorReq = new ProfessorRequest();
+            ProfessorModel _professor = new ProfessorModel();
+            LoginModel login = new LoginModel();
+
+            _professor.NrAnoPrimeiroEmprego = Convert.ToInt32(nudPrimeiroEmprego.Value);
+            _professor.DtFaculdadeInicio = dtpFaculdadeInicio.Value;
+            _professor.DtFaculdadeFim = dtpFaculdadeFim.Value;
+            _professor.DtNascimento = dtpNascimento.Value;
+            _professor.TpContratacao = cboContrato.Text;
+            _professor.DsRgEmissor = txtRGEmissao.Text;
+            _professor.DsFaculdade = txtFaculdade.Text;
+            _professor.DsTelefone = txtTelefone.Text;
+            _professor.DsEstado = txtEstadoNasc.Text;
+            _professor.DsCvLattes = txtCvLattes.Text;
+            _professor.DsCelular = txtCelular.Text;
+            _professor.DsRgOrgao = txtRGOrgao.Text;
+            _professor.BtAtivo = chkAtivo.Checked;
+            _professor.NmProfessor = txtNome.Text;
+            _professor.DsCurso = txtCurso.Text;
+            _professor.DsEmail = txtEmail.Text;
+            _professor.NmMae = txtNome.Text;
+            _professor.DsCpf = txtCpf.Text;
+            _professor.NmPai = txtPai.Text;
+            login.DsLogin = txtLogin.Text;
+            _professor.DsRg = txtRG.Text;
+
+            professorReq.Professor = _professor;
+            professorReq.Login = login;
+
+            return professorReq;
         }
 
-        public void LimparCampos()
+        public void CarregarCampos(ProfessorResponse professor)
         {
-            lblId.Text = "0";
-            txtNome.Text = string.Empty;
-            chkAtivo.Checked = true;
-            dtpNascimento.Value = DateTime.Now;
-            txtEstadoNasc.Text = string.Empty;
-            txtCelular.Text = string.Empty;
-            txtTelefone.Text = string.Empty;
-            txtEmail.Text = string.Empty;
-            txtCvLattes.Text = string.Empty;
-            nudPrimeiroEmprego.Value = 1900;
-            txtFaculdade.Text = string.Empty;
-            dtpFaculdadeInicio.Value = DateTime.Now;
-            dtpFaculdadeFim.Value = DateTime.Now;
-            txtCurso.Text = string.Empty;
-            txtMae.Text = string.Empty;
-            txtPai.Text = string.Empty;
-            cboContrato.Text = string.Empty;
-            txtLogin.Text = string.Empty;
-            txtCpf.Text = string.Empty;
-            txtRG.Text = string.Empty;
-            txtRGEmissao.Text = string.Empty;
-            txtRGOrgao.Text = string.Empty;
+            nudPrimeiroEmprego.Value = professor.NrAnoPrimeiroEmprego;
+            dtpFaculdadeInicio.Value = professor.DtFaculdadeInicio;
+            dtpFaculdadeFim.Value = professor.DtFaculdadeFim;
+            lblId.Text = professor.IdProfessor.ToString();
+            dtpNascimento.Value = professor.DtNascimento;
+            cboContrato.Text = professor.TpContratacao;
+            txtFaculdade.Text = professor.DsFaculdade;
+            txtRGEmissao.Text = professor.DsRgEmissor;
+            txtCvLattes.Text = professor.DsCvLattes;
+            txtEstadoNasc.Text = professor.DsEstado;
+            txtTelefone.Text = professor.DsTelefone;
+            txtCelular.Text = professor.DsCelular;
+            txtRGOrgao.Text = professor.DsRgOrgao;
+            txtNome.Text = professor.NmProfessor;
+            chkAtivo.Checked = professor.BtAtivo;
+            txtCurso.Text = professor.DsCurso;
+            txtEmail.Text = professor.DsEmail;
+            txtLogin.Text = professor.DsLogin;
+            txtPai.Text = professor.NmPai;
+            txtMae.Text = professor.NmMae;
+            txtCpf.Text = professor.DsCpf;
+            txtRG.Text = professor.DsRg;
+            panelId.Visible = true;
+
+            this.professor = professor;
         }
 
         private void btnSalvar_Click(object sender, EventArgs e)
         {
             try
             {
-                if(_professor != null && professorReq.Professor.IdProfessor > 0)
+                if(professor.IdProfessor > 0)
                 {
                     this.Alterar();
                 }
@@ -169,15 +130,10 @@ namespace Nsf.App.UI
             {
                 MessageBox.Show(ex.Message, "NSF", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-            //catch (Exception)
-            //{
-            //    MessageBox.Show("Ocorreu um erro. Entre em contato com o administrador.", "NSF", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //}
-        }
-
-        private void txtRGEmissao_TextChanged(object sender, EventArgs e)
-        {
-
+            catch (Exception)
+            {
+                MessageBox.Show("Ocorreu um erro. Entre em contato com o administrador.", "NSF", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

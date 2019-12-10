@@ -4,12 +4,19 @@ using System.Windows.Forms;
 
 namespace Nsf.App.UI
 {
-	public partial class frmSalaConsultar : NsfUserScreen
-	{
-		public frmSalaConsultar()
-		{
-			InitializeComponent();
-		}
+    public partial class frmSalaConsultar : NsfUserScreen, INsfUserScreenConsult
+    {
+        public frmSalaConsultar()
+        {
+            InitializeComponent();
+        }
+
+
+        public void OnBackedScreen()
+        {
+            this.Consultar();
+        }
+
 
         public void Consultar()
         {
@@ -23,7 +30,7 @@ namespace Nsf.App.UI
         private void frmSalaConsultar_Load(object sender, EventArgs e)
         {
             this.Consultar();
-           
+
         }
 
         private void DataGridSalas_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -39,11 +46,12 @@ namespace Nsf.App.UI
                     Nsf.App.API.Client.SalaAPI api = new App.API.Client.SalaAPI();
                     api.Remover(teste.IdSala);
 
-                    MessageBox.Show("Removido com sucesso!","NSF");
+                    MessageBox.Show("Removido com sucesso!", "NSF");
 
                     this.Consultar();
                 }
             }
+
             if (e.ColumnIndex == 4)
             {
                 Model.SalaModel sala = DataGridSalas.CurrentRow.DataBoundItem as Model.SalaModel;
@@ -57,8 +65,9 @@ namespace Nsf.App.UI
                 model.DtInclusao = sala.DtInclusao;
                 model.BtAtivo = sala.BtAtivo;
                 model.DtAlteracao = sala.DtAlteracao;
-
+                Consultar();
                 frmSalaCadastrar tela = new frmSalaCadastrar();
+                this.Consultar();
 
                 frmInicial.Current.OpenScreen(tela);
                 tela.CarregarCampos(model);
@@ -76,13 +85,18 @@ namespace Nsf.App.UI
             DataGridSalas.AutoGenerateColumns = false;
             DataGridSalas.DataSource = teste;
 
-            if(txtInstituicao.Text == String.Empty)
+            if (txtInstituicao.Text == String.Empty)
             {
                 this.Consultar();
             }
         }
 
         private void DataGridSalas_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void DataGridSalas_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
         {
 
         }

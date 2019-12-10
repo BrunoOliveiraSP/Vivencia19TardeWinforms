@@ -1,17 +1,13 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
 using System.Text;
-using System.Threading.Tasks;
-using Nsf.App.Model;
 
 namespace Nsf.App.API.Client
 {
     public class MatriculaAPI
     {
-
         HttpClient client = new HttpClient();
 
         public void Inserir(Nsf.App.Model.MatriculaRequest matricula)
@@ -42,7 +38,7 @@ namespace Nsf.App.API.Client
                 .Result;
 
             VerificarErro(resp);
-               
+
 
         }
 
@@ -57,25 +53,24 @@ namespace Nsf.App.API.Client
             VerificarErro(resp);
         }
 
-        public List<Model.MatriculaRequest> ListarTodos()
+        public List<Model.MatriculaResponse> ListarTodos()
         {
 
-            var resp = client.GetAsync("http://localhost:5000/Matricula")
+            var resp = client.GetAsync("http://localhost:5000/Matricula/ListarTodos")
                .Result
                .Content
                .ReadAsStringAsync()
                .Result;
 
-            List < Model.MatriculaRequest > lista= JsonConvert.DeserializeObject<List<Model.MatriculaRequest>>(resp);
+            List<Model.MatriculaResponse> lista = JsonConvert.DeserializeObject<List<Model.MatriculaResponse>>(resp);
 
             return lista;
         }
-
         public List<Model.MatriculaRequest> ConsultarPorParametros(string nome, string curso, string turma, string ra)
         {
             HttpClient client = new HttpClient();
 
-            var resp = client.GetAsync("http://localhost:5000/Matricula?n"+ nome +"&curso=" + curso + "&turma=" + turma + "&ra=" + ra)
+            var resp = client.GetAsync("http://localhost:5000/Matricula?n" + nome + "&curso=" + curso + "&turma=" + turma + "&ra=" + ra)
                 .Result
                 .Content
                 .ReadAsStringAsync()
@@ -85,9 +80,6 @@ namespace Nsf.App.API.Client
 
             return lista;
         }
-
-        
-
         private void VerificarErro(string respostaApi)
         {
             if (respostaApi.Contains("codigoErro"))

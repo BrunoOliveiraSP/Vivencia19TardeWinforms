@@ -11,7 +11,7 @@ namespace Nsf.App.UI
 			InitializeComponent();
             CarregarGrid();
 		}
-        Nsf.App.API.Client.MatriculaAPI MatriculaApi = new App.API.Client.MatriculaAPI();
+        App.API.Client.MatriculaAPI MatriculaApi = new App.API.Client.MatriculaAPI();
 
         private void dgvCandidatos_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -42,18 +42,18 @@ namespace Nsf.App.UI
         {
             try
             {
-                List<Model.MatriculaRequest> lista = MatriculaApi.ListarTodos();
-
+                
+                List<Model.MatriculaResponse> lista = MatriculaApi.ListarTodos();
                 dgvCandidatos.DataSource = lista;
             }
             catch (ArgumentException ex)
             {
                 MessageBox.Show(ex.Message);
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Registro removido", "NSF", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show("Ocorreu um erro","error", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            //}
         }
 
         private void cboCurso_SelectedIndexChanged(object sender, EventArgs e)
@@ -116,7 +116,7 @@ namespace Nsf.App.UI
             {
                 MessageBox.Show(ex.Message);
             }
-            catch (Exception ex)
+            catch (Exception )
             {
                 MessageBox.Show("Registro removido", "NSF", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }

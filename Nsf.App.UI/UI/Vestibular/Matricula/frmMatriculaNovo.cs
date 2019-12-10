@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using Nsf.App.Utils;
 using Nsf.App.API.Client;
 using System.IO;
+using Nsf.App.Utils.APIs;
 
 namespace Nsf.App.UI
 {
@@ -18,8 +19,13 @@ namespace Nsf.App.UI
 		public frmMatriculaNovo()
 		{
 			InitializeComponent();
-            API.CursoAPI curso = new API.CursoAPI();
+            API.Client.AnoLetivoApi ano = new AnoLetivoApi();
+            CursoAPI curso = new CursoAPI();
             List<Model.CursoModel> cursos = curso.ConsultarTodos();
+            List<Model.AnoLetivoModel> anos = ano.ListarTodos();
+
+            cboAnoLetivo.DisplayMember = nameof(Model.AnoLetivoModel.NrAno);
+            cboAnoLetivo.DataSource = anos;
 
             cboCurso.DisplayMember = nameof(Model.CursoModel.NmCurso);
             cboCurso.DataSource = cursos;
@@ -225,5 +231,20 @@ namespace Nsf.App.UI
             return matricula;
         }
 
+        private void txtCep_Leave(object sender, EventArgs e)
+        {
+            string cep = txtCep.Text;
+
+            CorreioResponse response;
+
+            Nsf.App.Utils.APIs.CorreioApi api = new Utils.APIs.CorreioApi();
+            if (api.BuscarAPICorreio(cep, out response))
+            {
+                txtBairro.Text = response.bairro;
+                cboUf.Text = response.uf;
+                txtEndereco.Text = response.logradouro;
+                txtCidade.Text = response.localidade;
+            }
+        }
     }
 }
