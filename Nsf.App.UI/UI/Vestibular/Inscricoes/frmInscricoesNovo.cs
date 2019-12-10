@@ -95,7 +95,14 @@ namespace Nsf.App.UI
                     DialogResult result = MessageBox.Show("Inscrição efetuada com sucesso. Deseja fazer alguma alteração?", "NSF", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
                     if (result == DialogResult.Yes)
                     {
-                        Alterar();
+                        if(Model.CarregarInscrições.idInscricao > 0)
+                        {
+                            MessageBox.Show("Preencha os campos desejados com as novas informações, e em seguida clique em salvar, para registrar as novas informações.", "NSF", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                        else
+                        {
+                            MessageBox.Show("Primeira faça um insersão.", "NSF", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        }
                     }
                     else
                     {
