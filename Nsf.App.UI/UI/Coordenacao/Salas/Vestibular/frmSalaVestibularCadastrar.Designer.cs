@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmSalaVestibularCadastrar));
             this.label5 = new System.Windows.Forms.Label();
             this.pnSelected = new System.Windows.Forms.Panel();
@@ -139,6 +139,7 @@
             this.cboVestibularInstituicao.Name = "cboVestibularInstituicao";
             this.cboVestibularInstituicao.Size = new System.Drawing.Size(346, 29);
             this.cboVestibularInstituicao.TabIndex = 0;
+            this.cboVestibularInstituicao.SelectedIndexChanged += new System.EventHandler(this.cboVestibularInstituicao_SelectedIndexChanged);
             // 
             // label4
             // 
@@ -187,14 +188,14 @@
             this.Column5,
             this.Column2,
             this.Column1});
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Century Gothic", 12F);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(91)))), ((int)(((byte)(190)))), ((int)(((byte)(227)))));
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvSalasVestibular.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Century Gothic", 12F);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(91)))), ((int)(((byte)(190)))), ((int)(((byte)(227)))));
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvSalasVestibular.DefaultCellStyle = dataGridViewCellStyle1;
             this.dgvSalasVestibular.Location = new System.Drawing.Point(38, 238);
             this.dgvSalasVestibular.Name = "dgvSalasVestibular";
             this.dgvSalasVestibular.ReadOnly = true;
@@ -334,7 +335,6 @@
             this.ForeColor = System.Drawing.Color.Black;
             this.Name = "frmSalaVestibularCadastrar";
             this.Size = new System.Drawing.Size(800, 600);
-            this.Load += new System.EventHandler(this.frmSalaVestibularCadastrar_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvSalasVestibular)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
