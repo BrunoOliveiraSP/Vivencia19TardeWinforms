@@ -22,9 +22,20 @@ namespace Nsf.App.UI
                 DialogResult result = MessageBox.Show("Dejesa Remover?", "NSF", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
                 if (result == DialogResult.Yes)
                 {
-                    MatriculaApi.Deletar(matricula.Aluno.IdAluno);
-                    MessageBox.Show("Registro removido", "NSF", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    CarregarGrid();
+                    try
+                    {
+                        MatriculaApi.Deletar(matricula.Aluno.IdAluno);
+                        MessageBox.Show("Registro removido", "NSF", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        CarregarGrid();
+                    }
+                    catch (ArgumentException ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Ocorreu um erro", "error", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
                 }
             }
             else if(e.ColumnIndex == 8)
@@ -33,8 +44,11 @@ namespace Nsf.App.UI
 
                 Model.MatriculaRequest novo = new Model.MatriculaRequest();
 
-                novo.Aluno.NmAluno = matricula.Aluno.NmAluno;
-                novo.Aluno.DsRg = matricula.Aluno.DsRg;
+                frmMatriculaNovo tela = new frmMatriculaNovo();
+                tela.CarregarTela(matricula);
+
+                frmInicial.Current.OpenScreen(tela);
+                Hide();
             }
         }
 
@@ -50,10 +64,10 @@ namespace Nsf.App.UI
             {
                 MessageBox.Show(ex.Message);
             }
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show("Ocorreu um erro","error", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            //}
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ocorreu um erro", "error", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
 
         private void cboCurso_SelectedIndexChanged(object sender, EventArgs e)

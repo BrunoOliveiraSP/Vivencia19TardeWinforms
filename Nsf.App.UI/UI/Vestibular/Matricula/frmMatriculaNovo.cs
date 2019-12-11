@@ -30,20 +30,25 @@ namespace Nsf.App.UI
             cboCurso.DisplayMember = nameof(Model.CursoModel.NmCurso);
             cboCurso.DataSource = cursos;
         }
-
+        Model.MatriculaRequest matricula;
         MatriculaAPI Api = new MatriculaAPI();
 
 
         private void btnSalvar_Click(object sender, EventArgs e)
         {
-            Model.MatriculaRequest matricula = this.CarregarModelo();
-
             try
             {
-                if (matricula.Aluno.IdAluno == 0)
+                if (matricula == null || matricula.Aluno.IdAluno == 0)
+                {
+                    matricula = CarregarModelo();
                     Api.Inserir(matricula);
+                }
                 else if (matricula.Aluno.IdAluno > 0)
+                {
+                    matricula = CarregarModelo();
                     Api.Alterar(matricula);
+                }
+
             }
             catch (ArgumentException ex)
             {
