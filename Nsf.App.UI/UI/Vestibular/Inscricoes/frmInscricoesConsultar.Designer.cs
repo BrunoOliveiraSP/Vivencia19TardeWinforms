@@ -196,7 +196,7 @@
             this.Nome.HeaderText = "Nome";
             this.Nome.Name = "Nome";
             this.Nome.ReadOnly = true;
-            this.Nome.Width = 90;
+            this.Nome.Width = 97;
             // 
             // Column3
             // 
@@ -233,6 +233,7 @@
             this.Column32.HeaderText = "Período";
             this.Column32.Name = "Column32";
             this.Column32.ReadOnly = true;
+            this.Column32.Width = 80;
             // 
             // Column2
             // 
