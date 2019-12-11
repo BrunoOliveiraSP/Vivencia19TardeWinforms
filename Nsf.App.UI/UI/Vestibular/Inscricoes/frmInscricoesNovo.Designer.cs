@@ -58,7 +58,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.txtRgOrgao = new System.Windows.Forms.TextBox();
             this.lblNome = new System.Windows.Forms.Label();
-            this.txtNome = new System.Windows.Forms.TextBox();
             this.lblNascimento = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -168,6 +167,7 @@
             this.label64 = new System.Windows.Forms.Label();
             this.cboAnoLetivo = new System.Windows.Forms.ComboBox();
             this.label55 = new System.Windows.Forms.Label();
+            this.txtNome = new System.Windows.Forms.TextBox();
             this.tabControl1.SuspendLayout();
             this.tabDados.SuspendLayout();
             this.panelId.SuspendLayout();
@@ -236,6 +236,7 @@
             // 
             // tabDados
             // 
+            this.tabDados.Controls.Add(this.txtNome);
             this.tabDados.Controls.Add(this.label52);
             this.tabDados.Controls.Add(this.label53);
             this.tabDados.Controls.Add(this.txtEmailInscrito);
@@ -258,7 +259,6 @@
             this.tabDados.Controls.Add(this.label2);
             this.tabDados.Controls.Add(this.txtRgOrgao);
             this.tabDados.Controls.Add(this.lblNome);
-            this.tabDados.Controls.Add(this.txtNome);
             this.tabDados.Controls.Add(this.lblNascimento);
             this.tabDados.Controls.Add(this.label13);
             this.tabDados.Controls.Add(this.label4);
@@ -536,16 +536,6 @@
             this.lblNome.Size = new System.Drawing.Size(61, 19);
             this.lblNome.TabIndex = 495;
             this.lblNome.Text = "Nome:";
-            // 
-            // txtNome
-            // 
-            this.txtNome.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtNome.ForeColor = System.Drawing.Color.Black;
-            this.txtNome.Location = new System.Drawing.Point(130, 50);
-            this.txtNome.MaxLength = 200;
-            this.txtNome.Name = "txtNome";
-            this.txtNome.Size = new System.Drawing.Size(306, 27);
-            this.txtNome.TabIndex = 2;
             // 
             // lblNascimento
             // 
@@ -1941,6 +1931,16 @@
             this.label55.TabIndex = 492;
             this.label55.Text = "Ano letivo:";
             // 
+            // txtNome
+            // 
+            this.txtNome.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtNome.ForeColor = System.Drawing.Color.Black;
+            this.txtNome.Location = new System.Drawing.Point(130, 47);
+            this.txtNome.MaxLength = 200;
+            this.txtNome.Name = "txtNome";
+            this.txtNome.Size = new System.Drawing.Size(306, 27);
+            this.txtNome.TabIndex = 563;
+            // 
             // frmInscricoesNovo
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -2028,7 +2028,6 @@
 		private System.Windows.Forms.Label label55;
 		private System.Windows.Forms.Label label2;
 		private System.Windows.Forms.Label lblNome;
-		private System.Windows.Forms.TextBox txtNome;
 		private System.Windows.Forms.GroupBox groupBox2;
 		private System.Windows.Forms.Label label6;
 		private System.Windows.Forms.Label label11;
@@ -2127,5 +2126,6 @@
         private System.Windows.Forms.Label label52;
         private System.Windows.Forms.Label label53;
         private System.Windows.Forms.TextBox txtEmailInscrito;
+        private System.Windows.Forms.TextBox txtNome;
     }
 }
