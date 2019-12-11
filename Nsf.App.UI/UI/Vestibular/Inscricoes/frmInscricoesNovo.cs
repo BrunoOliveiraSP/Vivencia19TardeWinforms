@@ -154,7 +154,6 @@ namespace Nsf.App.UI
 
                     Model.InscricaoModel inserir = Api.Inserir(inscricao);
                     inscricaoModel.IdInscricao = inserir.idInscricao;
-                    MessageBox.Show("Inscrição efetuada.", "NSF", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     DialogResult result = MessageBox.Show("Inscrição efetuada com sucesso. Deseja fazer alguma alteração?", "NSF", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
                     if (result == DialogResult.Yes)
                     {
@@ -163,10 +162,9 @@ namespace Nsf.App.UI
                     else
                     {
                         LimparCampos();
+                        inscricaoModel.IdInscricao = 0;
                     }
                 }
-
-                inscricaoModel.IdInscricao = 0;
             }
             catch (ArgumentException ex)
             {
@@ -298,17 +296,15 @@ namespace Nsf.App.UI
                 chkPendenteCpf.Checked = false;
                 chkPendenteEscolaridade.Checked = false;
                 nudId.Value = 0;
-                cboComoConheceu.Text = string.Empty;
+                cboComoConheceu.Text = "Selecione";
                 txtCorDaPele.Text = string.Empty;
                 txtCpf.Text = string.Empty;
-                cboTurno2.Text = string.Empty;
-                cboTurno2.Text = string.Empty;
+                cboTurno2.Text = "Selecione";
+                cboTurno2.Text = "Selecione";
                 txtMaeEmail.Text = string.Empty;
                 txtEmailInscrito.Text = string.Empty;
-                cboEscolaridade.Text = string.Empty;
+                cboEscolaridade.Text = "Selecione";
                 txtNascimentoCidade.Text = string.Empty;
-                txtNascimentoCidade.Text = string.Empty;
-                cboNascimentoUf.Text = string.Empty;
                 txtObservacoes.Text = string.Empty;
                 txtRgOrgao.Text = string.Empty;
                 txtBairro.Text = string.Empty;
@@ -316,28 +312,28 @@ namespace Nsf.App.UI
                 txtCidade.Text = string.Empty;
                 txtComplemento.Text = string.Empty;
                 txtEndereco.Text = string.Empty;
-                cboUf.Text = string.Empty;
-                txtCpf.Text = string.Empty;
+                cboUf.Text = "Selecione";
                 txtResponsavelEmail.Text = string.Empty;
                 txtResponsavel.Text = string.Empty;
-                cboGrauParentesco.Text = string.Empty;
+                cboGrauParentesco.Text = "Selecione";
                 txtResponsavelTelefone1.Text = string.Empty;
                 txtResponsavelTelefone2.Text = string.Empty;
                 txtRG.Text = string.Empty;
-                cboSexo.Text = string.Empty;
+                cboSexo.Text = "Selecione";
                 txtTelefone1.Text = string.Empty;
                 txtTelefone2.Text = string.Empty;
                 dtpRgEmissao.Value = DateTime.Now.Date;
                 txtNascimentoData.Value = DateTime.Now.Date;
                 txtContato.Text = string.Empty;
                 txtNomeDaEscola.Text = string.Empty;
-                txtNumero.Text = string.Empty;
+                txtNumero.Value = 0;
                 nudPessoasMoramCasa.Value = 0;
                 nudPessoasTrabalhamCasa.Value = 0;
-                cboTipoDeEscola.Text = string.Empty;
-                txtRenda.Value = 0;
+                cboTipoDeEscola.Text = "Selecione";
+                txtRenda.Value = 1000;
+                txtNascimentoPais.Text = string.Empty;
+                cboNascimentoUf.Text = "Selecione";
                 txtNome.Text = string.Empty;
-                txtRenda.Value = 0;
             }
             catch (Exception)
             {
