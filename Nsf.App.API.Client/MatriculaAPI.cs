@@ -66,11 +66,12 @@ namespace Nsf.App.API.Client
 
             return lista;
         }
-        public List<Model.MatriculaRequest> ConsultarPorParametros(string nome, string curso, string turma, string ra)
+        public List<Model.MatriculaRequest> ConsultarPorParametros(string nome, string curso, string turma, string ra, int id)
         {
             HttpClient client = new HttpClient();
 
-            var resp = client.GetAsync("http://localhost:5000/Matricula?n" + nome + "&curso=" + curso + "&turma=" + turma + "&ra=" + ra)
+            var resp = client.GetAsync("http://localhost:5000/Matricula?nome=" + nome + "&curso=" + curso + "&turma=" + turma +
+                                                                           "&ra=" + ra + "&Idanoletivo=" + id)
                 .Result
                 .Content
                 .ReadAsStringAsync()

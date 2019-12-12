@@ -19,7 +19,7 @@ namespace Nsf.App.UI
 		public frmMatriculaNovo()
 		{
 			InitializeComponent();
-            API.Client.AnoLetivoApi ano = new AnoLetivoApi();
+            AnoLetivoApi ano = new AnoLetivoApi();
             CursoAPI curso = new CursoAPI();
             List<Model.CursoModel> cursos = curso.ConsultarTodos();
             List<Model.AnoLetivoModel> anos = ano.ListarTodos();
@@ -245,10 +245,10 @@ namespace Nsf.App.UI
             Nsf.App.Utils.APIs.CorreioApi api = new Utils.APIs.CorreioApi();
             if (api.BuscarAPICorreio(cep, out response))
             {
-                txtBairro.Text = response.bairro;
-                cboUf.Text = response.uf;
                 txtEndereco.Text = response.logradouro;
                 txtCidade.Text = response.localidade;
+                txtBairro.Text = response.bairro;
+                cboUf.Text = response.uf;
             }
         }
     }
