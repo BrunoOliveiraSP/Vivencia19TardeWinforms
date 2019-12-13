@@ -818,7 +818,6 @@
             this.dgvTurma.Size = new System.Drawing.Size(445, 189);
             this.dgvTurma.TabIndex = 10;
             this.dgvTurma.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvTurma_CellClick);
-            this.dgvTurma.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvTurma_CellContentClick);
             // 
             // Column3
             // 

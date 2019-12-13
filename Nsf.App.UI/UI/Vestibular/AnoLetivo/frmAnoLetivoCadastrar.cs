@@ -61,7 +61,6 @@ namespace Nsf.App.UI
                 {
                     Alterar();
                 }
-
                 else
                 {
                     Inserir();
@@ -71,7 +70,7 @@ namespace Nsf.App.UI
             {
                 MessageBox.Show(ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 MessageBox.Show("Ocorreu um erro.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -101,7 +100,7 @@ namespace Nsf.App.UI
             {
                 MessageBox.Show(ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 MessageBox.Show("Ocorreu um erro.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -126,7 +125,7 @@ namespace Nsf.App.UI
             {
                 MessageBox.Show(ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 MessageBox.Show("Ocorreu um erro.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -161,14 +160,12 @@ namespace Nsf.App.UI
 
                 dgvTurma.AutoGenerateColumns = false;
                 dgvTurma.DataSource = turma;
-                
-                
             }
             catch (ArgumentException ex)
             {
                 MessageBox.Show(ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 MessageBox.Show("Ocorreu um erro.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -179,7 +176,6 @@ namespace Nsf.App.UI
         {
             try
             {
-
                 if (e.ColumnIndex == 4)
                 {
                     turmaModel = new TurmaModell();
@@ -192,8 +188,6 @@ namespace Nsf.App.UI
                     cboTurmaCurso.Text = combo.NmCurso;
                     cboTurmaPeriodo.Text = turma.TpPeriodo;
                     nudTurmaCapacidade.Value = turma.NrCapacidadeMax;
-
-
                 }
 
                 if (e.ColumnIndex == 5)
@@ -214,7 +208,7 @@ namespace Nsf.App.UI
             {
                 MessageBox.Show(ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error); ;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 MessageBox.Show("Ocorreu um erro.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -239,7 +233,7 @@ namespace Nsf.App.UI
             {
                 MessageBox.Show(ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 MessageBox.Show("Ocorreu um erro.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -268,7 +262,7 @@ namespace Nsf.App.UI
             {
                 MessageBox.Show(ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 MessageBox.Show("Ocorreu um erro.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -276,7 +270,6 @@ namespace Nsf.App.UI
 
         public void AlterarTurma()
         {
-
                 Model.CursoModel combo = cboTurmaCurso.SelectedItem as Model.CursoModel;
 
                 turmaModel.IdTurma = turmaModel.IdTurma;
@@ -285,7 +278,6 @@ namespace Nsf.App.UI
                 turmaModel.NmTurma = txtTurmaNome.Text;
                 turmaModel.TpPeriodo = cboTurmaPeriodo.Text;
                 turmaModel.NrCapacidadeMax = Convert.ToInt32(nudTurmaCapacidade.Value);
-            
 
                 turmaApi.Alterar(turmaModel);
                 CarregarGrid();
@@ -300,11 +292,6 @@ namespace Nsf.App.UI
             //{
             //    MessageBox.Show("Ocorreu um erro.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             //}
-        }
-
-        private void dgvTurma_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
         }
     }
 }
