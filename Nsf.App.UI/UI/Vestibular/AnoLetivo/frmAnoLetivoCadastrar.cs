@@ -258,7 +258,7 @@ namespace Nsf.App.UI
                 turmaModel.TpPeriodo = cboTurmaPeriodo.Text;
                 turmaModel.NrCapacidadeMax = Convert.ToInt32(nudTurmaCapacidade.Value);
           
-                turmaApi.Cadastrar(turmaModel);
+               turmaModel = turmaApi.Cadastrar(turmaModel);
 
                 CarregarGrid();
 
@@ -280,7 +280,7 @@ namespace Nsf.App.UI
                 Model.CursoModel combo = cboTurmaCurso.SelectedItem as Model.CursoModel;
 
                 turmaModel.IdTurma = turmaModel.IdTurma;
-                turmaModel.IdAnoLetivo = turmaModel.IdAnoLetivo; ;
+                turmaModel.IdAnoLetivo = turmaModel.IdAnoLetivo; 
                 turmaModel.IdCurso = combo.IdCurso;
                 turmaModel.NmTurma = txtTurmaNome.Text;
                 turmaModel.TpPeriodo = cboTurmaPeriodo.Text;
