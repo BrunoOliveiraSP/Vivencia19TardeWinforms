@@ -23,7 +23,6 @@ namespace Nsf.App.UI
         Model.CursoModel curso;
         Model.TurmaModell turmaModel;
         Model.AnoLetivoModel anoModel;
-        Model.TurmaRequest turmaRequest;
 
         Nsf.App.API.Client.TurmaApi turmaApi = new App.API.Client.TurmaApi();
 
@@ -253,27 +252,18 @@ namespace Nsf.App.UI
                 turmaModel = new TurmaModell();
 
                 Model.CursoModel combo = cboTurmaCurso.SelectedItem as Model.CursoModel;
-
-                
+                turmaModel.IdAnoLetivo = anoModel.IdAnoLetivo;
                 turmaModel.IdCurso = combo.IdCurso;
                 turmaModel.NmTurma = txtTurmaNome.Text;
                 turmaModel.TpPeriodo = cboTurmaPeriodo.Text;
                 turmaModel.NrCapacidadeMax = Convert.ToInt32(nudTurmaCapacidade.Value);
-               
-
-                curso = new CursoModel();
-                curso.NmCurso = cboTurmaCurso.Text;
-
-                turmaRequest = new TurmaRequest();
-                turmaRequest.Turma = turmaModel;
-                turmaRequest.Curso = curso;
           
                 turmaApi.Cadastrar(turmaModel);
 
                 CarregarGrid();
 
                 MessageBox.Show("Turma cadastrada com sucesso.", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
+            }   
             catch (ArgumentException ex)
             {
                 MessageBox.Show(ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);;
@@ -286,40 +276,30 @@ namespace Nsf.App.UI
 
         public void AlterarTurma()
         {
-            try
-            {
-                turmaModel = new TurmaModell();
 
                 Model.CursoModel combo = cboTurmaCurso.SelectedItem as Model.CursoModel;
 
-
+                turmaModel.IdTurma = turmaModel.IdTurma;
+                turmaModel.IdAnoLetivo = turmaModel.IdAnoLetivo; ;
                 turmaModel.IdCurso = combo.IdCurso;
                 turmaModel.NmTurma = txtTurmaNome.Text;
                 turmaModel.TpPeriodo = cboTurmaPeriodo.Text;
                 turmaModel.NrCapacidadeMax = Convert.ToInt32(nudTurmaCapacidade.Value);
-                turmaModel.IdAnoLetivo = anoModel.IdAnoLetivo;
-
-                curso = new CursoModel();
-                curso.NmCurso = cboTurmaCurso.Text;
-
-                turmaRequest = new TurmaRequest();
-                turmaRequest.Turma = turmaModel;
-                turmaRequest.Curso = curso;
+            
 
                 turmaApi.Alterar(turmaModel);
-
                 CarregarGrid();
 
                 MessageBox.Show("Turma alterada com sucesso.", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            catch (ArgumentException ex)
-            {
-                MessageBox.Show(ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Ocorreu um erro.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            
+            //catch (ArgumentException ex)
+            //{
+            //    MessageBox.Show(ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);;
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show("Ocorreu um erro.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //}
         }
 
         private void dgvTurma_CellContentClick(object sender, DataGridViewCellEventArgs e)
