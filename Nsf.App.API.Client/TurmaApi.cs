@@ -27,9 +27,9 @@ namespace Nsf.App.API.Client
 
         }
 
-        public List<Nsf.App.Model.TurmaResponse> ListarTodos()
+        public List<Nsf.App.Model.TurmaResponse>ListarTodos(int id)
         {
-            string json = client.GetAsync("http://localhost:5000/Turma/")          
+            string json = client.GetAsync("http://localhost:5000/Turma/" + id)          
                                 .Result
                                 .Content
                                 .ReadAsStringAsync()
