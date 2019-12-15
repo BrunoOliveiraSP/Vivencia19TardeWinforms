@@ -14,13 +14,9 @@ namespace Nsf.App.UI
         public frmAnoLetivoCadastrar()
         {
             InitializeComponent();
-           //((Control)tabTurmas).Enabled = false;
-
-            CarregarGrid();
+            //((Control)tabTurmas).Enabled = false;
             CarregarCurso();
         }
-
-        Model.CursoModel curso;
         Model.TurmaModell turmaModel;
         Model.AnoLetivoModel anoModel;
         Model.TurmaResponse turma;
@@ -125,8 +121,6 @@ namespace Nsf.App.UI
         {
             try
             {
-                TurmaRequest turma = new TurmaRequest();
-
                 anoModel.IdAnoLetivo = anoModel.IdAnoLetivo;
                 anoModel.DtFim = dtpFim.Value;
                 anoModel.TpStatus = cboStatus.Text;
@@ -169,11 +163,11 @@ namespace Nsf.App.UI
             }
         }
 
-        public void CarregarGrid()
+        public void CarregarGrid(int idAnoLetivo)
         {
             try
             {
-                List<Model.TurmaResponse> turma = turmaApi.ListarTodos();
+                List<Model.TurmaResponse> turma = turmaApi.ListarTodos(idAnoLetivo);
 
                 dgvTurma.AutoGenerateColumns = false;
                 dgvTurma.DataSource = turma;
@@ -194,12 +188,11 @@ namespace Nsf.App.UI
             {
                 if (e.ColumnIndex == 4)
                 {
-                    turmaModel = new TurmaModell();
+                    
                     Model.TurmaResponse turma = dgvTurma.CurrentRow.DataBoundItem as Model.TurmaResponse;
                     Model.CursoModel combo = cboTurmaCurso.SelectedItem as Model.CursoModel;
 
                     turmaModel.IdTurma = turma.IdTurma;
-                    turma.IdAnoLetivo = turma.IdAnoLetivo;
                     txtTurmaNome.Text = turma.NmTurma;
                     cboTurmaCurso.Text = combo.NmCurso;
                     cboTurmaPeriodo.Text = turma.TpPeriodo;
@@ -234,15 +227,31 @@ namespace Nsf.App.UI
         {
             try
             {
+                Model.TurmaModell model = new TurmaModell();
+
+                Model.CursoModel combo = cboTurmaCurso.SelectedItem as Model.CursoModel;
+                model.IdAnoLetivo = anoModel.IdAnoLetivo;
+                model.IdCurso = combo.IdCurso;
+                model.NmTurma = txtTurmaNome.Text;
+                model.TpPeriodo = cboTurmaPeriodo.Text;
+                model.NrCapacidadeMax = Convert.ToInt32(nudTurmaCapacidade.Value);
+
+                App.API.Client.TurmaApi api = new API.Client.TurmaApi();
+
                 if (turmaModel != null && turmaModel.IdTurma > 0)
                 {
-                    AlterarTurma();
-                    CarregarGrid();
+                    model.IdTurma = turmaModel.IdTurma;
+                    api.Alterar(model);
+
+                    MessageBox.Show("Turma alterada com sucesso.", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    CarregarGrid(anoModel.IdAnoLetivo);
+
                 }
                 else
                 {
-                    InserirTurma();
-                    CarregarGrid();
+                    api.Cadastrar(model);
+                    CarregarGrid(anoModel.IdAnoLetivo);
+                    MessageBox.Show("Turma cadastrada com sucesso.", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
             catch (ArgumentException ex)
@@ -271,7 +280,7 @@ namespace Nsf.App.UI
           
                turmaModel = turmaApi.Cadastrar(turmaModel);
 
-                CarregarGrid();
+                CarregarGrid(anoModel.IdAnoLetivo);
 
                 MessageBox.Show("Turma cadastrada com sucesso.", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }   
@@ -288,7 +297,7 @@ namespace Nsf.App.UI
         public void AlterarTurma()
         {
                 Model.CursoModel combo = cboTurmaCurso.SelectedItem as Model.CursoModel;
-
+                
                 turmaModel.IdTurma = turmaModel.IdTurma;
                 turmaModel.IdAnoLetivo = turmaModel.IdAnoLetivo; 
                 turmaModel.IdCurso = combo.IdCurso;
@@ -297,7 +306,7 @@ namespace Nsf.App.UI
                 turmaModel.NrCapacidadeMax = Convert.ToInt32(nudTurmaCapacidade.Value);
 
                 turmaApi.Alterar(turmaModel);
-                CarregarGrid();
+                CarregarGrid(anoModel.IdAnoLetivo);
 
                 MessageBox.Show("Turma alterada com sucesso.", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
             

@@ -56,7 +56,7 @@ namespace Nsf.App.UI
 
                 frmMatriculaNovo tela = new frmMatriculaNovo();
                 frmInicial.Current.OpenScreen(tela);
-                tela.CarregarTela(matricula);
+       //         tela.CarregarTela(matricula);
 
                 
                 Hide();
@@ -93,7 +93,7 @@ namespace Nsf.App.UI
                 Model.MatriculaRequest matricula = dgvCandidatos.CurrentRow.DataBoundItem as Model.MatriculaRequest;
 
                 frmMatriculaNovo tela = new frmMatriculaNovo();
-                tela.CarregarTela(matricula);
+          //      tela.CarregarTela(matricula);
 
                 frmInicial.Current.OpenScreen(tela);
                 Hide();

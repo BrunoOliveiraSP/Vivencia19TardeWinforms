@@ -90,24 +90,24 @@ namespace Nsf.App.UI
 
             //Aluno
 
-            txtRG.Text = matricula.Aluno.DsRg;
-            txtCpf.Text = matricula.Aluno.DsCpf;
-            cboSexo.Text = matricula.Aluno.DsSexo;
-            txtNome.Text = matricula.Aluno.NmAluno;
-            txtEtnia.Text = matricula.Aluno.DsEtinia;
-            nudRenda.Value = matricula.Aluno.VlRenda;
-            txtRgOrgao.Text = matricula.Aluno.DsOrgao;
-            txtCelular.Text = matricula.Aluno.DsCelular;
-            txtAlunoEmail.Text = matricula.Aluno.DsEmail;
-            dtpRgEmissao.Value = matricula.Aluno.DtEmissao;
-            cboTipoDeEscola.Text = matricula.Aluno.TpEscola;
-            txtNomeDaEscola.Text = matricula.Aluno.NmEscola;
-            txtObservacoes.Text = matricula.Aluno.DsObservacao;
-            cboComoConheceu.Text = matricula.Aluno.DsComoConheceu;
-            cboEscolaridade.Text = matricula.Aluno.DsEscolaridade;
-            dtpNascimentoData.Value = matricula.Aluno.DtNascimento;
-            nudPessoasMoramCasa.Value = matricula.Aluno.QtMoramCasa;
-            nudPessoasTrabalhamCasa.Value = matricula.Aluno.QtTrabalhamCasa;
+            //txtRG.Text = matricula.Aluno.DsRg;
+            //txtCpf.Text = matricula.Aluno.DsCpf;
+            //cboSexo.Text = matricula.Aluno.DsSexo;
+            //txtNome.Text = matricula.Aluno.NmAluno;
+            //txtEtnia.Text = matricula.Aluno.DsEtinia;
+            //nudRenda.Value = matricula.Aluno.VlRenda;
+            //txtRgOrgao.Text = matricula.Aluno.DsOrgao;
+            //txtCelular.Text = matricula.Aluno.DsCelular;
+            //txtAlunoEmail.Text = matricula.Aluno.DsEmail;
+            //dtpRgEmissao.Value = matricula.Aluno.DtEmissao;
+            //cboTipoDeEscola.Text = matricula.Aluno.TpEscola;
+            //txtNomeDaEscola.Text = matricula.Aluno.NmEscola;
+            //txtObservacoes.Text = matricula.Aluno.DsObservacao;
+            //cboComoConheceu.Text = matricula.Aluno.DsComoConheceu;
+            //cboEscolaridade.Text = matricula.Aluno.DsEscolaridade;
+            //dtpNascimentoData.Value = matricula.Aluno.DtNascimento;
+            //nudPessoasMoramCasa.Value = matricula.Aluno.QtMoramCasa;
+       //     nudPessoasTrabalhamCasa.Value = matricula.Aluno.QtTrabalhamCasa;
 
             //Localização
 
