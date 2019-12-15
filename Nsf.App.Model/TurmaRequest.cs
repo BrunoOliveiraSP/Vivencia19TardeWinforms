@@ -9,8 +9,8 @@ namespace Nsf.App.Model
     public class TurmaRequest
     {
         public CursoModel Curso { get; set; }
+
         public  TurmaModell Turma { get; set; }
-      
     }
 }
 

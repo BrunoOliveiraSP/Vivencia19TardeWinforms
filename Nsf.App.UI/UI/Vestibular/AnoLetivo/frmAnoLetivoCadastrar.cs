@@ -23,6 +23,7 @@ namespace Nsf.App.UI
         Model.CursoModel curso;
         Model.TurmaModell turmaModel;
         Model.AnoLetivoModel anoModel;
+        Model.TurmaResponse turma;
 
         Nsf.App.API.Client.TurmaApi turmaApi = new App.API.Client.TurmaApi();
 
@@ -106,10 +107,26 @@ namespace Nsf.App.UI
             }
         }
 
+
+        //talvez isso funcione 
+        public void CarregarCampos(TurmaResponse turma)
+        {
+            anoModel.IdAnoLetivo = anoModel.IdAnoLetivo;
+            anoModel.DtFim = dtpFim.Value;
+            anoModel.TpStatus = cboStatus.Text;
+            anoModel.DtInicio = dtpInicio.Value;
+            anoModel.NrAno = Convert.ToInt32(nudAno.Value);
+            anoModel.BtAtivo = Convert.ToUInt32(rdnAberto.Checked);
+
+            this.turma = turma;
+        }
+
         public void Alterar()
         {
             try
             {
+                TurmaRequest turma = new TurmaRequest();
+
                 anoModel.IdAnoLetivo = anoModel.IdAnoLetivo;
                 anoModel.DtFim = dtpFim.Value;
                 anoModel.TpStatus = cboStatus.Text;
@@ -170,7 +187,6 @@ namespace Nsf.App.UI
                 MessageBox.Show("Ocorreu um erro.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
 
         private void dgvTurma_CellClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -245,6 +261,7 @@ namespace Nsf.App.UI
             {
                 turmaModel = new TurmaModell();
 
+
                 Model.CursoModel combo = cboTurmaCurso.SelectedItem as Model.CursoModel;
                 turmaModel.IdAnoLetivo = anoModel.IdAnoLetivo;
                 turmaModel.IdCurso = combo.IdCurso;
@@ -252,7 +269,7 @@ namespace Nsf.App.UI
                 turmaModel.TpPeriodo = cboTurmaPeriodo.Text;
                 turmaModel.NrCapacidadeMax = Convert.ToInt32(nudTurmaCapacidade.Value);
           
-                turmaApi.Cadastrar(turmaModel);
+               turmaModel = turmaApi.Cadastrar(turmaModel);
 
                 CarregarGrid();
 
@@ -273,7 +290,7 @@ namespace Nsf.App.UI
                 Model.CursoModel combo = cboTurmaCurso.SelectedItem as Model.CursoModel;
 
                 turmaModel.IdTurma = turmaModel.IdTurma;
-                turmaModel.IdAnoLetivo = turmaModel.IdAnoLetivo; ;
+                turmaModel.IdAnoLetivo = turmaModel.IdAnoLetivo; 
                 turmaModel.IdCurso = combo.IdCurso;
                 turmaModel.NmTurma = txtTurmaNome.Text;
                 turmaModel.TpPeriodo = cboTurmaPeriodo.Text;
