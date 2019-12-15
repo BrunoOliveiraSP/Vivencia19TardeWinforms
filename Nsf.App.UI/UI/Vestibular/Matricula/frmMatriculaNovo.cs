@@ -62,6 +62,10 @@ namespace Nsf.App.UI
 
         public void CarregarTela(Model.MatriculaResponse matricula)
         {
+            matricula.alunoresponsavel1model = matricula.responsavel[1];
+            matricula.alunoresponsavel2model = matricula.responsavel[1];
+            matricula.alunoresponsavel3model = matricula.responsavel[1];
+
             //Aluno responsavel 1
             txtResponsavel1.Text = matricula.alunoresponsavel1model.NmResponsavel;
             cboGrauParentesco1.Text = matricula.alunoresponsavel1model.DsTelefone1;

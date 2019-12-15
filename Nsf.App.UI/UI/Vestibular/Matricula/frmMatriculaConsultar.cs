@@ -104,7 +104,6 @@ namespace Nsf.App.UI
         {
             try
             {
-                
                 List<Model.MatriculaResponse> lista = MatriculaApi.ListarTodos();
                 dgvCandidatos.DataSource = lista;
             }
