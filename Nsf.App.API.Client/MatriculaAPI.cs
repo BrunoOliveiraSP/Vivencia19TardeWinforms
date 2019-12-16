@@ -70,8 +70,11 @@ namespace Nsf.App.API.Client
         {
             HttpClient client = new HttpClient();
 
-            var resp = client.GetAsync("http://localhost:5000/Matricula?nome=" + nome + "&curso=" + curso + "&turma=" + turma +
-                                                                           "&ra=" + ra + "&Idanoletivo=" + id)
+            var resp = client.GetAsync("http://localhost:5000/Matricula?nome=" + nome + 
+                                                                               "&ra=" + ra + 
+                                                                               "&curso=" + curso + 
+                                                                               "&turma=" + turma +
+                                                                               "&Idanoletivo=" + id)
                 .Result
                 .Content
                 .ReadAsStringAsync()
