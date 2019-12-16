@@ -18,9 +18,9 @@ namespace Nsf.App.UI
             CarregarCurso();
             CarregarGrid();
         }
-        Model.TurmaModell turmaModel;
+        Model.TurmaModell turmaModel = new TurmaModell();
         Model.AnoLetivoModel anoModel;
-        Model.TurmaResponse turma;
+       
 
         Nsf.App.API.Client.TurmaApi turmaApi = new App.API.Client.TurmaApi();
 
@@ -115,7 +115,7 @@ namespace Nsf.App.UI
             anoModel.NrAno = Convert.ToInt32(nudAno.Value);
             anoModel.BtAtivo = Convert.ToUInt32(rdnAberto.Checked);
 
-            this.turma = turma;
+         //   this.turma = turma;
         }
 
         public void Alterar()
@@ -288,13 +288,16 @@ namespace Nsf.App.UI
             {
 
                 Model.TurmaResponse turma = dgvTurma.CurrentRow.DataBoundItem as Model.TurmaResponse;
-                Model.CursoModel combo = cboTurmaCurso.SelectedItem as Model.CursoModel;
 
-                turmaModel.IdTurma = turma.IdTurma;
                 cboTurmaPeriodo.Text = turma.TpPeriodo;
                 txtTurmaNome.Text = turma.NmTurma;
                 nudTurmaCapacidade.Value = turma.NrCapacidadeMax;
-                cboTurmaCurso.Text = turma.NmCurso;                             
+                cboTurmaCurso.Text = turma.NmCurso;
+
+                turmaModel.IdTurma = turma.IdTurma;
+                turmaModel.NmTurma = turma.NmTurma;
+                turmaModel.NrCapacidadeMax = turma.NrCapacidadeMax;
+                turmaModel.TpPeriodo = turma.TpPeriodo;
             }
 
             if (e.ColumnIndex == 5)
