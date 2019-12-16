@@ -20,8 +20,7 @@ namespace Nsf.App.UI
         }
         Model.TurmaModell turmaModel = new TurmaModell();
         Model.AnoLetivoModel anoModel;
-       
-
+      
         Nsf.App.API.Client.TurmaApi turmaApi = new App.API.Client.TurmaApi();
 
         public void CarregarTela(Model.AnoLetivoModel model)
@@ -90,9 +89,7 @@ namespace Nsf.App.UI
                 anoModel = api.Cadastar(anoModel);
 
                 DialogResult d = MessageBox.Show("Ano letivo cadastrado com sucesso.", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                
-                //if(d == DialogResult.OK)
-                //    ((Control)tabTurmas).Enabled = false;
+               
             }
             catch (ArgumentException ex)
             {
@@ -102,20 +99,6 @@ namespace Nsf.App.UI
             {
                 MessageBox.Show("Ocorreu um erro.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-        }
-
-
-        //talvez isso funcione 
-        public void CarregarCampos(TurmaResponse turma)
-        {
-            anoModel.IdAnoLetivo = anoModel.IdAnoLetivo;
-            anoModel.DtFim = dtpFim.Value;
-            anoModel.TpStatus = cboStatus.Text;
-            anoModel.DtInicio = dtpInicio.Value;
-            anoModel.NrAno = Convert.ToInt32(nudAno.Value);
-            anoModel.BtAtivo = Convert.ToUInt32(rdnAberto.Checked);
-
-         //   this.turma = turma;
         }
 
         public void Alterar()
@@ -183,42 +166,42 @@ namespace Nsf.App.UI
             }
         }
 
-       
+
 
         private void btnTurmaAdd_Click_1(object sender, EventArgs e)
         {
             try
+            {  
+            Model.TurmaModell model = new TurmaModell();
+
+            Model.CursoModel combo = cboTurmaCurso.SelectedItem as Model.CursoModel;
+            model.IdAnoLetivo = anoModel.IdAnoLetivo;
+            model.IdCurso = combo.IdCurso;
+            model.NmTurma = txtTurmaNome.Text;
+            model.TpPeriodo = cboTurmaPeriodo.Text;
+            model.NrCapacidadeMax = Convert.ToInt32(nudTurmaCapacidade.Value);
+
+            App.API.Client.TurmaApi api = new API.Client.TurmaApi();
+
+            if (turmaModel != null && turmaModel.IdTurma > 0)
             {
-                Model.TurmaModell model = new TurmaModell();
+                model.IdTurma = turmaModel.IdTurma;
+                api.Alterar(model);
 
-                Model.CursoModel combo = cboTurmaCurso.SelectedItem as Model.CursoModel;
-                model.IdAnoLetivo = anoModel.IdAnoLetivo;
-                model.IdCurso = combo.IdCurso;
-                model.NmTurma = txtTurmaNome.Text;
-                model.TpPeriodo = cboTurmaPeriodo.Text;
-                model.NrCapacidadeMax = Convert.ToInt32(nudTurmaCapacidade.Value);
-
-                App.API.Client.TurmaApi api = new API.Client.TurmaApi();
-
-                if (turmaModel != null && turmaModel.IdTurma > 0)
-                {
-                    model.IdTurma = turmaModel.IdTurma;
-                    api.Alterar(model);
-
-                    MessageBox.Show("Turma alterada com sucesso.", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    CarregarGrid();
-
-                }
-                else
-                {
-                    api.Cadastrar(model);
-                    CarregarGrid();
-                    MessageBox.Show("Turma cadastrada com sucesso.", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
+                MessageBox.Show("Turma alterada com sucesso.", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                CarregarGrid();
             }
+            else
+            {
+                api.Cadastrar(model);
+                CarregarGrid();
+                MessageBox.Show("Turma cadastrada com sucesso.", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
             catch (ArgumentException ex)
             {
-                MessageBox.Show(ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);;
+                MessageBox.Show(ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error); ;
             }
             catch (Exception)
             {
@@ -226,102 +209,50 @@ namespace Nsf.App.UI
             }
         }
 
-        public void InserirTurma()
+       
+        private void dgvTurma_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             try
             {
-                turmaModel = new TurmaModell();
+                if (e.ColumnIndex == 4)
+                {
 
+                    Model.TurmaResponse turma = dgvTurma.CurrentRow.DataBoundItem as Model.TurmaResponse;
 
-                Model.CursoModel combo = cboTurmaCurso.SelectedItem as Model.CursoModel;
-                turmaModel.IdAnoLetivo = anoModel.IdAnoLetivo;
-                turmaModel.IdCurso = combo.IdCurso;
-                turmaModel.NmTurma = txtTurmaNome.Text;
-                turmaModel.TpPeriodo = cboTurmaPeriodo.Text;
-                turmaModel.NrCapacidadeMax = Convert.ToInt32(nudTurmaCapacidade.Value);
-          
-                turmaApi.Cadastrar(turmaModel);
+                    cboTurmaPeriodo.Text = turma.TpPeriodo;
+                    txtTurmaNome.Text = turma.NmTurma;
+                    nudTurmaCapacidade.Value = turma.NrCapacidadeMax;
+                    cboTurmaCurso.Text = turma.NmCurso;
 
-                CarregarGrid();
+                    turmaModel.IdTurma = turma.IdTurma;
+                    turmaModel.NmTurma = turma.NmTurma;
+                    turmaModel.NrCapacidadeMax = turma.NrCapacidadeMax;
+                    turmaModel.TpPeriodo = turma.TpPeriodo;
+                }
 
-                MessageBox.Show("Turma cadastrada com sucesso.", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }   
+                if (e.ColumnIndex == 5)
+                {
+                    Model.TurmaResponse turma = dgvTurma.CurrentRow.DataBoundItem as Model.TurmaResponse;
+
+                    DialogResult r = MessageBox.Show("Deseja Remover?", "Remover", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                    if (r == DialogResult.Yes)
+                    {
+                        turmaApi.Remover(turma.IdTurma);
+
+                        MessageBox.Show("Removido com sucesso", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        CarregarGrid();
+                    }
+                }
+            }
             catch (ArgumentException ex)
             {
-                MessageBox.Show(ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);;
+                MessageBox.Show(ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error); ;
             }
             catch (Exception)
             {
                 MessageBox.Show("Ocorreu um erro.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-        }
-
-        public void AlterarTurma()
-        {
-                Model.CursoModel combo = cboTurmaCurso.SelectedItem as Model.CursoModel;
-                
-                turmaModel.IdTurma = turmaModel.IdTurma;
-                turmaModel.IdAnoLetivo = anoModel.IdAnoLetivo; 
-                turmaModel.IdCurso = combo.IdCurso;
-                turmaModel.NmTurma = txtTurmaNome.Text;
-                turmaModel.TpPeriodo = cboTurmaPeriodo.Text;
-                turmaModel.NrCapacidadeMax = Convert.ToInt32(nudTurmaCapacidade.Value);
-
-                turmaApi.Alterar(turmaModel);
-                CarregarGrid();
-
-                MessageBox.Show("Turma alterada com sucesso.", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            
-            //catch (ArgumentException ex)
-            //{
-            //    MessageBox.Show(ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);;
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show("Ocorreu um erro.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //}
-        }
-
-        private void dgvTurma_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.ColumnIndex == 4)
-            {
-
-                Model.TurmaResponse turma = dgvTurma.CurrentRow.DataBoundItem as Model.TurmaResponse;
-
-                cboTurmaPeriodo.Text = turma.TpPeriodo;
-                txtTurmaNome.Text = turma.NmTurma;
-                nudTurmaCapacidade.Value = turma.NrCapacidadeMax;
-                cboTurmaCurso.Text = turma.NmCurso;
-
-                turmaModel.IdTurma = turma.IdTurma;
-                turmaModel.NmTurma = turma.NmTurma;
-                turmaModel.NrCapacidadeMax = turma.NrCapacidadeMax;
-                turmaModel.TpPeriodo = turma.TpPeriodo;
-            }
-
-            if (e.ColumnIndex == 5)
-            {
-                Model.TurmaModell turma = dgvTurma.CurrentRow.DataBoundItem as Model.TurmaModell;
-
-                DialogResult r = MessageBox.Show("Deseja Remover?", "Remover", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-                if (r == DialogResult.Yes)
-                {
-                    turmaApi.Remover(turma.IdTurma);
-
-                    MessageBox.Show("Removido com sucesso", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-            }
-
-            //catch (ArgumentException ex)
-            //{
-            //    MessageBox.Show(ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error); ;
-            //}
-            //catch (Exception)
-            //{
-            //    MessageBox.Show("Ocorreu um erro.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //}
         }
     }
 }
