@@ -27,16 +27,16 @@ namespace Nsf.App.UI
 
         private void dgvCandidatos_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.ColumnIndex == 9)
+            if (e.ColumnIndex == 8)
             {
-                Model.MatriculaRequest matricula = dgvCandidatos.CurrentRow.DataBoundItem as Model.MatriculaRequest;
+                Model.MatriculaResponse matricula = dgvCandidatos.CurrentRow.DataBoundItem as Model.MatriculaResponse;
 
-                DialogResult result = MessageBox.Show("Dejesa Remover?", "NSF", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+                DialogResult result = MessageBox.Show("Dejesa Remover?", "NSF", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (result == DialogResult.Yes)
                 {
                     try
                     {
-                        MatriculaApi.Deletar(matricula.Aluno.IdAluno);
+                        MatriculaApi.Deletar(matricula.aluno.IdAluno);
                         MessageBox.Show("Registro removido", "NSF", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         CarregarGrid();
                     }
@@ -50,15 +50,15 @@ namespace Nsf.App.UI
                     }
                 }
             }
-            if (e.ColumnIndex == 8)
+            if (e.ColumnIndex == 7)
             {
-                Model.MatriculaRequest matricula = dgvCandidatos.CurrentRow.DataBoundItem as Model.MatriculaRequest;
+                Model.MatriculaResponse matricula = dgvCandidatos.CurrentRow.DataBoundItem as Model.MatriculaResponse;
 
                 frmMatriculaNovo tela = new frmMatriculaNovo();
                 frmInicial.Current.OpenScreen(tela);
-       //         tela.CarregarTela(matricula);
+                tela.CarregarTela(matricula);
 
-                
+
                 Hide();
             }
         }
@@ -90,10 +90,10 @@ namespace Nsf.App.UI
             }
             if (e.ColumnIndex == 8)
             {
-                Model.MatriculaRequest matricula = dgvCandidatos.CurrentRow.DataBoundItem as Model.MatriculaRequest;
+                Model.MatriculaResponse matricula = dgvCandidatos.CurrentRow.DataBoundItem as Model.MatriculaResponse;
 
                 frmMatriculaNovo tela = new frmMatriculaNovo();
-          //      tela.CarregarTela(matricula);
+                tela.CarregarTela(matricula);
 
                 frmInicial.Current.OpenScreen(tela);
                 Hide();

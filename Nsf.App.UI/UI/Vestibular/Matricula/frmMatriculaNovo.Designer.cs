@@ -2491,8 +2491,8 @@
             this.nudRenda.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.nudRenda.Location = new System.Drawing.Point(355, 61);
             this.nudRenda.Maximum = new decimal(new int[] {
-            20000,
-            0,
+            -1156317184,
+            46566128,
             0,
             0});
             this.nudRenda.Minimum = new decimal(new int[] {
