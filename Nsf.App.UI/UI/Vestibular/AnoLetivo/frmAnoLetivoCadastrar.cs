@@ -17,11 +17,13 @@ namespace Nsf.App.UI
 
             CarregarCurso();
             CarregarGrid();
+
+            ((Control)this.tabTurmas).Enabled = false;
         }
 
-        Model.TurmaModell turmaModel;
-        Model.AnoLetivoModel anoModel;
-        Nsf.App.API.Client.TurmaApi turmaApi;
+        Model.TurmaModell turmaModel = new TurmaModell();
+        Model.AnoLetivoModel anoModel = new AnoLetivoModel();
+        Nsf.App.API.Client.TurmaApi turmaApi = new API.Client.TurmaApi();
 
         public void LimparCamposAnoLetivo()
         {
