@@ -80,7 +80,7 @@ namespace Nsf.App.API.Client
             HttpClient client = new HttpClient();
 
             HttpResponseMessage respostaApi = client.GetAsync("http://localhost:5000/AnoLetivo/ConsultarAnoLetivo/" + id)
-                                        .Result;
+                                                    .Result;
 
             string jsonResposta = VerificarErroCorreto(respostaApi);
 
@@ -89,7 +89,8 @@ namespace Nsf.App.API.Client
 
         private string VerificarErroCorreto(HttpResponseMessage respostaAPI)
         {
-            string jsonResposta = respostaAPI.Content.ReadAsStringAsync().Result;
+            string jsonResposta = respostaAPI.Content.ReadAsStringAsync()
+                                             .Result;
 
             if (respostaAPI.IsSuccessStatusCode == false)
             {
@@ -98,5 +99,5 @@ namespace Nsf.App.API.Client
             }
             return jsonResposta;
         }
-    }
+   }
 }

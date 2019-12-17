@@ -12,15 +12,14 @@ namespace Nsf.App.Model
 
         public int IdCurso { get; set; }
 
-        public int IdAnoLetivo { get; set; }
-
         public string NmTurma { get; set; }
+
+        public string NmCurso { get; set; }
+
+        public int IdAnoLetivo { get; set; }
 
         public string TpPeriodo { get; set; }
 
         public int NrCapacidadeMax { get; set; }
-
-        public string NmCurso { get; set; }
-
     }
 }

@@ -24,7 +24,6 @@ namespace Nsf.App.API.Client
                             .Result;
 
             return JsonConvert.DeserializeObject<Model.TurmaModell>(resp);
-
         }
 
         public List<Nsf.App.Model.TurmaResponse>ListarTodos()
@@ -67,6 +66,7 @@ namespace Nsf.App.API.Client
                 throw new ArgumentException(erro.Mensagem);
             }
         }
+
         private string LerJson(HttpResponseMessage resposta)
         {
             string json = resposta.Content.ReadAsStringAsync().Result;
@@ -77,7 +77,6 @@ namespace Nsf.App.API.Client
                 throw new ArgumentException(erro.Mensagem);
             }
             return json;
-
         }
    }
 }
