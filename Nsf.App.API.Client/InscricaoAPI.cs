@@ -25,7 +25,6 @@ namespace Nsf.App.API.Client
 
             return JsonConvert.DeserializeObject<Model.InscricaoModel>(resposta);
         }
-
         public List<Model.InscricaoResponse> ConsultarTodos()
         {
             HttpClient client = new HttpClient();
@@ -41,7 +40,8 @@ namespace Nsf.App.API.Client
 		{
 			HttpClient NomeAnoConsulta = new HttpClient();
 
-            HttpResponseMessage respostaApi = NomeAnoConsulta.GetAsync("http://localhost:5000/Inscricao/Consultar?nome=" + nome + "&ano=" + ano).Result;
+            HttpResponseMessage respostaApi = NomeAnoConsulta.GetAsync("http://localhost:5000/Inscricao/Consultar?nome=" + nome + "&ano=" + ano).
+                Result;
 
             string jsonResposta = VerificarErro(respostaApi);
 			return JsonConvert.DeserializeObject<List<Model.InscricaoResponse>>(jsonResposta);

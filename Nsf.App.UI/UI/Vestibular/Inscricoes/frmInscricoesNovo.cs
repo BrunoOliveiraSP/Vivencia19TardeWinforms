@@ -158,7 +158,9 @@ namespace Nsf.App.UI
                     if (result == DialogResult.Yes)
                     {
                         MessageBox.Show("Altere os campos desejados, e clique em salvar para concluir sua alteração.", "NSF", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+                        btnCoordenacao.Text = inserir.idInscricao.ToString();
                     }
+
                     else
                     {
                         LimparCampos();
