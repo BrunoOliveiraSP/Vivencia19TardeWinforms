@@ -11,11 +11,6 @@ namespace Nsf.App.UI
         public frmSalaVestibularCadastrar()
         {
             InitializeComponent();
-
-        }
-
-        private void frmSalaVestibularCadastrar_Load(object sender, EventArgs e)
-        {
             this.ListarTudo();
             this.CarregarCombo();
         }
@@ -45,28 +40,41 @@ namespace Nsf.App.UI
         private void btnVestibularAdd_Click(object sender, EventArgs e)
         {
             try
-            {
-              
-                var func = cboVestibularSala.SelectedItem as Model.SalaModel;
+            { 
+                Model.SalaVestibularModel model = new Model.SalaVestibularModel();
+                
+                
+                if(model.IdSalaVestibular == 0)
+                {
+                    var func = cboVestibularSala.SelectedItem as Model.SalaModel;
 
-                Model.SalaVestibularModel vestibular = new Model.SalaVestibularModel();
-                vestibular.DsPeriodo = cboPeriodos.Text;
-                vestibular.IdSala = func.IdSala;
+                    Model.SalaVestibularModel vestibular = new Model.SalaVestibularModel();
+                    vestibular.DsPeriodo = cboPeriodos.Text;
+                    vestibular.IdSala = func.IdSala;
+                    
 
-                Model.SalaModel sala = new Model.SalaModel();
-                sala.NmLocal = cboVestibularInstituicao.Text;
-                sala.NmSala = cboVestibularSala.Text;
-                                      
-                Model.SalaVestibularRequest request = new Model.SalaVestibularRequest();
-                request.Vestibular = vestibular;
-                request.Sala = sala;
-                               
-                Nsf.App.API.Client.SalaVestibularAPI api = new App.API.Client.SalaVestibularAPI();
-                api.Inserir(vestibular);
+                    Model.SalaModel sala = new Model.SalaModel();
+                    sala.NmLocal = cboVestibularInstituicao.Text;
+                    sala.NmSala = cboVestibularSala.Text;
 
-                MessageBox.Show("Inserido com sucesso.", "NSF", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    Model.SalaVestibularRequest request = new Model.SalaVestibularRequest();
+                    request.Vestibular = vestibular;
+                    request.Sala = sala;
 
-                this.ListarTudo();
+                    Nsf.App.API.Client.SalaVestibularAPI api = new App.API.Client.SalaVestibularAPI();
+                    api.Inserir(vestibular);
+
+                    MessageBox.Show("Inserido com sucesso.", "NSF", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    this.ListarTudo();
+                }
+                else if(model.IdSalaVestibular > 0)
+                {
+                    Model.SalaVestibualrResponse vest = new Model.SalaVestibualrResponse();
+
+                    this.Alterar(vest);
+                }
+                                  
             }
             catch (ArgumentException ex)
             {
@@ -76,7 +84,7 @@ namespace Nsf.App.UI
             {
                 MessageBox.Show("Ocorreu um erro. Entre em contato com o administrador.", "NSF",
                           MessageBoxButtons.OK,
-                           MessageBoxIcon.Error);
+                          MessageBoxIcon.Error);
             }
         }
 
@@ -105,6 +113,8 @@ namespace Nsf.App.UI
 
         public void Alterar(Model.SalaVestibualrResponse response)
         {
+           
+
             response.NmSala = cboVestibularSala.Text;
             response.NmLocal = cboVestibularInstituicao.Text;
             response.DsPeriodo = cboPeriodos.Text;
@@ -115,25 +125,24 @@ namespace Nsf.App.UI
             MessageBox.Show("Alterado com sucesso", "NSF",
                            MessageBoxButtons.OK,
                            MessageBoxIcon.Information);
-
         }
 
         private void dgvSalasVestibular_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            //try
-         //   {
+            try
+            {
                 if (e.ColumnIndex == 4)
                 {
                    
                     Model.SalaVestibualrResponse te = dgvSalasVestibular.CurrentRow.DataBoundItem as Model.SalaVestibualrResponse;
 
                     Model.SalaVestibualrResponse model = new Model.SalaVestibualrResponse();
-
-                    this.Alterar(model);
-
-                    model.DsPeriodo = te.DsPeriodo;
-                    model.NmLocal = te.NmSala;
-                    model.NmSala = te.NmSala;
+                   
+                   
+                    
+                    cboPeriodos.Text = te.DsPeriodo;
+                    cboVestibularInstituicao.Text = te.NmLocal;
+                    cboVestibularSala.Text = te.NmSala;
                   
                 }
 
@@ -154,17 +163,22 @@ namespace Nsf.App.UI
                     }
 
                 }
-           // }
-          //  catch(ArgumentException ex)
-           // {
-               // MessageBox.Show(ex.Message, "NSF", MessageBoxButtons.OK, MessageBoxIcon.Error);
-          //  }
-           // catch(Exception)
-          //  {
-           //     MessageBox.Show("Ocorreu um erro. Entre em contato com o administrador", "NSF", 
-           //                MessageBoxButtons.OK, 
-           //                MessageBoxIcon.Error);
-         //   }
+            }
+                catch(ArgumentException ex)
+            {
+                MessageBox.Show(ex.Message, "NSF", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch(Exception)
+            {
+                MessageBox.Show("Ocorreu um erro. Entre em contato com o administrador", "NSF", 
+                           MessageBoxButtons.OK, 
+                           MessageBoxIcon.Error);
+            }
+        }
+
+        private void cboVestibularInstituicao_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

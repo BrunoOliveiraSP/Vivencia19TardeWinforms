@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btnSalvar = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.pnSelected = new System.Windows.Forms.Panel();
@@ -186,9 +186,9 @@
             this.tabAcessos.Controls.Add(this.cboAcessoCurso);
             this.tabAcessos.Controls.Add(this.label28);
             this.tabAcessos.Controls.Add(this.cboAcessoModulo);
-            this.tabAcessos.Location = new System.Drawing.Point(4, 25);
+            this.tabAcessos.Location = new System.Drawing.Point(4, 33);
             this.tabAcessos.Name = "tabAcessos";
-            this.tabAcessos.Size = new System.Drawing.Size(726, 384);
+            this.tabAcessos.Size = new System.Drawing.Size(726, 376);
             this.tabAcessos.TabIndex = 4;
             this.tabAcessos.Text = "Acessos";
             this.tabAcessos.UseVisualStyleBackColor = true;
@@ -377,9 +377,9 @@
             this.tabDisciplinas.Controls.Add(this.cboDisciplinaCurso);
             this.tabDisciplinas.Controls.Add(this.label22);
             this.tabDisciplinas.Controls.Add(this.cboDisciplinaModulo);
-            this.tabDisciplinas.Location = new System.Drawing.Point(4, 25);
+            this.tabDisciplinas.Location = new System.Drawing.Point(4, 33);
             this.tabDisciplinas.Name = "tabDisciplinas";
-            this.tabDisciplinas.Size = new System.Drawing.Size(726, 384);
+            this.tabDisciplinas.Size = new System.Drawing.Size(726, 376);
             this.tabDisciplinas.TabIndex = 3;
             this.tabDisciplinas.Text = "Disciplinas";
             this.tabDisciplinas.UseVisualStyleBackColor = true;
@@ -509,9 +509,9 @@
             this.tabModulos.Controls.Add(this.label15);
             this.tabModulos.Controls.Add(this.label14);
             this.tabModulos.Controls.Add(this.cboModuloTipo);
-            this.tabModulos.Location = new System.Drawing.Point(4, 25);
+            this.tabModulos.Location = new System.Drawing.Point(4, 33);
             this.tabModulos.Name = "tabModulos";
-            this.tabModulos.Size = new System.Drawing.Size(726, 384);
+            this.tabModulos.Size = new System.Drawing.Size(726, 376);
             this.tabModulos.TabIndex = 2;
             this.tabModulos.Text = "Módulos";
             this.tabModulos.UseVisualStyleBackColor = true;
@@ -566,14 +566,14 @@
             this.Aberto,
             this.dataGridViewTextBoxColumn5,
             this.dataGridViewTextBoxColumn6});
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Century Gothic", 12F);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvModulos.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Century Gothic", 12F);
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvModulos.DefaultCellStyle = dataGridViewCellStyle3;
             this.dgvModulos.Location = new System.Drawing.Point(16, 174);
             this.dgvModulos.Name = "dgvModulos";
             this.dgvModulos.ReadOnly = true;
@@ -800,14 +800,14 @@
             this.Column7,
             this.Column2,
             this.Column1});
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Century Gothic", 12F);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(91)))), ((int)(((byte)(190)))), ((int)(((byte)(227)))));
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvTurma.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Century Gothic", 12F);
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(91)))), ((int)(((byte)(190)))), ((int)(((byte)(227)))));
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvTurma.DefaultCellStyle = dataGridViewCellStyle4;
             this.dgvTurma.Location = new System.Drawing.Point(116, 171);
             this.dgvTurma.Name = "dgvTurma";
             this.dgvTurma.ReadOnly = true;
@@ -817,7 +817,6 @@
             this.dgvTurma.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvTurma.Size = new System.Drawing.Size(445, 189);
             this.dgvTurma.TabIndex = 10;
-            this.dgvTurma.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvTurma_CellClick);
             this.dgvTurma.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvTurma_CellContentClick);
             // 
             // Column3

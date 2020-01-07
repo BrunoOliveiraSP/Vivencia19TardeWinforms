@@ -27,13 +27,20 @@ namespace Nsf.App.Model
 
 
 
-            public Model.AlunoModel Aluno { get; set; }
-            public Model.TurmaAluno TurmaAluno { get; set; }
+            public Model.AlunoModel aluno { get; set; }
+            public Model.TurmaAluno turmaAluno { get; set; }
+            public Model.AlunoDocumentoModel alunodocumentomodel {get ; set ; }
+            public Model.AlunoFichaMedicaModel alunofichamedicaModel {get ; set ; }
+            public Model.AlunoLocalizacaoModel alunolocalizacaomodel{ get ; set ; }
+            public Model.AlunoResponsavel alunoresponsavel1model{get ; set ; }
+            public Model.AlunoResponsavel alunoresponsavel2model{get ; set ; }
+            public Model.AlunoResponsavel alunoresponsavel3model{get ; set ; }
 
-            public List<Model.AlunoDocumentoModel> Documentos { get; set; }
-            public List<Model.AlunoFichaMedicaModel> FichaMedica { get; set; }
-            public List<Model.AlunoCarometroModel> Localizacao { get; set; }
-            public List<Model.AlunoResponsavel> Responsavel { get; set; }
+
+            public List<Model.AlunoDocumentoModel> documentos { get; set; }
+            public List<Model.AlunoFichaMedicaModel> fichaMedica { get; set; }
+            public List<Model.AlunoCarometroModel> localizacao { get; set; }
+            public List<Model.AlunoResponsavel> responsavel { get; set; }
 
         }
     }

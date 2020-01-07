@@ -16,7 +16,7 @@ namespace Nsf.App.API.Client
             string json = JsonConvert.SerializeObject(matricula);
             StringContent body = new StringContent(json, Encoding.UTF8, "application/json");
 
-            var resp = client.PostAsync("http://localhost:5000/Matricula", body)
+            var resp = client.PostAsync("http://localhost:5000/Matricula/", body)
                              .Result
                              .Content
                              .ReadAsStringAsync()
@@ -31,7 +31,7 @@ namespace Nsf.App.API.Client
             string json = JsonConvert.SerializeObject(matricula);
             StringContent body = new StringContent(json, Encoding.UTF8, "application/json");
 
-            var resp = client.PutAsync("http://localhost:5000/Matricula", body)
+            var resp = client.PutAsync("http://localhost:5000/Matricula/", body)
                 .Result
                 .Content
                 .ReadAsStringAsync()
@@ -66,11 +66,15 @@ namespace Nsf.App.API.Client
 
             return lista;
         }
-        public List<Model.MatriculaRequest> ConsultarPorParametros(string nome, string curso, string turma, string ra)
+        public List<Model.MatriculaRequest> ConsultarPorParametros(string nome, string curso, string turma, string ra, int id)
         {
             HttpClient client = new HttpClient();
 
-            var resp = client.GetAsync("http://localhost:5000/Matricula?n" + nome + "&curso=" + curso + "&turma=" + turma + "&ra=" + ra)
+            var resp = client.GetAsync("http://localhost:5000/Matricula?nome=" + nome + 
+                                                                               "&ra=" + ra + 
+                                                                               "&curso=" + curso + 
+                                                                               "&turma=" + turma +
+                                                                               "&Idanoletivo=" + id)
                 .Result
                 .Content
                 .ReadAsStringAsync()

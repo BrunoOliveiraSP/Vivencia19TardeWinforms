@@ -17,15 +17,16 @@ namespace Nsf.App.API.Client
             string json = JsonConvert.SerializeObject(turma);
             StringContent body = new StringContent(json, Encoding.UTF8, "application/json");
 
-            HttpResponseMessage resposta = client.PostAsync("http://localhost:5000/Turma/", body).Result;
+            var resp = client.PostAsync("http://localhost:5000/Turma/", body)
+                            .Result
+                            .Content
+                            .ReadAsStringAsync()
+                            .Result;
 
-            string jsonResposta = LerJson(resposta);
-            turma = JsonConvert.DeserializeObject<Model.TurmaModell>(json);
-                                                                                    
-            return turma;
+            return JsonConvert.DeserializeObject<Model.TurmaModell>(resp);
         }
 
-        public List<Nsf.App.Model.TurmaResponse> ListarTodos()
+        public List<Nsf.App.Model.TurmaResponse>ListarTodos()
         {
             string json = client.GetAsync("http://localhost:5000/Turma/")          
                                 .Result
@@ -65,6 +66,7 @@ namespace Nsf.App.API.Client
                 throw new ArgumentException(erro.Mensagem);
             }
         }
+
         private string LerJson(HttpResponseMessage resposta)
         {
             string json = resposta.Content.ReadAsStringAsync().Result;
@@ -75,7 +77,6 @@ namespace Nsf.App.API.Client
                 throw new ArgumentException(erro.Mensagem);
             }
             return json;
-
         }
    }
 }

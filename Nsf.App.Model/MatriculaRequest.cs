@@ -18,5 +18,7 @@ namespace Nsf.App.Model
         public AlunoResponsavel Responsavel2 { get; set; }
         public AlunoResponsavel Responsavel3 { get; set; }
         public TurmaAluno TurmaAluno { get; set; }
+
+        public List<AlunoResponsavel> Responsaiveis { get ; set ;}
     }
 }

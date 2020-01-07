@@ -19,7 +19,7 @@ namespace Nsf.App.UI
 		public frmMatriculaNovo()
 		{
 			InitializeComponent();
-            API.Client.AnoLetivoApi ano = new AnoLetivoApi();
+            AnoLetivoApi ano = new AnoLetivoApi();
             CursoAPI curso = new CursoAPI();
             List<Model.CursoModel> cursos = curso.ConsultarTodos();
             List<Model.AnoLetivoModel> anos = ano.ListarTodos();
@@ -30,20 +30,31 @@ namespace Nsf.App.UI
             cboCurso.DisplayMember = nameof(Model.CursoModel.NmCurso);
             cboCurso.DataSource = cursos;
         }
-
+        Model.MatriculaRequest matriculaapi;
         MatriculaAPI Api = new MatriculaAPI();
 
 
         private void btnSalvar_Click(object sender, EventArgs e)
         {
-            Model.MatriculaRequest matricula = this.CarregarModelo();
-
+            
             try
             {
-                if (matricula.Aluno.IdAluno == 0)
-                    Api.Inserir(matricula);
-                else if (matricula.Aluno.IdAluno > 0)
-                    Api.Alterar(matricula);
+                if (matriculaapi != null)
+                {
+                    matriculaapi = CarregarModelo();
+                    Api.Alterar(matriculaapi);
+                    MessageBox.Show("Alterado com sucesso");
+
+                }
+                else
+                {
+                    matriculaapi = new Model.MatriculaRequest();
+                    matriculaapi = CarregarModelo();
+                    Api.Inserir(matriculaapi);
+                    MessageBox.Show("Cadastro efetuado com sucesso");
+                 
+                }
+
             }
             catch (ArgumentException ex)
             {
@@ -55,69 +66,75 @@ namespace Nsf.App.UI
             }
         }
 
-        public void CarregarTela(Model.MatriculaRequest matricula)
+        public void CarregarTela(Model.MatriculaResponse matricula)
         {
+            matriculaapi = new Model.MatriculaRequest();
+
+            //matricula.alunoresponsavel1model = matricula.responsavel[1];
+            //matricula.alunoresponsavel2model = matricula.responsavel[1];
+            //matricula.alunoresponsavel3model = matricula.responsavel[1];
+
             //Aluno responsavel 1
-            txtResponsavel1.Text = matricula.Responsavel1.NmResponsavel;
-            cboGrauParentesco1.Text = matricula.Responsavel1.DsTelefone1;
-            txtResponsavel1Email.Text= matricula.Responsavel1.DsParentesco;
-            txtResponsavel1Telefone1.Text= matricula.Responsavel1.DsTelefone1;
-            txtResponsavel1Telefone2.Text= matricula.Responsavel1.DsTelefone2;
+            //txtResponsavel1.Text = matricula.alunoresponsavel1model.NmResponsavel;
+            //cboGrauParentesco1.Text = matricula.alunoresponsavel1model.DsTelefone1;
+            //txtResponsavel1Email.Text= matricula.alunoresponsavel1model.DsParentesco;
+            //txtResponsavel1Telefone1.Text= matricula.alunoresponsavel1model.DsTelefone1;
+            //txtResponsavel1Telefone2.Text= matricula.alunoresponsavel1model.DsTelefone2;
 
-            // Aluno responsavel 2 
-            txtResponsavel2Email.Text = matricula.Responsavel1.DsEmail;
-            txtResponsavel2.Text = matricula.Responsavel1.NmResponsavel;
-            cboGrauParentesco2.Text = matricula.Responsavel1.DsParentesco;
-            txtResponsavel2Telefone1.Text = matricula.Responsavel1.DsTelefone1;
-            txtResponsavel2Telefone2.Text = matricula.Responsavel1.DsTelefone2;
+            //// Aluno responsavel 2 
+            //txtResponsavel2Email.Text = matricula.alunoresponsavel2model.DsEmail;
+            //txtResponsavel2.Text = matricula.alunoresponsavel2model.NmResponsavel;
+            //cboGrauParentesco2.Text = matricula.alunoresponsavel2model.DsParentesco;
+            //txtResponsavel2Telefone1.Text = matricula.alunoresponsavel2model.DsTelefone1;
+            //txtResponsavel2Telefone2.Text = matricula.alunoresponsavel2model.DsTelefone2;
 
-            //Aluno Responsavel 3
+            ////Aluno Responsavel 3
 
-            txtResponsavel3Email.Text = matricula.Responsavel3.DsEmail;
-            txtResponsavel3.Text = matricula.Responsavel3.NmResponsavel;
-            cboGrauParentesco3.Text = matricula.Responsavel3.DsParentesco;
-            txtResponsavel3Telefone1.Text = matricula.Responsavel3.DsTelefone1;
-            txtResponsavel3Telefone2.Text = matricula.Responsavel3.DsTelefone2;
+            //txtResponsavel3Email.Text = matricula.alunoresponsavel3model.DsEmail;
+            //txtResponsavel3.Text = matricula.alunoresponsavel3model.NmResponsavel;
+            //cboGrauParentesco3.Text = matricula.alunoresponsavel3model.DsParentesco;
+            //txtResponsavel3Telefone1.Text = matricula.alunoresponsavel3model.DsTelefone1;
+            //txtResponsavel3Telefone2.Text = matricula.alunoresponsavel3model.DsTelefone2;
 
             //Aluno
 
-            txtRG.Text = matricula.Aluno.DsRg;
-            txtCpf.Text = matricula.Aluno.DsCpf;
-            cboSexo.Text = matricula.Aluno.DsSexo;
-            txtNome.Text = matricula.Aluno.NmAluno;
-            txtEtnia.Text = matricula.Aluno.DsEtinia;
-            nudRenda.Value = matricula.Aluno.VlRenda;
-            txtRgOrgao.Text = matricula.Aluno.DsOrgao;
-            txtCelular.Text = matricula.Aluno.DsCelular;
-            txtAlunoEmail.Text = matricula.Aluno.DsEmail;
-            dtpRgEmissao.Value = matricula.Aluno.DtEmissao;
-            cboTipoDeEscola.Text = matricula.Aluno.TpEscola;
-            txtNomeDaEscola.Text = matricula.Aluno.NmEscola;
-            txtObservacoes.Text = matricula.Aluno.DsObservacao;
-            cboComoConheceu.Text = matricula.Aluno.DsComoConheceu;
-            cboEscolaridade.Text = matricula.Aluno.DsEscolaridade;
-            dtpNascimentoData.Value = matricula.Aluno.DtNascimento;
-            nudPessoasMoramCasa.Value = matricula.Aluno.QtMoramCasa;
-            nudPessoasTrabalhamCasa.Value = matricula.Aluno.QtTrabalhamCasa;
+            txtRG.Text = matricula.aluno.DsRg;
+            txtCpf.Text = matricula.aluno.DsCpf;
+            cboSexo.Text = matricula.aluno.DsSexo;
+            txtNome.Text = matricula.aluno.NmAluno;
+            txtEtnia.Text = matricula.aluno.DsEtinia;
+            nudRenda.Value = matricula.aluno.VlRenda;
+            txtRgOrgao.Text = matricula.aluno.DsOrgao;
+            txtCelular.Text = matricula.aluno.DsCelular;
+            txtAlunoEmail.Text = matricula.aluno.DsEmail;
+            dtpRgEmissao.Value = matricula.aluno.DtEmissao;
+            cboTipoDeEscola.Text = matricula.aluno.TpEscola;
+            txtNomeDaEscola.Text = matricula.aluno.NmEscola;
+            txtObservacoes.Text = matricula.aluno.DsObservacao;
+            cboComoConheceu.Text = matricula.aluno.DsComoConheceu;
+            cboEscolaridade.Text = matricula.aluno.DsEscolaridade;
+            dtpNascimentoData.Value = matricula.aluno.DtNascimento;
+            nudPessoasMoramCasa.Value = matricula.aluno.QtMoramCasa;
+            nudPessoasTrabalhamCasa.Value = matricula.aluno.QtTrabalhamCasa;
 
             //Localização
 
-            txtCep.Text = matricula.Localizacao.DsResidenciaCep;
-            txtBairro.Text = matricula.Localizacao.DsResidenciaBairro;
-            txtCidade.Text = matricula.Localizacao.DsResidenciaCidade;
-            txtEndereco.Text = matricula.Localizacao.DsResidenciaEndereco;
-            txtNascimentoPais.Text = matricula.Localizacao.DsNascimentoPais;
-            txtNascimentoCidade.Text = matricula.Localizacao.DsNascimentoCidade;
-            txtComplemento.Text = matricula.Localizacao.DsResidenciaComplelemento;
+            //txtCep.Text = matricula.alunolocalizacaomodel.DsResidenciaCep;
+            //txtBairro.Text = matricula.alunolocalizacaomodel.DsResidenciaBairro;
+            //txtCidade.Text = matricula.alunolocalizacaomodel.DsResidenciaCidade;
+            //txtEndereco.Text = matricula.alunolocalizacaomodel.DsResidenciaEndereco;
+            //txtNascimentoPais.Text = matricula.alunolocalizacaomodel.DsNascimentoPais;
+            //txtNascimentoCidade.Text = matricula.alunolocalizacaomodel.DsNascimentoCidade;
+            //txtComplemento.Text = matricula.alunolocalizacaomodel.DsResidenciaComplelemento;
 
             //Aluno Ficha Medica
 
-            txtAlergias.Text = matricula.FichaMedica.DsAlergias;
-            txtMedicacao.Text = matricula.FichaMedica.DsMedicacao;
-            txtCongenitas.Text = matricula.FichaMedica.DsCongenitas;
-            txtTratamento.Text = matricula.FichaMedica.DsTratamento;
-            txtObservacoesMedicas.Text = matricula.FichaMedica.DsObservacao;
-            txtAcompanhamento.Text = matricula.FichaMedica.DsAcompanhamento;
+            //txtAlergias.Text = matricula.alunofichamedicaModel.DsAlergias;
+            //txtMedicacao.Text = matricula.alunofichamedicaModel.DsMedicacao;
+            //txtCongenitas.Text = matricula.alunofichamedicaModel.DsCongenitas;
+            //txtTratamento.Text = matricula.alunofichamedicaModel.DsTratamento;
+            //txtObservacoesMedicas.Text = matricula.alunofichamedicaModel.DsObservacao;
+            //txtAcompanhamento.Text = matricula.alunofichamedicaModel.DsAcompanhamento;
 
 
         }
@@ -185,6 +202,13 @@ namespace Nsf.App.UI
             responsavel3.DtUltimaAlteracao = DateTime.Now;
             responsavel3.NmResponsavel = txtResponsavel3.Text;
 
+            // Lista de responaveis
+
+            List<Model.AlunoResponsavel> responsaveis = new List<Model.AlunoResponsavel>();
+            responsaveis.Add(responsavel1);
+            responsaveis.Add(responsavel2);
+            responsaveis.Add(responsavel3);
+
             // Aluno Localizacao 
 
             Nsf.App.Model.AlunoLocalizacaoModel alunoLocalizacao = new Model.AlunoLocalizacaoModel();
@@ -227,6 +251,7 @@ namespace Nsf.App.UI
             matricula.Responsavel2 = responsavel2;
             matricula.Responsavel3 = responsavel3;
             matricula.Localizacao = alunoLocalizacao;
+            matricula.Responsaiveis = responsaveis;
 
             return matricula;
         }
@@ -240,10 +265,10 @@ namespace Nsf.App.UI
             Nsf.App.Utils.APIs.CorreioApi api = new Utils.APIs.CorreioApi();
             if (api.BuscarAPICorreio(cep, out response))
             {
-                txtBairro.Text = response.bairro;
-                cboUf.Text = response.uf;
                 txtEndereco.Text = response.logradouro;
                 txtCidade.Text = response.localidade;
+                txtBairro.Text = response.bairro;
+                cboUf.Text = response.uf;
             }
         }
     }
